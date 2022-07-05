@@ -32,72 +32,71 @@ import net.malisis.core.client.gui.component.UIComponent;
  * @author Ordinastie
  *
  */
-public interface IScrollable
-{
-	/**
-	 * Gets the width of the scrollable content. It should count the total content size to be displayed when not clipped.
-	 *
-	 * @return the content width
-	 */
-	public int getContentWidth();
+public interface IScrollable {
+    /**
+     * Gets the width of the scrollable content. It should count the total content size to be displayed when not clipped.
+     *
+     * @return the content width
+     */
+    public int getContentWidth();
 
-	/**
-	 * Gets the height of the scrollable content. It should count the total content size to be displayed when not clipped.
-	 *
-	 * @return the content height
-	 */
-	public int getContentHeight();
+    /**
+     * Gets the height of the scrollable content. It should count the total content size to be displayed when not clipped.
+     *
+     * @return the content height
+     */
+    public int getContentHeight();
 
-	/**
-	 * Gets the offset from 0 to 1 of the scrollable content. Only used for {@link UIScrollBar.Type#HORIZONTAL} scrollbars.
-	 *
-	 * @return the offset x
-	 */
-	public float getOffsetX();
+    /**
+     * Gets the offset from 0 to 1 of the scrollable content. Only used for {@link UIScrollBar.Type#HORIZONTAL} scrollbars.
+     *
+     * @return the offset x
+     */
+    public float getOffsetX();
 
-	/**
-	 * Sets the offset from 0 to 1 of the scrollable content. Only used for {@link UIScrollBar.Type#HORIZONTAL} scrollbars.<br>
-	 * Delta is the size taken for the {@link UIScrollBar.Type#VERTICAL} scrollbar if available.
-	 *
-	 * @param offsetX the offset x
-	 * @param delta the delta
-	 */
-	public void setOffsetX(float offsetX, int delta);
+    /**
+     * Sets the offset from 0 to 1 of the scrollable content. Only used for {@link UIScrollBar.Type#HORIZONTAL} scrollbars.<br>
+     * Delta is the size taken for the {@link UIScrollBar.Type#VERTICAL} scrollbar if available.
+     *
+     * @param offsetX the offset x
+     * @param delta the delta
+     */
+    public void setOffsetX(float offsetX, int delta);
 
-	/**
-	 * Gets the offset from 0 to 1 of the scrollable content. Only used for {@link UIScrollBar.Type#VERTICAL} scrollbars.
-	 *
-	 * @return the offset x
-	 */
-	public float getOffsetY();
+    /**
+     * Gets the offset from 0 to 1 of the scrollable content. Only used for {@link UIScrollBar.Type#VERTICAL} scrollbars.
+     *
+     * @return the offset x
+     */
+    public float getOffsetY();
 
-	/**
-	 * Sets the offset from 0 to 1 of the scrollable content. Only used for {@link UIScrollBar.Type#VERTICAL} scrollbars.<br>
-	 * Delta is the size taken for the {@link UIScrollBar.Type#HORIZONTAL} scrollbar if available.
-	 *
-	 * @param offsetY the offset y
-	 * @param delta the delta
-	 */
-	public void setOffsetY(float offsetY, int delta);
+    /**
+     * Sets the offset from 0 to 1 of the scrollable content. Only used for {@link UIScrollBar.Type#VERTICAL} scrollbars.<br>
+     * Delta is the size taken for the {@link UIScrollBar.Type#HORIZONTAL} scrollbar if available.
+     *
+     * @param offsetY the offset y
+     * @param delta the delta
+     */
+    public void setOffsetY(float offsetY, int delta);
 
-	/**
-	 * Gets the amount of scrolling from 0 to 1, done by one step of the scroll wheel.
-	 *
-	 * @return the scroll step
-	 */
-	public float getScrollStep();
+    /**
+     * Gets the amount of scrolling from 0 to 1, done by one step of the scroll wheel.
+     *
+     * @return the scroll step
+     */
+    public float getScrollStep();
 
-	/**
-	 * Gets the vertical padding.
-	 *
-	 * @return the vertical padding
-	 */
-	public int getVerticalPadding();
+    /**
+     * Gets the vertical padding.
+     *
+     * @return the vertical padding
+     */
+    public int getVerticalPadding();
 
-	/**
-	 * Gets the horizontal padding.
-	 *
-	 * @return the horizontal padding
-	 */
-	public int getHorizontalPadding();
+    /**
+     * Gets the horizontal padding.
+     *
+     * @return the horizontal padding
+     */
+    public int getHorizontalPadding();
 }

@@ -24,51 +24,42 @@
 
 package net.malisis.core.client.gui.component.mceditor;
 
+import com.google.common.base.Function;
 import java.util.Arrays;
-
 import net.malisis.core.client.gui.MalisisGui;
 import net.malisis.core.client.gui.component.interaction.UISelect;
 import net.minecraft.util.EnumChatFormatting;
-
-import com.google.common.base.Function;
 
 /**
  * @author Ordinastie
  *
  */
-public class EcfSelect extends UISelect<EnumChatFormatting>
-{
-	private MCEditor editor;
+public class EcfSelect extends UISelect<EnumChatFormatting> {
+    private MCEditor editor;
 
-	public EcfSelect(MalisisGui gui, MCEditor editor)
-	{
-		super(gui, 80);
-		this.editor = editor;
+    public EcfSelect(MalisisGui gui, MCEditor editor) {
+        super(gui, 80);
+        this.editor = editor;
 
-		labelFunction = new Function<EnumChatFormatting, String>()
-		{
-			@Override
-			public String apply(EnumChatFormatting input)
-			{
-				return input.toString() + input.getFriendlyName();
-			}
-		};
+        labelFunction = new Function<EnumChatFormatting, String>() {
+            @Override
+            public String apply(EnumChatFormatting input) {
+                return input.toString() + input.getFriendlyName();
+            }
+        };
 
-		setOptions(Arrays.asList(EnumChatFormatting.values()));
-	}
+        setOptions(Arrays.asList(EnumChatFormatting.values()));
+    }
 
-	@Override
-	public void setSelectedOption(Option<EnumChatFormatting> option)
-	{
-		editor.getTextfield().addText(option.getKey().toString());
-	}
+    @Override
+    public void setSelectedOption(Option<EnumChatFormatting> option) {
+        editor.getTextfield().addText(option.getKey().toString());
+    }
 
-	@Override
-	public boolean onClick(int x, int y)
-	{
-		super.onClick(x, y);
-		if (!expanded)
-			editor.getTextfield().setFocused(true);
-		return true;
-	}
+    @Override
+    public boolean onClick(int x, int y) {
+        super.onClick(x, y);
+        if (!expanded) editor.getTextfield().setFocused(true);
+        return true;
+    }
 }

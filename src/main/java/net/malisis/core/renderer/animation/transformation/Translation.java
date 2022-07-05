@@ -24,49 +24,43 @@
 
 package net.malisis.core.renderer.animation.transformation;
 
-public class Translation extends Transformation<Translation, ITransformable.Translate>
-{
-	protected float fromX, fromY, fromZ;
-	protected float toX, toY, toZ;
+public class Translation extends Transformation<Translation, ITransformable.Translate> {
+    protected float fromX, fromY, fromZ;
+    protected float toX, toY, toZ;
 
-	public Translation(float x, float y, float z)
-	{
-		to(x, y, z);
-	}
+    public Translation(float x, float y, float z) {
+        to(x, y, z);
+    }
 
-	public Translation(float fromX, float fromY, float fromZ, float toX, float toY, float toZ)
-	{
-		from(fromX, fromY, fromZ);
-		to(toX, toY, toZ);
-	}
+    public Translation(float fromX, float fromY, float fromZ, float toX, float toY, float toZ) {
+        from(fromX, fromY, fromZ);
+        to(toX, toY, toZ);
+    }
 
-	public Translation from(float x, float y, float z)
-	{
-		fromX = x;
-		fromY = y;
-		fromZ = z;
-		return this;
-	}
+    public Translation from(float x, float y, float z) {
+        fromX = x;
+        fromY = y;
+        fromZ = z;
+        return this;
+    }
 
-	public Translation to(float x, float y, float z)
-	{
-		toX = x;
-		toY = y;
-		toZ = z;
-		return this;
-	}
+    public Translation to(float x, float y, float z) {
+        toX = x;
+        toY = y;
+        toZ = z;
+        return this;
+    }
 
-	@Override
-	protected void doTransform(ITransformable.Translate transformable, float comp)
-	{
-		float fromX = reversed ? this.toX : this.fromX;
-		float toX = reversed ? this.fromX : this.toX;
-		float fromY = reversed ? this.toY : this.fromY;
-		float toY = reversed ? this.fromY : this.toY;
-		float fromZ = reversed ? this.toZ : this.fromZ;
-		float toZ = reversed ? this.fromZ : this.toZ;
+    @Override
+    protected void doTransform(ITransformable.Translate transformable, float comp) {
+        float fromX = reversed ? this.toX : this.fromX;
+        float toX = reversed ? this.fromX : this.toX;
+        float fromY = reversed ? this.toY : this.fromY;
+        float toY = reversed ? this.fromY : this.toY;
+        float fromZ = reversed ? this.toZ : this.fromZ;
+        float toZ = reversed ? this.fromZ : this.toZ;
 
-		transformable.translate(fromX + (toX - fromX) * comp, fromY + (toY - fromY) * comp, fromZ + (toZ - fromZ) * comp);
-	}
-
+        transformable.translate(
+                fromX + (toX - fromX) * comp, fromY + (toY - fromY) * comp, fromZ + (toZ - fromZ) * comp);
+    }
 }

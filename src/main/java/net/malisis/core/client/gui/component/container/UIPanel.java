@@ -30,86 +30,76 @@ import net.malisis.core.client.gui.MalisisGui;
 import net.malisis.core.client.gui.element.XYResizableGuiShape;
 import net.malisis.core.renderer.animation.transformation.ITransformable;
 
-public class UIPanel extends UIContainer<UIPanel> implements ITransformable.Color
-{
-	/** Background color multiplier. */
-	protected int backgroundColor = -1;
+public class UIPanel extends UIContainer<UIPanel> implements ITransformable.Color {
+    /** Background color multiplier. */
+    protected int backgroundColor = -1;
 
-	public UIPanel(MalisisGui gui)
-	{
-		super(gui);
-		setPadding(3, 3);
+    public UIPanel(MalisisGui gui) {
+        super(gui);
+        setPadding(3, 3);
 
-		shape = new XYResizableGuiShape(5);
-		icon = gui.getGuiTexture().getXYResizableIcon(200, 15, 15, 15, 5);
-	}
+        shape = new XYResizableGuiShape(5);
+        icon = gui.getGuiTexture().getXYResizableIcon(200, 15, 15, 15, 5);
+    }
 
-	public UIPanel(MalisisGui gui, int width, int height)
-	{
-		this(gui);
-		setSize(width, height);
-	}
+    public UIPanel(MalisisGui gui, int width, int height) {
+        this(gui);
+        setSize(width, height);
+    }
 
-	public UIPanel(MalisisGui gui, String title)
-	{
-		this(gui);
-		setTitle(title);
-	}
+    public UIPanel(MalisisGui gui, String title) {
+        this(gui);
+        setTitle(title);
+    }
 
-	public UIPanel(MalisisGui gui, String title, int width, int height)
-	{
-		this(gui);
-		setTitle(title);
-		setSize(width, height);
-	}
+    public UIPanel(MalisisGui gui, String title, int width, int height) {
+        this(gui);
+        setTitle(title);
+        setSize(width, height);
+    }
 
-	/**
-	 * Sets the background color for {@link UIContainer}.
-	 *
-	 * @param color the color
-	 * @return the UI container
-	 */
-	public UIContainer setBackgroundColor(int color)
-	{
-		this.backgroundColor = color;
-		return this;
-	}
+    /**
+     * Sets the background color for {@link UIContainer}.
+     *
+     * @param color the color
+     * @return the UI container
+     */
+    public UIContainer setBackgroundColor(int color) {
+        this.backgroundColor = color;
+        return this;
+    }
 
-	/**
-	 * Gets the background color.
-	 *
-	 * @return the background color for {@link UIContainer}.
-	 */
-	public int getBackgroundColor()
-	{
-		return backgroundColor;
-	}
+    /**
+     * Gets the background color.
+     *
+     * @return the background color for {@link UIContainer}.
+     */
+    public int getBackgroundColor() {
+        return backgroundColor;
+    }
 
-	/**
-	 * Sets the background color of this {@link UIContainer}.
-	 *
-	 * @param color the new color
-	 */
-	@Override
-	public void setColor(int color)
-	{
-		setBackgroundColor(color);
-	}
+    /**
+     * Sets the background color of this {@link UIContainer}.
+     *
+     * @param color the new color
+     */
+    @Override
+    public void setColor(int color) {
+        setBackgroundColor(color);
+    }
 
-	@Override
-	public ClipArea getClipArea()
-	{
-		return new ClipArea(this, 1);
-	}
+    @Override
+    public ClipArea getClipArea() {
+        return new ClipArea(this, 1);
+    }
 
-	@Override
-	public void drawBackground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick)
-	{
-		rp.useTexture.set(true);
-		rp.alpha.set(255);
-		rp.colorMultiplier.set(getBackgroundColor() != 0x404040 ? getBackgroundColor() : -1);
-		rp.icon.set(icon);
-		renderer.drawShape(shape, rp);
-		renderer.next();
-	}
+    @Override
+    public void drawBackground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick) {
+        rp.useTexture.set(true);
+        rp.alpha.set(255);
+        rp.colorMultiplier.set(getBackgroundColor() != 0x404040 ? getBackgroundColor() : -1);
+        rp.icon.set(icon);
+        renderer.drawShape(shape, rp);
+        renderer.next();
+    }
 }

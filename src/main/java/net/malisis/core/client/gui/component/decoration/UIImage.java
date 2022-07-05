@@ -40,166 +40,149 @@ import net.minecraft.util.ResourceLocation;
  *
  * @author Ordinastie
  */
-public class UIImage extends UIComponent<UIImage>
-{
-	/** {@link ResourceLocation} for Block textures. */
-	public static final ResourceLocation BLOCKS_TEXTURE = TextureMap.locationBlocksTexture;
-	/** {@link ResourceLocation} for Item textures. */
-	public static final ResourceLocation ITEMS_TEXTURE = TextureMap.locationItemsTexture;
+public class UIImage extends UIComponent<UIImage> {
+    /** {@link ResourceLocation} for Block textures. */
+    public static final ResourceLocation BLOCKS_TEXTURE = TextureMap.locationBlocksTexture;
+    /** {@link ResourceLocation} for Item textures. */
+    public static final ResourceLocation ITEMS_TEXTURE = TextureMap.locationItemsTexture;
 
-	/** {@link GuiTexture} to use for the icon. */
-	private GuiTexture texture;
-	/** {@link IIcon} to use for the texture. */
-	private IIcon icon = null;
-	/** {@link ItemStack} to render. */
-	private ItemStack itemStack;
+    /** {@link GuiTexture} to use for the icon. */
+    private GuiTexture texture;
+    /** {@link IIcon} to use for the texture. */
+    private IIcon icon = null;
+    /** {@link ItemStack} to render. */
+    private ItemStack itemStack;
 
-	/**
-	 * Instantiates a new {@link UIImage}.
-	 *
-	 * @param gui the gui
-	 * @param texture the texture
-	 * @param icon the icon
-	 */
-	public UIImage(MalisisGui gui, GuiTexture texture, IIcon icon)
-	{
-		super(gui);
-		setIcon(texture, icon);
-		setSize(16, 16);
+    /**
+     * Instantiates a new {@link UIImage}.
+     *
+     * @param gui the gui
+     * @param texture the texture
+     * @param icon the icon
+     */
+    public UIImage(MalisisGui gui, GuiTexture texture, IIcon icon) {
+        super(gui);
+        setIcon(texture, icon);
+        setSize(16, 16);
 
-		shape = new SimpleGuiShape();
-	}
+        shape = new SimpleGuiShape();
+    }
 
-	/**
-	 * Instantiates a new {@link UIImage}.
-	 *
-	 * @param gui the gui
-	 * @param itemStack the item stack
-	 */
-	public UIImage(MalisisGui gui, ItemStack itemStack)
-	{
-		super(gui);
-		setItemStack(itemStack);
-		setSize(16, 16);
+    /**
+     * Instantiates a new {@link UIImage}.
+     *
+     * @param gui the gui
+     * @param itemStack the item stack
+     */
+    public UIImage(MalisisGui gui, ItemStack itemStack) {
+        super(gui);
+        setItemStack(itemStack);
+        setSize(16, 16);
 
-		shape = new SimpleGuiShape();
-	}
+        shape = new SimpleGuiShape();
+    }
 
-	/**
-	 * Sets the icon for this {@link UIImage}.
-	 *
-	 * @param icon the icon
-	 * @return this UIImage
-	 */
-	public UIImage setIcon(IIcon icon)
-	{
-		this.itemStack = null;
-		this.icon = icon != null ? icon : new MalisisIcon();
-		return this;
-	}
+    /**
+     * Sets the icon for this {@link UIImage}.
+     *
+     * @param icon the icon
+     * @return this UIImage
+     */
+    public UIImage setIcon(IIcon icon) {
+        this.itemStack = null;
+        this.icon = icon != null ? icon : new MalisisIcon();
+        return this;
+    }
 
-	/**
-	 * Sets the icon for this {@link UIImage} to be used with the specified {@link GuiTexture}.
-	 *
-	 * @param texture the texture
-	 * @param icon the icon
-	 * @return this UIImage
-	 */
-	public UIImage setIcon(GuiTexture texture, IIcon icon)
-	{
-		this.itemStack = null;
-		this.icon = icon != null ? icon : new MalisisIcon();
-		this.texture = texture;
-		return this;
-	}
+    /**
+     * Sets the icon for this {@link UIImage} to be used with the specified {@link GuiTexture}.
+     *
+     * @param texture the texture
+     * @param icon the icon
+     * @return this UIImage
+     */
+    public UIImage setIcon(GuiTexture texture, IIcon icon) {
+        this.itemStack = null;
+        this.icon = icon != null ? icon : new MalisisIcon();
+        this.texture = texture;
+        return this;
+    }
 
-	/**
-	 * Sets the {@link ItemStack} to render.
-	 *
-	 * @param itemStack the item stack
-	 * @return this UIImage
-	 */
-	public UIImage setItemStack(ItemStack itemStack)
-	{
-		this.icon = null;
-		this.texture = null;
-		this.itemStack = itemStack;
-		setSize(16, 16);
-		return this;
-	}
+    /**
+     * Sets the {@link ItemStack} to render.
+     *
+     * @param itemStack the item stack
+     * @return this UIImage
+     */
+    public UIImage setItemStack(ItemStack itemStack) {
+        this.icon = null;
+        this.texture = null;
+        this.itemStack = itemStack;
+        setSize(16, 16);
+        return this;
+    }
 
-	/**
-	 * Gets the {@link IIcon} for this {@link UIImage}.
-	 *
-	 * @return the icon
-	 */
-	public IIcon getIcon()
-	{
-		return icon;
-	}
+    /**
+     * Gets the {@link IIcon} for this {@link UIImage}.
+     *
+     * @return the icon
+     */
+    public IIcon getIcon() {
+        return icon;
+    }
 
-	/**
-	 * Gets the {@link GuiTexture} for this {@link UIImage}.
-	 *
-	 * @return the texture
-	 */
-	public GuiTexture getTexture()
-	{
-		return texture;
-	}
+    /**
+     * Gets the {@link GuiTexture} for this {@link UIImage}.
+     *
+     * @return the texture
+     */
+    public GuiTexture getTexture() {
+        return texture;
+    }
 
-	/**
-	 * Gets the {@link ItemStack} for this {@link UIImage}.
-	 *
-	 * @return the item stack
-	 */
-	public ItemStack getItemStack()
-	{
-		return itemStack;
-	}
+    /**
+     * Gets the {@link ItemStack} for this {@link UIImage}.
+     *
+     * @return the item stack
+     */
+    public ItemStack getItemStack() {
+        return itemStack;
+    }
 
-	/**
-	 * Sets the size for this {@link UIImage}.<br>
-	 * Has no effect if rendering an {@link ItemStack}.
-	 *
-	 * @param width the width
-	 * @param height the height
-	 * @return the UI image
-	 */
-	@Override
-	public UIImage setSize(int width, int height)
-	{
-		if (itemStack != null)
-		{
-			width = 16;//UIImage for itemStack have a fixed 16*16 size
-			height = 16;
-		}
-		return super.setSize(width, height);
-	}
+    /**
+     * Sets the size for this {@link UIImage}.<br>
+     * Has no effect if rendering an {@link ItemStack}.
+     *
+     * @param width the width
+     * @param height the height
+     * @return the UI image
+     */
+    @Override
+    public UIImage setSize(int width, int height) {
+        if (itemStack != null) {
+            width = 16; // UIImage for itemStack have a fixed 16*16 size
+            height = 16;
+        }
+        return super.setSize(width, height);
+    }
 
-	@Override
-	public void drawBackground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick)
-	{}
+    @Override
+    public void drawBackground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick) {}
 
-	@Override
-	public void drawForeground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick)
-	{
-		if (icon != null)
-		{
-			rp.icon.set(icon);
-			renderer.bindTexture(texture);
-			renderer.drawShape(shape, rp);
-		}
-		else if (itemStack != null)
-		{
-			renderer.drawItemStack(itemStack);
-		}
-	}
+    @Override
+    public void drawForeground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick) {
+        if (icon != null) {
+            rp.icon.set(icon);
+            renderer.bindTexture(texture);
+            renderer.drawShape(shape, rp);
+        } else if (itemStack != null) {
+            renderer.drawItemStack(itemStack);
+        }
+    }
 
-	@Override
-	public String getPropertyString()
-	{
-		return (itemStack != null ? itemStack : ("texture : " + this.texture + ", " + " icon : " + icon)) + super.getPropertyString();
-	}
-
+    @Override
+    public String getPropertyString() {
+        return (itemStack != null ? itemStack : ("texture : " + this.texture + ", " + " icon : " + icon))
+                + super.getPropertyString();
+    }
 }

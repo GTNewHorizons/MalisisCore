@@ -34,11 +34,9 @@ import java.lang.annotation.Target;
  * @author Ordinastie
  *
  */
-
 @Documented
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Sync
-{
-	public String value();
+public @interface Sync {
+    public String value();
 }

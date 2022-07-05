@@ -31,65 +31,55 @@ import net.minecraft.util.EnumChatFormatting;
  * @author Ordinastie
  *
  */
-public class BBStyleNode extends BBNode
-{
-	protected EnumChatFormatting ecf;
+public class BBStyleNode extends BBNode {
+    protected EnumChatFormatting ecf;
 
-	public BBStyleNode(String tag)
-	{
-		super(tag);
-		switch (tag)
-		{
-			case "b":
-				ecf = EnumChatFormatting.BOLD;
-				break;
-			case "i":
-				ecf = EnumChatFormatting.ITALIC;
-				break;
-			case "u":
-				ecf = EnumChatFormatting.UNDERLINE;
-				break;
-			case "s":
-				ecf = EnumChatFormatting.STRIKETHROUGH;
-				break;
-			default:
-				throw new IllegalArgumentException("Invalid tag for BBStyleNode : " + tag);
-		}
-	}
+    public BBStyleNode(String tag) {
+        super(tag);
+        switch (tag) {
+            case "b":
+                ecf = EnumChatFormatting.BOLD;
+                break;
+            case "i":
+                ecf = EnumChatFormatting.ITALIC;
+                break;
+            case "u":
+                ecf = EnumChatFormatting.UNDERLINE;
+                break;
+            case "s":
+                ecf = EnumChatFormatting.STRIKETHROUGH;
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid tag for BBStyleNode : " + tag);
+        }
+    }
 
-	public EnumChatFormatting getEcf()
-	{
-		return ecf;
-	}
+    public EnumChatFormatting getEcf() {
+        return ecf;
+    }
 
-	public String toFormattedString()
-	{
-		return ecf.toString();
-	}
+    public String toFormattedString() {
+        return ecf.toString();
+    }
 
-	@Override
-	public BBStyleNode copy()
-	{
-		return new BBStyleNode(tag);
-	}
+    @Override
+    public BBStyleNode copy() {
+        return new BBStyleNode(tag);
+    }
 
-	@Override
-	public void clean()
-	{
-		BBStyleNode node = getChildStyleNode(tag);
-		if (node != null && node.getParent() != null)
-		{
-			for (BBNode n : node)
-				node.getParent().insertBefore(n, node);
-			node.getParent().remove(node);
-		}
+    @Override
+    public void clean() {
+        BBStyleNode node = getChildStyleNode(tag);
+        if (node != null && node.getParent() != null) {
+            for (BBNode n : node) node.getParent().insertBefore(n, node);
+            node.getParent().remove(node);
+        }
 
-		super.clean();
-	}
+        super.clean();
+    }
 
-	@Override
-	public void apply(BBRenderElement element)
-	{
-		element.styles.add(ecf);
-	}
+    @Override
+    public void apply(BBRenderElement element) {
+        element.styles.add(ecf);
+    }
 }

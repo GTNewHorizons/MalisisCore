@@ -35,18 +35,17 @@ import net.minecraft.world.IBlockAccess;
  * @author Ordinastie
  *
  */
-public interface IBoundingBox
-{
+public interface IBoundingBox {
 
-	/**
-	 * Gets the {@link AxisAlignedBB} for this {@link IBoundingBox}.
-	 *
-	 * @param world the world
-	 * @param x the x
-	 * @param y the y
-	 * @param z the z
-	 * @param type the type
-	 * @return the bounding box
-	 */
-	public AxisAlignedBB[] getBoundingBox(IBlockAccess world, int x, int y, int z, BoundingBoxType type);
+    /**
+     * Gets the {@link AxisAlignedBB} for this {@link IBoundingBox}.
+     *
+     * @param world the world
+     * @param x the x
+     * @param y the y
+     * @param z the z
+     * @param type the type
+     * @return the bounding box
+     */
+    public AxisAlignedBB[] getBoundingBox(IBlockAccess world, int x, int y, int z, BoundingBoxType type);
 }

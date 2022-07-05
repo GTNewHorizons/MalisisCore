@@ -26,197 +26,159 @@ package net.malisis.core.util.parser;
 
 import static net.malisis.core.util.parser.token.Token.*;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 import java.util.LinkedList;
-
 import net.malisis.core.util.parser.HTMLParser.HTMLNode;
 import net.malisis.core.util.parser.token.Token;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.mutable.Mutable;
 import org.apache.commons.lang3.mutable.MutableObject;
-
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
 
 /**
  * @author Ordinastie
  *
  */
-public class HTMLParser extends Parser<HTMLNode>
-{
-	private HTMLNode currentNode;
-	private HTMLNode rootNode;
-	private LinkedList<HTMLNode> openTags = new LinkedList<>();
+public class HTMLParser extends Parser<HTMLNode> {
+    private HTMLNode currentNode;
+    private HTMLNode rootNode;
+    private LinkedList<HTMLNode> openTags = new LinkedList<>();
 
-	public HTMLParser(String text)
-	{
-		super(text);
-		withTokens(Inferior, Superior, Div, Identifier, Equal, StringToken);
-		ignoreTokens(Space);
-	}
+    public HTMLParser(String text) {
+        super(text);
+        withTokens(Inferior, Superior, Div, Identifier, Equal, StringToken);
+        ignoreTokens(Space);
+    }
 
-	@Override
-	public Token readToken()
-	{
-		Token t;
-		while ((t = super.readToken()) == Space);
-		return t;
-	}
+    @Override
+    public Token readToken() {
+        Token t;
+        while ((t = super.readToken()) == Space)
+            ;
+        return t;
+    }
 
-	@Override
-	public HTMLNode parse()
-	{
-		rootNode = new HTMLNode("document", null);
-		currentNode = rootNode;
+    @Override
+    public HTMLNode parse() {
+        rootNode = new HTMLNode("document", null);
+        currentNode = rootNode;
 
-		String content = null;
-		Mutable<String> identifier = new MutableObject<>();
-		String attr;
+        String content = null;
+        Mutable<String> identifier = new MutableObject<>();
+        String attr;
 
-		while (!isEnd())
-		{
-			if (match(Token.Inferior))
-			{
-				if (match(Token.Div))
-				{
-					readToken();//skip identifier
-					closeTag();
-				}
-				else if (match(Token.Identifier, identifier))
-				{
-					openTag(identifier.getValue());
+        while (!isEnd()) {
+            if (match(Token.Inferior)) {
+                if (match(Token.Div)) {
+                    readToken(); // skip identifier
+                    closeTag();
+                } else if (match(Token.Identifier, identifier)) {
+                    openTag(identifier.getValue());
 
-					while (match(Token.Identifier, identifier))
-					{
-						attr = identifier.getValue();
-						if (!match(Token.Equal))
-							addAttribute(identifier.getValue());
-						else if (match(Token.StringToken, identifier))
-						{
-							addAttribute(attr, identifier.getValue());
-							//readToken();
-						}
-					}
-					if (match(Token.Div))
-						closeTag();
-				}
-				if (!match(Token.Superior))
-					error(Token.Superior);
-			}
+                    while (match(Token.Identifier, identifier)) {
+                        attr = identifier.getValue();
+                        if (!match(Token.Equal)) addAttribute(identifier.getValue());
+                        else if (match(Token.StringToken, identifier)) {
+                            addAttribute(attr, identifier.getValue());
+                            // readToken();
+                        }
+                    }
+                    if (match(Token.Div)) closeTag();
+                }
+                if (!match(Token.Superior)) error(Token.Superior);
+            }
 
-			content = readUntil(Token.Inferior);
-			if (!StringUtils.isEmpty(content))
-				addContent(content);
-		}
+            content = readUntil(Token.Inferior);
+            if (!StringUtils.isEmpty(content)) addContent(content);
+        }
 
-		return rootNode;
-	}
+        return rootNode;
+    }
 
-	public void openTag(String tag)
-	{
-		//		self.Log('Opening : <b>' . tag . '</b><br />');
-		if (this.currentNode == null)
-			return;
+    public void openTag(String tag) {
+        //		self.Log('Opening : <b>' . tag . '</b><br />');
+        if (this.currentNode == null) return;
 
-		HTMLNode node = new HTMLNode(tag);
-		currentNode.AddNode(node);
-		openTags.add(currentNode);
-		currentNode = node;
-	}
+        HTMLNode node = new HTMLNode(tag);
+        currentNode.AddNode(node);
+        openTags.add(currentNode);
+        currentNode = node;
+    }
 
-	public void addAttribute(String attr)
-	{
-		addAttribute(attr, null);
-	}
+    public void addAttribute(String attr) {
+        addAttribute(attr, null);
+    }
 
-	public void addAttribute(String attr, String attr_val)
-	{
-		//	self.Log('Found attr : <b>' . attr . '</b><br />');
-		if (this.currentNode != null)
-			this.currentNode.AddAttribute(attr, attr_val);
-	}
+    public void addAttribute(String attr, String attr_val) {
+        //	self.Log('Found attr : <b>' . attr . '</b><br />');
+        if (this.currentNode != null) this.currentNode.AddAttribute(attr, attr_val);
+    }
 
-	public void addContent(String str)
-	{
-		//	self.Log('Adding content : <b>' . htmlentities(str) . '</b><br />');
-		if (this.currentNode == null)
-			return;
-		this.currentNode.AddText(str);
-	}
+    public void addContent(String str) {
+        //	self.Log('Adding content : <b>' . htmlentities(str) . '</b><br />');
+        if (this.currentNode == null) return;
+        this.currentNode.AddText(str);
+    }
 
-	public void closeTag()
-	{
-		//	self.Log('Closing : <b>' . this.current_tag.name . '</b><br />');
-		if (this.openTags.size() == 0) //prevent malformed html with closing non opened tags
-			return;
+    public void closeTag() {
+        //	self.Log('Closing : <b>' . this.current_tag.name . '</b><br />');
+        if (this.openTags.size() == 0) // prevent malformed html with closing non opened tags
+        return;
 
-		this.currentNode = this.openTags.removeLast();
-	}
+        this.currentNode = this.openTags.removeLast();
+    }
 
-	public HTMLNode getRootNode()
-	{
-		return rootNode;
-	}
+    public HTMLNode getRootNode() {
+        return rootNode;
+    }
 
-	public static class HTMLNode
-	{
-		public String name = null;
-		public int level = 0;
-		public HTMLNode parent = null;
-		public Multimap<String, String> attributes = ArrayListMultimap.create();
-		public LinkedList<HTMLNode> nodes = new LinkedList<>();
-		public String text = null;
+    public static class HTMLNode {
+        public String name = null;
+        public int level = 0;
+        public HTMLNode parent = null;
+        public Multimap<String, String> attributes = ArrayListMultimap.create();
+        public LinkedList<HTMLNode> nodes = new LinkedList<>();
+        public String text = null;
 
-		public HTMLNode(String name, String text)
-		{
-			this.name = name;
-			this.text = text;
-		}
+        public HTMLNode(String name, String text) {
+            this.name = name;
+            this.text = text;
+        }
 
-		public HTMLNode(String name)
-		{
-			this(name, null);
-		}
+        public HTMLNode(String name) {
+            this(name, null);
+        }
 
-		public void AddAttribute(String attr, String val)
-		{
-			attributes.put(attr, val);
-		}
+        public void AddAttribute(String attr, String val) {
+            attributes.put(attr, val);
+        }
 
-		public void AddNode(HTMLNode node)
-		{
-			if (!StringUtils.isEmpty(text))
-				throw new IllegalArgumentException("Text already defined for node.");
+        public void AddNode(HTMLNode node) {
+            if (!StringUtils.isEmpty(text)) throw new IllegalArgumentException("Text already defined for node.");
 
-			node.level = this.level + 1;
-			node.parent = this;
-			nodes.add(node);
-		}
+            node.level = this.level + 1;
+            node.parent = this;
+            nodes.add(node);
+        }
 
-		public void AddText(String text)
-		{
-			this.AddNode(new HTMLNode(null, text));
-		}
+        public void AddText(String text) {
+            this.AddNode(new HTMLNode(null, text));
+        }
 
-		public String prettyPrint()
-		{
-			int n = 4;
-			if (text != null)
-				return StringUtils.repeat(' ', level * n) + text + "\n";
-			String s = StringUtils.repeat(' ', level * n) + "<" + name + (attributes.size() != 0 ? " " + attributes.toString() : "")
-					+ ">\n";
-			for (HTMLNode node : nodes)
-				s += node.prettyPrint();
-			if (nodes.size() != 0)
-				s += StringUtils.repeat(' ', level * n) + "</" + name + ">\n";
+        public String prettyPrint() {
+            int n = 4;
+            if (text != null) return StringUtils.repeat(' ', level * n) + text + "\n";
+            String s = StringUtils.repeat(' ', level * n) + "<" + name
+                    + (attributes.size() != 0 ? " " + attributes.toString() : "") + ">\n";
+            for (HTMLNode node : nodes) s += node.prettyPrint();
+            if (nodes.size() != 0) s += StringUtils.repeat(' ', level * n) + "</" + name + ">\n";
 
-			return s;
-		}
+            return s;
+        }
 
-		@Override
-		public String toString()
-		{
-			return prettyPrint();
-		}
-	}
+        @Override
+        public String toString() {
+            return prettyPrint();
+        }
+    }
 }

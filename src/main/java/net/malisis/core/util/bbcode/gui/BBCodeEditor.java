@@ -24,8 +24,8 @@
 
 package net.malisis.core.util.bbcode.gui;
 
+import com.google.common.eventbus.Subscribe;
 import java.util.EnumSet;
-
 import net.malisis.core.client.gui.Anchor;
 import net.malisis.core.client.gui.ComponentPosition;
 import net.malisis.core.client.gui.MalisisGui;
@@ -39,334 +39,323 @@ import net.malisis.core.util.bbcode.node.BBNode;
 import net.malisis.core.util.bbcode.node.BBShadowNode;
 import net.malisis.core.util.bbcode.node.BBStyleNode;
 import net.minecraft.client.gui.GuiScreen;
-
 import org.lwjgl.input.Keyboard;
-
-import com.google.common.eventbus.Subscribe;
 
 /**
  * @author Ordinastie
  *
  */
-public class BBCodeEditor extends UIContainer<BBCodeEditor>
-{
-	enum Tag
-	{
-		BOLD(new BBStyleNode("b")), ITALIC(new BBStyleNode("i")), UNDERLINE(new BBStyleNode("u")), STRIKETHOUGH(new BBStyleNode("s")), SHADOW(
-				new BBShadowNode()), COLOR(new BBColorNode("color")), BGCOLOR(new BBColorNode("bgcolor")), ITEM(new BBItemNode(""));
+public class BBCodeEditor extends UIContainer<BBCodeEditor> {
+    enum Tag {
+        BOLD(new BBStyleNode("b")),
+        ITALIC(new BBStyleNode("i")),
+        UNDERLINE(new BBStyleNode("u")),
+        STRIKETHOUGH(new BBStyleNode("s")),
+        SHADOW(new BBShadowNode()),
+        COLOR(new BBColorNode("color")),
+        BGCOLOR(new BBColorNode("bgcolor")),
+        ITEM(new BBItemNode(""));
 
-		public BBNode node;
+        public BBNode node;
 
-		private Tag(BBNode node)
-		{
-			this.node = node;
-		}
-	};
+        private Tag(BBNode node) {
+            this.node = node;
+        }
+    };
 
-	protected UIContainer menu;
+    protected UIContainer menu;
 
-	protected UIButton btnBold;
-	protected UIButton btnItalic;
-	protected UIButton btnUnderline;
-	protected UIButton btnStrikethrough;
+    protected UIButton btnBold;
+    protected UIButton btnItalic;
+    protected UIButton btnUnderline;
+    protected UIButton btnStrikethrough;
 
-	protected UIButton btnColor;
-	protected UIButton btnBgColor;
-	protected UIButton btnItem;
+    protected UIButton btnColor;
+    protected UIButton btnBgColor;
+    protected UIButton btnItem;
 
-	protected UIButton btnWysiwyg;
+    protected UIButton btnWysiwyg;
 
-	protected BBTextField bbTexfield;
+    protected BBTextField bbTexfield;
 
-	protected ComponentPosition menuPosition = ComponentPosition.TOP;
-	protected int buttonAnchor = Anchor.LEFT | Anchor.MIDDLE;
+    protected ComponentPosition menuPosition = ComponentPosition.TOP;
+    protected int buttonAnchor = Anchor.LEFT | Anchor.MIDDLE;
 
-	protected EnumSet<Tag> activeStyles = EnumSet.noneOf(Tag.class);
+    protected EnumSet<Tag> activeStyles = EnumSet.noneOf(Tag.class);
 
-	protected boolean isWysiwyg = false;
+    protected boolean isWysiwyg = false;
 
-	private int defaultColor = 0xFFFFFF;
+    private int defaultColor = 0xFFFFFF;
 
-	//	private int activeColor = 0x006633;
+    //	private int activeColor = 0x006633;
 
-	public BBCodeEditor(MalisisGui gui)
-	{
-		super(gui);
+    public BBCodeEditor(MalisisGui gui) {
+        super(gui);
 
-		bbTexfield = new BBTextField(gui, this);
+        bbTexfield = new BBTextField(gui, this);
 
-		createMenu(gui);
+        createMenu(gui);
 
-		add(bbTexfield);
-		add(menu);
+        add(bbTexfield);
+        add(menu);
 
-		setMenuPosition(ComponentPosition.TOP);
+        setMenuPosition(ComponentPosition.TOP);
 
-		setWysiwyg(true);
-	}
+        setWysiwyg(true);
+    }
 
-	public BBCodeEditor(MalisisGui gui, int width, int height)
-	{
-		this(gui);
-		setSize(width, height);
-	}
+    public BBCodeEditor(MalisisGui gui, int width, int height) {
+        this(gui);
+        setSize(width, height);
+    }
 
-	//#region Getters/Setters
-	public ComponentPosition getMenuPosition()
-	{
-		return menuPosition;
-	}
+    // #region Getters/Setters
+    public ComponentPosition getMenuPosition() {
+        return menuPosition;
+    }
 
-	public String getRawText()
-	{
-		return bbTexfield.getBBText().getRawText();
-	}
+    public String getRawText() {
+        return bbTexfield.getBBText().getRawText();
+    }
 
-	public BBString getBBText()
-	{
-		return bbTexfield.getBBText();
-	}
+    public BBString getBBText() {
+        return bbTexfield.getBBText();
+    }
 
-	public String getBBFormattedTex()
-	{
-		return bbTexfield.getBBText().getBBString();
-	}
+    public String getBBFormattedTex() {
+        return bbTexfield.getBBText().getBBString();
+    }
 
-	public boolean isWysiwyg()
-	{
-		return bbTexfield.isWysiwyg();
-	}
+    public boolean isWysiwyg() {
+        return bbTexfield.isWysiwyg();
+    }
 
-	public BBCodeEditor setWysiwyg(boolean w)
-	{
-		bbTexfield.setWysiwyg(w);
+    public BBCodeEditor setWysiwyg(boolean w) {
+        bbTexfield.setWysiwyg(w);
 
-		//		btnWysiwyg.setTextColor(w ? 0x66CC77 : defaultColor);
-		//		btnWysiwyg.setBgColor(w ? 0xBBFFCC : defaultColor);
+        //		btnWysiwyg.setTextColor(w ? 0x66CC77 : defaultColor);
+        //		btnWysiwyg.setBgColor(w ? 0xBBFFCC : defaultColor);
 
-		return this;
-	}
+        return this;
+    }
 
-	public BBCodeEditor setMenuPosition(ComponentPosition position)
-	{
-		menuPosition = position;
-		calculateTextfieldPosition();
-		calculateMenuPosition();
-		return this;
-	}
+    public BBCodeEditor setMenuPosition(ComponentPosition position) {
+        menuPosition = position;
+        calculateTextfieldPosition();
+        calculateMenuPosition();
+        return this;
+    }
 
-	public BBCodeEditor setButtonAnchor(int anchor)
-	{
-		this.buttonAnchor = anchor;
-		calculateTextfieldPosition();
-		calculateMenuPosition();
-		return this;
-	}
+    public BBCodeEditor setButtonAnchor(int anchor) {
+        this.buttonAnchor = anchor;
+        calculateTextfieldPosition();
+        calculateMenuPosition();
+        return this;
+    }
 
-	//#end Getters/Setters
+    // #end Getters/Setters
 
-	protected void createMenu(MalisisGui gui)
-	{
-		menu = new UIContainer(gui);
-		menu.setParent(this);
+    protected void createMenu(MalisisGui gui) {
+        menu = new UIContainer(gui);
+        menu.setParent(this);
 
-		createButtons(gui);
+        createButtons(gui);
 
-		setMenuPosition(ComponentPosition.TOP);
-	}
+        setMenuPosition(ComponentPosition.TOP);
+    }
 
-	protected void createButtons(MalisisGui gui)
-	{
-		int s = 10;
-		btnBold = new UIButton(gui, "B").setAutoSize(false).setSize(s, s).setTooltip("Bold").register(this);
-		btnItalic = new UIButton(gui, "I").setAutoSize(false).setSize(s, s).setTooltip("Italic").register(this);
-		btnUnderline = new UIButton(gui, "U").setAutoSize(false).setSize(s, s).setTooltip("Underline").register(this);
-		btnStrikethrough = new UIButton(gui, "S").setAutoSize(false).setSize(s, s).setTooltip("Strikethrough").register(this);
+    protected void createButtons(MalisisGui gui) {
+        int s = 10;
+        btnBold = new UIButton(gui, "B")
+                .setAutoSize(false)
+                .setSize(s, s)
+                .setTooltip("Bold")
+                .register(this);
+        btnItalic = new UIButton(gui, "I")
+                .setAutoSize(false)
+                .setSize(s, s)
+                .setTooltip("Italic")
+                .register(this);
+        btnUnderline = new UIButton(gui, "U")
+                .setAutoSize(false)
+                .setSize(s, s)
+                .setTooltip("Underline")
+                .register(this);
+        btnStrikethrough = new UIButton(gui, "S")
+                .setAutoSize(false)
+                .setSize(s, s)
+                .setTooltip("Strikethrough")
+                .register(this);
 
-		btnColor = new UIButton(gui, "C").setAutoSize(false).setSize(s, s).setTooltip("Color").register(this);
-		btnBgColor = new UIButton(gui, "BC").setAutoSize(false).setSize(16, s).setTooltip("Background Color").register(this);
-		btnItem = new UIButton(gui, "Item").setAutoSize(false).setSize(22, s).setTooltip("Item").register(this);
+        btnColor = new UIButton(gui, "C")
+                .setAutoSize(false)
+                .setSize(s, s)
+                .setTooltip("Color")
+                .register(this);
+        btnBgColor = new UIButton(gui, "BC")
+                .setAutoSize(false)
+                .setSize(16, s)
+                .setTooltip("Background Color")
+                .register(this);
+        btnItem = new UIButton(gui, "Item")
+                .setAutoSize(false)
+                .setSize(22, s)
+                .setTooltip("Item")
+                .register(this);
 
-		btnWysiwyg = new UIButton(gui, "WYSIWYG").setAutoSize(false).setSize(45, s).register(this);
+        btnWysiwyg =
+                new UIButton(gui, "WYSIWYG").setAutoSize(false).setSize(45, s).register(this);
 
-		menu.add(btnBold);
-		menu.add(btnItalic);
-		menu.add(btnUnderline);
-		menu.add(btnStrikethrough);
+        menu.add(btnBold);
+        menu.add(btnItalic);
+        menu.add(btnUnderline);
+        menu.add(btnStrikethrough);
 
-		menu.add(btnColor);
-		menu.add(btnBgColor);
-		menu.add(btnItem);
+        menu.add(btnColor);
+        menu.add(btnBgColor);
+        menu.add(btnItem);
 
-		menu.add(btnWysiwyg);
+        menu.add(btnWysiwyg);
+    }
 
-	}
+    protected void calculateTextfieldPosition() {
+        int x = 0, y = 0, w = 0, h = 0;
+        int s = 14;
+        switch (menuPosition) {
+            case TOP:
+                y = s;
+                h = -s;
+                break;
+            case BOTTOM:
+                h = -s;
+                break;
+            case LEFT:
+                x = s;
+                w = -s;
+                break;
+            case RIGHT:
+                w = -s;
+                break;
+        }
 
-	protected void calculateTextfieldPosition()
-	{
-		int x = 0, y = 0, w = 0, h = 0;
-		int s = 14;
-		switch (menuPosition)
-		{
-			case TOP:
-				y = s;
-				h = -s;
-				break;
-			case BOTTOM:
-				h = -s;
-				break;
-			case LEFT:
-				x = s;
-				w = -s;
-				break;
-			case RIGHT:
-				w = -s;
-				break;
-		}
+        bbTexfield.setPosition(x, y).setSize(w, h);
+    }
 
-		bbTexfield.setPosition(x, y).setSize(w, h);
-	}
+    protected void calculateMenuPosition() {
+        int x = 0, y = 0, w = 0, h = 0, a = Anchor.NONE;
+        int s = 12;
+        switch (menuPosition) {
+            case TOP:
+                h = s;
+                break;
+            case BOTTOM:
+                h = s;
+                a = Anchor.BOTTOM;
+                break;
+            case LEFT:
+                w = s;
+                break;
+            case RIGHT:
+                w = s;
+                a = Anchor.RIGHT;
+                break;
+        }
 
-	protected void calculateMenuPosition()
-	{
-		int x = 0, y = 0, w = 0, h = 0, a = Anchor.NONE;
-		int s = 12;
-		switch (menuPosition)
-		{
-			case TOP:
-				h = s;
-				break;
-			case BOTTOM:
-				h = s;
-				a = Anchor.BOTTOM;
-				break;
-			case LEFT:
-				w = s;
-				break;
-			case RIGHT:
-				w = s;
-				a = Anchor.RIGHT;
-				break;
-		}
+        menu.setPosition(x, y, a).setSize(w, h);
 
-		menu.setPosition(x, y, a).setSize(w, h);
+        calculateButtonPositions();
+    }
 
-		calculateButtonPositions();
-	}
+    protected void calculateButtonPositions() {
+        int x = 0, y = 1;
+        int a = Anchor.vertical(buttonAnchor) | Anchor.CENTER;
+        if (menuPosition.isHorizontal()) {
+            x = 1;
+            y = 0;
+            a = Anchor.horizontal(buttonAnchor) | Anchor.MIDDLE;
+        }
 
-	protected void calculateButtonPositions()
-	{
-		int x = 0, y = 1;
-		int a = Anchor.vertical(buttonAnchor) | Anchor.CENTER;
-		if (menuPosition.isHorizontal())
-		{
-			x = 1;
-			y = 0;
-			a = Anchor.horizontal(buttonAnchor) | Anchor.MIDDLE;
-		}
+        if (Anchor.vertical(a) == Anchor.BOTTOM) y *= -1;
+        if (Anchor.horizontal(a) == Anchor.RIGHT) x *= -1;
 
-		if (Anchor.vertical(a) == Anchor.BOTTOM)
-			y *= -1;
-		if (Anchor.horizontal(a) == Anchor.RIGHT)
-			x *= -1;
+        btnBold.setPosition(0 * x, 0 * y, a);
+        btnItalic.setPosition(11 * x, 11 * y, a);
+        btnUnderline.setPosition(22 * x, 22 * y, a);
+        btnStrikethrough.setPosition(33 * x, 33 * y, a);
 
-		btnBold.setPosition(0 * x, 0 * y, a);
-		btnItalic.setPosition(11 * x, 11 * y, a);
-		btnUnderline.setPosition(22 * x, 22 * y, a);
-		btnStrikethrough.setPosition(33 * x, 33 * y, a);
+        btnColor.setPosition(44 * x + 2 * x, 44 * y + 2 * y, a);
+        btnBgColor.setPosition(55 * x + 2 * x, 55 * y + 2 * y, a);
+        btnItem.setPosition(72 * x + 2 * x, 66 * y + 2 * y, a);
 
-		btnColor.setPosition(44 * x + 2 * x, 44 * y + 2 * y, a);
-		btnBgColor.setPosition(55 * x + 2 * x, 55 * y + 2 * y, a);
-		btnItem.setPosition(72 * x + 2 * x, 66 * y + 2 * y, a);
+        btnWysiwyg.setPosition(100 * x + 2 * x, 66 * y + 2 * y, a);
+    }
 
-		btnWysiwyg.setPosition(100 * x + 2 * x, 66 * y + 2 * y, a);
-	}
+    public boolean isStyleActive(Tag s) {
+        return activeStyles.contains(s);
+    }
 
-	public boolean isStyleActive(Tag s)
-	{
-		return activeStyles.contains(s);
-	}
+    public String getFormattedText() {
+        return null;
+    }
 
-	public String getFormattedText()
-	{
-		return null;
-	}
+    @Subscribe
+    public void onClick(UIButton.ClickEvent event) {
+        UIButton button = event.getComponent();
+        //		boolean active = false;
+        if (button == btnBold) bbTexfield.addTag(Tag.BOLD);
+        else if (button == btnItalic) bbTexfield.addTag(Tag.ITALIC);
+        else if (button == btnUnderline) bbTexfield.addTag(Tag.UNDERLINE);
+        else if (button == btnStrikethrough) bbTexfield.addTag(Tag.STRIKETHOUGH);
+        else if (button == btnColor) bbTexfield.addTag(Tag.COLOR);
+        else if (button == btnBgColor) bbTexfield.addTag(Tag.BGCOLOR);
+        else if (button == btnItem) bbTexfield.addTag(Tag.ITEM);
+        else if (button == btnWysiwyg) {
+            setWysiwyg(!isWysiwyg());
+            return;
+        }
 
-	@Subscribe
-	public void onClick(UIButton.ClickEvent event)
-	{
-		UIButton button = event.getComponent();
-		//		boolean active = false;
-		if (button == btnBold)
-			bbTexfield.addTag(Tag.BOLD);
-		else if (button == btnItalic)
-			bbTexfield.addTag(Tag.ITALIC);
-		else if (button == btnUnderline)
-			bbTexfield.addTag(Tag.UNDERLINE);
-		else if (button == btnStrikethrough)
-			bbTexfield.addTag(Tag.STRIKETHOUGH);
+        // button.setTextColor(active ? activeColor : defaultColor);
+        bbTexfield.setFocused(true);
+    }
 
-		else if (button == btnColor)
-			bbTexfield.addTag(Tag.COLOR);
-		else if (button == btnBgColor)
-			bbTexfield.addTag(Tag.BGCOLOR);
-		else if (button == btnItem)
-			bbTexfield.addTag(Tag.ITEM);
+    @Override
+    public boolean onKeyTyped(char keyChar, int keyCode) {
+        if (!GuiScreen.isCtrlKeyDown()) return super.onKeyTyped(keyChar, keyCode);
 
-		else if (button == btnWysiwyg)
-		{
-			setWysiwyg(!isWysiwyg());
-			return;
-		}
+        UIButton button;
+        boolean active = false;
+        switch (keyCode) {
+            case Keyboard.KEY_B:
+                bbTexfield.addTag(Tag.BOLD);
+                button = btnBold;
+                break;
+            case Keyboard.KEY_I:
+                bbTexfield.addTag(Tag.ITALIC);
+                button = btnItalic;
+                break;
+            case Keyboard.KEY_U:
+                bbTexfield.addTag(Tag.UNDERLINE);
+                button = btnUnderline;
+                break;
+            case Keyboard.KEY_S:
+                bbTexfield.addTag(Tag.STRIKETHOUGH);
+                button = btnStrikethrough;
+                break;
+            default:
+                return super.onKeyTyped(keyChar, keyCode);
+        }
 
-		//button.setTextColor(active ? activeColor : defaultColor);
-		bbTexfield.setFocused(true);
-	}
+        if (button != null) {
+            // button.setTextColor(active ? 0x66CC77 : defaultColor);
+            button.setBgColor(active ? 0xBBFFCC : defaultColor);
+        }
 
-	@Override
-	public boolean onKeyTyped(char keyChar, int keyCode)
-	{
-		if (!GuiScreen.isCtrlKeyDown())
-			return super.onKeyTyped(keyChar, keyCode);
+        return true;
+    }
 
-		UIButton button;
-		boolean active = false;
-		switch (keyCode)
-		{
-			case Keyboard.KEY_B:
-				bbTexfield.addTag(Tag.BOLD);
-				button = btnBold;
-				break;
-			case Keyboard.KEY_I:
-				bbTexfield.addTag(Tag.ITALIC);
-				button = btnItalic;
-				break;
-			case Keyboard.KEY_U:
-				bbTexfield.addTag(Tag.UNDERLINE);
-				button = btnUnderline;
-				break;
-			case Keyboard.KEY_S:
-				bbTexfield.addTag(Tag.STRIKETHOUGH);
-				button = btnStrikethrough;
-				break;
-			default:
-				return super.onKeyTyped(keyChar, keyCode);
-		}
-
-		if (button != null)
-		{
-			//button.setTextColor(active ? 0x66CC77 : defaultColor);
-			button.setBgColor(active ? 0xBBFFCC : defaultColor);
-		}
-
-		return true;
-	}
-
-	public static class BBCodeChangeEvent extends ComponentEvent<BBCodeEditor>
-	{
-		public BBCodeChangeEvent(BBCodeEditor component)
-		{
-			super(component);
-		}
-	}
+    public static class BBCodeChangeEvent extends ComponentEvent<BBCodeEditor> {
+        public BBCodeChangeEvent(BBCodeEditor component) {
+            super(component);
+        }
+    }
 }

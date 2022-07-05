@@ -24,24 +24,23 @@
 
 package net.malisis.core.client.gui.event;
 
-import net.malisis.core.MalisisCore;
-
-import org.apache.logging.log4j.Level;
-
 import com.google.common.eventbus.SubscriberExceptionContext;
 import com.google.common.eventbus.SubscriberExceptionHandler;
+import net.malisis.core.MalisisCore;
+import org.apache.logging.log4j.Level;
 
 /**
  * This Class handles the exceptions thrown from inside {@link ComponentEvent}.
  *
  * @author Ordinastie
  */
-public class ComponentExceptionHandler implements SubscriberExceptionHandler
-{
-	@Override
-	public void handleException(Throwable exception, SubscriberExceptionContext context)
-	{
-		MalisisCore.log.log(Level.ERROR, "An error occured wile processing event : " + context.getEvent().getClass().getSimpleName(),
-				exception);
-	}
+public class ComponentExceptionHandler implements SubscriberExceptionHandler {
+    @Override
+    public void handleException(Throwable exception, SubscriberExceptionContext context) {
+        MalisisCore.log.log(
+                Level.ERROR,
+                "An error occured wile processing event : "
+                        + context.getEvent().getClass().getSimpleName(),
+                exception);
+    }
 }

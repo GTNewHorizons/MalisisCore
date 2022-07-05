@@ -28,161 +28,129 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
 import net.malisis.core.util.parser.token.Token;
-
 import org.apache.commons.lang3.mutable.Mutable;
 
 /**
  * @author Ordinastie
  *
  */
-public abstract class Parser<T>
-{
-	protected String text;
-	protected Token token = Token.None;
-	protected boolean cached = false;
-	protected int index = 0;
-	protected String matched = "";
+public abstract class Parser<T> {
+    protected String text;
+    protected Token token = Token.None;
+    protected boolean cached = false;
+    protected int index = 0;
+    protected String matched = "";
 
-	protected Set<Token> listTokens = new LinkedHashSet<>();
-	protected Set<Token> ignoreTokens = new HashSet<>();
+    protected Set<Token> listTokens = new LinkedHashSet<>();
+    protected Set<Token> ignoreTokens = new HashSet<>();
 
-	//	protected Token currentToken;
-	//	protected int currentSize;
-	//	protected Token lastToken;
-	//	protected int lastSize;
+    //	protected Token currentToken;
+    //	protected int currentSize;
+    //	protected Token lastToken;
+    //	protected int lastSize;
 
-	public Parser(String s)
-	{
-		text = s;
-	}
+    public Parser(String s) {
+        text = s;
+    }
 
-	protected void withTokens(Token... tokens)
-	{
-		listTokens.addAll(Arrays.asList(tokens));
-	}
+    protected void withTokens(Token... tokens) {
+        listTokens.addAll(Arrays.asList(tokens));
+    }
 
-	protected void ignoreTokens(Token... tokens)
-	{
-		withTokens(tokens);
-		ignoreTokens.addAll(Arrays.asList(tokens));
-	}
+    protected void ignoreTokens(Token... tokens) {
+        withTokens(tokens);
+        ignoreTokens.addAll(Arrays.asList(tokens));
+    }
 
-	private Token getToken()
-	{
-		cached = true;
-		if (isEnd())
-			return token = Token.EndOfInput;
+    private Token getToken() {
+        cached = true;
+        if (isEnd()) return token = Token.EndOfInput;
 
-		for (Token t : listTokens)
-		{
-			if (t.matches(text, index))
-			{
-				if (ignoreTokens.contains(t))
-				{
-					index += t.size();
-					return token = getToken();
-				}
-				else
-					return token = t;
-			}
-		}
+        for (Token t : listTokens) {
+            if (t.matches(text, index)) {
+                if (ignoreTokens.contains(t)) {
+                    index += t.size();
+                    return token = getToken();
+                } else return token = t;
+            }
+        }
 
-		return token = Token.None;
-	}
+        return token = Token.None;
+    }
 
-	public Token peekToken()
-	{
-		if (!cached)
-			getToken();
-		return token;
-	}
+    public Token peekToken() {
+        if (!cached) getToken();
+        return token;
+    }
 
-	public Token readToken()
-	{
-		forward();
-		peekToken();
-		return token;
-	}
+    public Token readToken() {
+        forward();
+        peekToken();
+        return token;
+    }
 
-	private void forward()
-	{
-		if (!cached)
-			peekToken();
-		cached = false;
-		index += token.size();
-	}
+    private void forward() {
+        if (!cached) peekToken();
+        cached = false;
+        index += token.size();
+    }
 
-	public boolean isEnd()
-	{
-		return index >= text.length();
-	}
+    public boolean isEnd() {
+        return index >= text.length();
+    }
 
-	public char read()
-	{
-		return text.charAt(index++);
-	}
+    public char read() {
+        return text.charAt(index++);
+    }
 
-	public char peek()
-	{
-		return text.charAt(index);
-	}
+    public char peek() {
+        return text.charAt(index);
+    }
 
-	public boolean match(Token token)
-	{
-		return match(token, null);
-	}
+    public boolean match(Token token) {
+        return match(token, null);
+    }
 
-	public boolean match(Token t, Mutable obj)
-	{
-		if (!listTokens.contains(t))
-			throw new IllegalArgumentException("Tried to match Token " + t + " not present is parser list tokens");
+    public boolean match(Token t, Mutable obj) {
+        if (!listTokens.contains(t))
+            throw new IllegalArgumentException("Tried to match Token " + t + " not present is parser list tokens");
 
-		if (obj != null)
-			obj.setValue(null);
+        if (obj != null) obj.setValue(null);
 
-		peekToken();
-		if (token != t)
-			return false;
+        peekToken();
+        if (token != t) return false;
 
-		if (obj != null)
-			obj.setValue(token.getValue());
+        if (obj != null) obj.setValue(token.getValue());
 
-		matched += token.getValue();
-		forward();
-		return true;
-	}
+        matched += token.getValue();
+        forward();
+        return true;
+    }
 
-	public String readUntil(Token... tokens)
-	{
-		int s = index;
-		int e = index;
-		while (!isEnd() && !peekToken().isOneOf(tokens))
-		{
-			forward();
-			e = index;
-		}
+    public String readUntil(Token... tokens) {
+        int s = index;
+        int e = index;
+        while (!isEnd() && !peekToken().isOneOf(tokens)) {
+            forward();
+            e = index;
+        }
 
-		String txt = text.substring(s, e);
-		return txt;
+        String txt = text.substring(s, e);
+        return txt;
+    }
 
-	}
+    public abstract T parse();
 
-	public abstract T parse();
+    public void error(Token expected) {
+        throw new ParserException("Expecting '" + expected + "' at " + index + " but found " + token);
+    }
 
-	public void error(Token expected)
-	{
-		throw new ParserException("Expecting '" + expected + "' at " + index + " but found " + token);
-	}
+    public static class ParserException extends RuntimeException {
+        private static final long serialVersionUID = -3913680544137921678L; // generated
 
-	public static class ParserException extends RuntimeException
-	{
-		private static final long serialVersionUID = -3913680544137921678L;//generated
-
-		public ParserException(String message)
-		{
-			super(message);
-		}
-	}
+        public ParserException(String message) {
+            super(message);
+        }
+    }
 }

@@ -30,39 +30,31 @@ import java.util.ArrayList;
  * @author -
  *
  */
-public class ChainedTransformation extends Transformation<ChainedTransformation, ITransformable>
-{
-	protected ArrayList<Transformation> listTransformations = new ArrayList<>();
+public class ChainedTransformation extends Transformation<ChainedTransformation, ITransformable> {
+    protected ArrayList<Transformation> listTransformations = new ArrayList<>();
 
-	public ChainedTransformation(Transformation... transformations)
-	{
-		addTransformations(transformations);
-	}
+    public ChainedTransformation(Transformation... transformations) {
+        addTransformations(transformations);
+    }
 
-	public ChainedTransformation addTransformations(Transformation... transformations)
-	{
-		duration = 0;
-		for (Transformation transformation : transformations)
-		{
-			duration += transformation.totalDuration();
-			listTransformations.add(transformation);
-		}
+    public ChainedTransformation addTransformations(Transformation... transformations) {
+        duration = 0;
+        for (Transformation transformation : transformations) {
+            duration += transformation.totalDuration();
+            listTransformations.add(transformation);
+        }
 
-		return this;
-	}
+        return this;
+    }
 
-	@Override
-	protected void doTransform(ITransformable transformable, float comp)
-	{
-		if (listTransformations.size() == 0)
-			return;
+    @Override
+    protected void doTransform(ITransformable transformable, float comp) {
+        if (listTransformations.size() == 0) return;
 
-		if (reversed)
-			elapsedTimeCurrentLoop = Math.max(0, duration - elapsedTimeCurrentLoop);
-		for (Transformation transformation : listTransformations)
-		{
-			transformation.transform(transformable, elapsedTimeCurrentLoop);
-			elapsedTimeCurrentLoop -= transformation.totalDuration();
-		}
-	}
+        if (reversed) elapsedTimeCurrentLoop = Math.max(0, duration - elapsedTimeCurrentLoop);
+        for (Transformation transformation : listTransformations) {
+            transformation.transform(transformable, elapsedTimeCurrentLoop);
+            elapsedTimeCurrentLoop -= transformation.totalDuration();
+        }
+    }
 }

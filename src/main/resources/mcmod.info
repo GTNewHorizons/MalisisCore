@@ -1,15 +1,21 @@
-[{
-  "modid": "${modid}",
-  "name": "${name}",
-  "description": "${description}",
-  "version": "${version}",
-  "credits": "",
-  "mcversion": "${mcversion}",
-  "url": "${url}",
-  "updateUrl": "",
-  "authorList": [ "Ordinastie", "PaleoCrafter" ],
-  "logoFile": "malisiscore.png",
-  "parent": "",
-  "screenshots": [],
-  "dependencies": [ "MinecraftForge" ]
-}]
+{
+	"modListVersion": 2,
+	"modList": [{
+		"modid": "${modId}",
+		"name": "${modName}",
+		"description": "MalisisCore is a framework dedicated to simplify many processes required during a mod development.",
+		"version": "${modVersion}",
+		"mcversion": "${minecraftVersion}",
+		"url": "https://github.com/Ordinastie/MalisisCore",
+		"updateUrl": "",
+		"authorList": ["Ordinastie", "PaleoCrafter"],
+		"credits": "",
+		"logoFile": "malisiscore.png",
+		"screenshots": [],
+		"parent": "",
+		"requiredMods": [],
+		"dependencies": [],
+		"dependants": [],
+		"useDependencyInformation": true
+	}]
+}

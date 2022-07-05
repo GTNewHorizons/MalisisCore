@@ -24,8 +24,8 @@
 
 package net.malisis.core.block;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.List;
-
 import net.malisis.core.util.RaytraceBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -37,85 +37,68 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import org.apache.commons.lang3.ArrayUtils;
-
-import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * @author Ordinastie
  *
  */
-public class MalisisBlock extends Block implements IBoundingBox
-{
-	protected String name;
-	protected AxisAlignedBB boundingBox;
+public class MalisisBlock extends Block implements IBoundingBox {
+    protected String name;
+    protected AxisAlignedBB boundingBox;
 
-	protected MalisisBlock(Material material)
-	{
-		super(material);
-	}
+    protected MalisisBlock(Material material) {
+        super(material);
+    }
 
-	@Override
-	public Block setUnlocalizedName(String name)
-	{
-		this.name = name;
-		super.setUnlocalizedName(name);
-		return this;
-	}
+    @Override
+    public Block setBlockName(String name) {
+        this.name = name;
+        super.setBlockName(name);
+        return this;
+    }
 
-	public String getName()
-	{
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void register()
-	{
-		GameRegistry.registerBlock(this, getName());
-	}
+    public void register() {
+        GameRegistry.registerBlock(this, getName());
+    }
 
-	public void register(Class<? extends ItemBlock> item)
-	{
-		GameRegistry.registerBlock(this, item, getName());
-	}
+    public void register(Class<? extends ItemBlock> item) {
+        GameRegistry.registerBlock(this, item, getName());
+    }
 
-	@Override
-	public void registerIcons(IIconRegister reg)
-	{
-		if (textureName == null)
-			return;
+    @Override
+    public void registerBlockIcons(IIconRegister reg) {
+        if (textureName == null) return;
 
-		super.registerIcons(reg);
-	}
+        super.registerBlockIcons(reg);
+    }
 
-	@Override
-	public AxisAlignedBB[] getBoundingBox(IBlockAccess world, int x, int y, int z, BoundingBoxType type)
-	{
-		return new AxisAlignedBB[] { AxisAlignedBB.getBoundingBox(minX, minY, minZ, maxX, maxY, maxZ) };
-	}
+    @Override
+    public AxisAlignedBB[] getBoundingBox(IBlockAccess world, int x, int y, int z, BoundingBoxType type) {
+        return new AxisAlignedBB[] {AxisAlignedBB.getBoundingBox(minX, minY, minZ, maxX, maxY, maxZ)};
+    }
 
-	@Override
-	public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB mask, List list, Entity entity)
-	{
-		for (AxisAlignedBB aabb : getBoundingBox(world, x, y, z, BoundingBoxType.COLLISION))
-		{
-			if (aabb != null && mask.intersectsWith(aabb.offset(x, y, z)))
-				list.add(aabb);
-		}
-	}
+    @Override
+    public void addCollisionBoxesToList(
+            World world, int x, int y, int z, AxisAlignedBB mask, List list, Entity entity) {
+        for (AxisAlignedBB aabb : getBoundingBox(world, x, y, z, BoundingBoxType.COLLISION)) {
+            if (aabb != null && mask.intersectsWith(aabb.offset(x, y, z))) list.add(aabb);
+        }
+    }
 
-	@Override
-	public MovingObjectPosition collisionRayTrace(World world, int x, int y, int z, Vec3 src, Vec3 dest)
-	{
-		return new RaytraceBlock(world, src, dest, x, y, z).trace();
-	}
+    @Override
+    public MovingObjectPosition collisionRayTrace(World world, int x, int y, int z, Vec3 src, Vec3 dest) {
+        return new RaytraceBlock(world, src, dest, x, y, z).trace();
+    }
 
-	@Override
-	public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z)
-	{
-		AxisAlignedBB[] aabbs = getBoundingBox(world, x, y, z, BoundingBoxType.SELECTION);
-		if (ArrayUtils.isEmpty(aabbs) || aabbs[0] == null)
-			return AxisAlignedBB.getBoundingBox(0, 0, 0, 0, 0, 0);
-		return aabbs[0].offset(x, y, z);
-	}
+    @Override
+    public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z) {
+        AxisAlignedBB[] aabbs = getBoundingBox(world, x, y, z, BoundingBoxType.SELECTION);
+        if (ArrayUtils.isEmpty(aabbs) || aabbs[0] == null) return AxisAlignedBB.getBoundingBox(0, 0, 0, 0, 0, 0);
+        return aabbs[0].offset(x, y, z);
+    }
 }

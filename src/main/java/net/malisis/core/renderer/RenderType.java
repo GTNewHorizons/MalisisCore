@@ -28,20 +28,19 @@ package net.malisis.core.renderer;
  * @author Ordinastie
  *
  */
-public enum RenderType
-{
-	/** Defines a not set render type (currently not in rendering loop). */
-	UNSET,
-	/** Defines rendering for world. */
-	ISBRH_WORLD,
-	/** Defines rendering for inventory with ISBRH. */
-	ISBRH_INVENTORY,
-	/** Defines rendering for inventory with IItemRenderer. */
-	ITEM_INVENTORY,
-	/** Defines rendering for TESR. */
-	TESR_WORLD,
-	/** Defines rendering for IRWL. */
-	WORLD_LAST,
-	/** Defines rendering inside a GUI */
-	GUI
+public enum RenderType {
+    /** Defines a not set render type (currently not in rendering loop). */
+    UNSET,
+    /** Defines rendering for world. */
+    ISBRH_WORLD,
+    /** Defines rendering for inventory with ISBRH. */
+    ISBRH_INVENTORY,
+    /** Defines rendering for inventory with IItemRenderer. */
+    ITEM_INVENTORY,
+    /** Defines rendering for TESR. */
+    TESR_WORLD,
+    /** Defines rendering for IRWL. */
+    WORLD_LAST,
+    /** Defines rendering inside a GUI */
+    GUI
 }

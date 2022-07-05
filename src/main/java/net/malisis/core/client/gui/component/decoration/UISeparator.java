@@ -33,67 +33,60 @@ import net.malisis.core.client.gui.element.XYResizableGuiShape;
  * @author Ordinastie
  *
  */
-public class UISeparator extends UIComponent<UISeparator>
-{
-	/** Color multiplier. */
-	protected int color = -1;
-	protected boolean vertical;
+public class UISeparator extends UIComponent<UISeparator> {
+    /** Color multiplier. */
+    protected int color = -1;
 
-	public UISeparator(MalisisGui gui, boolean vertical)
-	{
-		super(gui);
-		this.vertical = vertical;
+    protected boolean vertical;
 
-		shape = new XYResizableGuiShape(1);
-		icon = gui.getGuiTexture().getXYResizableIcon(200, 15, 15, 15, 3);
+    public UISeparator(MalisisGui gui, boolean vertical) {
+        super(gui);
+        this.vertical = vertical;
 
-		setSize(0, 0);
-	}
+        shape = new XYResizableGuiShape(1);
+        icon = gui.getGuiTexture().getXYResizableIcon(200, 15, 15, 15, 3);
 
-	public UISeparator(MalisisGui gui)
-	{
-		this(gui, false);
-	}
+        setSize(0, 0);
+    }
 
-	@Override
-	public UISeparator setSize(int width, int height)
-	{
-		return super.setSize(vertical ? 1 : width, vertical ? height : 1);
-	}
+    public UISeparator(MalisisGui gui) {
+        this(gui, false);
+    }
 
-	/**
-	 * Sets the color for this {@link UISeparator}.
-	 *
-	 * @param color the color
-	 * @return this {@link UISeparator}
-	 */
-	public UISeparator setColor(int color)
-	{
-		this.color = color;
-		return this;
-	}
+    @Override
+    public UISeparator setSize(int width, int height) {
+        return super.setSize(vertical ? 1 : width, vertical ? height : 1);
+    }
 
-	/**
-	 * Gets the color.
-	 *
-	 * @return the color for this {@link UISeparator}.
-	 */
-	public int getColor()
-	{
-		return color;
-	}
+    /**
+     * Sets the color for this {@link UISeparator}.
+     *
+     * @param color the color
+     * @return this {@link UISeparator}
+     */
+    public UISeparator setColor(int color) {
+        this.color = color;
+        return this;
+    }
 
-	@Override
-	public void drawBackground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick)
-	{
-		rp.useTexture.set(true);
-		rp.alpha.set(255);
-		rp.colorMultiplier.set(getColor());
-		rp.icon.set(icon);
-		renderer.drawShape(shape, rp);
-	}
+    /**
+     * Gets the color.
+     *
+     * @return the color for this {@link UISeparator}.
+     */
+    public int getColor() {
+        return color;
+    }
 
-	@Override
-	public void drawForeground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick)
-	{}
+    @Override
+    public void drawBackground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick) {
+        rp.useTexture.set(true);
+        rp.alpha.set(255);
+        rp.colorMultiplier.set(getColor());
+        rp.icon.set(icon);
+        renderer.drawShape(shape, rp);
+    }
+
+    @Override
+    public void drawForeground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick) {}
 }

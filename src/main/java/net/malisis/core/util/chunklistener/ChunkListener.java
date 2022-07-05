@@ -37,65 +37,52 @@ import net.minecraft.world.chunk.Chunk;
  * @author Ordinastie
  *
  */
-public class ChunkListener implements IChunkBlockHandler
-{
-	@Override
-	public boolean updateCoordinates(Chunk chunk, BlockPos pos, Block old, Block block)
-	{
-		BlockNotifierProcedure procedure = new BlockNotifierProcedure(new BlockState(pos, block));
+public class ChunkListener implements IChunkBlockHandler {
+    @Override
+    public boolean updateCoordinates(Chunk chunk, BlockPos pos, Block old, Block block) {
+        BlockNotifierProcedure procedure = new BlockNotifierProcedure(new BlockState(pos, block));
 
-		ChunkBlockHandler.get().callProcedure(chunk, procedure);
+        ChunkBlockHandler.get().callProcedure(chunk, procedure);
 
-		if (procedure.isCanceled())
-			return true;
-		return false;
-	}
+        if (procedure.isCanceled()) return true;
+        return false;
+    }
 
-	private static class BlockNotifierProcedure extends ChunkProcedure
-	{
-		private boolean cancel = false;
-		private BlockState newState;
+    private static class BlockNotifierProcedure extends ChunkProcedure {
+        private boolean cancel = false;
+        private BlockState newState;
 
-		public BlockNotifierProcedure(BlockState newState)
-		{
-			this.newState = newState;
-		}
+        public BlockNotifierProcedure(BlockState newState) {
+            this.newState = newState;
+        }
 
-		public boolean isCanceled()
-		{
-			return cancel;
-		}
+        public boolean isCanceled() {
+            return cancel;
+        }
 
-		@Override
-		public boolean execute(long coord)
-		{
-			if (!check(coord))
-				return true;
+        @Override
+        public boolean execute(long coord) {
+            if (!check(coord)) return true;
 
-			if (!(state.getBlock() instanceof IBlockListener))
-				return true;
+            if (!(state.getBlock() instanceof IBlockListener)) return true;
 
-			IBlockListener block = (IBlockListener) state.getBlock();
-			if (!state.getPos().isInRange(newState.getPos(), block.blockRange()))
-				return true;
+            IBlockListener block = (IBlockListener) state.getBlock();
+            if (!state.getPos().isInRange(newState.getPos(), block.blockRange())) return true;
 
-			if (!state.getPos().equals(newState.getPos()))
-			{
-				if (newState.getBlock() == Blocks.air)
-					cancel |= !block.onBlockRemoved(world, state.getPos(), newState.getPos());
-				else
-					cancel |= !block.onBlockSet(world, state.getPos(), newState);
-			}
+            if (!state.getPos().equals(newState.getPos())) {
+                if (newState.getBlock() == Blocks.air)
+                    cancel |= !block.onBlockRemoved(world, state.getPos(), newState.getPos());
+                else cancel |= !block.onBlockSet(world, state.getPos(), newState);
+            }
 
-			return !cancel;
-		}
+            return !cancel;
+        }
 
-		@Override
-		protected void clean()
-		{
-			super.clean();
-			cancel = false;
-			newState = null;
-		}
-	}
+        @Override
+        protected void clean() {
+            super.clean();
+            cancel = false;
+            newState = null;
+        }
+    }
 }

@@ -29,52 +29,40 @@ import net.malisis.core.inventory.MalisisSlot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
-public class PlayerInventory extends MalisisInventory
-{
+public class PlayerInventory extends MalisisInventory {
 
-	public PlayerInventory(EntityPlayer p)
-	{
-		super(null, 0);
-		this.size = 36;
-		this.slots = new MalisisSlot[size];
-		for (int i = 0; i < size; i++)
-			slots[i] = new PlayerInventorySlot(this, p, i);
-	}
+    public PlayerInventory(EntityPlayer p) {
+        super(null, 0);
+        this.size = 36;
+        this.slots = new MalisisSlot[size];
+        for (int i = 0; i < size; i++) slots[i] = new PlayerInventorySlot(this, p, i);
+    }
 
-	@Override
-	public ItemStack transferInto(ItemStack itemStack)
-	{
-		return transferInto(itemStack, true);
-	}
+    @Override
+    public ItemStack transferInto(ItemStack itemStack) {
+        return transferInto(itemStack, true);
+    }
 
-	@Override
-	public ItemStack transferInto(ItemStack itemStack, boolean reversed)
-	{
-		itemStack = transferIntoHotbar(itemStack, false, reversed);
-		if (itemStack != null)
-			itemStack = transferIntoInventory(itemStack, false, reversed);
-		if (itemStack != null)
-			itemStack = transferIntoHotbar(itemStack, true, reversed);
-		if (itemStack != null)
-			itemStack = transferIntoInventory(itemStack, true, reversed);
+    @Override
+    public ItemStack transferInto(ItemStack itemStack, boolean reversed) {
+        itemStack = transferIntoHotbar(itemStack, false, reversed);
+        if (itemStack != null) itemStack = transferIntoInventory(itemStack, false, reversed);
+        if (itemStack != null) itemStack = transferIntoHotbar(itemStack, true, reversed);
+        if (itemStack != null) itemStack = transferIntoInventory(itemStack, true, reversed);
 
-		return itemStack;
-	}
+        return itemStack;
+    }
 
-	private ItemStack transferIntoHotbar(ItemStack itemStack, boolean emptySlot, boolean reversed)
-	{
-		return transferInto(itemStack, emptySlot, reversed ? 8 : 0, reversed ? 0 : 8);
-	}
+    private ItemStack transferIntoHotbar(ItemStack itemStack, boolean emptySlot, boolean reversed) {
+        return transferInto(itemStack, emptySlot, reversed ? 8 : 0, reversed ? 0 : 8);
+    }
 
-	private ItemStack transferIntoInventory(ItemStack itemStack, boolean emptySlot, boolean reversed)
-	{
-		return transferInto(itemStack, emptySlot, reversed ? 35 : 9, reversed ? 9 : 35);
-	}
+    private ItemStack transferIntoInventory(ItemStack itemStack, boolean emptySlot, boolean reversed) {
+        return transferInto(itemStack, emptySlot, reversed ? 35 : 9, reversed ? 9 : 35);
+    }
 
-	@Override
-	public boolean isItemValidForSlot(int slotNumber, ItemStack itemStack)
-	{
-		return true;
-	}
-
+    @Override
+    public boolean isItemValidForSlot(int slotNumber, ItemStack itemStack) {
+        return true;
+    }
 }

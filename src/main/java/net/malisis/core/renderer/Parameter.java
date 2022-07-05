@@ -29,106 +29,93 @@ package net.malisis.core.renderer;
  * @author Ordinastie
  * @param <T> type of value held by the {@link Parameter}
  */
-public class Parameter<T>
-{
-	/** Default value. */
-	private T defaultValue;
+public class Parameter<T> {
+    /** Default value. */
+    private T defaultValue;
 
-	/** Current alue. */
-	private T value;
+    /** Current alue. */
+    private T value;
 
-	/**
-	 * Instantiates a new parameter.
-	 *
-	 * @param defaultValue the default value
-	 */
-	public Parameter(T defaultValue)
-	{
-		this.defaultValue = defaultValue;
-	}
+    /**
+     * Instantiates a new parameter.
+     *
+     * @param defaultValue the default value
+     */
+    public Parameter(T defaultValue) {
+        this.defaultValue = defaultValue;
+    }
 
-	/**
-	 * Gets the default value.
-	 *
-	 * @return the default
-	 */
-	public T getDefault()
-	{
-		return defaultValue;
-	}
+    /**
+     * Gets the default value.
+     *
+     * @return the default
+     */
+    public T getDefault() {
+        return defaultValue;
+    }
 
-	/**
-	 * Gets the current value.
-	 *
-	 * @return the value
-	 */
-	public T getValue()
-	{
-		return value;
-	}
+    /**
+     * Gets the current value.
+     *
+     * @return the value
+     */
+    public T getValue() {
+        return value;
+    }
 
-	/**
-	 * Resets the value to its default.
-	 */
-	public void reset()
-	{
-		value = null;
-	}
+    /**
+     * Resets the value to its default.
+     */
+    public void reset() {
+        value = null;
+    }
 
-	/**
-	 * Gets the value of this {@link Parameter}. If not value was set, default value is returned.
-	 *
-	 * @return the value
-	 */
-	public T get()
-	{
-		return value != null ? value : defaultValue;
-	}
+    /**
+     * Gets the value of this {@link Parameter}. If not value was set, default value is returned.
+     *
+     * @return the value
+     */
+    public T get() {
+        return value != null ? value : defaultValue;
+    }
 
-	/**
-	 * Sets the value for this {@link Parameter}.
-	 *
-	 * @param value the value
-	 */
-	public void set(T value)
-	{
-		this.value = value;
-	}
+    /**
+     * Sets the value for this {@link Parameter}.
+     *
+     * @param value the value
+     */
+    public void set(T value) {
+        this.value = value;
+    }
 
-	/**
-	 * Gets the value of the specified index in the array held by this {@link Parameter}.
-	 *
-	 * @param index the index
-	 * @return the object
-	 */
-	public Object get(int index)
-	{
-		if (value == null)
-			return value;
-		if (value != null && !(value instanceof Object[]))
-			throw new IllegalStateException("Trying to access indexed element of non-array Parameter");
+    /**
+     * Gets the value of the specified index in the array held by this {@link Parameter}.
+     *
+     * @param index the index
+     * @return the object
+     */
+    public Object get(int index) {
+        if (value == null) return value;
+        if (value != null && !(value instanceof Object[]))
+            throw new IllegalStateException("Trying to access indexed element of non-array Parameter");
 
-		Object[] v = (Object[]) value;
-		if (index < 0 || index >= v.length)
-			return null;
+        Object[] v = (Object[]) value;
+        if (index < 0 || index >= v.length) return null;
 
-		return v[index];
-	}
+        return v[index];
+    }
 
-	/**
-	 * Merge this {@link Parameter} with the specified one. The value will only be overridden if it is default.
-	 *
-	 * @param parameter the parameter
-	 */
-	public void merge(Parameter<T> parameter)
-	{
-		if (parameter.getValue() != null)
-			value = parameter.getValue();
-	}
+    /**
+     * Merge this {@link Parameter} with the specified one. The value will only be overridden if it is default.
+     *
+     * @param parameter the parameter
+     */
+    public void merge(Parameter<T> parameter) {
+        if (parameter.getValue() != null) value = parameter.getValue();
+    }
 
-	@Override
-	public String toString()
-	{
-		return value + " [" + defaultValue + "]";
-	}
+    @Override
+    public String toString() {
+        return value + " [" + defaultValue + "]";
+    }
 }

@@ -28,7 +28,4 @@ package net.malisis.core.network;
  * @author Ordinastie
  *
  */
-public @interface MalisisMessage
-{
-
-}
+public @interface MalisisMessage {}

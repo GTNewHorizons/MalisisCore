@@ -35,76 +35,64 @@ import net.malisis.core.util.MouseButton;
  * @author Ordinastie
  *
  */
-public class UIResizeHandle extends UIComponent<UIResizeHandle> implements IControlComponent
-{
-	public enum Type
-	{
-		BOTH, HORIZONTAL, VERTICAL
-	}
+public class UIResizeHandle extends UIComponent<UIResizeHandle> implements IControlComponent {
+    public enum Type {
+        BOTH,
+        HORIZONTAL,
+        VERTICAL
+    }
 
-	private Type type;
+    private Type type;
 
-	public UIResizeHandle(MalisisGui gui, UIComponent parent, Type type)
-	{
-		super(gui);
-		this.type = type != null ? type : Type.BOTH;
+    public UIResizeHandle(MalisisGui gui, UIComponent parent, Type type) {
+        super(gui);
+        this.type = type != null ? type : Type.BOTH;
 
-		int x = -1;
-		int y = -1;
-		if (parent instanceof UIContainer)
-		{
-			x += ((UIContainer) parent).getHorizontalPadding();
-			y += ((UIContainer) parent).getVerticalPadding();
-		}
+        int x = -1;
+        int y = -1;
+        if (parent instanceof UIContainer) {
+            x += ((UIContainer) parent).getHorizontalPadding();
+            y += ((UIContainer) parent).getVerticalPadding();
+        }
 
-		setPosition(x, y, Anchor.BOTTOM | Anchor.RIGHT);
-		setSize(5, 5);
-		register(this);
+        setPosition(x, y, Anchor.BOTTOM | Anchor.RIGHT);
+        setSize(5, 5);
+        register(this);
 
-		parent.addControlComponent(this);
+        parent.addControlComponent(this);
 
-		icon = gui.getGuiTexture().getIcon(268, 0, 15, 15);
-	}
+        icon = gui.getGuiTexture().getIcon(268, 0, 15, 15);
+    }
 
-	public UIResizeHandle(MalisisGui gui, UIComponent parent)
-	{
-		this(gui, parent, Type.BOTH);
-	}
+    public UIResizeHandle(MalisisGui gui, UIComponent parent) {
+        this(gui, parent, Type.BOTH);
+    }
 
-	@Override
-	public boolean onDrag(int lastX, int lastY, int x, int y, MouseButton button)
-	{
-		if (button != MouseButton.LEFT)
-			return super.onDrag(lastX, lastY, x, y, button);
+    @Override
+    public boolean onDrag(int lastX, int lastY, int x, int y, MouseButton button) {
+        if (button != MouseButton.LEFT) return super.onDrag(lastX, lastY, x, y, button);
 
-		UIComponent p = getParent();
-		if (p.getAnchor() != Anchor.NONE)
-			p.setPosition(p.parentX(), p.parentY(), Anchor.NONE);
+        UIComponent p = getParent();
+        if (p.getAnchor() != Anchor.NONE) p.setPosition(p.parentX(), p.parentY(), Anchor.NONE);
 
-		int w = parent.getWidth();
-		int h = parent.getHeight();
-		if (type == Type.BOTH || type == Type.HORIZONTAL)
-			w += x - lastX;
-		if (type == Type.BOTH || type == Type.VERTICAL)
-			h += y - lastY;
-		if (w < 10)
-			w = 10;
-		if (h < 10)
-			h = 10;
+        int w = parent.getWidth();
+        int h = parent.getHeight();
+        if (type == Type.BOTH || type == Type.HORIZONTAL) w += x - lastX;
+        if (type == Type.BOTH || type == Type.VERTICAL) h += y - lastY;
+        if (w < 10) w = 10;
+        if (h < 10) h = 10;
 
-		getParent().setSize(w, h);
+        getParent().setSize(w, h);
 
-		return true;
-	}
+        return true;
+    }
 
-	@Override
-	public void drawBackground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick)
-	{}
+    @Override
+    public void drawBackground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick) {}
 
-	@Override
-	public void drawForeground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick)
-	{
-		rp.icon.set(icon);
-		renderer.drawShape(shape, rp);
-	}
+    @Override
+    public void drawForeground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick) {
+        rp.icon.set(icon);
+        renderer.drawShape(shape, rp);
+    }
 }

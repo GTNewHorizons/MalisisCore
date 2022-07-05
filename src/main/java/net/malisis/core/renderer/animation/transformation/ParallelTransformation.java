@@ -30,46 +30,36 @@ import java.util.ArrayList;
  * @author Ordinastie
  *
  */
-public class ParallelTransformation extends Transformation<ParallelTransformation, ITransformable>
-{
-	protected ArrayList<Transformation> listTransformations = new ArrayList<>();
+public class ParallelTransformation extends Transformation<ParallelTransformation, ITransformable> {
+    protected ArrayList<Transformation> listTransformations = new ArrayList<>();
 
-	public ParallelTransformation(Transformation... transformations)
-	{
-		addTransformations(transformations);
+    public ParallelTransformation(Transformation... transformations) {
+        addTransformations(transformations);
+    }
 
-	}
+    public ParallelTransformation addTransformations(Transformation... transformations) {
+        for (Transformation transformation : transformations) {
+            duration = Math.max(duration, transformation.totalDuration());
+            listTransformations.add(transformation);
+        }
 
-	public ParallelTransformation addTransformations(Transformation... transformations)
-	{
-		for (Transformation transformation : transformations)
-		{
-			duration = Math.max(duration, transformation.totalDuration());
-			listTransformations.add(transformation);
-		}
+        return this;
+    }
 
-		return this;
-	}
+    @Override
+    protected void doTransform(ITransformable transformable, float comp) {
+        if (listTransformations.size() == 0) return;
 
-	@Override
-	protected void doTransform(ITransformable transformable, float comp)
-	{
-		if (listTransformations.size() == 0)
-			return;
+        for (Transformation transformation : listTransformations)
+            transformation.transform(transformable, elapsedTimeCurrentLoop);
+    }
 
-		for (Transformation transformation : listTransformations)
-			transformation.transform(transformable, elapsedTimeCurrentLoop);
-	}
+    @Override
+    public ParallelTransformation reversed(boolean reversed) {
+        if (!reversed) return this;
 
-	@Override
-	public ParallelTransformation reversed(boolean reversed)
-	{
-		if (!reversed)
-			return this;
+        for (Transformation transformation : listTransformations) transformation.reversed(true);
 
-		for (Transformation transformation : listTransformations)
-			transformation.reversed(true);
-
-		return this;
-	}
+        return this;
+    }
 }

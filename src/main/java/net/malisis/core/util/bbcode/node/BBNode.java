@@ -26,180 +26,144 @@ package net.malisis.core.util.bbcode.node;
 
 import java.util.Iterator;
 import java.util.LinkedList;
-
 import net.malisis.core.util.bbcode.render.BBRenderElement;
 
 /**
  * @author Ordinastie
  *
  */
-public abstract class BBNode implements Iterable<BBNode>
-{
-	protected String tag;
-	protected BBNode parent;
-	protected LinkedList<BBNode> children = new LinkedList<>();
-	protected String attribute;
-	protected boolean standAlone = false;
-	protected int charIndex;
+public abstract class BBNode implements Iterable<BBNode> {
+    protected String tag;
+    protected BBNode parent;
+    protected LinkedList<BBNode> children = new LinkedList<>();
+    protected String attribute;
+    protected boolean standAlone = false;
+    protected int charIndex;
 
-	public BBNode(String tag, String attribute)
-	{
-		this.tag = tag;
-		this.attribute = attribute;
-	}
+    public BBNode(String tag, String attribute) {
+        this.tag = tag;
+        this.attribute = attribute;
+    }
 
-	public BBNode(String tag)
-	{
-		this(tag, "");
-	}
+    public BBNode(String tag) {
+        this(tag, "");
+    }
 
-	public String getTag()
-	{
-		return tag;
-	}
+    public String getTag() {
+        return tag;
+    }
 
-	public void setParent(BBNode parent)
-	{
-		this.parent = parent;
-	}
+    public void setParent(BBNode parent) {
+        this.parent = parent;
+    }
 
-	public BBNode getParent()
-	{
-		return parent;
-	}
+    public BBNode getParent() {
+        return parent;
+    }
 
-	@Override
-	public Iterator<BBNode> iterator()
-	{
-		return children.iterator();
-	}
+    @Override
+    public Iterator<BBNode> iterator() {
+        return children.iterator();
+    }
 
-	public void insert(BBNode node)
-	{
-		insert(node, children.size());
-	}
+    public void insert(BBNode node) {
+        insert(node, children.size());
+    }
 
-	public void insertAfter(BBNode node, BBNode after)
-	{
-		insert(node, children.indexOf(after) + 1);
-	}
+    public void insertAfter(BBNode node, BBNode after) {
+        insert(node, children.indexOf(after) + 1);
+    }
 
-	public void insertBefore(BBNode node, BBNode before)
-	{
-		insert(node, children.indexOf(before));
-	}
+    public void insertBefore(BBNode node, BBNode before) {
+        insert(node, children.indexOf(before));
+    }
 
-	public void insert(BBNode node, int position)
-	{
-		if (isStandAlone())
-			throw new IllegalArgumentException("Can't add nodes to " + getClass().getSimpleName());
+    public void insert(BBNode node, int position) {
+        if (isStandAlone())
+            throw new IllegalArgumentException(
+                    "Can't add nodes to " + getClass().getSimpleName());
 
-		children.add(position, node);
-		node.parent = this;
-	}
+        children.add(position, node);
+        node.parent = this;
+    }
 
-	public void remove(BBNode node)
-	{
-		if (isStandAlone())
-			throw new IllegalArgumentException("Can't remove nodes from " + getClass().getSimpleName());
+    public void remove(BBNode node) {
+        if (isStandAlone())
+            throw new IllegalArgumentException(
+                    "Can't remove nodes from " + getClass().getSimpleName());
 
-		children.remove(node);
-		node.parent = null;
-	}
+        children.remove(node);
+        node.parent = null;
+    }
 
-	public String getAttribute()
-	{
-		if (attribute != "")
-			return "=" + attribute;
-		return "";
-	}
+    public String getAttribute() {
+        if (attribute != "") return "=" + attribute;
+        return "";
+    }
 
-	public boolean isStandAlone()
-	{
-		return standAlone;
-	}
+    public boolean isStandAlone() {
+        return standAlone;
+    }
 
-	public boolean hasTextNode()
-	{
-		for (BBNode n : this)
-			if (n.hasTextNode())
-				return true;
-		return false;
-	}
+    public boolean hasTextNode() {
+        for (BBNode n : this) if (n.hasTextNode()) return true;
+        return false;
+    }
 
-	public BBStyleNode getChildStyleNode(String tag)
-	{
-		for (BBNode n : this)
-			if (n instanceof BBStyleNode && n.tag.equals(tag))
-				return (BBStyleNode) n;
-		return null;
-	}
+    public BBStyleNode getChildStyleNode(String tag) {
+        for (BBNode n : this) if (n instanceof BBStyleNode && n.tag.equals(tag)) return (BBStyleNode) n;
+        return null;
+    }
 
-	public abstract BBNode copy();
+    public abstract BBNode copy();
 
-	public void clean()
-	{
-		if (getParent() != null && !isStandAlone() && !hasTextNode())
-		{
-			getParent().remove(this);
-			return;
-		}
+    public void clean() {
+        if (getParent() != null && !isStandAlone() && !hasTextNode()) {
+            getParent().remove(this);
+            return;
+        }
 
-		for (BBNode node : this)
-			node.clean();
+        for (BBNode node : this) node.clean();
 
-		Iterator<BBNode> it = iterator();
-		BBNode lastNode = null;
-		while (it.hasNext())
-		{
-			BBNode node = it.next();
-			if (lastNode instanceof BBTextNode && node instanceof BBTextNode)
-			{
-				((BBTextNode) lastNode).append(((BBTextNode) node).getText());
-				it.remove();
-			}
-			else
-				lastNode = node;
-		}
-	}
+        Iterator<BBNode> it = iterator();
+        BBNode lastNode = null;
+        while (it.hasNext()) {
+            BBNode node = it.next();
+            if (lastNode instanceof BBTextNode && node instanceof BBTextNode) {
+                ((BBTextNode) lastNode).append(((BBTextNode) node).getText());
+                it.remove();
+            } else lastNode = node;
+        }
+    }
 
-	public void apply(BBRenderElement element)
-	{
+    public void apply(BBRenderElement element) {}
 
-	}
+    public String toRawString() {
+        StringBuilder str = new StringBuilder();
 
-	public String toRawString()
-	{
-		StringBuilder str = new StringBuilder();
+        for (BBNode n : this) str.append(n.toRawString());
 
-		for (BBNode n : this)
-			str.append(n.toRawString());
+        return str.toString();
+    }
 
-		return str.toString();
-	}
+    public String toBBString() {
+        StringBuilder str = new StringBuilder();
 
-	public String toBBString()
-	{
-		StringBuilder str = new StringBuilder();
+        str.append("[" + tag);
+        str.append(getAttribute());
+        str.append("]");
 
-		str.append("[" + tag);
-		str.append(getAttribute());
-		str.append("]");
+        if (standAlone) return str.toString();
 
-		if (standAlone)
-			return str.toString();
+        for (BBNode n : this) str.append(n.toBBString());
 
-		for (BBNode n : this)
-			str.append(n.toBBString());
+        str.append("[/" + tag + "]");
 
-		str.append("[/" + tag + "]");
+        return str.toString();
+    }
 
-		return str.toString();
-	}
-
-	@Override
-	public String toString()
-	{
-		return getClass().getSimpleName() + " : [" + tag + getAttribute() + "]";
-	}
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + " : [" + tag + getAttribute() + "]";
+    }
 }

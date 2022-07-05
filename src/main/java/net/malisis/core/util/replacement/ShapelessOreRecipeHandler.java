@@ -26,7 +26,6 @@ package net.malisis.core.util.replacement;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-
 import net.malisis.core.asm.AsmUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
@@ -35,46 +34,36 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
  * @author Ordinastie
  *
  */
-public class ShapelessOreRecipeHandler extends ReplacementHandler<ShapelessOreRecipe>
-{
-	private Field inputField;
-	private Field outputField;
+public class ShapelessOreRecipeHandler extends ReplacementHandler<ShapelessOreRecipe> {
+    private Field inputField;
+    private Field outputField;
 
-	public ShapelessOreRecipeHandler()
-	{
-		super(ShapelessOreRecipe.class);
-		inputField = AsmUtils.changeFieldAccess(ShapelessOreRecipe.class, "input");
-		outputField = AsmUtils.changeFieldAccess(ShapelessOreRecipe.class, "output");
-	}
+    public ShapelessOreRecipeHandler() {
+        super(ShapelessOreRecipe.class);
+        inputField = AsmUtils.changeFieldAccess(ShapelessOreRecipe.class, "input");
+        outputField = AsmUtils.changeFieldAccess(ShapelessOreRecipe.class, "output");
+    }
 
-	@Override
-	public boolean replace(ShapelessOreRecipe recipe, Object vanilla, Object replacement)
-	{
-		boolean replaced = false;
-		try
-		{
-			if (isMatched(recipe.getRecipeOutput(), vanilla))
-			{
-				outputField.set(recipe, getItemStack(replacement));
-				replaced = true;
-			}
+    @Override
+    public boolean replace(ShapelessOreRecipe recipe, Object vanilla, Object replacement) {
+        boolean replaced = false;
+        try {
+            if (isMatched(recipe.getRecipeOutput(), vanilla)) {
+                outputField.set(recipe, getItemStack(replacement));
+                replaced = true;
+            }
 
-			ArrayList<Object> input = (ArrayList<Object>) inputField.get(recipe);
-			for (int i = 0; i < input.size(); i++)
-			{
-				if (input.get(i) instanceof ItemStack && isMatched((ItemStack) input.get(i), vanilla))
-				{
-					input.set(i, getItemStack(replacement));
-					replaced = true;
-				}
-			}
-		}
-		catch (IllegalArgumentException | IllegalAccessException e)
-		{
-			e.printStackTrace();
-		}
+            ArrayList<Object> input = (ArrayList<Object>) inputField.get(recipe);
+            for (int i = 0; i < input.size(); i++) {
+                if (input.get(i) instanceof ItemStack && isMatched((ItemStack) input.get(i), vanilla)) {
+                    input.set(i, getItemStack(replacement));
+                    replaced = true;
+                }
+            }
+        } catch (IllegalArgumentException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
 
-		return replaced;
-	}
-
+        return replaced;
+    }
 }

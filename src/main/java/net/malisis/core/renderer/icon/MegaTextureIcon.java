@@ -27,7 +27,6 @@ package net.malisis.core.renderer.icon;
 import static net.minecraftforge.common.util.ForgeDirection.*;
 
 import java.util.HashMap;
-
 import net.minecraft.block.Block;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -37,95 +36,80 @@ import net.minecraftforge.common.util.ForgeDirection;
  * @author Ordinastie
  *
  */
-public class MegaTextureIcon extends MalisisIcon
-{
-	private static HashMap<ForgeDirection, ForgeDirection[]> searchDirs = new HashMap<>();
-	static
-	{
-		searchDirs.put(NORTH, new ForgeDirection[] { DOWN, EAST });
-		searchDirs.put(SOUTH, new ForgeDirection[] { DOWN, WEST });
-		searchDirs.put(EAST, new ForgeDirection[] { DOWN, SOUTH });
-		searchDirs.put(WEST, new ForgeDirection[] { DOWN, NORTH });
-	}
+public class MegaTextureIcon extends MalisisIcon {
+    private static HashMap<ForgeDirection, ForgeDirection[]> searchDirs = new HashMap<>();
 
-	int baseX, baseY, baseZ;
-	int numBlocks = -1;
+    static {
+        searchDirs.put(NORTH, new ForgeDirection[] {DOWN, EAST});
+        searchDirs.put(SOUTH, new ForgeDirection[] {DOWN, WEST});
+        searchDirs.put(EAST, new ForgeDirection[] {DOWN, SOUTH});
+        searchDirs.put(WEST, new ForgeDirection[] {DOWN, NORTH});
+    }
 
-	public MegaTextureIcon(String name)
-	{
-		super(name);
-	}
+    int baseX, baseY, baseZ;
+    int numBlocks = -1;
 
-	public MegaTextureIcon(String name, int numBlocks)
-	{
-		super(name);
-		this.numBlocks = numBlocks;
-	}
+    public MegaTextureIcon(String name) {
+        super(name);
+    }
 
-	public MegaTextureIcon(MalisisIcon icon)
-	{
-		super(icon);
-	}
+    public MegaTextureIcon(String name, int numBlocks) {
+        super(name);
+        this.numBlocks = numBlocks;
+    }
 
-	public MegaTextureIcon(MalisisIcon icon, int numBlocks)
-	{
-		super(icon);
-		this.numBlocks = numBlocks;
-	}
+    public MegaTextureIcon(MalisisIcon icon) {
+        super(icon);
+    }
 
-	public IIcon getIcon(IBlockAccess world, Block block, int x, int y, int z, int side)
-	{
-		ForgeDirection dir = ForgeDirection.getOrientation(side);
-		getBaseBlock(world, block, x, y, z, dir);
-		return getIcon(x, y, z, dir);
-	}
+    public MegaTextureIcon(MalisisIcon icon, int numBlocks) {
+        super(icon);
+        this.numBlocks = numBlocks;
+    }
 
-	private void getBaseBlock(IBlockAccess world, Block block, int x, int y, int z, ForgeDirection side)
-	{
-		baseX = x;
-		baseY = y;
-		baseZ = z;
-		ForgeDirection[] dirs = searchDirs.get(side);
-		if (dirs == null)
-			return;
+    public IIcon getIcon(IBlockAccess world, Block block, int x, int y, int z, int side) {
+        ForgeDirection dir = ForgeDirection.getOrientation(side);
+        getBaseBlock(world, block, x, y, z, dir);
+        return getIcon(x, y, z, dir);
+    }
 
-		for (ForgeDirection dir : dirs)
-		{
-			while (world.getBlock(baseX, baseY, baseZ) == block)
-			{
-				baseX += dir.offsetX;
-				baseY += dir.offsetY;
-				baseZ += dir.offsetZ;
-			}
-			//not the block anymore, go one back
-			dir = dir.getOpposite();
-			baseX += dir.offsetX;
-			baseY += dir.offsetY;
-			baseZ += dir.offsetZ;
-		}
-	}
+    private void getBaseBlock(IBlockAccess world, Block block, int x, int y, int z, ForgeDirection side) {
+        baseX = x;
+        baseY = y;
+        baseZ = z;
+        ForgeDirection[] dirs = searchDirs.get(side);
+        if (dirs == null) return;
 
-	private IIcon getIcon(int x, int y, int z, ForgeDirection dir)
-	{
-		if (numBlocks == -1)
-		{
-			int w = width;
-			if (useAnisotropicFiltering)
-				w -= 16;
-			numBlocks = w / 16;
-		}
+        for (ForgeDirection dir : dirs) {
+            while (world.getBlock(baseX, baseY, baseZ) == block) {
+                baseX += dir.offsetX;
+                baseY += dir.offsetY;
+                baseZ += dir.offsetZ;
+            }
+            // not the block anymore, go one back
+            dir = dir.getOpposite();
+            baseX += dir.offsetX;
+            baseY += dir.offsetY;
+            baseZ += dir.offsetZ;
+        }
+    }
 
-		int u = 0;
-		int v = ((y - baseY) % numBlocks) + 1;
-		if (dir == NORTH || dir == SOUTH)
-			u = Math.abs(x - baseX) % numBlocks;
-		else
-			u = Math.abs(z - baseZ) % numBlocks;
+    private IIcon getIcon(int x, int y, int z, ForgeDirection dir) {
+        if (numBlocks == -1) {
+            int w = width;
+            if (useAnisotropicFiltering) w -= 16;
+            numBlocks = w / 16;
+        }
 
-		float factor = 1.0F / numBlocks;
-		MalisisIcon icon = new MalisisIcon();
-		icon.copyFrom(this);
-		icon.clip(u * factor, 1 - v * factor, factor, factor);
-		return icon;
-	}
+        int u = 0;
+        int v = ((y - baseY) % numBlocks) + 1;
+        if (dir == NORTH || dir == SOUTH) u = Math.abs(x - baseX) % numBlocks;
+        else u = Math.abs(z - baseZ) % numBlocks;
+
+        float factor = 1.0F / numBlocks;
+        MalisisIcon icon = new MalisisIcon();
+        icon.copyFrom(this);
+        icon.clip(u * factor, 1 - v * factor, factor, factor);
+        return icon;
+    }
 }

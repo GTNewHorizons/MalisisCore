@@ -26,290 +26,250 @@ package net.malisis.core.renderer.font;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import net.minecraft.util.EnumChatFormatting;
-
 import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author Ordinastie
  *
  */
-public class FontRenderOptions
-{
-	/** Map of EnumChatFormatting **/
-	private static Map<Character, EnumChatFormatting> charFormats = new HashMap<>();
-	/** List of ECF colors **/
-	private static int[] colors = new int[32];
-	static
-	{
-		//could reflect to get EnumChatFormatting.formattingCodeMapping instead
-		for (EnumChatFormatting ecf : EnumChatFormatting.values())
-			charFormats.put(ecf.getFormattingCode(), ecf);
+public class FontRenderOptions {
+    /** Map of EnumChatFormatting **/
+    private static Map<Character, EnumChatFormatting> charFormats = new HashMap<>();
+    /** List of ECF colors **/
+    private static int[] colors = new int[32];
 
-		//build colors for ECF
-		for (int i = 0; i < 16; ++i)
-		{
-			int j = (i >> 3 & 1) * 85;
-			int r = (i >> 2 & 1) * 170 + j;
-			int g = (i >> 1 & 1) * 170 + j;
-			int b = (i >> 0 & 1) * 170 + j;
+    static {
+        // could reflect to get EnumChatFormatting.formattingCodeMapping instead
+        for (EnumChatFormatting ecf : EnumChatFormatting.values()) charFormats.put(ecf.getFormattingCode(), ecf);
 
-			if (i == 6) //GOLD
-				r += 85;
+        // build colors for ECF
+        for (int i = 0; i < 16; ++i) {
+            int j = (i >> 3 & 1) * 85;
+            int r = (i >> 2 & 1) * 170 + j;
+            int g = (i >> 1 & 1) * 170 + j;
+            int b = (i >> 0 & 1) * 170 + j;
 
-			colors[i] = (r & 255) << 16 | (g & 255) << 8 | b & 255;
-		}
-	}
+            if (i == 6) // GOLD
+            r += 85;
 
-	/** Scale for the font **/
-	public float fontScale = 1;
-	/** Color of the text **/
-	public int color = 0x000000; //black
-	/** Draw with shadow **/
-	public boolean shadow = false;
-	/** Use bold font **/
-	public boolean bold;
-	/** Use italic font **/
-	public boolean italic;
-	/** Underline the text **/
-	public boolean underline;
-	/** Striketrhough the text **/
-	public boolean strikethrough;
-	/** Disable ECF so char are actually drawn **/
-	public boolean disableECF = false;
+            colors[i] = (r & 255) << 16 | (g & 255) << 8 | b & 255;
+        }
+    }
 
-	private FontRenderOptions defaultFro;
-	private FontRenderOptions lineFro;
-	private boolean defaultSaved = false;
+    /** Scale for the font **/
+    public float fontScale = 1;
+    /** Color of the text **/
+    public int color = 0x000000; // black
+    /** Draw with shadow **/
+    public boolean shadow = false;
+    /** Use bold font **/
+    public boolean bold;
+    /** Use italic font **/
+    public boolean italic;
+    /** Underline the text **/
+    public boolean underline;
+    /** Striketrhough the text **/
+    public boolean strikethrough;
+    /** Disable ECF so char are actually drawn **/
+    public boolean disableECF = false;
 
-	public FontRenderOptions()
-	{
-		defaultFro = new FontRenderOptions(false);
-	}
+    private FontRenderOptions defaultFro;
+    private FontRenderOptions lineFro;
+    private boolean defaultSaved = false;
 
-	public FontRenderOptions(boolean b)
-	{
-		//constructor without a default.
-		//'this' object should already be the default for another FRO
-	}
+    public FontRenderOptions() {
+        defaultFro = new FontRenderOptions(false);
+    }
 
-	public FontRenderOptions(FontRenderOptions fro)
-	{
-		defaultFro = new FontRenderOptions(false);
+    public FontRenderOptions(boolean b) {
+        // constructor without a default.
+        // 'this' object should already be the default for another FRO
+    }
 
-		from(fro);
+    public FontRenderOptions(FontRenderOptions fro) {
+        defaultFro = new FontRenderOptions(false);
 
-		saveDefault();
-		defaultSaved = false;
-	}
+        from(fro);
 
-	public FontRenderOptions(String ecfs)
-	{
-		defaultFro = new FontRenderOptions(false);
-		processStyles(ecfs);
-		saveDefault();
-		defaultSaved = false;
-	}
+        saveDefault();
+        defaultSaved = false;
+    }
 
-	public FontRenderOptions(String ecfs, int color)
-	{
-		this(ecfs);
-		this.color = color;
-		defaultFro.color = color;
-	}
+    public FontRenderOptions(String ecfs) {
+        defaultFro = new FontRenderOptions(false);
+        processStyles(ecfs);
+        saveDefault();
+        defaultSaved = false;
+    }
 
-	/**
-	 * Process styles applied to the beginning of the text with {@link EnumChatFormatting} values.<br>
-	 * Applies the styles to this {@link FontRenderOptions} and returns the number of characters read.
-	 *
-	 * @param text the text
-	 * @return the string with ECF
-	 */
-	public int processStyles(String text)
-	{
-		return processStyles(text, 0);
-	}
+    public FontRenderOptions(String ecfs, int color) {
+        this(ecfs);
+        this.color = color;
+        defaultFro.color = color;
+    }
 
-	/**
-	 * Process styles applied at the specified position in the text with {@link EnumChatFormatting} values.<br>
-	 * Applies the styles to this {@link FontRenderOptions} and returns the number of characters read.
-	 *
-	 * @param text the text
-	 * @param index the index
-	 * @return the int
-	 */
-	public int processStyles(String text, int index)
-	{
-		if (!defaultSaved)
-			saveDefault();
-		if (disableECF)
-			return 0;
-		EnumChatFormatting ecf;
-		int offset = 0;
-		while ((ecf = getFormatting(text, index + offset)) != null)
-		{
-			offset += 2;
-			apply(ecf);
-		}
+    /**
+     * Process styles applied to the beginning of the text with {@link EnumChatFormatting} values.<br>
+     * Applies the styles to this {@link FontRenderOptions} and returns the number of characters read.
+     *
+     * @param text the text
+     * @return the string with ECF
+     */
+    public int processStyles(String text) {
+        return processStyles(text, 0);
+    }
 
-		return offset;
-	}
+    /**
+     * Process styles applied at the specified position in the text with {@link EnumChatFormatting} values.<br>
+     * Applies the styles to this {@link FontRenderOptions} and returns the number of characters read.
+     *
+     * @param text the text
+     * @param index the index
+     * @return the int
+     */
+    public int processStyles(String text, int index) {
+        if (!defaultSaved) saveDefault();
+        if (disableECF) return 0;
+        EnumChatFormatting ecf;
+        int offset = 0;
+        while ((ecf = getFormatting(text, index + offset)) != null) {
+            offset += 2;
+            apply(ecf);
+        }
 
-	/**
-	 * Applies the {@link EnumChatFormatting} style to this {@link FontRenderOptions}.
-	 *
-	 * @param ecf the ecf
-	 */
-	public void apply(EnumChatFormatting ecf)
-	{
-		if (!defaultSaved)
-			saveDefault();
-		if (ecf == EnumChatFormatting.RESET)
-			resetStyles();
-		else if (ecf.isColor())
-		{
-			color = colors[ecf.ordinal()];
-		}
-		else
-		{
-			switch (ecf)
-			{
-				case STRIKETHROUGH:
-					strikethrough = true;
-					break;
-				case BOLD:
-					bold = true;
-					break;
-				case ITALIC:
-					italic = true;
-					break;
-				case UNDERLINE:
-					underline = true;
-					break;
-				default:
-					break;
-			}
-		}
-	}
+        return offset;
+    }
 
-	public void saveDefault()
-	{
-		defaultSaved = true;
-		defaultFro.color = color;
-		defaultFro.strikethrough = strikethrough;
-		defaultFro.bold = bold;
-		defaultFro.italic = italic;
-		defaultFro.underline = underline;
-		defaultFro.fontScale = fontScale;
-	}
+    /**
+     * Applies the {@link EnumChatFormatting} style to this {@link FontRenderOptions}.
+     *
+     * @param ecf the ecf
+     */
+    public void apply(EnumChatFormatting ecf) {
+        if (!defaultSaved) saveDefault();
+        if (ecf == EnumChatFormatting.RESET) resetStyles();
+        else if (ecf.isColor()) {
+            color = colors[ecf.ordinal()];
+        } else {
+            switch (ecf) {
+                case STRIKETHROUGH:
+                    strikethrough = true;
+                    break;
+                case BOLD:
+                    bold = true;
+                    break;
+                case ITALIC:
+                    italic = true;
+                    break;
+                case UNDERLINE:
+                    underline = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
-	public void resetStyles()
-	{
-		if (!defaultSaved)
-		{
-			saveDefault();
-			return;
-		}
+    public void saveDefault() {
+        defaultSaved = true;
+        defaultFro.color = color;
+        defaultFro.strikethrough = strikethrough;
+        defaultFro.bold = bold;
+        defaultFro.italic = italic;
+        defaultFro.underline = underline;
+        defaultFro.fontScale = fontScale;
+    }
 
-		from(defaultFro);
-	}
+    public void resetStyles() {
+        if (!defaultSaved) {
+            saveDefault();
+            return;
+        }
 
-	public void setLineFro(FontRenderOptions fro)
-	{
-		if (lineFro == null)
-			lineFro = new FontRenderOptions();
-		lineFro.from(fro);
-	}
+        from(defaultFro);
+    }
 
-	public void resetStylesLine()
-	{
-		if (lineFro == null)
-		{
-			resetStyles();
-			return;
-		}
+    public void setLineFro(FontRenderOptions fro) {
+        if (lineFro == null) lineFro = new FontRenderOptions();
+        lineFro.from(fro);
+    }
 
-		from(lineFro);
-	}
+    public void resetStylesLine() {
+        if (lineFro == null) {
+            resetStyles();
+            return;
+        }
 
-	public void from(FontRenderOptions fro)
-	{
-		fontScale = fro.fontScale;
-		color = fro.color;
-		bold = fro.bold;
-		italic = fro.italic;
-		strikethrough = fro.strikethrough;
-		underline = fro.underline;
-	}
+        from(lineFro);
+    }
 
-	/**
-	 * Gets the shadow color corresponding to the current color.
-	 *
-	 * @return the shadow color
-	 */
-	public int getShadowColor()
-	{
-		if (color == 0) //black
-			return 0x222222;
-		if (color == 0xFFAA00) //gold
-			return 0x2A2A00;
+    public void from(FontRenderOptions fro) {
+        fontScale = fro.fontScale;
+        color = fro.color;
+        bold = fro.bold;
+        italic = fro.italic;
+        strikethrough = fro.strikethrough;
+        underline = fro.underline;
+    }
 
-		int r = (color >> 16) & 255;
-		int g = (color >> 8) & 255;
-		int b = color & 255;
+    /**
+     * Gets the shadow color corresponding to the current color.
+     *
+     * @return the shadow color
+     */
+    public int getShadowColor() {
+        if (color == 0) // black
+        return 0x222222;
+        if (color == 0xFFAA00) // gold
+        return 0x2A2A00;
 
-		r /= 4;
-		g /= 4;
-		b /= 4;
+        int r = (color >> 16) & 255;
+        int g = (color >> 8) & 255;
+        int b = color & 255;
 
-		return (r & 255) << 16 | (g & 255) << 8 | b & 255;
-	}
+        r /= 4;
+        g /= 4;
+        b /= 4;
 
-	/**
-	 * Gets the {@link EnumChatFormatting} at the specified position in the text.<br>
-	 * Returns null if none is found.
-	 *
-	 * @param text the text
-	 * @param index the index
-	 * @return the formatting
-	 */
-	public static EnumChatFormatting getFormatting(String text, int index)
-	{
-		if (StringUtils.isEmpty(text) || index < 0 || index > text.length() - 2)
-			return null;
+        return (r & 255) << 16 | (g & 255) << 8 | b & 255;
+    }
 
-		char c = text.charAt(index);
-		if (c != '\u00a7')
-			return null;
-		return charFormats.get(text.charAt(index + 1));
-	}
+    /**
+     * Gets the {@link EnumChatFormatting} at the specified position in the text.<br>
+     * Returns null if none is found.
+     *
+     * @param text the text
+     * @param index the index
+     * @return the formatting
+     */
+    public static EnumChatFormatting getFormatting(String text, int index) {
+        if (StringUtils.isEmpty(text) || index < 0 || index > text.length() - 2) return null;
 
-	/**
-	 * Checks if there is a {@link EnumChatFormatting} at the specified position in the text.
-	 *
-	 * @param text the text
-	 * @param index the index
-	 * @return true, if ECF
-	 */
-	public static boolean isFormatting(String text, int index)
-	{
-		return getFormatting(text, index) != null;
-	}
+        char c = text.charAt(index);
+        if (c != '\u00a7') return null;
+        return charFormats.get(text.charAt(index + 1));
+    }
 
-	public static Link getLink(String text, int index)
-	{
-		if (StringUtils.isEmpty(text) || index < 0 || index > text.length() - 2)
-			return null;
+    /**
+     * Checks if there is a {@link EnumChatFormatting} at the specified position in the text.
+     *
+     * @param text the text
+     * @param index the index
+     * @return true, if ECF
+     */
+    public static boolean isFormatting(String text, int index) {
+        return getFormatting(text, index) != null;
+    }
 
-		if (text.charAt(index) != '[')
-			return null;
-		int i = text.indexOf(']');
-		if (i < 2)
-			return null;
+    public static Link getLink(String text, int index) {
+        if (StringUtils.isEmpty(text) || index < 0 || index > text.length() - 2) return null;
 
-		Link link = new Link(index, text.substring(index + 1, i));
-		return link.isValid() ? link : null;
-	}
+        if (text.charAt(index) != '[') return null;
+        int i = text.indexOf(']');
+        if (i < 2) return null;
 
+        Link link = new Link(index, text.substring(index + 1, i));
+        return link.isValid() ? link : null;
+    }
 }

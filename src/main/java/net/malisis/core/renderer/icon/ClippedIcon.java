@@ -33,49 +33,45 @@ import net.minecraft.client.renderer.texture.TextureMap;
  * @author Ordinastie
  *
  */
-public class ClippedIcon extends MalisisIcon
-{
-	protected float clipX;
-	protected float clipY;
-	protected float clipWidth;
-	protected float clipHeight;
+public class ClippedIcon extends MalisisIcon {
+    protected float clipX;
+    protected float clipY;
+    protected float clipWidth;
+    protected float clipHeight;
 
-	public ClippedIcon(MalisisIcon parent, float clipX, float clipY, float clipWidth, float clipHeight)
-	{
-		super(parent);
-		setClipping(clipX, clipY, clipWidth, clipHeight);
-	}
+    public ClippedIcon(MalisisIcon parent, float clipX, float clipY, float clipWidth, float clipHeight) {
+        super(parent);
+        setClipping(clipX, clipY, clipWidth, clipHeight);
+    }
 
-	/**
-	 * Sets the clipping for this {@link ClippedIcon}. Has no effect after the parent icon has been stiched.
-	 *
-	 * @param clipX x offset
-	 * @param clipY y offset
-	 * @param clipWidth the clip width
-	 * @param clipHeight the clip height
-	 */
-	public void setClipping(float clipX, float clipY, float clipWidth, float clipHeight)
-	{
-		this.clipX = clipX;
-		this.clipY = clipY;
-		this.clipWidth = clipWidth;
-		this.clipHeight = clipHeight;
-	}
+    /**
+     * Sets the clipping for this {@link ClippedIcon}. Has no effect after the parent icon has been stiched.
+     *
+     * @param clipX x offset
+     * @param clipY y offset
+     * @param clipWidth the clip width
+     * @param clipHeight the clip height
+     */
+    public void setClipping(float clipX, float clipY, float clipWidth, float clipHeight) {
+        this.clipX = clipX;
+        this.clipY = clipY;
+        this.clipWidth = clipWidth;
+        this.clipHeight = clipHeight;
+    }
 
-	/**
-	 * Initializes this {@link ClippedIcon} and clips it based on the clipping set.
-	 *
-	 * @param baseIcon the base icon
-	 * @param width the width
-	 * @param height the height
-	 * @param x the x
-	 * @param y the y
-	 * @param rotated the rotated
-	 */
-	@Override
-	protected void initIcon(MalisisIcon baseIcon, int width, int height, int x, int y, boolean rotated)
-	{
-		super.initIcon(baseIcon, width, height, x, y, rotated);
-		clip(clipX, clipY, clipWidth, clipHeight);
-	}
+    /**
+     * Initializes this {@link ClippedIcon} and clips it based on the clipping set.
+     *
+     * @param baseIcon the base icon
+     * @param width the width
+     * @param height the height
+     * @param x the x
+     * @param y the y
+     * @param rotated the rotated
+     */
+    @Override
+    protected void initIcon(MalisisIcon baseIcon, int width, int height, int x, int y, boolean rotated) {
+        super.initIcon(baseIcon, width, height, x, y, rotated);
+        clip(clipX, clipY, clipWidth, clipHeight);
+    }
 }

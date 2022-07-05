@@ -24,38 +24,29 @@
 
 package net.malisis.core.util.bbcode.node;
 
-
 /**
  * @author Ordinastie
  *
  */
+public class BBRootNode extends BBNode {
+    public BBRootNode() {
+        super(null, "");
+    }
 
-public class BBRootNode extends BBNode
-{
-	public BBRootNode()
-	{
-		super(null, "");
-	}
+    @Override
+    public BBNode copy() {
+        throw new UnsupportedOperationException("Cannot copy root node");
+    }
 
-	@Override
-	public BBNode copy()
-	{
-		throw new UnsupportedOperationException("Cannot copy root node");
-	}
+    @Override
+    public String toBBString() {
+        StringBuilder str = new StringBuilder();
+        for (BBNode n : this) str.append(n.toBBString());
+        return str.toString();
+    }
 
-	@Override
-	public String toBBString()
-	{
-		StringBuilder str = new StringBuilder();
-		for (BBNode n : this)
-			str.append(n.toBBString());
-		return str.toString();
-	}
-
-	@Override
-	public String toString()
-	{
-		return "_ROOT_";
-	}
-
+    @Override
+    public String toString() {
+        return "_ROOT_";
+    }
 }

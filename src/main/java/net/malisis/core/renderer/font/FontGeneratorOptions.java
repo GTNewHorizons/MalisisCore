@@ -30,25 +30,24 @@ import java.awt.Font;
  * @author Ordinastie
  *
  */
-public class FontGeneratorOptions
-{
-	public static FontGeneratorOptions DEFAULT = new FontGeneratorOptions();
+public class FontGeneratorOptions {
+    public static FontGeneratorOptions DEFAULT = new FontGeneratorOptions();
 
-	/** Type of font **/
-	public int fontType = Font.TRUETYPE_FONT;
-	/** Size of font **/
-	public float fontSize = 128F;
-	/** Whether to use AA for the rendering of the font **/
-	public boolean antialias = false;
-	/** Offset on the left of characters **/
-	public float mx = 0;
-	/** Offset on the right of characters **/
-	public float px = 0;
-	/** Offset on the top of characters **/
-	public float my = 0;
-	/** Offset on the bottom of characters **/
-	public float py = 0;
+    /** Type of font **/
+    public int fontType = Font.TRUETYPE_FONT;
+    /** Size of font **/
+    public float fontSize = 128F;
+    /** Whether to use AA for the rendering of the font **/
+    public boolean antialias = false;
+    /** Offset on the left of characters **/
+    public float mx = 0;
+    /** Offset on the right of characters **/
+    public float px = 0;
+    /** Offset on the top of characters **/
+    public float my = 0;
+    /** Offset on the bottom of characters **/
+    public float py = 0;
 
-	/** Whether to generate debug data in the texture **/
-	public boolean debug;
+    /** Whether to generate debug data in the texture **/
+    public boolean debug;
 }

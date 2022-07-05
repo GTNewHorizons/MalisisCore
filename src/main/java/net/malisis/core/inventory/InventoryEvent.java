@@ -24,57 +24,46 @@
 
 package net.malisis.core.inventory;
 
-public abstract class InventoryEvent
-{
-	private MalisisInventory inventory;
+public abstract class InventoryEvent {
+    private MalisisInventory inventory;
 
-	public InventoryEvent(MalisisInventory inventory)
-	{
-		this.inventory = inventory;
-	}
+    public InventoryEvent(MalisisInventory inventory) {
+        this.inventory = inventory;
+    }
 
-	public MalisisInventory getInventory()
-	{
-		return this.inventory;
-	}
+    public MalisisInventory getInventory() {
+        return this.inventory;
+    }
 
-	/**
-	 * Event fired when a {@link MalisisSlot} has its itemStack changed.
-	 */
-	public static class SlotChanged extends InventoryEvent
-	{
-		private MalisisSlot slot;
+    /**
+     * Event fired when a {@link MalisisSlot} has its itemStack changed.
+     */
+    public static class SlotChanged extends InventoryEvent {
+        private MalisisSlot slot;
 
-		public SlotChanged(MalisisInventory inventory, MalisisSlot slot)
-		{
-			super(inventory);
-			this.slot = slot;
-		}
+        public SlotChanged(MalisisInventory inventory, MalisisSlot slot) {
+            super(inventory);
+            this.slot = slot;
+        }
 
-		public MalisisSlot getSlot()
-		{
-			return this.slot;
-		}
-	}
+        public MalisisSlot getSlot() {
+            return this.slot;
+        }
+    }
 
-	/**
-	 * Event fired when a {@link MalisisInventory} is opened.
-	 */
-	public static class Open extends InventoryEvent
-	{
-		private MalisisInventoryContainer container;
+    /**
+     * Event fired when a {@link MalisisInventory} is opened.
+     */
+    public static class Open extends InventoryEvent {
+        private MalisisInventoryContainer container;
 
-		public Open(MalisisInventoryContainer container, MalisisInventory inventory)
-		{
-			super(inventory);
-			this.container = container;
-		}
+        public Open(MalisisInventoryContainer container, MalisisInventory inventory) {
+            super(inventory);
+            this.container = container;
+        }
 
-		public MalisisInventoryContainer getContainer()
-		{
-			return this.container;
-		}
-
-	}
-
+        public MalisisInventoryContainer getContainer() {
+            return this.container;
+        }
+    }
 }

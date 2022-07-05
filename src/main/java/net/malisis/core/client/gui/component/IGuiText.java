@@ -34,35 +34,34 @@ import net.malisis.core.renderer.font.MalisisFont;
  * @author Ordinastie
  *
  */
-public interface IGuiText<T>
-{
-	/**
-	 * Gets the {@link MalisisFont}.
-	 *
-	 * @return the font
-	 */
-	public MalisisFont getFont();
+public interface IGuiText<T> {
+    /**
+     * Gets the {@link MalisisFont}.
+     *
+     * @return the font
+     */
+    public MalisisFont getFont();
 
-	/**
-	 * Sets the {@link MalisisFont}.
-	 *
-	 * @param font the new font
-	 * @return the t
-	 */
-	public T setFont(MalisisFont font);
+    /**
+     * Sets the {@link MalisisFont}.
+     *
+     * @param font the new font
+     * @return the t
+     */
+    public T setFont(MalisisFont font);
 
-	/**
-	 * Gets the {@link FontRenderOptions}.
-	 *
-	 * @return the font renderer options
-	 */
-	public FontRenderOptions getFontRenderOptions();
+    /**
+     * Gets the {@link FontRenderOptions}.
+     *
+     * @return the font renderer options
+     */
+    public FontRenderOptions getFontRenderOptions();
 
-	/**
-	 * Sets the {@link FontRenderOptions}.
-	 *
-	 * @param fro the fro
-	 * @return the t
-	 */
-	public T setFontRenderOptions(FontRenderOptions fro);
+    /**
+     * Sets the {@link FontRenderOptions}.
+     *
+     * @param fro the fro
+     * @return the t
+     */
+    public T setFontRenderOptions(FontRenderOptions fro);
 }

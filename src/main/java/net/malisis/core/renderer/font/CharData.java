@@ -31,98 +31,83 @@ import net.minecraft.util.IIcon;
  * @author Ordinastie
  *
  */
-public class CharData
-{
-	protected char c;
-	protected float ascent;
-	protected float width;
-	protected float height;
-	protected float u;
-	protected float U;
-	protected float v;
-	protected float V;
+public class CharData {
+    protected char c;
+    protected float ascent;
+    protected float width;
+    protected float height;
+    protected float u;
+    protected float U;
+    protected float v;
+    protected float V;
 
-	public CharData(char c, float ascent, float width, float height)
-	{
-		this.c = c;
-		this.c = c;
-		this.ascent = ascent;
-		this.width = width;
-		this.height = height;
-	}
+    public CharData(char c, float ascent, float width, float height) {
+        this.c = c;
+        this.c = c;
+        this.ascent = ascent;
+        this.width = width;
+        this.height = height;
+    }
 
-	//#region Getters/Setters
+    // #region Getters/Setters
 
-	public char getChar()
-	{
-		return c;
-	}
+    public char getChar() {
+        return c;
+    }
 
-	public float u()
-	{
-		return u;
-	}
+    public float u() {
+        return u;
+    }
 
-	public float U()
-	{
-		return U;
-	}
+    public float U() {
+        return U;
+    }
 
-	public float v()
-	{
-		return v;
-	}
+    public float v() {
+        return v;
+    }
 
-	public float V()
-	{
-		return V;
-	}
+    public float V() {
+        return V;
+    }
 
-	public float getCharWidth()
-	{
-		return width;
-	}
+    public float getCharWidth() {
+        return width;
+    }
 
-	public float getCharHeight()
-	{
-		return height;
-	}
+    public float getCharHeight() {
+        return height;
+    }
 
-	public float getAscent()
-	{
-		return ascent;
-	}
+    public float getAscent() {
+        return ascent;
+    }
 
-	public float getFullWidth(FontGeneratorOptions options)
-	{
-		return width + options.mx + options.px;
-	}
+    public float getFullWidth(FontGeneratorOptions options) {
+        return width + options.mx + options.px;
+    }
 
-	public float getFullHeight(FontGeneratorOptions options)
-	{
-		return height + options.my + options.py;
-	}
+    public float getFullHeight(FontGeneratorOptions options) {
+        return height + options.my + options.py;
+    }
 
-	//#end Getters/Setters
+    // #end Getters/Setters
 
-	public void setUVs(float u, float v, float U, float V)
-	{
-		this.u = u;
-		this.v = v;
-		this.U = U;
-		this.V = V;
-	}
+    public void setUVs(float u, float v, float U, float V) {
+        this.u = u;
+        this.v = v;
+        this.U = U;
+        this.V = V;
+    }
 
-	public void setUVs(int x, int y, int size, FontGeneratorOptions options)
-	{
-		u = ((x - options.mx) / size);
-		v = (y - options.my) / size;
-		U = ((x + width + options.px) / size);
-		V = (y + height + options.py) / size;
-	}
+    public void setUVs(int x, int y, int size, FontGeneratorOptions options) {
+        u = ((x - options.mx) / size);
+        v = (y - options.my) / size;
+        U = ((x + width + options.px) / size);
+        V = (y + height + options.py) / size;
+    }
 
-	public IIcon getIcon()
-	{
-		return new MalisisIcon("" + getChar(), u(), v(), U(), V());
-	}
+    public IIcon getIcon() {
+        return new MalisisIcon("" + getChar(), u(), v(), U(), V());
+    }
 }

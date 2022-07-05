@@ -24,57 +24,46 @@
 
 package net.malisis.core.renderer;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import java.util.ArrayList;
 import java.util.List;
-
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.common.MinecraftForge;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 /**
  * @author Ordinastie
  *
  */
-public class RenderWorldEventHandler
-{
-	private static RenderWorldEventHandler instance = new RenderWorldEventHandler();
+public class RenderWorldEventHandler {
+    private static RenderWorldEventHandler instance = new RenderWorldEventHandler();
 
-	private List<IRenderWorldLast> renderers = new ArrayList<>();
+    private List<IRenderWorldLast> renderers = new ArrayList<>();
 
-	private void _register(IRenderWorldLast renderer)
-	{
-		if (renderers.size() == 0)
-			MinecraftForge.EVENT_BUS.register(this);
+    private void _register(IRenderWorldLast renderer) {
+        if (renderers.size() == 0) MinecraftForge.EVENT_BUS.register(this);
 
-		renderers.add(renderer);
-	}
+        renderers.add(renderer);
+    }
 
-	private void _unregister(IRenderWorldLast renderer)
-	{
-		renderers.remove(renderer);
-		if (renderers.size() == 0)
-			MinecraftForge.EVENT_BUS.unregister(this);
-	}
+    private void _unregister(IRenderWorldLast renderer) {
+        renderers.remove(renderer);
+        if (renderers.size() == 0) MinecraftForge.EVENT_BUS.unregister(this);
+    }
 
-	@SubscribeEvent
-	public void onRenderLast(RenderWorldLastEvent event)
-	{
-		for (IRenderWorldLast renderer : renderers)
-		{
-			if (renderer.shouldRender(event, Minecraft.getMinecraft().theWorld))
-				renderer.renderWorldLastEvent(event, Minecraft.getMinecraft().theWorld);
-		}
-	}
+    @SubscribeEvent
+    public void onRenderLast(RenderWorldLastEvent event) {
+        for (IRenderWorldLast renderer : renderers) {
+            if (renderer.shouldRender(event, Minecraft.getMinecraft().theWorld))
+                renderer.renderWorldLastEvent(event, Minecraft.getMinecraft().theWorld);
+        }
+    }
 
-	public static void register(IRenderWorldLast renderer)
-	{
-		instance._register(renderer);
-	}
+    public static void register(IRenderWorldLast renderer) {
+        instance._register(renderer);
+    }
 
-	public static void unregister(IRenderWorldLast renderer)
-	{
-		instance._unregister(renderer);
-	}
-
+    public static void unregister(IRenderWorldLast renderer) {
+        instance._unregister(renderer);
+    }
 }

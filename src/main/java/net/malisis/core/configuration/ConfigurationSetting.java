@@ -33,15 +33,14 @@ import java.lang.annotation.Target;
 
 /**
  * @author Ordinastie
- * 
+ *
  */
 @Documented
 @Target(ElementType.FIELD)
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ConfigurationSetting
-{
-	String category() default "General";
+public @interface ConfigurationSetting {
+    String category() default "General";
 
-	boolean requireRestart() default false;
+    boolean requireRestart() default false;
 }

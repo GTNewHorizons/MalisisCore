@@ -30,9 +30,8 @@ import io.netty.buffer.ByteBuf;
  * @author Ordinastie
  *
  */
-public interface ISyncableData
-{
-	public void fromBytes(ByteBuf buf);
+public interface ISyncableData {
+    public void fromBytes(ByteBuf buf);
 
-	public void toBytes(ByteBuf buf);
+    public void toBytes(ByteBuf buf);
 }

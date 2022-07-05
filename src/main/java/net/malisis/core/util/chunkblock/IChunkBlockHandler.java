@@ -32,7 +32,6 @@ import net.minecraft.world.chunk.Chunk;
  * @author Ordinastie
  *
  */
-public interface IChunkBlockHandler
-{
-	public boolean updateCoordinates(Chunk chunk, BlockPos pos, Block old, Block block);
+public interface IChunkBlockHandler {
+    public boolean updateCoordinates(Chunk chunk, BlockPos pos, Block old, Block block);
 }

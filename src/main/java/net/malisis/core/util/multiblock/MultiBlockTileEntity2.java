@@ -33,7 +33,4 @@ import net.minecraft.tileentity.TileEntity;
  * @author Ordinastie
  *
  */
-public class MultiBlockTileEntity2 extends TileEntity
-{
-
-}
+public class MultiBlockTileEntity2 extends TileEntity {}

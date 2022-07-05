@@ -37,57 +37,45 @@ import net.minecraft.world.World;
  * @author Ordinastie
  *
  */
-public class MultiBlockTileEntity extends TileEntity implements MultiBlock.IProvider
-{
-	protected MultiBlock multiBlock;
+public class MultiBlockTileEntity extends TileEntity implements MultiBlock.IProvider {
+    protected MultiBlock multiBlock;
 
-	@Override
-	public void setMultiBlock(MultiBlock multiBlock)
-	{
-		this.multiBlock = multiBlock;
-	}
+    @Override
+    public void setMultiBlock(MultiBlock multiBlock) {
+        this.multiBlock = multiBlock;
+    }
 
-	@Override
-	public MultiBlock getMultiBlock()
-	{
-		return multiBlock;
-	}
+    @Override
+    public MultiBlock getMultiBlock() {
+        return multiBlock;
+    }
 
-	@Override
-	public void setWorldObj(World world)
-	{
-		super.setWorldObj(world);
-		if (multiBlock != null)
-			multiBlock.setWorld(world);
-	}
+    @Override
+    public void setWorldObj(World world) {
+        super.setWorldObj(world);
+        if (multiBlock != null) multiBlock.setWorld(world);
+    }
 
-	@Override
-	public boolean canUpdate()
-	{
-		return multiBlock != null && multiBlock.isOrigin(xCoord, yCoord, zCoord);
-	}
+    @Override
+    public boolean canUpdate() {
+        return multiBlock != null && multiBlock.isOrigin(xCoord, yCoord, zCoord);
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound tag)
-	{
-		super.readFromNBT(tag);
-		multiBlock = new MultiBlock(tag);
-	}
+    @Override
+    public void readFromNBT(NBTTagCompound tag) {
+        super.readFromNBT(tag);
+        multiBlock = new MultiBlock(tag);
+    }
 
-	@Override
-	public void writeToNBT(NBTTagCompound tag)
-	{
-		super.writeToNBT(tag);
-		if (multiBlock != null)
-			multiBlock.writeToNBT(tag);
-	}
+    @Override
+    public void writeToNBT(NBTTagCompound tag) {
+        super.writeToNBT(tag);
+        if (multiBlock != null) multiBlock.writeToNBT(tag);
+    }
 
-	@Override
-	public AxisAlignedBB getRenderBoundingBox()
-	{
-		if (multiBlock != null)
-			return multiBlock.getWorldBounds();
-		return super.getRenderBoundingBox();
-	}
-
+    @Override
+    public AxisAlignedBB getRenderBoundingBox() {
+        if (multiBlock != null) return multiBlock.getWorldBounds();
+        return super.getRenderBoundingBox();
+    }
 }

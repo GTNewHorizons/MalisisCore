@@ -31,31 +31,25 @@ import java.util.regex.Pattern;
  * @author Ordinastie
  *
  */
-public class ExpressionToken extends Token<String>
-{
-	private Pattern pattern;
+public class ExpressionToken extends Token<String> {
+    private Pattern pattern;
 
-	public ExpressionToken(String regex)
-	{
-		this.pattern = Pattern.compile(regex);
-	}
+    public ExpressionToken(String regex) {
+        this.pattern = Pattern.compile(regex);
+    }
 
-	@Override
-	public boolean matches(String s, int index)
-	{
-		value = null;
-		Matcher m = pattern.matcher(s.substring(index));
-		if (!m.find())
-			return false;
+    @Override
+    public boolean matches(String s, int index) {
+        value = null;
+        Matcher m = pattern.matcher(s.substring(index));
+        if (!m.find()) return false;
 
-		value = m.group(0);
-		return true;
-	}
+        value = m.group(0);
+        return true;
+    }
 
-	@Override
-	public int size()
-	{
-		return value != null ? value.length() : 0;
-	}
-
+    @Override
+    public int size() {
+        return value != null ? value.length() : 0;
+    }
 }

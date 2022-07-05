@@ -32,34 +32,33 @@ import net.malisis.core.configuration.Settings;
  *
  * @author Ordinastie
  */
-public interface IMalisisMod
-{
+public interface IMalisisMod {
 
-	/**
-	 * Gets the mod id.
-	 *
-	 * @return the mod id
-	 */
-	public String getModId();
+    /**
+     * Gets the mod id.
+     *
+     * @return the mod id
+     */
+    public String getModId();
 
-	/**
-	 * Gets the mod name.
-	 *
-	 * @return the mod name
-	 */
-	public String getName();
+    /**
+     * Gets the mod name.
+     *
+     * @return the mod name
+     */
+    public String getName();
 
-	/**
-	 * Gets the mod version.
-	 *
-	 * @return the version
-	 */
-	public String getVersion();
+    /**
+     * Gets the mod version.
+     *
+     * @return the version
+     */
+    public String getVersion();
 
-	/**
-	 * Gets the configuration settings.
-	 *
-	 * @return the configuration settings
-	 */
-	public Settings getSettings();
+    /**
+     * Gets the configuration settings.
+     *
+     * @return the configuration settings
+     */
+    public Settings getSettings();
 }

@@ -24,11 +24,11 @@
 
 package net.malisis.core.asm;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 import java.util.Collection;
-
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.Launch;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.objectweb.asm.ClassReader;
@@ -36,67 +36,63 @@ import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.MethodNode;
 
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Multimap;
+public abstract class MalisisClassTransformer implements IClassTransformer {
+    public Multimap<String, AsmHook> listHooks = HashMultimap.create();
+    protected String logString;
+    protected Logger log;
 
-public abstract class MalisisClassTransformer implements IClassTransformer
-{
-	public Multimap<String, AsmHook> listHooks = HashMultimap.create();
-	protected String logString;
-	protected Logger log;
+    public MalisisClassTransformer() {
+        logString = "malisiscore";
+        registerHooks();
+    }
 
-	public MalisisClassTransformer()
-	{
-		logString = "malisiscore";
-		registerHooks();
-	}
+    public void register(AsmHook ah) {
+        ah.setTransformer(this.getClass().getSimpleName());
+        listHooks.put(ah.getTargetClass(), ah);
+        LogManager.getLogger(logString).info("[{}] Hook registered for {}", ah.getTransformer(), ah.getTargetClass());
+    }
 
-	public void register(AsmHook ah)
-	{
-		ah.setTransformer(this.getClass().getSimpleName());
-		listHooks.put(ah.getTargetClass(), ah);
-		LogManager.getLogger(logString).info("[{}] Hook registered for {}", ah.getTransformer(), ah.getTargetClass());
-	}
+    @Override
+    public byte[] transform(String name, String transformedName, byte[] bytes) {
+        Collection<AsmHook> hooks = listHooks.get(transformedName);
+        if (hooks == null || hooks.size() == 0) return bytes;
 
-	@Override
-	public byte[] transform(String name, String transformedName, byte[] bytes)
-	{
-		Collection<AsmHook> hooks = listHooks.get(transformedName);
-		if (hooks == null || hooks.size() == 0)
-			return bytes;
+        LogManager.getLogger(logString).info("Found hooks for {} ({})", transformedName, name);
 
-		LogManager.getLogger(logString).info("Found hooks for {} ({})", transformedName, name);
+        ClassNode classNode = new ClassNode();
+        ClassReader classReader = new ClassReader(bytes);
+        classReader.accept(classNode, 0);
 
-		ClassNode classNode = new ClassNode();
-		ClassReader classReader = new ClassReader(bytes);
-		classReader.accept(classNode, 0);
+        for (AsmHook hook : hooks) {
+            MethodNode methodNode = AsmUtils.findMethod(classNode, hook.getMethodName(), hook.getMethodDescriptor());
+            if (methodNode != null) {
+                if (!hook.walkSteps(methodNode))
+                    LogManager.getLogger(logString)
+                            .error(
+                                    "[{}] The instruction list was not found in {}:{}{}",
+                                    hook.getTransformer(),
+                                    hook.getTargetClass(),
+                                    hook.getMethodName(),
+                                    hook.getMethodDescriptor());
 
-		for (AsmHook hook : hooks)
-		{
-			MethodNode methodNode = AsmUtils.findMethod(classNode, hook.getMethodName(), hook.getMethodDescriptor());
-			if (methodNode != null)
-			{
-				if (!hook.walkSteps(methodNode))
-					LogManager.getLogger(logString).error("[{}] The instruction list was not found in {}:{}{}", hook.getTransformer(),
-							hook.getTargetClass(), hook.getMethodName(), hook.getMethodDescriptor());
+                if (hook.isDebug() == true && (boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment")) {
+                    System.err.println(AsmUtils.getMethodNodeAsString(methodNode));
+                }
+            } else {
+                LogManager.getLogger(logString)
+                        .error(
+                                "[{}] Method not found : {}:{}{}",
+                                hook.getTransformer(),
+                                hook.getTargetClass(),
+                                hook.getMethodName(),
+                                hook.getMethodDescriptor());
+            }
+        }
 
-				if (hook.isDebug() == true && (boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment"))
-				{
-					System.err.println(AsmUtils.getMethodNodeAsString(methodNode));
-				}
-			}
-			else
-			{
-				LogManager.getLogger(logString).error("[{}] Method not found : {}:{}{}", hook.getTransformer(), hook.getTargetClass(),
-						hook.getMethodName(), hook.getMethodDescriptor());
-			}
-		}
+        ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS /* | ClassWriter.COMPUTE_FRAMES */);
+        classNode.accept(writer);
+        return writer.toByteArray();
+    }
 
-		ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS /* | ClassWriter.COMPUTE_FRAMES */);
-		classNode.accept(writer);
-		return writer.toByteArray();
-	}
-
-	public abstract void registerHooks();
-
+    public abstract void registerHooks();
 }

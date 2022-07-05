@@ -28,56 +28,44 @@ package net.malisis.core.util;
  * @author Ordinastie
  *
  */
-public class Timer
-{
-	private long start;
+public class Timer {
+    private long start;
 
-	public Timer()
-	{}
+    public Timer() {}
 
-	public Timer(long start)
-	{
-		setStart(start);
-	}
+    public Timer(long start) {
+        setStart(start);
+    }
 
-	public void start()
-	{
-		setStart(System.currentTimeMillis());
-	}
+    public void start() {
+        setStart(System.currentTimeMillis());
+    }
 
-	public void setStart(long start)
-	{
-		this.start = start;
-	}
+    public void setStart(long start) {
+        this.start = start;
+    }
 
-	public void setRelativeStart(long start)
-	{
-		setStart(System.currentTimeMillis() + start);
-	}
+    public void setRelativeStart(long start) {
+        setStart(System.currentTimeMillis() + start);
+    }
 
-	public long getStart()
-	{
-		return start;
-	}
+    public long getStart() {
+        return start;
+    }
 
-	public long elapsedTime()
-	{
-		return System.currentTimeMillis() - start;
-	}
+    public long elapsedTime() {
+        return System.currentTimeMillis() - start;
+    }
 
-	public long elapsedTick()
-	{
-		return timeToTick(System.currentTimeMillis() - start);
-	}
+    public long elapsedTick() {
+        return timeToTick(System.currentTimeMillis() - start);
+    }
 
-	public static long timeToTick(long time)
-	{
-		return time * 20 / 1000;
-	}
+    public static long timeToTick(long time) {
+        return time * 20 / 1000;
+    }
 
-	public static long tickToTime(long ticks)
-	{
-		return ticks * 1000 / 20;
-	}
-
+    public static long tickToTime(long ticks) {
+        return ticks * 1000 / 20;
+    }
 }

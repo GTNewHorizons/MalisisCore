@@ -33,79 +33,62 @@ import net.minecraft.item.ItemStack;
  * @author Ordinastie
  *
  */
-public class BBItemNode extends BBNode
-{
-	protected String name;
-	protected ItemStack itemStack;
+public class BBItemNode extends BBNode {
+    protected String name;
+    protected ItemStack itemStack;
 
-	public BBItemNode(String name)
-	{
-		super("item", name);
-		setName(name);
-		standAlone = true;
-	}
+    public BBItemNode(String name) {
+        super("item", name);
+        setName(name);
+        standAlone = true;
+    }
 
-	public String getName()
-	{
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name)
-	{
-		this.name = name;
-		this.attribute = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+        this.attribute = name;
+    }
 
-	@Override
-	public boolean hasTextNode()
-	{
-		return true;
-	}
+    @Override
+    public boolean hasTextNode() {
+        return true;
+    }
 
-	@Override
-	public BBItemNode copy()
-	{
-		return new BBItemNode(name);
-	}
+    @Override
+    public BBItemNode copy() {
+        return new BBItemNode(name);
+    }
 
-	@Override
-	public void clean()
-	{
+    @Override
+    public void clean() {}
 
-	}
+    @Override
+    public void apply(BBRenderElement element) {
+        element.itemStack = getItemStack();
+    }
 
-	@Override
-	public void apply(BBRenderElement element)
-	{
-		element.itemStack = getItemStack();
-	}
+    public ItemStack getItemStack() {
+        if (name == null || itemStack != null) return itemStack;
 
-	public ItemStack getItemStack()
-	{
-		if (name == null || itemStack != null)
-			return itemStack;
+        String[] split = name.split("@");
+        String name = split[0];
+        int metadata = split.length > 1 ? Integer.valueOf(split[1]) : 0;
 
-		String[] split = name.split("@");
-		String name = split[0];
-		int metadata = split.length > 1 ? Integer.valueOf(split[1]) : 0;
+        Block b = Block.getBlockFromName(name);
+        if (b != null) itemStack = new ItemStack(b, 0, metadata);
+        else {
+            Item i = (Item) Item.itemRegistry.getObject(name);
+            if (i != null) itemStack = new ItemStack(i, 0, metadata);
+        }
 
-		Block b = Block.getBlockFromName(name);
-		if (b != null)
-			itemStack = new ItemStack(b, 0, metadata);
-		else
-		{
-			Item i = (Item) Item.itemRegistry.getObject(name);
-			if (i != null)
-				itemStack = new ItemStack(i, 0, metadata);
-		}
+        return itemStack;
+    }
 
-		return itemStack;
-	}
-
-	@Override
-	public String toRawString()
-	{
-		return "";
-	}
-
+    @Override
+    public String toRawString() {
+        return "";
+    }
 }

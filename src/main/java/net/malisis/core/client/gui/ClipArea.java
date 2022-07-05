@@ -26,83 +26,72 @@ package net.malisis.core.client.gui;
 
 import net.malisis.core.client.gui.component.IClipable;
 
-public class ClipArea
-{
-	public boolean noClip = false;
-	public int x;
-	public int y;
-	public int X;
-	public int Y;
+public class ClipArea {
+    public boolean noClip = false;
+    public int x;
+    public int y;
+    public int X;
+    public int Y;
 
-	public ClipArea(IClipable container)
-	{
-		this(container, 0, true);
-	}
+    public ClipArea(IClipable container) {
+        this(container, 0, true);
+    }
 
-	public ClipArea(IClipable container, int clipPadding)
-	{
-		this(container, clipPadding, true);
-	}
+    public ClipArea(IClipable container, int clipPadding) {
+        this(container, clipPadding, true);
+    }
 
-	public ClipArea(IClipable container, int clipPadding, boolean intersect)
-	{
-		this(container, container.screenX() + clipPadding, container.screenY() + clipPadding, container.screenX() + container.getWidth()
-				- clipPadding, container.screenY() + container.getHeight() - clipPadding, intersect);
-	}
+    public ClipArea(IClipable container, int clipPadding, boolean intersect) {
+        this(
+                container,
+                container.screenX() + clipPadding,
+                container.screenY() + clipPadding,
+                container.screenX() + container.getWidth() - clipPadding,
+                container.screenY() + container.getHeight() - clipPadding,
+                intersect);
+    }
 
-	public ClipArea(IClipable container, int x, int y, int X, int Y, boolean intersect)
-	{
-		if (!container.shouldClipContent())
-			this.noClip = true;
-		else
-		{
-			this.x = x;
-			this.y = y;
-			this.X = X;
-			this.Y = Y;
-		}
+    public ClipArea(IClipable container, int x, int y, int X, int Y, boolean intersect) {
+        if (!container.shouldClipContent()) this.noClip = true;
+        else {
+            this.x = x;
+            this.y = y;
+            this.X = X;
+            this.Y = Y;
+        }
 
-		if (intersect && container.getParent() instanceof IClipable)
-			this.intersect(((IClipable) container.getParent()).getClipArea());
-	}
+        if (intersect && container.getParent() instanceof IClipable)
+            this.intersect(((IClipable) container.getParent()).getClipArea());
+    }
 
-	public void intersect(ClipArea area)
-	{
-		if (this.noClip)
-		{
-			x = area.x;
-			y = area.y;
-			X = area.X;
-			Y = area.Y;
-		}
-		else if (!area.noClip)
-		{
-			x = Math.max(x, area.x);
-			y = Math.max(y, area.y);
-			X = Math.min(X, area.X);
-			Y = Math.min(Y, area.Y);
-		}
-	}
+    public void intersect(ClipArea area) {
+        if (this.noClip) {
+            x = area.x;
+            y = area.y;
+            X = area.X;
+            Y = area.Y;
+        } else if (!area.noClip) {
+            x = Math.max(x, area.x);
+            y = Math.max(y, area.y);
+            X = Math.min(X, area.X);
+            Y = Math.min(Y, area.Y);
+        }
+    }
 
-	public int width()
-	{
-		return X - x;
-	}
+    public int width() {
+        return X - x;
+    }
 
-	public int height()
-	{
-		return Y - y;
-	}
+    public int height() {
+        return Y - y;
+    }
 
-	public boolean isInside(int x, int y)
-	{
-		return x >= this.x && x < this.X && y >= this.y && y < this.Y;
-	}
+    public boolean isInside(int x, int y) {
+        return x >= this.x && x < this.X && y >= this.y && y < this.Y;
+    }
 
-	@Override
-	public String toString()
-	{
-		return x + "->" + X + " , " + y + "->" + Y + " (" + width() + "," + height() + ")";
-	}
-
+    @Override
+    public String toString() {
+        return x + "->" + X + " , " + y + "->" + Y + " (" + width() + "," + height() + ")";
+    }
 }

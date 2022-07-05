@@ -31,96 +31,76 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
-
 import net.malisis.core.configuration.setting.Setting;
 import net.minecraftforge.common.config.Configuration;
 
 /**
  * @author Ordinastie
- * 
+ *
  */
-public class Settings
-{
-	private Configuration config;
-	private HashMap<String, ArrayList<Setting>> categorySettings = new HashMap<>();
+public class Settings {
+    private Configuration config;
+    private HashMap<String, ArrayList<Setting>> categorySettings = new HashMap<>();
 
-	public Settings(File file)
-	{
-		this(new Configuration(file));
-	}
+    public Settings(File file) {
+        this(new Configuration(file));
+    }
 
-	public Settings(Configuration config)
-	{
-		this.config = config;
-		config.load();
-		initSettings();
-		getSettingFields();
-		config.save();
-	}
+    public Settings(Configuration config) {
+        this.config = config;
+        config.load();
+        initSettings();
+        getSettingFields();
+        config.save();
+    }
 
-	public Configuration getConfiguration()
-	{
-		return config;
-	}
+    public Configuration getConfiguration() {
+        return config;
+    }
 
-	public Set<String> getCategories()
-	{
-		return categorySettings.keySet();
-	}
+    public Set<String> getCategories() {
+        return categorySettings.keySet();
+    }
 
-	public List<Setting> getSettings(String category)
-	{
-		return categorySettings.get(category);
-	}
+    public List<Setting> getSettings(String category) {
+        return categorySettings.get(category);
+    }
 
-	protected void initSettings()
-	{
+    protected void initSettings() {}
 
-	}
+    private void getSettingFields() {
+        Field[] fields = this.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            ConfigurationSetting annotation;
+            if ((annotation = field.getAnnotation(ConfigurationSetting.class)) == null
+                    || field.getType() != Setting.class) continue;
 
-	private void getSettingFields()
-	{
-		Field[] fields = this.getClass().getDeclaredFields();
-		for (Field field : fields)
-		{
-			ConfigurationSetting annotation;
-			if ((annotation = field.getAnnotation(ConfigurationSetting.class)) == null || field.getType() != Setting.class)
-				continue;
+            Setting setting = null;
+            try {
+                setting = (Setting) field.get(this);
+            } catch (IllegalArgumentException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
 
-			Setting setting = null;
-			try
-			{
-				setting = (Setting) field.get(this);
-			}
-			catch (IllegalArgumentException | IllegalAccessException e)
-			{
-				e.printStackTrace();
-			}
+            if (setting != null) {
+                String category = annotation.category();
+                setting.setCategory(category);
+                setting.load(config);
 
-			if (setting != null)
-			{
-				String category = annotation.category();
-				setting.setCategory(category);
-				setting.load(config);
+                ArrayList<Setting> settings = categorySettings.get(category);
+                if (settings == null) settings = new ArrayList<>();
+                settings.add(setting);
+                categorySettings.put(category, settings);
+            }
+        }
+    }
 
-				ArrayList<Setting> settings = categorySettings.get(category);
-				if (settings == null)
-					settings = new ArrayList<>();
-				settings.add(setting);
-				categorySettings.put(category, settings);
-			}
-		}
-	}
-
-	public void save()
-	{
-		for (Entry<String, ArrayList<Setting>> entry : categorySettings.entrySet())
-		{
-			for (Setting setting : entry.getValue())
-			{
-				setting.save();
-			}
-		}
-		config.save();
-	}
+    public void save() {
+        for (Entry<String, ArrayList<Setting>> entry : categorySettings.entrySet()) {
+            for (Setting setting : entry.getValue()) {
+                setting.save();
+            }
+        }
+        config.save();
+    }
 }

@@ -28,46 +28,38 @@ package net.malisis.core.renderer.animation.transformation;
  * @author Ordinastie
  *
  */
-public class ColorTransform extends Transformation<ColorTransform, ITransformable.Color>
-{
-	protected int fromColor;
-	protected int toColor;
+public class ColorTransform extends Transformation<ColorTransform, ITransformable.Color> {
+    protected int fromColor;
+    protected int toColor;
 
-	public ColorTransform(int fromColor, int toColor)
-	{
-		this.fromColor = fromColor;
-		this.toColor = toColor;
-	}
+    public ColorTransform(int fromColor, int toColor) {
+        this.fromColor = fromColor;
+        this.toColor = toColor;
+    }
 
-	private int red(int color)
-	{
-		return (color >> 16) & 0xFF;
-	}
+    private int red(int color) {
+        return (color >> 16) & 0xFF;
+    }
 
-	private int green(int color)
-	{
-		return (color >> 8) & 0xFF;
-	}
+    private int green(int color) {
+        return (color >> 8) & 0xFF;
+    }
 
-	private int blue(int color)
-	{
-		return color & 0xFF;
-	}
+    private int blue(int color) {
+        return color & 0xFF;
+    }
 
-	@Override
-	protected void doTransform(ITransformable.Color transformable, float comp)
-	{
-		if (comp <= 0)
-			return;
+    @Override
+    protected void doTransform(ITransformable.Color transformable, float comp) {
+        if (comp <= 0) return;
 
-		int from = reversed ? toColor : fromColor;
-		int to = reversed ? fromColor : toColor;
+        int from = reversed ? toColor : fromColor;
+        int to = reversed ? fromColor : toColor;
 
-		int r = (int) (red(from) + (red(to) - red(from)) * comp);
-		int g = (int) (green(from) + (green(to) - green(from)) * comp);
-		int b = (int) (blue(from) + (blue(to) - blue(from)) * comp);
+        int r = (int) (red(from) + (red(to) - red(from)) * comp);
+        int g = (int) (green(from) + (green(to) - green(from)) * comp);
+        int b = (int) (blue(from) + (blue(to) - blue(from)) * comp);
 
-		transformable.setColor((r & 0xFF) << 16 | (g & 0xFF) << 8 | b & 0xFF);
-	}
-
+        transformable.setColor((r & 0xFF) << 16 | (g & 0xFF) << 8 | b & 0xFF);
+    }
 }

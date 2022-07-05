@@ -25,7 +25,6 @@
 package net.malisis.core.renderer.model;
 
 import java.util.Map;
-
 import net.malisis.core.renderer.element.Shape;
 
 /**
@@ -33,12 +32,11 @@ import net.malisis.core.renderer.element.Shape;
  *
  * @author Ordinastie
  */
-public interface IModelLoader
-{
-	/**
-	 * Gets the list of {@link Shape} for the model.
-	 *
-	 * @return the shapes
-	 */
-	public Map<String, Shape> getShapes();
+public interface IModelLoader {
+    /**
+     * Gets the list of {@link Shape} for the model.
+     *
+     * @return the shapes
+     */
+    public Map<String, Shape> getShapes();
 }

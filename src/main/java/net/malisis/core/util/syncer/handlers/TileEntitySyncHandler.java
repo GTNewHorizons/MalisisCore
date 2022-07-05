@@ -24,6 +24,7 @@
 
 package net.malisis.core.util.syncer.handlers;
 
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.malisis.core.MalisisCore;
 import net.malisis.core.util.syncer.ISyncableData;
@@ -31,67 +32,55 @@ import net.malisis.core.util.syncer.handlers.TileEntitySyncHandler.TESyncData;
 import net.malisis.core.util.syncer.message.SyncerMessage.Packet;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 /**
  * @author Ordinastie
  *
  */
-public class TileEntitySyncHandler extends DefaultSyncHandler<TileEntity, TESyncData>
-{
-	@Override
-	public String getName()
-	{
-		return "TileEntity";
-	}
+public class TileEntitySyncHandler extends DefaultSyncHandler<TileEntity, TESyncData> {
+    @Override
+    public String getName() {
+        return "TileEntity";
+    }
 
-	@Override
-	public TileEntity getReceiver(MessageContext ctx, TESyncData data)
-	{
-		return Minecraft.getMinecraft().theWorld.getTileEntity(data.x, data.y, data.z);
-	}
+    @Override
+    public TileEntity getReceiver(MessageContext ctx, TESyncData data) {
+        return Minecraft.getMinecraft().theWorld.getTileEntity(data.x, data.y, data.z);
+    }
 
-	@Override
-	public TESyncData getSyncData(TileEntity caller)
-	{
-		return new TESyncData(caller);
-	}
+    @Override
+    public TESyncData getSyncData(TileEntity caller) {
+        return new TESyncData(caller);
+    }
 
-	@Override
-	public void send(TileEntity caller, Packet packet)
-	{
-		MalisisCore.network.sendToPlayersWatchingChunk(packet,
-				caller.getWorld().getChunkFromChunkCoords(caller.xCoord >> 4, caller.zCoord >> 4));
-	}
+    @Override
+    public void send(TileEntity caller, Packet packet) {
+        MalisisCore.network.sendToPlayersWatchingChunk(
+                packet, caller.getWorldObj().getChunkFromChunkCoords(caller.xCoord >> 4, caller.zCoord >> 4));
+    }
 
-	public static class TESyncData implements ISyncableData
-	{
-		private int x, y, z;
+    public static class TESyncData implements ISyncableData {
+        private int x, y, z;
 
-		public TESyncData(TileEntity te)
-		{
-			if (te == null)
-				return;
-			x = te.xCoord;
-			y = te.yCoord;
-			z = te.zCoord;
-		}
+        public TESyncData(TileEntity te) {
+            if (te == null) return;
+            x = te.xCoord;
+            y = te.yCoord;
+            z = te.zCoord;
+        }
 
-		@Override
-		public void fromBytes(ByteBuf buf)
-		{
-			x = buf.readInt();
-			y = buf.readInt();
-			z = buf.readInt();
-		}
+        @Override
+        public void fromBytes(ByteBuf buf) {
+            x = buf.readInt();
+            y = buf.readInt();
+            z = buf.readInt();
+        }
 
-		@Override
-		public void toBytes(ByteBuf buf)
-		{
-			buf.writeInt(x);
-			buf.writeInt(y);
-			buf.writeInt(z);
-		}
-	}
-
+        @Override
+        public void toBytes(ByteBuf buf) {
+            buf.writeInt(x);
+            buf.writeInt(y);
+            buf.writeInt(z);
+        }
+    }
 }

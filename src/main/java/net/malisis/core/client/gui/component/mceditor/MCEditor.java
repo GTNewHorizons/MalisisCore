@@ -24,6 +24,7 @@
 
 package net.malisis.core.client.gui.component.mceditor;
 
+import com.google.common.eventbus.Subscribe;
 import net.malisis.core.client.gui.Anchor;
 import net.malisis.core.client.gui.MalisisGui;
 import net.malisis.core.client.gui.component.IGuiText;
@@ -35,84 +36,72 @@ import net.malisis.core.renderer.font.FontRenderOptions;
 import net.malisis.core.renderer.font.MalisisFont;
 import net.minecraft.util.EnumChatFormatting;
 
-import com.google.common.eventbus.Subscribe;
-
 /**
  * @author Ordinastie
  *
  */
-public class MCEditor extends UIContainer<MCEditor> implements IGuiText<MCEditor>
-{
-	private UITextField tf;
-	private EcfSelect sel;
-	private UICheckBox cb;
+public class MCEditor extends UIContainer<MCEditor> implements IGuiText<MCEditor> {
+    private UITextField tf;
+    private EcfSelect sel;
+    private UICheckBox cb;
 
-	private MalisisFont font = MalisisFont.minecraftFont;
-	private FontRenderOptions fro = new FontRenderOptions();
+    private MalisisFont font = MalisisFont.minecraftFont;
+    private FontRenderOptions fro = new FontRenderOptions();
 
-	public MCEditor(MalisisGui gui)
-	{
-		super(gui);
-		tf = new UITextField(gui, true);
-		tf.setSize(0, -14).setAnchor(Anchor.BOTTOM);
+    public MCEditor(MalisisGui gui) {
+        super(gui);
+        tf = new UITextField(gui, true);
+        tf.setSize(0, -14).setAnchor(Anchor.BOTTOM);
 
-		sel = new EcfSelect(gui, this);
+        sel = new EcfSelect(gui, this);
 
-		cb = new UICheckBox(gui, "Use litteral formatting");
-		cb.setPosition(85, 0).register(this);
+        cb = new UICheckBox(gui, "Use litteral formatting");
+        cb.setPosition(85, 0).register(this);
 
-		add(tf, sel, cb);
-	}
+        add(tf, sel, cb);
+    }
 
-	public MCEditor(MalisisGui gui, int width, int height)
-	{
-		this(gui);
-		setSize(width, height);
-	}
+    public MCEditor(MalisisGui gui, int width, int height) {
+        this(gui);
+        setSize(width, height);
+    }
 
-	public UITextField getTextfield()
-	{
-		return tf;
-	}
+    public UITextField getTextfield() {
+        return tf;
+    }
 
-	public UISelect<EnumChatFormatting> getSelect()
-	{
-		return sel;
-	}
+    public UISelect<EnumChatFormatting> getSelect() {
+        return sel;
+    }
 
-	//#region IGuiText
-	@Override
-	public MalisisFont getFont()
-	{
-		return font;
-	}
+    // #region IGuiText
+    @Override
+    public MalisisFont getFont() {
+        return font;
+    }
 
-	@Override
-	public MCEditor setFont(MalisisFont font)
-	{
-		this.font = font;
-		return this;
-	}
+    @Override
+    public MCEditor setFont(MalisisFont font) {
+        this.font = font;
+        return this;
+    }
 
-	@Override
-	public FontRenderOptions getFontRenderOptions()
-	{
-		return fro;
-	}
+    @Override
+    public FontRenderOptions getFontRenderOptions() {
+        return fro;
+    }
 
-	@Override
-	public MCEditor setFontRenderOptions(FontRenderOptions fro)
-	{
-		this.fro = fro;
-		return this;
-	}
+    @Override
+    public MCEditor setFontRenderOptions(FontRenderOptions fro) {
+        this.fro = fro;
+        return this;
+    }
 
-	//#end IGuiText
+    // #end IGuiText
 
-	@Subscribe
-	public void onChecked(UICheckBox.CheckEvent event)
-	{
-		tf.getFontRenderOptions().disableECF = event.isChecked();
-		tf.buildLines();
-	}
+    @Subscribe
+    public void onChecked(UICheckBox.CheckEvent event) {
+        tf.getFontRenderOptions().disableECF = event.isChecked();
+        tf.buildLines();
+    }
 }

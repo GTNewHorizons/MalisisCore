@@ -30,130 +30,106 @@ import net.malisis.core.util.bbcode.render.BBRenderElement;
  * @author Ordinastie
  *
  */
-public class BBTextNode extends BBNode
-{
-	private StringBuilder text = new StringBuilder();
-	private int index;
+public class BBTextNode extends BBNode {
+    private StringBuilder text = new StringBuilder();
+    private int index;
 
-	public BBTextNode(String txt)
-	{
-		super("");
-		text.append(txt);
-		standAlone = true;
-	}
+    public BBTextNode(String txt) {
+        super("");
+        text.append(txt);
+        standAlone = true;
+    }
 
-	public void setIndex(int index)
-	{
-		this.index = index;
-	}
+    public void setIndex(int index) {
+        this.index = index;
+    }
 
-	public void shiftIndex(int amount)
-	{
-		index += amount;
-	}
+    public void shiftIndex(int amount) {
+        index += amount;
+    }
 
-	public String getText()
-	{
-		return text.toString();
-	}
+    public String getText() {
+        return text.toString();
+    }
 
-	@Override
-	public boolean hasTextNode()
-	{
-		return text.length() > 0;
-	}
+    @Override
+    public boolean hasTextNode() {
+        return text.length() > 0;
+    }
 
-	public void append(String txt)
-	{
-		text.append(txt);
-	}
+    public void append(String txt) {
+        text.append(txt);
+    }
 
-	public boolean isInRange(int position)
-	{
-		return position - index >= 0 && position - index <= text.length();
-	}
+    public boolean isInRange(int position) {
+        return position - index >= 0 && position - index <= text.length();
+    }
 
-	public boolean isInRange(int start, int end)
-	{
-		return start - index < text.length() && end - index >= 0;
-	}
+    public boolean isInRange(int start, int end) {
+        return start - index < text.length() && end - index >= 0;
+    }
 
-	public int insert(int position, String txt)
-	{
-		if (!isInRange(position))
-			return 0;
+    public int insert(int position, String txt) {
+        if (!isInRange(position)) return 0;
 
-		int p = position - index;
-		text.insert(p, txt);
+        int p = position - index;
+        text.insert(p, txt);
 
-		return txt.length();
-	}
+        return txt.length();
+    }
 
-	public String delete(int start, int end)
-	{
-		if (!isInRange(start, end))
-			return "";
+    public String delete(int start, int end) {
+        if (!isInRange(start, end)) return "";
 
-		int s = start - index;
-		int e = end - index;
-		if (s < 0)
-			s = 0;
-		if (e > text.length())
-			e = text.length();
+        int s = start - index;
+        int e = end - index;
+        if (s < 0) s = 0;
+        if (e > text.length()) e = text.length();
 
-		String ret = text.substring(s, e);
-		text.delete(s, e);
+        String ret = text.substring(s, e);
+        text.delete(s, e);
 
-		return ret;
-	}
+        return ret;
+    }
 
-	public BBTextNode[] split(int position)
-	{
-		int p = position - index;
-		if (p < 0)
-			p = 0;
+    public BBTextNode[] split(int position) {
+        int p = position - index;
+        if (p < 0) p = 0;
 
-		BBTextNode tn1 = new BBTextNode(text.substring(0, p));
-		tn1.setIndex(index);
-		BBTextNode tn2 = new BBTextNode(text.substring(p));
-		tn2.setIndex(index + p);
-		return new BBTextNode[] { tn1, tn2 };
-	}
+        BBTextNode tn1 = new BBTextNode(text.substring(0, p));
+        tn1.setIndex(index);
+        BBTextNode tn2 = new BBTextNode(text.substring(p));
+        tn2.setIndex(index + p);
+        return new BBTextNode[] {tn1, tn2};
+    }
 
-	@Override
-	public BBTextNode copy()
-	{
-		return new BBTextNode(text.toString());
-	}
+    @Override
+    public BBTextNode copy() {
+        return new BBTextNode(text.toString());
+    }
 
-	@Override
-	public void clean()
-	{
-		if (parent != null && text.length() < 0)
-			parent.remove(this);
-	}
+    @Override
+    public void clean() {
+        if (parent != null && text.length() < 0) parent.remove(this);
+    }
 
-	@Override
-	public void apply(BBRenderElement element)
-	{
-		element.text = text.toString();
-	}
+    @Override
+    public void apply(BBRenderElement element) {
+        element.text = text.toString();
+    }
 
-	@Override
-	public String toRawString()
-	{
-		return text.toString();
-	}
+    @Override
+    public String toRawString() {
+        return text.toString();
+    }
 
-	@Override
-	public String toBBString()
-	{
-		return text.toString();
-	}
+    @Override
+    public String toBBString() {
+        return text.toString();
+    }
 
-	@Override
-	public String toString()
-	{
-		return getClass().getSimpleName() + " : (" + index + ") " + text.toString();
-	}
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + " : (" + index + ") " + text.toString();
+    }
 }

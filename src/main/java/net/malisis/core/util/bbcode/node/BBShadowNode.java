@@ -30,22 +30,18 @@ import net.malisis.core.util.bbcode.render.BBRenderElement;
  * @author Ordinastie
  *
  */
-public class BBShadowNode extends BBNode
-{
-	public BBShadowNode()
-	{
-		super("shadow");
-	}
+public class BBShadowNode extends BBNode {
+    public BBShadowNode() {
+        super("shadow");
+    }
 
-	@Override
-	public BBNode copy()
-	{
-		return new BBShadowNode();
-	}
+    @Override
+    public BBNode copy() {
+        return new BBShadowNode();
+    }
 
-	@Override
-	public void apply(BBRenderElement element)
-	{
-		element.shadow = true;
-	}
+    @Override
+    public void apply(BBRenderElement element) {
+        element.shadow = true;
+    }
 }

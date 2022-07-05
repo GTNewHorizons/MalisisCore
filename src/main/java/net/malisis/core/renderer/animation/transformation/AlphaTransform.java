@@ -28,27 +28,22 @@ package net.malisis.core.renderer.animation.transformation;
  * @author Ordinastie
  *
  */
-public class AlphaTransform extends Transformation<AlphaTransform, ITransformable.Alpha>
-{
-	protected int fromAlpha;
-	protected int toAlpha;
+public class AlphaTransform extends Transformation<AlphaTransform, ITransformable.Alpha> {
+    protected int fromAlpha;
+    protected int toAlpha;
 
-	public AlphaTransform(int fromAlpa, int toAlpha)
-	{
-		this.fromAlpha = fromAlpa;
-		this.toAlpha = toAlpha;
-	}
+    public AlphaTransform(int fromAlpa, int toAlpha) {
+        this.fromAlpha = fromAlpa;
+        this.toAlpha = toAlpha;
+    }
 
-	@Override
-	protected void doTransform(ITransformable.Alpha transformable, float comp)
-	{
-		if (comp <= 0)
-			return;
+    @Override
+    protected void doTransform(ITransformable.Alpha transformable, float comp) {
+        if (comp <= 0) return;
 
-		float from = reversed ? toAlpha : fromAlpha;
-		float to = reversed ? fromAlpha : toAlpha;
+        float from = reversed ? toAlpha : fromAlpha;
+        float to = reversed ? fromAlpha : toAlpha;
 
-		transformable.setAlpha((int) (from + (to - from) * comp));
-	}
-
+        transformable.setAlpha((int) (from + (to - from) * comp));
+    }
 }

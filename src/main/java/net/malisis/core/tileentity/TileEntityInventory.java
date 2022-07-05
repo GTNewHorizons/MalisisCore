@@ -35,104 +35,86 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public abstract class TileEntityInventory extends TileEntity implements IInventoryProvider, IInventory
-{
-	protected MalisisInventory inventory;
+public abstract class TileEntityInventory extends TileEntity implements IInventoryProvider, IInventory {
+    protected MalisisInventory inventory;
 
-	public TileEntityInventory(MalisisInventory inventory)
-	{
-		this.inventory = inventory;
-	}
+    public TileEntityInventory(MalisisInventory inventory) {
+        this.inventory = inventory;
+    }
 
-	@Override
-	public MalisisInventory[] getInventories(Object... data)
-	{
-		return new MalisisInventory[] { inventory };
-	}
+    @Override
+    public MalisisInventory[] getInventories(Object... data) {
+        return new MalisisInventory[] {inventory};
+    }
 
-	@Override
-	public MalisisInventory[] getInventories(ForgeDirection side, Object... data)
-	{
-		return getInventories(data);
-	}
+    @Override
+    public MalisisInventory[] getInventories(ForgeDirection side, Object... data) {
+        return getInventories(data);
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound tagCompound)
-	{
-		super.readFromNBT(tagCompound);
+    @Override
+    public void readFromNBT(NBTTagCompound tagCompound) {
+        super.readFromNBT(tagCompound);
+    }
 
-	}
+    @Override
+    public void writeToNBT(NBTTagCompound tagCompound) {
+        super.writeToNBT(tagCompound);
+    }
 
-	@Override
-	public void writeToNBT(NBTTagCompound tagCompound)
-	{
-		super.writeToNBT(tagCompound);
-	}
+    @Override
+    public int getSizeInventory() {
+        return inventory.getSizeInventory();
+    }
 
-	@Override
-	public int getSizeInventory()
-	{
-		return inventory.getSizeInventory();
-	}
+    @Override
+    public ItemStack getStackInSlot(int slotNumber) {
+        return inventory.getItemStack(slotNumber);
+    }
 
-	@Override
-	public ItemStack getStackInSlot(int slotNumber)
-	{
-		return inventory.getItemStack(slotNumber);
-	}
+    @Override
+    public ItemStack decrStackSize(int slotNumber, int amount) {
+        return (new ItemUtils.ItemStackSplitter(inventory.getItemStack(slotNumber))).split(amount);
+    }
 
-	@Override
-	public ItemStack decrStackSize(int slotNumber, int amount)
-	{
-		return (new ItemUtils.ItemStackSplitter(inventory.getItemStack(slotNumber))).split(amount);
-	}
+    @Override
+    public ItemStack getStackInSlotOnClosing(int slotNumber) {
+        return inventory.getItemStack(slotNumber);
+    }
 
-	@Override
-	public ItemStack getStackInSlotOnClosing(int slotNumber)
-	{
-		return inventory.getItemStack(slotNumber);
-	}
+    @Override
+    public void setInventorySlotContents(int slotNumber, ItemStack itemStack) {
+        inventory.setItemStack(slotNumber, itemStack);
+    }
 
-	@Override
-	public void setInventorySlotContents(int slotNumber, ItemStack itemStack)
-	{
-		inventory.setItemStack(slotNumber, itemStack);
-	}
+    @Override
+    public String getInventoryName() {
+        return null;
+    }
 
-	@Override
-	public String getInventoryName()
-	{
-		return null;
-	}
+    @Override
+    public boolean hasCustomInventoryName() {
+        return false;
+    }
 
-	@Override
-	public boolean isCustomInventoryName()
-	{
-		return false;
-	}
+    @Override
+    public int getInventoryStackLimit() {
+        return inventory.getInventoryStackLimit();
+    }
 
-	@Override
-	public int getInventoryStackLimit()
-	{
-		return inventory.getInventoryStackLimit();
-	}
+    @Override
+    public boolean isUseableByPlayer(EntityPlayer player) {
+        return true;
+    }
 
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer player)
-	{
-		return true;
-	}
+    @Override
+    public void openInventory() {}
 
-	@Override
-	public void openChest()
-	{}
+    @Override
+    public void closeInventory() {}
 
-	@Override
-	public void closeChest()
-	{}
-
-	@Override
-	public boolean isItemValidForSlot(int slotNumber, ItemStack itemStack) {
+    @Override
+    public boolean isItemValidForSlot(int slotNumber, ItemStack itemStack) {
         MalisisSlot slot = inventory.getSlot(slotNumber);
         return slot != null && slot.isItemValid(itemStack);
     }

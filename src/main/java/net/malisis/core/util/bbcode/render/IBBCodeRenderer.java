@@ -30,21 +30,20 @@ import net.malisis.core.util.bbcode.BBString;
  * @author Ordinastie
  *
  */
-public interface IBBCodeRenderer<T>
-{
-	public T setText(BBString text);
+public interface IBBCodeRenderer<T> {
+    public T setText(BBString text);
 
-	public BBString getBBText();
+    public BBString getBBText();
 
-	public int getWidth();
+    public int getWidth();
 
-	public int getHeight();
+    public int getHeight();
 
-	public int getStartLine();
+    public int getStartLine();
 
-	public int getVisibleLines();
+    public int getVisibleLines();
 
-	public float getFontScale();
+    public float getFontScale();
 
-	public int getLineHeight();
+    public int getLineHeight();
 }

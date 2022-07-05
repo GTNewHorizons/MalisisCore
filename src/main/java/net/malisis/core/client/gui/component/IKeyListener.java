@@ -32,14 +32,13 @@ import net.malisis.core.client.gui.MalisisGui;
  *
  * @author Ordinastie
  */
-public interface IKeyListener
-{
-	/**
-	 * Called when a key is typed inside {@link MalisisGui}.
-	 *
-	 * @param keyChar the key char
-	 * @param keyCode the key code
-	 * @return true, to prevent parents and gui to handle the key typed
-	 */
-	public boolean onKeyTyped(char keyChar, int keyCode);
+public interface IKeyListener {
+    /**
+     * Called when a key is typed inside {@link MalisisGui}.
+     *
+     * @param keyChar the key char
+     * @param keyCode the key code
+     * @return true, to prevent parents and gui to handle the key typed
+     */
+    public boolean onKeyTyped(char keyChar, int keyCode);
 }
