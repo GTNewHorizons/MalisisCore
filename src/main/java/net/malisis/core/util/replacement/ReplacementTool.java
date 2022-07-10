@@ -113,6 +113,7 @@ public class ReplacementTool {
      * @param replacement the replacement
      * @param vanilla the vanilla
      */
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     private void replaceVanilla(int id, String name, String srgFieldName, Object replacement, Object vanilla) {
         boolean block = replacement instanceof Block;
         RegistryNamespaced registry = block ? Block.blockRegistry : Item.itemRegistry;
@@ -126,7 +127,7 @@ public class ReplacementTool {
             f.set(null, replacement);
 
             if (ib != null)
-                AsmUtils.changeFieldAccess(ItemBlock.class, "blockInstance", "field_150939_a")
+                AsmUtils.changeFieldAccess(ItemBlock.class, "field_150939_a", "field_150939_a")
                         .set(ib, replacement);
 
             map.put(replacement, vanilla);
