@@ -26,7 +26,6 @@ package net.malisis.core.util.bbcode;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import joptsimple.internal.Strings;
 import net.malisis.core.client.gui.GuiRenderer;
 import net.malisis.core.util.bbcode.node.BBNode;
@@ -34,173 +33,141 @@ import net.malisis.core.util.bbcode.node.BBRootNode;
 import net.malisis.core.util.bbcode.node.BBTextNode;
 import net.malisis.core.util.bbcode.render.BBCodeRenderer;
 import net.malisis.core.util.bbcode.render.IBBCodeRenderer;
-
 import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author Ordinastie
  *
  */
-public class BBString
-{
-	private String text;
-	private BBNode rootNode = new BBRootNode();
-	private List<BBTextNode> textNodes = new LinkedList<>();
-	private BBCodeRenderer renderer;
+public class BBString {
+    private String text;
+    private BBNode rootNode = new BBRootNode();
+    private List<BBTextNode> textNodes = new LinkedList<>();
+    private BBCodeRenderer renderer;
 
-	public BBString()
-	{
-		setText("");
+    public BBString() {
+        setText("");
+    }
 
-	}
+    public BBString(String text) {
+        this();
+        setText(text);
+        renderer = new BBCodeRenderer(this);
+    }
 
-	public BBString(String text)
-	{
-		this();
-		setText(text);
-		renderer = new BBCodeRenderer(this);
-	}
+    public void setText(String text) {
+        this.text = text == null ? "" : text;
+    }
 
-	public void setText(String text)
-	{
-		this.text = text == null ? "" : text;
-	}
+    public String getText() {
+        return text;
+    }
 
-	public String getText()
-	{
-		return text;
-	}
+    public BBNode getRoot() {
+        return rootNode;
+    }
 
-	public BBNode getRoot()
-	{
-		return rootNode;
-	}
+    public String getRawText() {
+        return getRoot().toRawString();
+    }
 
-	public String getRawText()
-	{
-		return getRoot().toRawString();
-	}
+    public String getBBString() {
+        return getRoot().toBBString();
+    }
 
-	public String getBBString()
-	{
-		return getRoot().toBBString();
-	}
+    public void parseText() {
+        new BBCodeParser(this).parse();
+        buildTextNodeList(getRoot());
+    }
 
-	public void parseText()
-	{
-		new BBCodeParser(this).parse();
-		buildTextNodeList(getRoot());
-	}
+    private void buildTextNodeList(BBNode node) {
+        if (node == getRoot()) textNodes.clear();
 
-	private void buildTextNodeList(BBNode node)
-	{
-		if (node == getRoot())
-			textNodes.clear();
+        for (BBNode n : node)
+            if (n instanceof BBTextNode) textNodes.add((BBTextNode) n);
+            else buildTextNodeList(n);
+    }
 
-		for (BBNode n : node)
-			if (n instanceof BBTextNode)
-				textNodes.add((BBTextNode) n);
-			else
-				buildTextNodeList(n);
-	}
+    public void insertNode(BBNode node, int start, int end) {
+        for (BBTextNode tn : textNodes) {
+            if (tn.isInRange(start, end)) {
+                BBNode copy = node.copy();
+                BBNode parent = tn.getParent();
 
-	public void insertNode(BBNode node, int start, int end)
-	{
-		for (BBTextNode tn : textNodes)
-		{
-			if (tn.isInRange(start, end))
-			{
-				BBNode copy = node.copy();
-				BBNode parent = tn.getParent();
+                String newText = tn.delete(start, end);
 
-				String newText = tn.delete(start, end);
+                BBTextNode[] split = tn.split(start);
+                if (split != null) {
+                    if (!node.isStandAlone() && !StringUtils.isEmpty(newText)) {
+                        BBTextNode newTextNode = new BBTextNode(newText);
+                        newTextNode.setIndex(start);
+                        split[1].shiftIndex(newText.length());
+                        copy.insert(newTextNode);
+                    }
+                    parent.insertBefore(split[0], tn);
+                    parent.insertBefore(copy, tn);
+                    parent.insertBefore(split[1], tn);
+                    parent.remove(tn);
+                }
+            }
+        }
 
-				BBTextNode[] split = tn.split(start);
-				if (split != null)
-				{
-					if (!node.isStandAlone() && !StringUtils.isEmpty(newText))
-					{
-						BBTextNode newTextNode = new BBTextNode(newText);
-						newTextNode.setIndex(start);
-						split[1].shiftIndex(newText.length());
-						copy.insert(newTextNode);
-					}
-					parent.insertBefore(split[0], tn);
-					parent.insertBefore(copy, tn);
-					parent.insertBefore(split[1], tn);
-					parent.remove(tn);
-				}
-			}
-		}
+        clean();
+    }
 
-		clean();
-	}
+    public void addText(String txt, int position) {
+        if (textNodes.size() == 0) {
+            getRoot().insert(new BBTextNode(txt));
+            ;
+            buildTextNodeList(getRoot());
+            return;
+        }
 
-	public void addText(String txt, int position)
-	{
-		if (textNodes.size() == 0)
-		{
-			getRoot().insert(new BBTextNode(txt));;
-			buildTextNodeList(getRoot());
-			return;
-		}
+        int shift = 0;
+        for (BBTextNode tn : textNodes) {
+            tn.shiftIndex(shift);
+            shift += tn.insert(position, txt);
+        }
+    }
 
-		int shift = 0;
-		for (BBTextNode tn : textNodes)
-		{
-			tn.shiftIndex(shift);
-			shift += tn.insert(position, txt);
+    public void deleteText(int start, int end) {
+        int shift = 0;
+        for (BBTextNode tn : textNodes) {
+            tn.shiftIndex(shift);
+            int amount = -tn.delete(start, end).length();
+            shift += amount;
+        }
 
-		}
-	}
+        clean();
+    }
 
-	public void deleteText(int start, int end)
-	{
-		int shift = 0;
-		for (BBTextNode tn : textNodes)
-		{
-			tn.shiftIndex(shift);
-			int amount = -tn.delete(start, end).length();
-			shift += amount;
-		}
+    public void clean() {
+        getRoot().clean();
+        buildTextNodeList(getRoot());
+    }
 
-		clean();
-	}
+    public void buildRenderLines(List<String> lines) {
+        renderer.buildLines(lines);
+    }
 
-	public void clean()
-	{
-		getRoot().clean();
-		buildTextNodeList(getRoot());
-	}
+    public void render(GuiRenderer guiRenderer, int x, int y, int z, IBBCodeRenderer bbcr) {
+        renderer.render(guiRenderer, x, y, z, bbcr);
+    }
 
-	public void buildRenderLines(List<String> lines)
-	{
-		renderer.buildLines(lines);
-	}
+    public String debug(BBNode node, int level) {
+        String str = Strings.repeat(' ', level * 3) + node.toString() + "\n";
+        for (BBNode n : node) str += debug(n, level + 1);
 
-	public void render(GuiRenderer guiRenderer, int x, int y, int z, IBBCodeRenderer bbcr)
-	{
-		renderer.render(guiRenderer, x, y, z, bbcr);
-	}
+        return str;
+    }
 
-	public String debug(BBNode node, int level)
-	{
-		String str = Strings.repeat(' ', level * 3) + node.toString() + "\n";
-		for (BBNode n : node)
-			str += debug(n, level + 1);
+    public String printTextNodes() {
+        return textNodes.toString();
+    }
 
-		return str;
-	}
-
-	public String printTextNodes()
-	{
-		return textNodes.toString();
-	}
-
-	@Override
-	public String toString()
-	{
-		String str = text + "\n" + debug(getRoot(), 0);
-		return str;
-	}
+    @Override
+    public String toString() {
+        String str = text + "\n" + debug(getRoot(), 0);
+        return str;
+    }
 }

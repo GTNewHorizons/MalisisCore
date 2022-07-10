@@ -32,72 +32,62 @@ import net.malisis.core.renderer.element.Vertex;
  * @author Ordinastie
  *
  */
-public abstract class GuiShape extends Shape
-{
-	public GuiShape(Face... faces)
-	{
-		super(faces);
-	}
+public abstract class GuiShape extends Shape {
+    public GuiShape(Face... faces) {
+        super(faces);
+    }
 
-	public GuiShape(int faceCount)
-	{
-		faces = new Face[faceCount];
-		for (int i = 0; i < faceCount; i++)
-			faces[i] = new GuiFace();
-	}
+    public GuiShape(int faceCount) {
+        faces = new Face[faceCount];
+        for (int i = 0; i < faceCount; i++) faces[i] = new GuiFace();
+    }
 
-	public void setPosition(float x, float y)
-	{
-		translate(x, y, 0);
-	}
+    public void setPosition(float x, float y) {
+        translate(x, y, 0);
+    }
 
-	@Override
-	public void translate(float x, float y, float z)
-	{
-		super.translate(x, y, z);
-		applyMatrix();
-	}
+    @Override
+    public void translate(float x, float y, float z) {
+        super.translate(x, y, z);
+        applyMatrix();
+    }
 
-	public void translate(int x, int y)
-	{
-		translate(x, y, 0);
-	}
+    public void translate(int x, int y) {
+        translate(x, y, 0);
+    }
 
-	@Override
-	public void rotate(float angle, float x, float y, float z)
-	{
-		rotate(angle, 0, 0, 1, x, y, z);
-	}
+    @Override
+    public void rotate(float angle, float x, float y, float z) {
+        rotate(angle, 0, 0, 1, x, y, z);
+    }
 
-	public void rotate(float angle)
-	{
-		//		rotate(angle, x + (x + width) / 2, y + (y + height) / 2, 0);
-		//		applyMatrix();
-	}
+    public void rotate(float angle) {
+        //		rotate(angle, x + (x + width) / 2, y + (y + height) / 2, 0);
+        //		applyMatrix();
+    }
 
-	@Override
-	public void scale(float scale)
-	{
-		scale(scale, scale);
-	}
+    @Override
+    public void scale(float scale) {
+        scale(scale, scale);
+    }
 
-	public abstract void setSize(float width, float height);
+    public abstract void setSize(float width, float height);
 
-	public abstract void scale(float x, float y);
+    public abstract void scale(float x, float y);
 
-	public static class GuiFace extends Face
-	{
-		public GuiFace()
-		{
-			super(new Vertex.BottomSouthWest().setBaseName("TopLeft"), new Vertex.TopSouthWest().setBaseName("BottomLeft"),
-					new Vertex.TopSouthEast().setBaseName("BottomRight"), new Vertex.BottomSouthEast().setBaseName("TopRight"));
-			setStandardUV();
-		}
+    public static class GuiFace extends Face {
+        public GuiFace() {
+            super(
+                    new Vertex.BottomSouthWest().setBaseName("TopLeft"),
+                    new Vertex.TopSouthWest().setBaseName("BottomLeft"),
+                    new Vertex.TopSouthEast().setBaseName("BottomRight"),
+                    new Vertex.BottomSouthEast().setBaseName("TopRight"));
+            setStandardUV();
+        }
 
-		public GuiFace(int width, int height)
-		{
-			this();
-			factor(width, height, 0);
-		}
-	}
+        public GuiFace(int width, int height) {
+            this();
+            factor(width, height, 0);
+        }
+    }
 }

@@ -33,9 +33,8 @@ import net.minecraft.world.World;
  * @author Ordinastie
  *
  */
-public interface IBlockListener extends IChunkBlock
-{
-	public boolean onBlockSet(World world, BlockPos pos, BlockState blockSet);
+public interface IBlockListener extends IChunkBlock {
+    public boolean onBlockSet(World world, BlockPos pos, BlockState blockSet);
 
-	public boolean onBlockRemoved(World world, BlockPos pos, BlockPos blockRemoved);
+    public boolean onBlockRemoved(World world, BlockPos pos, BlockPos blockRemoved);
 }

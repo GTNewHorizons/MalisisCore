@@ -28,55 +28,49 @@ package net.malisis.core.client.gui.element;
  * @author Ordinastie
  *
  */
-public class XYResizableGuiShape extends GuiShape
-{
-	protected int cornerWidth, cornerHeight;
+public class XYResizableGuiShape extends GuiShape {
+    protected int cornerWidth, cornerHeight;
 
-	public XYResizableGuiShape(int cornerWidth, int cornerHeight)
-	{
-		super(9);
-		this.cornerWidth = cornerWidth;
-		this.cornerHeight = cornerHeight;
-		storeState();
-	}
+    public XYResizableGuiShape(int cornerWidth, int cornerHeight) {
+        super(9);
+        this.cornerWidth = cornerWidth;
+        this.cornerHeight = cornerHeight;
+        storeState();
+    }
 
-	public XYResizableGuiShape(int corner)
-	{
-		this(corner, corner);
-	}
+    public XYResizableGuiShape(int corner) {
+        this(corner, corner);
+    }
 
-	public XYResizableGuiShape()
-	{
-		this(5, 5);
-	}
+    public XYResizableGuiShape() {
+        this(5, 5);
+    }
 
-	@Override
-	public void setSize(float w, float h)
-	{
-		w = Math.max(w - 2 * cornerWidth, 0);
-		h = Math.max(h - 2 * cornerHeight, 0);
+    @Override
+    public void setSize(float w, float h) {
+        w = Math.max(w - 2 * cornerWidth, 0);
+        h = Math.max(h - 2 * cornerHeight, 0);
 
-		faces[0].factor(cornerWidth, cornerHeight, 0);
-		faces[1].factor(w, cornerHeight, 0);
-		faces[2].factor(cornerWidth, cornerHeight, 0);
-		faces[3].factor(cornerWidth, h, 0);
-		faces[4].factor(w, h, 0);
-		faces[5].factor(cornerWidth, h, 0);
-		faces[6].factor(cornerWidth, cornerHeight, 0);
-		faces[7].factor(w, cornerHeight, 0);
-		faces[8].factor(cornerWidth, cornerHeight, 0);
+        faces[0].factor(cornerWidth, cornerHeight, 0);
+        faces[1].factor(w, cornerHeight, 0);
+        faces[2].factor(cornerWidth, cornerHeight, 0);
+        faces[3].factor(cornerWidth, h, 0);
+        faces[4].factor(w, h, 0);
+        faces[5].factor(cornerWidth, h, 0);
+        faces[6].factor(cornerWidth, cornerHeight, 0);
+        faces[7].factor(w, cornerHeight, 0);
+        faces[8].factor(cornerWidth, cornerHeight, 0);
 
-		faces[1].translate(cornerWidth, 0, 0);
-		faces[2].translate(cornerWidth + w, 0, 0);
-		faces[3].translate(0, cornerHeight, 0);
-		faces[4].translate(cornerWidth, cornerHeight, 0);
-		faces[5].translate(cornerWidth + w, cornerHeight, 0);
-		faces[6].translate(0, cornerHeight + h, 0);
-		faces[7].translate(cornerWidth, cornerHeight + h, 0);
-		faces[8].translate(cornerWidth + w, cornerHeight + h, 0);
-	}
+        faces[1].translate(cornerWidth, 0, 0);
+        faces[2].translate(cornerWidth + w, 0, 0);
+        faces[3].translate(0, cornerHeight, 0);
+        faces[4].translate(cornerWidth, cornerHeight, 0);
+        faces[5].translate(cornerWidth + w, cornerHeight, 0);
+        faces[6].translate(0, cornerHeight + h, 0);
+        faces[7].translate(cornerWidth, cornerHeight + h, 0);
+        faces[8].translate(cornerWidth + w, cornerHeight + h, 0);
+    }
 
-	@Override
-	public void scale(float x, float y)
-	{}
+    @Override
+    public void scale(float x, float y) {}
 }

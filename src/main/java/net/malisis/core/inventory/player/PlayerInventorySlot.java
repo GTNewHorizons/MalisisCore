@@ -28,21 +28,17 @@ import net.malisis.core.inventory.MalisisSlot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
-public class PlayerInventorySlot extends MalisisSlot
-{
-	private EntityPlayer player;
+public class PlayerInventorySlot extends MalisisSlot {
+    private EntityPlayer player;
 
-	public PlayerInventorySlot(PlayerInventory inventory, EntityPlayer p, int index)
-	{
-		super(inventory, p.inventory.getStackInSlot(index), index);
-		player = p;
-	}
+    public PlayerInventorySlot(PlayerInventory inventory, EntityPlayer p, int index) {
+        super(inventory, p.inventory.getStackInSlot(index), index);
+        player = p;
+    }
 
-	@Override
-	public void setItemStack(ItemStack itemStack)
-	{
-		super.setItemStack(itemStack);
-		player.inventory.setInventorySlotContents(slotNumber, itemStack);
-	}
-
+    @Override
+    public void setItemStack(ItemStack itemStack) {
+        super.setItemStack(itemStack);
+        player.inventory.setInventorySlotContents(slotNumber, itemStack);
+    }
 }

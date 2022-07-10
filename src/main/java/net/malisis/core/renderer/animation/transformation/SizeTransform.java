@@ -31,81 +31,75 @@ import net.malisis.core.renderer.animation.transformation.ITransformable.Size;
  * @author Ordinastie
  * @param <T> the generic type
  */
-public class SizeTransform<T> extends Transformation<SizeTransform, ITransformable.Size<T>>
-{
-	/** Starting size. */
-	protected int fromWidth, fromHeight;
-	/** Target size. */
-	protected int toWidth, toHeight;
+public class SizeTransform<T> extends Transformation<SizeTransform, ITransformable.Size<T>> {
+    /** Starting size. */
+    protected int fromWidth, fromHeight;
+    /** Target size. */
+    protected int toWidth, toHeight;
 
-	/**
-	 * Instantiates a new {@link SizeTransform}.
-	 *
-	 * @param width the width
-	 * @param height the height
-	 */
-	public SizeTransform(int width, int height)
-	{
-		to(width, height);
-	}
+    /**
+     * Instantiates a new {@link SizeTransform}.
+     *
+     * @param width the width
+     * @param height the height
+     */
+    public SizeTransform(int width, int height) {
+        to(width, height);
+    }
 
-	/**
-	 * Instantiates a new {@link SizeTransform}
-	 *
-	 * @param fromWidth the from width
-	 * @param fromHeight the from height
-	 * @param toWidth the to width
-	 * @param toHeight the to height
-	 */
-	public SizeTransform(int fromWidth, int fromHeight, int toWidth, int toHeight)
-	{
-		from(fromWidth, fromHeight);
-		to(toWidth, toHeight);
-	}
+    /**
+     * Instantiates a new {@link SizeTransform}
+     *
+     * @param fromWidth the from width
+     * @param fromHeight the from height
+     * @param toWidth the to width
+     * @param toHeight the to height
+     */
+    public SizeTransform(int fromWidth, int fromHeight, int toWidth, int toHeight) {
+        from(fromWidth, fromHeight);
+        to(toWidth, toHeight);
+    }
 
-	/**
-	 * Sets the starting size.
-	 *
-	 * @param width the width
-	 * @param height the height
-	 * @return this {@link SizeTransform}
-	 */
-	public SizeTransform<T> from(int width, int height)
-	{
-		fromWidth = width;
-		fromHeight = height;
-		return this;
-	}
+    /**
+     * Sets the starting size.
+     *
+     * @param width the width
+     * @param height the height
+     * @return this {@link SizeTransform}
+     */
+    public SizeTransform<T> from(int width, int height) {
+        fromWidth = width;
+        fromHeight = height;
+        return this;
+    }
 
-	/**
-	 * Sets the target size.
-	 *
-	 * @param width the width
-	 * @param height the height
-	 * @return this {@link SizeTransform}
-	 */
-	public SizeTransform<T> to(int width, int height)
-	{
-		toWidth = width;
-		toHeight = height;
-		return this;
-	}
+    /**
+     * Sets the target size.
+     *
+     * @param width the width
+     * @param height the height
+     * @return this {@link SizeTransform}
+     */
+    public SizeTransform<T> to(int width, int height) {
+        toWidth = width;
+        toHeight = height;
+        return this;
+    }
 
-	/**
-	 * Calculates the transformation
-	 *
-	 * @param transformable the transformable
-	 * @param comp the comp
-	 */
-	@Override
-	protected void doTransform(Size<T> transformable, float comp)
-	{
-		int fromWidth = reversed ? this.toWidth : this.fromWidth;
-		int toWidth = reversed ? this.fromWidth : this.toWidth;
-		int fromHeight = reversed ? this.toHeight : this.fromHeight;
-		int toHeight = reversed ? this.fromHeight : this.toHeight;
+    /**
+     * Calculates the transformation
+     *
+     * @param transformable the transformable
+     * @param comp the comp
+     */
+    @Override
+    protected void doTransform(Size<T> transformable, float comp) {
+        int fromWidth = reversed ? this.toWidth : this.fromWidth;
+        int toWidth = reversed ? this.fromWidth : this.toWidth;
+        int fromHeight = reversed ? this.toHeight : this.fromHeight;
+        int toHeight = reversed ? this.fromHeight : this.toHeight;
 
-		transformable.setSize((int) (fromWidth + (toWidth - fromWidth) * comp), (int) (fromHeight + (toHeight - fromHeight) * comp));
-	}
-
+        transformable.setSize(
+                (int) (fromWidth + (toWidth - fromWidth) * comp), (int) (fromHeight + (toHeight - fromHeight) * comp));
+    }
 }

@@ -37,10 +37,8 @@ import net.malisis.core.renderer.element.face.WestFace;
  * @author Ordinastie
  *
  */
-public class CubeSides extends Shape
-{
-	public CubeSides()
-	{
-		super(new NorthFace(), new SouthFace(), new EastFace(), new WestFace());
-	}
+public class CubeSides extends Shape {
+    public CubeSides() {
+        super(new NorthFace(), new SouthFace(), new EastFace(), new WestFace());
+    }
 }

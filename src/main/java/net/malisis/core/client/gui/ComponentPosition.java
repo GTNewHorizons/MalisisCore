@@ -28,24 +28,23 @@ package net.malisis.core.client.gui;
  * @author Ordinastie
  *
  */
-public enum ComponentPosition
-{
-	TOP(true), RIGHT(false), LEFT(false), BOTTOM(true);
+public enum ComponentPosition {
+    TOP(true),
+    RIGHT(false),
+    LEFT(false),
+    BOTTOM(true);
 
-	private boolean horizontal;
+    private boolean horizontal;
 
-	private ComponentPosition(boolean horizontal)
-	{
-		this.horizontal = horizontal;
-	}
+    private ComponentPosition(boolean horizontal) {
+        this.horizontal = horizontal;
+    }
 
-	public boolean isHorizontal()
-	{
-		return horizontal;
-	}
+    public boolean isHorizontal() {
+        return horizontal;
+    }
 
-	public boolean isVertical()
-	{
-		return !horizontal;
-	}
+    public boolean isVertical() {
+        return !horizontal;
+    }
 }

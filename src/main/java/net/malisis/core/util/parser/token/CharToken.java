@@ -28,22 +28,18 @@ package net.malisis.core.util.parser.token;
  * @author Ordinastie
  *
  */
-public class CharToken extends Token<Character>
-{
-	public CharToken(char c)
-	{
-		this.value = c;
-	}
+public class CharToken extends Token<Character> {
+    public CharToken(char c) {
+        this.value = c;
+    }
 
-	@Override
-	public boolean matches(String s, int index)
-	{
-		return index < s.length() && s.charAt(index) == value;
-	}
+    @Override
+    public boolean matches(String s, int index) {
+        return index < s.length() && s.charAt(index) == value;
+    }
 
-	@Override
-	public int size()
-	{
-		return 1;
-	}
+    @Override
+    public int size() {
+        return 1;
+    }
 }

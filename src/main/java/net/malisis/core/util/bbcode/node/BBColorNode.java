@@ -30,49 +30,39 @@ import net.malisis.core.util.bbcode.render.BBRenderElement;
  * @author Ordinastie
  *
  */
-public class BBColorNode extends BBNode
-{
-	protected int color;
+public class BBColorNode extends BBNode {
+    protected int color;
 
-	public BBColorNode(String tag)
-	{
-		super(tag);
-	}
+    public BBColorNode(String tag) {
+        super(tag);
+    }
 
-	public BBColorNode(String tag, int color)
-	{
-		this(tag);
-		setColor(color);
-	}
+    public BBColorNode(String tag, int color) {
+        this(tag);
+        setColor(color);
+    }
 
-	public int getColor()
-	{
-		return color;
-	}
+    public int getColor() {
+        return color;
+    }
 
-	public void setColor(String hexColor)
-	{
-		setColor(Integer.decode(hexColor));
-	}
+    public void setColor(String hexColor) {
+        setColor(Integer.decode(hexColor));
+    }
 
-	@Override
-	public BBColorNode copy()
-	{
-		return new BBColorNode(tag, color);
-	}
+    @Override
+    public BBColorNode copy() {
+        return new BBColorNode(tag, color);
+    }
 
-	@Override
-	public void apply(BBRenderElement element)
-	{
-		if (tag.equals("color"))
-			element.color = color;
-		else if (tag.equals("bgcolor"))
-			element.bgColor = color;
-	}
+    @Override
+    public void apply(BBRenderElement element) {
+        if (tag.equals("color")) element.color = color;
+        else if (tag.equals("bgcolor")) element.bgColor = color;
+    }
 
-	public void setColor(int color)
-	{
-		this.color = color;
-		this.attribute = "#" + Integer.toHexString(color);
-	}
+    public void setColor(int color) {
+        this.color = color;
+        this.attribute = "#" + Integer.toHexString(color);
+    }
 }

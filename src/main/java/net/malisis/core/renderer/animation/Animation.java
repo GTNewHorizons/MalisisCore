@@ -32,59 +32,49 @@ import net.malisis.core.util.Timer;
  * @author Ordinastie
  *
  */
-public class Animation
-{
-	private ITransformable transformable;
-	private Transformation transform;
-	private int delay;
-	private boolean started = false;
-	private boolean finished = false;
+public class Animation {
+    private ITransformable transformable;
+    private Transformation transform;
+    private int delay;
+    private boolean started = false;
+    private boolean finished = false;
 
-	private boolean renderBefore = true;
-	private boolean renderAfter = true;
+    private boolean renderBefore = true;
+    private boolean renderAfter = true;
 
-	public Animation(ITransformable transformable, Transformation transform)
-	{
-		this.transformable = transformable;
-		this.transform = transform;
-	}
+    public Animation(ITransformable transformable, Transformation transform) {
+        this.transformable = transformable;
+        this.transform = transform;
+    }
 
-	public void setRender(boolean before, boolean after)
-	{
-		renderBefore = before;
-		renderAfter = after;
-	}
+    public void setRender(boolean before, boolean after) {
+        renderBefore = before;
+        renderAfter = after;
+    }
 
-	public boolean isStarted()
-	{
-		return started;
-	}
+    public boolean isStarted() {
+        return started;
+    }
 
-	public boolean isFinished()
-	{
-		return finished;
-	}
+    public boolean isFinished() {
+        return finished;
+    }
 
-	public void setDelay(int delay)
-	{
-		this.delay = delay;
-	}
+    public void setDelay(int delay) {
+        this.delay = delay;
+    }
 
-	public ITransformable animate(long elapsedTime)
-	{
-		if (transform == null || transformable == null)
-			return transformable;
+    public ITransformable animate(long elapsedTime) {
+        if (transform == null || transformable == null) return transformable;
 
-		long elapsed = elapsedTime - Timer.tickToTime(delay);
-		started = elapsed > transform.getDelay();
-		finished = elapsed > transform.totalDuration() && transform.getLoops() != -1;
+        long elapsed = elapsedTime - Timer.tickToTime(delay);
+        started = elapsed > transform.getDelay();
+        finished = elapsed > transform.totalDuration() && transform.getLoops() != -1;
 
-		if (!started && !renderBefore)
-			return null;
-		if (finished && !renderAfter)
-			return null;
+        if (!started && !renderBefore) return null;
+        if (finished && !renderAfter) return null;
 
-		transform.transform(transformable, elapsed);
-		return transformable;
-	}
+        transform.transform(transformable, elapsed);
+        return transformable;
+    }
 }

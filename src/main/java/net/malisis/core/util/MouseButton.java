@@ -29,39 +29,37 @@ package net.malisis.core.util;
  *
  * @author PaleoCrafter
  */
-public enum MouseButton
-{
-	LEFT(0), RIGHT(1), MIDDLE(2), UNKNOWN(-1);
+public enum MouseButton {
+    LEFT(0),
+    RIGHT(1),
+    MIDDLE(2),
+    UNKNOWN(-1);
 
-	public static MouseButton[] DEFAULT = { LEFT, RIGHT, MIDDLE };
+    public static MouseButton[] DEFAULT = {LEFT, RIGHT, MIDDLE};
 
-	private int code;
+    private int code;
 
-	private MouseButton(int code)
-	{
-		this.code = code;
-	}
+    private MouseButton(int code) {
+        this.code = code;
+    }
 
-	/**
-	 * Gets the code for this {@link MouseButton}.
-	 *
-	 * @return the code
-	 */
-	public int getCode()
-	{
-		return code;
-	}
+    /**
+     * Gets the code for this {@link MouseButton}.
+     *
+     * @return the code
+     */
+    public int getCode() {
+        return code;
+    }
 
-	/**
-	 * Gets the {@link MouseButton} from the event code.
-	 *
-	 * @param id the id
-	 * @return the button
-	 */
-	public static MouseButton getButton(int id)
-	{
-		if (id < DEFAULT.length && id >= 0)
-			return DEFAULT[id];
-		return UNKNOWN;
-	}
+    /**
+     * Gets the {@link MouseButton} from the event code.
+     *
+     * @param id the id
+     * @return the button
+     */
+    public static MouseButton getButton(int id) {
+        if (id < DEFAULT.length && id >= 0) return DEFAULT[id];
+        return UNKNOWN;
+    }
 }

@@ -24,11 +24,19 @@
 
 package net.malisis.core;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
-
 import net.malisis.core.client.gui.MalisisGui;
 import net.malisis.core.configuration.ConfigurationGui;
 import net.malisis.core.configuration.Settings;
@@ -49,231 +57,196 @@ import net.minecraft.util.StatCollector;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.common.MinecraftForge;
-
 import org.apache.logging.log4j.Logger;
-
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * The Class MalisisCore.
  */
 @Mod(modid = MalisisCore.modid, name = MalisisCore.modname, version = MalisisCore.version)
-public class MalisisCore implements IMalisisMod
-{
-	/** Mod ID. */
-	public static final String modid = "malisiscore";
-	/** Mod name. */
-	public static final String modname = "Malisis Core";
-	/** Current version. */
-	public static final String version = "${version}";
-	/** Url for the mod. */
-	public static final String url = "";
-	/** Path for the mod. */
-	public static File coremodLocation;
-	/** Reference to the mod instance */
-	public static MalisisCore instance;
-	/** Logger for the mod. */
-	public static Logger log;
-	/** Network for the mod */
-	public static MalisisNetwork network;
+public class MalisisCore implements IMalisisMod {
+    /** Mod ID. */
+    public static final String modid = "malisiscore";
+    /** Mod name. */
+    public static final String modname = "Malisis Core";
+    /** Current version. */
+    public static final String version = "GRADLETOKEN_VERSION";
+    /** Url for the mod. */
+    public static final String url = "";
+    /** Path for the mod. */
+    public static File coremodLocation;
+    /** Reference to the mod instance */
+    public static MalisisCore instance;
+    /** Logger for the mod. */
+    public static Logger log;
+    /** Network for the mod */
+    public static MalisisNetwork network;
 
-	/** List of {@link IMalisisMod} registered. */
-	private HashMap<String, IMalisisMod> registeredMods = new HashMap<>();
+    /** List of {@link IMalisisMod} registered. */
+    private HashMap<String, IMalisisMod> registeredMods = new HashMap<>();
 
-	/** Whether the mod is currently running in obfuscated environment or not. */
-	public static boolean isObfEnv = false;
+    /** Whether the mod is currently running in obfuscated environment or not. */
+    public static boolean isObfEnv = false;
 
-	/**
-	 * Instantiates MalisisCore.
-	 */
-	public MalisisCore()
-	{
-		instance = this;
-		network = new MalisisNetwork(this);
-		isObfEnv = !(boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
-	}
+    /**
+     * Instantiates MalisisCore.
+     */
+    public MalisisCore() {
+        instance = this;
+        network = new MalisisNetwork(this);
+        isObfEnv = !(boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
+    }
 
-	//#region IMalisisMod
-	@Override
-	public String getModId()
-	{
-		return modid;
-	}
+    // #region IMalisisMod
+    @Override
+    public String getModId() {
+        return modid;
+    }
 
-	@Override
-	public String getName()
-	{
-		return modname;
-	}
+    @Override
+    public String getName() {
+        return modname;
+    }
 
-	@Override
-	public String getVersion()
-	{
-		return version;
-	}
+    @Override
+    public String getVersion() {
+        return version;
+    }
 
-	@Override
-	public Settings getSettings()
-	{
-		return null;
-	}
+    @Override
+    public Settings getSettings() {
+        return null;
+    }
 
-	//#end IMalisisMod
+    // #end IMalisisMod
 
-	/**
-	 * Registers a {@link IMalisisMod} mod.
-	 *
-	 * @param mod the mod to register
-	 */
-	public static void registerMod(IMalisisMod mod)
-	{
-		instance.registeredMods.put(mod.getModId(), mod);
-	}
+    /**
+     * Registers a {@link IMalisisMod} mod.
+     *
+     * @param mod the mod to register
+     */
+    public static void registerMod(IMalisisMod mod) {
+        instance.registeredMods.put(mod.getModId(), mod);
+    }
 
-	/**
-	 * Gets the a registered {@link IMalisisMod} by his id.
-	 *
-	 * @param id the id of the mod
-	 * @return the mod registered, null if no mod with the specified id is found
-	 */
-	public static IMalisisMod getMod(String id)
-	{
-		return instance.registeredMods.get(id);
-	}
+    /**
+     * Gets the a registered {@link IMalisisMod} by his id.
+     *
+     * @param id the id of the mod
+     * @return the mod registered, null if no mod with the specified id is found
+     */
+    public static IMalisisMod getMod(String id) {
+        return instance.registeredMods.get(id);
+    }
 
-	/**
-	 * Gets a list of registered {@link IMalisisMod} ids.
-	 *
-	 * @return set of ids.
-	 */
-	public static Set<String> listModId()
-	{
-		return instance.registeredMods.keySet();
-	}
+    /**
+     * Gets a list of registered {@link IMalisisMod} ids.
+     *
+     * @return set of ids.
+     */
+    public static Set<String> listModId() {
+        return instance.registeredMods.keySet();
+    }
 
-	/**
-	 * Pre-initialization event
-	 *
-	 * @param event the event
-	 */
-	@EventHandler
-	public void preInit(FMLPreInitializationEvent event)
-	{
-		MinecraftForge.EVENT_BUS.register(instance);
-		MinecraftForge.EVENT_BUS.register(ReplacementTool.instance());
-		MinecraftForge.EVENT_BUS.register(ChunkBlockHandler.get());
-		//MinecraftForge.EVENT_BUS.register(ChunkCollision.client);
+    /**
+     * Pre-initialization event
+     *
+     * @param event the event
+     */
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+        MinecraftForge.EVENT_BUS.register(instance);
+        MinecraftForge.EVENT_BUS.register(ReplacementTool.instance());
+        MinecraftForge.EVENT_BUS.register(ChunkBlockHandler.get());
+        // MinecraftForge.EVENT_BUS.register(ChunkCollision.client);
 
-		log = event.getModLog();
+        log = event.getModLog();
 
-		GameRegistry.registerTileEntity(MultiBlockTileEntity.class, "MalisisCoreMultiBlockTileEntity");
+        GameRegistry.registerTileEntity(MultiBlockTileEntity.class, "MalisisCoreMultiBlockTileEntity");
 
-		MalisisNetwork.createMessages(event.getAsmData());
-		Syncer.get().discover(event.getAsmData());
-	}
+        MalisisNetwork.createMessages(event.getAsmData());
+        Syncer.get().discover(event.getAsmData());
+    }
 
-	/**
-	 * Initialization event
-	 *
-	 * @param event the event
-	 */
-	@EventHandler
-	public void init(FMLInitializationEvent event)
-	{
-		ClientCommandHandler.instance.registerCommand(new MalisisCommand());
+    /**
+     * Initialization event
+     *
+     * @param event the event
+     */
+    @EventHandler
+    public void init(FMLInitializationEvent event) {
+        ClientCommandHandler.instance.registerCommand(new MalisisCommand());
 
-		if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
-			new FiniteLiquidRenderer().registerFor(FiniteLiquid.class);
-	}
+        if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
+            new FiniteLiquidRenderer().registerFor(FiniteLiquid.class);
+    }
 
-	/**
-	 * Gui close event.<br>
-	 * Used to cancel the closing of the configuration GUI when opened from command line.
-	 *
-	 * @param event the event
-	 */
-	@SideOnly(Side.CLIENT)
-	@SubscribeEvent
-	public void onGuiClose(GuiOpenEvent event)
-	{
-		if (!MalisisGui.cancelClose || event.gui != null)
-			return;
+    /**
+     * Gui close event.<br>
+     * Used to cancel the closing of the configuration GUI when opened from command line.
+     *
+     * @param event the event
+     */
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void onGuiClose(GuiOpenEvent event) {
+        if (!MalisisGui.cancelClose || event.gui != null) return;
 
-		MalisisGui.cancelClose = false;
-		event.setCanceled(true);
-	}
+        MalisisGui.cancelClose = false;
+        event.setCanceled(true);
+    }
 
-	/**
-	 * Open the configuration GUI for the {@link IMalisisMod}.
-	 *
-	 * @param mod the mod to open the GUI for
-	 * @return true, if a the mod had {@link Settings} and the GUI was opened, false otherwise
-	 */
-	@SideOnly(Side.CLIENT)
-	public static boolean openConfigurationGui(IMalisisMod mod)
-	{
-		Settings settings = mod.getSettings();
-		if (settings == null)
-			return false;
+    /**
+     * Open the configuration GUI for the {@link IMalisisMod}.
+     *
+     * @param mod the mod to open the GUI for
+     * @return true, if a the mod had {@link Settings} and the GUI was opened, false otherwise
+     */
+    @SideOnly(Side.CLIENT)
+    public static boolean openConfigurationGui(IMalisisMod mod) {
+        Settings settings = mod.getSettings();
+        if (settings == null) return false;
 
-		(new ConfigurationGui(settings)).display(true);
+        (new ConfigurationGui(settings)).display(true);
 
-		return true;
-	}
+        return true;
+    }
 
-	/**
-	 * Displays a text in the chat.
-	 *
-	 * @param text the text
-	 */
-	public static void message(Object text)
-	{
-		message(text, (Object) null);
-	}
+    /**
+     * Displays a text in the chat.
+     *
+     * @param text the text
+     */
+    public static void message(Object text) {
+        message(text, (Object) null);
+    }
 
-	/**
-	 * Displays a text in the chat.<br>
-	 * Client side calls will display italic and grey text.<br>
-	 * Server side calls will display white text. The text will be sent to all clients connected.
-	 *
-	 * @param text the text
-	 * @param data the data
-	 */
-	public static void message(Object text, Object... data)
-	{
-		if (text == null)
-			return;
+    /**
+     * Displays a text in the chat.<br>
+     * Client side calls will display italic and grey text.<br>
+     * Server side calls will display white text. The text will be sent to all clients connected.
+     *
+     * @param text the text
+     * @param data the data
+     */
+    public static void message(Object text, Object... data) {
+        if (text == null) return;
 
-		String txt = text.toString();
-		if (text instanceof Object[])
-			txt = Arrays.deepToString((Object[]) text);
-		ChatComponentText msg = new ChatComponentText(StatCollector.translateToLocalFormatted(txt, data));
-		if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
-		{
-			MinecraftServer server = MinecraftServer.getServer();
+        String txt = text.toString();
+        if (text instanceof Object[]) txt = Arrays.deepToString((Object[]) text);
+        ChatComponentText msg = new ChatComponentText(StatCollector.translateToLocalFormatted(txt, data));
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
+            MinecraftServer server = MinecraftServer.getServer();
 
-			if (server != null)
-				server.getConfigurationManager().sendChatMsg(msg);
-		}
-		else
-		{
-			if (Minecraft.getMinecraft() == null || Minecraft.getMinecraft().thePlayer == null)
-				return;
+            if (server != null) server.getConfigurationManager().sendChatMsg(msg);
+        } else {
+            if (Minecraft.getMinecraft() == null || Minecraft.getMinecraft().thePlayer == null) return;
 
-			ChatStyle cs = new ChatStyle();
-			cs.setItalic(true);
-			cs.setColor(EnumChatFormatting.GRAY);
-			msg.setChatStyle(cs);
+            ChatStyle cs = new ChatStyle();
+            cs.setItalic(true);
+            cs.setColor(EnumChatFormatting.GRAY);
+            msg.setChatStyle(cs);
 
-			Minecraft.getMinecraft().thePlayer.addChatMessage(msg);
-		}
-	}
+            Minecraft.getMinecraft().thePlayer.addChatMessage(msg);
+        }
+    }
 }

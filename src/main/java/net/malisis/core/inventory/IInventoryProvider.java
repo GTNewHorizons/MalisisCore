@@ -24,37 +24,35 @@
 
 package net.malisis.core.inventory;
 
-import net.malisis.core.client.gui.MalisisGui;
-import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.malisis.core.client.gui.MalisisGui;
+import net.minecraftforge.common.util.ForgeDirection;
 
-public interface IInventoryProvider
-{
-	/**
-	 * Gets the {@link MalisisInventory} for this {@link IInventoryProvider}.
-	 *
-	 * @param data null for TileEntity, ItemStack for Item
-	 * @return the inventories
-	 */
-	public MalisisInventory[] getInventories(Object... data);
+public interface IInventoryProvider {
+    /**
+     * Gets the {@link MalisisInventory} for this {@link IInventoryProvider}.
+     *
+     * @param data null for TileEntity, ItemStack for Item
+     * @return the inventories
+     */
+    public MalisisInventory[] getInventories(Object... data);
 
-	/**
-	 * Gets the {@link MalisisInventory} for a specific side for this {@link IInventoryProvider}.
-	 *
-	 * @param side the side
-	 * @param data null for TileEntity, ItemStack for Item
-	 * @return the inventories
-	 */
-	public MalisisInventory[] getInventories(ForgeDirection side, Object... data);
+    /**
+     * Gets the {@link MalisisInventory} for a specific side for this {@link IInventoryProvider}.
+     *
+     * @param side the side
+     * @param data null for TileEntity, ItemStack for Item
+     * @return the inventories
+     */
+    public MalisisInventory[] getInventories(ForgeDirection side, Object... data);
 
-	/**
-	 * Gets the {@link MalisisGui} associated with the {@link MalisisInventory}.
-	 *
-	 * @param container the container
-	 * @return the GUI to open
-	 */
-	@SideOnly(Side.CLIENT)
-	public MalisisGui getGui(MalisisInventoryContainer container);
-
+    /**
+     * Gets the {@link MalisisGui} associated with the {@link MalisisInventory}.
+     *
+     * @param container the container
+     * @return the GUI to open
+     */
+    @SideOnly(Side.CLIENT)
+    public MalisisGui getGui(MalisisInventoryContainer container);
 }

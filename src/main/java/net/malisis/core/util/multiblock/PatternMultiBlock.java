@@ -29,7 +29,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import net.malisis.core.util.BlockPos;
 import net.malisis.core.util.BlockState;
 import net.minecraft.block.Block;
@@ -38,61 +37,48 @@ import net.minecraft.block.Block;
  * @author Ordinastie
  *
  */
-public class PatternMultiBlock extends MultiBlock
-{
-	private List<List<String>> pattern = new ArrayList<>();
-	private Map<Character, BlockState> blocks = new HashMap<>();
+public class PatternMultiBlock extends MultiBlock {
+    private List<List<String>> pattern = new ArrayList<>();
+    private Map<Character, BlockState> blocks = new HashMap<>();
 
-	public PatternMultiBlock()
-	{
+    public PatternMultiBlock() {}
 
-	}
+    public PatternMultiBlock addLayer(String... layer) {
+        pattern.add(Arrays.asList(layer));
+        buildStates();
+        return this;
+    }
 
-	public PatternMultiBlock addLayer(String... layer)
-	{
-		pattern.add(Arrays.asList(layer));
-		buildStates();
-		return this;
-	}
+    public PatternMultiBlock withRef(char c, Block block) {
+        return withRef(c, block, 0);
+    }
 
-	public PatternMultiBlock withRef(char c, Block block)
-	{
-		return withRef(c, block, 0);
-	}
+    public PatternMultiBlock withRef(char c, Block block, int metadata) {
+        return withRef(c, new BlockState(block, metadata));
+    }
 
-	public PatternMultiBlock withRef(char c, Block block, int metadata)
-	{
-		return withRef(c, new BlockState(block, metadata));
-	}
+    public PatternMultiBlock withRef(char c, BlockState state) {
+        blocks.put(c, state);
+        buildStates();
+        return this;
+    }
 
-	public PatternMultiBlock withRef(char c, BlockState state)
-	{
-		blocks.put(c, state);
-		buildStates();
-		return this;
-	}
+    @Override
+    public void buildStates() {
+        states.clear();
+        BlockPos pos;
+        BlockState state;
 
-	@Override
-	public void buildStates()
-	{
-		states.clear();
-		BlockPos pos;
-		BlockState state;
-
-		for (int y = 0; y < pattern.size(); y++)
-		{
-			List<String> layer = pattern.get(y);
-			for (int z = 0; z < layer.size(); z++)
-			{
-				String row = layer.get(z);
-				for (int x = 0; x < row.length(); x++)
-				{
-					pos = new BlockPos(x, y, z).add(offset);
-					state = blocks.get(row.charAt(x));
-					if (state != null)
-						states.put(pos, new BlockState(pos, state));
-				}
-			}
-		}
-	}
+        for (int y = 0; y < pattern.size(); y++) {
+            List<String> layer = pattern.get(y);
+            for (int z = 0; z < layer.size(); z++) {
+                String row = layer.get(z);
+                for (int x = 0; x < row.length(); x++) {
+                    pos = new BlockPos(x, y, z).add(offset);
+                    state = blocks.get(row.charAt(x));
+                    if (state != null) states.put(pos, new BlockState(pos, state));
+                }
+            }
+        }
+    }
 }

@@ -25,6 +25,7 @@
 package net.malisis.core.renderer.element.face;
 
 import static net.minecraftforge.common.util.ForgeDirection.*;
+
 import net.malisis.core.renderer.element.Face;
 import net.malisis.core.renderer.element.Vertex;
 
@@ -32,17 +33,19 @@ import net.malisis.core.renderer.element.Vertex;
  * @author Ordinastie
  *
  */
-public class WestFace extends Face
-{
+public class WestFace extends Face {
 
-	public WestFace()
-	{
-		super(new Vertex.TopNorthWest(), new Vertex.BottomNorthWest(), new Vertex.BottomSouthWest(), new Vertex.TopSouthWest());
+    public WestFace() {
+        super(
+                new Vertex.TopNorthWest(),
+                new Vertex.BottomNorthWest(),
+                new Vertex.BottomSouthWest(),
+                new Vertex.TopSouthWest());
 
-		params.direction.set(WEST);
-		params.textureSide.set(WEST);
-		params.colorFactor.set(0.6F);
-		params.aoMatrix.set(calculateAoMatrix(WEST));
-		setStandardUV();
-	}
+        params.direction.set(WEST);
+        params.textureSide.set(WEST);
+        params.colorFactor.set(0.6F);
+        params.aoMatrix.set(calculateAoMatrix(WEST));
+        setStandardUV();
+    }
 }

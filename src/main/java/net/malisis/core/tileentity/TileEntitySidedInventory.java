@@ -25,7 +25,6 @@
 package net.malisis.core.tileentity;
 
 import java.util.HashMap;
-
 import net.malisis.core.inventory.IInventoryProvider;
 import net.malisis.core.inventory.MalisisInventory;
 import net.malisis.core.inventory.MalisisSlot;
@@ -37,156 +36,128 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public abstract class TileEntitySidedInventory extends TileEntity implements IInventoryProvider, ISidedInventory
-{
-	protected HashMap<ForgeDirection, MalisisInventory> inventories = new HashMap<>();
-	protected HashMap<Integer, ForgeDirection> ranges = new HashMap<>();
-	protected int totalSize = 0;
+public abstract class TileEntitySidedInventory extends TileEntity implements IInventoryProvider, ISidedInventory {
+    protected HashMap<ForgeDirection, MalisisInventory> inventories = new HashMap<>();
+    protected HashMap<Integer, ForgeDirection> ranges = new HashMap<>();
+    protected int totalSize = 0;
 
-	public TileEntitySidedInventory()
-	{}
+    public TileEntitySidedInventory() {}
 
-	protected void addSidedInventory(MalisisInventory inventory, ForgeDirection... sides)
-	{
-		int size = inventory.getSizeInventory();
-		totalSize += size;
-		for (ForgeDirection side : sides)
-		{
-			if (inventories.get(side) == null)
-			{
-				inventories.put(side, inventory);
-				ranges.put(totalSize, side);
-			}
-		}
-	}
+    protected void addSidedInventory(MalisisInventory inventory, ForgeDirection... sides) {
+        int size = inventory.getSizeInventory();
+        totalSize += size;
+        for (ForgeDirection side : sides) {
+            if (inventories.get(side) == null) {
+                inventories.put(side, inventory);
+                ranges.put(totalSize, side);
+            }
+        }
+    }
 
-	private int convertSlotNumber(int slotNumber)
-	{
-		return slotNumber >> 3;
-	}
+    private int convertSlotNumber(int slotNumber) {
+        return slotNumber >> 3;
+    }
 
-	public MalisisInventory getInventory(int slotNumber)
-	{
-		return inventories.get(ForgeDirection.getOrientation(slotNumber & 7));
-	}
+    public MalisisInventory getInventory(int slotNumber) {
+        return inventories.get(ForgeDirection.getOrientation(slotNumber & 7));
+    }
 
-	@Override
-	public MalisisInventory[] getInventories(Object... data)
-	{
-		return inventories.values().toArray(new MalisisInventory[0]);
-	}
+    @Override
+    public MalisisInventory[] getInventories(Object... data) {
+        return inventories.values().toArray(new MalisisInventory[0]);
+    }
 
-	@Override
-	public MalisisInventory[] getInventories(ForgeDirection side, Object... data)
-	{
-		return new MalisisInventory[] { inventories.get(side) };
-	}
+    @Override
+    public MalisisInventory[] getInventories(ForgeDirection side, Object... data) {
+        return new MalisisInventory[] {inventories.get(side)};
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound tagCompound)
-	{
-		super.readFromNBT(tagCompound);
+    @Override
+    public void readFromNBT(NBTTagCompound tagCompound) {
+        super.readFromNBT(tagCompound);
+    }
 
-	}
+    @Override
+    public void writeToNBT(NBTTagCompound tagCompound) {
+        super.writeToNBT(tagCompound);
+    }
 
-	@Override
-	public void writeToNBT(NBTTagCompound tagCompound)
-	{
-		super.writeToNBT(tagCompound);
-	}
+    @Override
+    public int getSizeInventory() {
+        return totalSize;
+    }
 
-	@Override
-	public int getSizeInventory()
-	{
-		return totalSize;
-	}
+    @Override
+    public ItemStack getStackInSlot(int slotNumber) {
+        return getInventory(slotNumber).getItemStack(slotNumber);
+    }
 
-	@Override
-	public ItemStack getStackInSlot(int slotNumber)
-	{
-		return getInventory(slotNumber).getItemStack(slotNumber);
-	}
+    @Override
+    public ItemStack decrStackSize(int slotNumber, int amount) {
+        return (new ItemUtils.ItemStackSplitter(getInventory(slotNumber).getItemStack(slotNumber))).split(amount);
+    }
 
-	@Override
-	public ItemStack decrStackSize(int slotNumber, int amount)
-	{
-		return (new ItemUtils.ItemStackSplitter(getInventory(slotNumber).getItemStack(slotNumber))).split(amount);
-	}
+    @Override
+    public ItemStack getStackInSlotOnClosing(int slotNumber) {
+        return getInventory(slotNumber).getItemStack(slotNumber);
+    }
 
-	@Override
-	public ItemStack getStackInSlotOnClosing(int slotNumber)
-	{
-		return getInventory(slotNumber).getItemStack(slotNumber);
-	}
+    @Override
+    public void setInventorySlotContents(int slotNumber, ItemStack itemStack) {
+        getInventory(slotNumber).setItemStack(slotNumber, itemStack);
+    }
 
-	@Override
-	public void setInventorySlotContents(int slotNumber, ItemStack itemStack)
-	{
-		getInventory(slotNumber).setItemStack(slotNumber, itemStack);
-	}
+    @Override
+    public String getInventoryName() {
+        return null;
+    }
 
-	@Override
-	public String getInventoryName()
-	{
-		return null;
-	}
+    @Override
+    public boolean hasCustomInventoryName() {
+        return false;
+    }
 
-	@Override
-	public boolean isCustomInventoryName()
-	{
-		return false;
-	}
+    @Override
+    public int getInventoryStackLimit() {
+        return 64;
+    }
 
-	@Override
-	public int getInventoryStackLimit()
-	{
-		return 64;
-	}
+    @Override
+    public boolean isUseableByPlayer(EntityPlayer player) {
+        return true;
+    }
 
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer player)
-	{
-		return true;
-	}
+    @Override
+    public void openInventory() {}
 
-	@Override
-	public void openChest()
-	{}
+    @Override
+    public void closeInventory() {}
 
-	@Override
-	public void closeChest()
-	{}
-
-	@Override
-	public boolean isItemValidForSlot(int slotNumber, ItemStack itemStack) {
+    @Override
+    public boolean isItemValidForSlot(int slotNumber, ItemStack itemStack) {
         MalisisSlot slot = getInventory(slotNumber).getSlot(convertSlotNumber(slotNumber));
         return slot != null && slot.isItemValid(itemStack);
     }
 
-	@Override
-	public int[] getSlotsForFace(int side)
-	{
-		MalisisInventory inventory = inventories.get(ForgeDirection.getOrientation(side));
-		if (inventory == null)
-			return new int[0];
-
-		int[] a = new int[inventory.getSizeInventory()];
-		for (int i = 0; i < inventory.getSizeInventory(); i++)
-			a[i] = (i << 3) | side;
-
-		return a;
-	}
-
-	@Override
-	public boolean canInsertItem(int slotNumber, ItemStack itemStack, int side) {
+    @Override
+    public int[] getAccessibleSlotsFromSide(int side) {
         MalisisInventory inventory = inventories.get(ForgeDirection.getOrientation(side));
-        return inventory != null && inventory.isItemValidForSlot(convertSlotNumber(slotNumber), itemStack);
+        if (inventory == null) return new int[0];
 
+        int[] a = new int[inventory.getSizeInventory()];
+        for (int i = 0; i < inventory.getSizeInventory(); i++) a[i] = (i << 3) | side;
+
+        return a;
     }
 
-	@Override
-	public boolean canExtractItem(int slotNumber, ItemStack itemStack, int side)
-	{
-		return true;
-	}
+    @Override
+    public boolean canInsertItem(int slotNumber, ItemStack itemStack, int side) {
+        MalisisInventory inventory = inventories.get(ForgeDirection.getOrientation(side));
+        return inventory != null && inventory.isItemValidForSlot(convertSlotNumber(slotNumber), itemStack);
+    }
+
+    @Override
+    public boolean canExtractItem(int slotNumber, ItemStack itemStack, int side) {
+        return true;
+    }
 }

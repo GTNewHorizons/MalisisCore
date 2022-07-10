@@ -32,31 +32,29 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
  *
  * @author Ordinastie
  */
-public interface IRenderWorldLast
-{
+public interface IRenderWorldLast {
 
-	/**
-	 * Whether to set the translations based on player current position and partialTick.
-	 *
-	 * @return true, if the renderer should set the translations
-	 */
-	public boolean shouldSetViewportPosition();
+    /**
+     * Whether to set the translations based on player current position and partialTick.
+     *
+     * @return true, if the renderer should set the translations
+     */
+    public boolean shouldSetViewportPosition();
 
-	/**
-	 * Whether the renderer should render.
-	 *
-	 * @param event the event
-	 * @param world the world
-	 * @return true, if rendering should be done
-	 */
-	public boolean shouldRender(RenderWorldLastEvent event, IBlockAccess world);
+    /**
+     * Whether the renderer should render.
+     *
+     * @param event the event
+     * @param world the world
+     * @return true, if rendering should be done
+     */
+    public boolean shouldRender(RenderWorldLastEvent event, IBlockAccess world);
 
-	/**
-	 * Renders when {@link RenderWorldLastEvent} is called.
-	 *
-	 * @param event the event
-	 * @param world the world
-	 */
-	public void renderWorldLastEvent(RenderWorldLastEvent event, IBlockAccess world);
-
+    /**
+     * Renders when {@link RenderWorldLastEvent} is called.
+     *
+     * @param event the event
+     * @param world the world
+     */
+    public void renderWorldLastEvent(RenderWorldLastEvent event, IBlockAccess world);
 }

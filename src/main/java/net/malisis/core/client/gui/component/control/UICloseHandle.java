@@ -34,44 +34,38 @@ import net.malisis.core.client.gui.component.container.UIContainer;
  * @author Ordinastie
  *
  */
-public class UICloseHandle extends UIComponent<UICloseHandle> implements IControlComponent
-{
-	public <T extends UIComponent & ICloseable> UICloseHandle(MalisisGui gui, T parent)
-	{
-		super(gui);
+public class UICloseHandle extends UIComponent<UICloseHandle> implements IControlComponent {
+    public <T extends UIComponent & ICloseable> UICloseHandle(MalisisGui gui, T parent) {
+        super(gui);
 
-		int x = -1;
-		int y = 1;
-		if (parent instanceof UIContainer)
-		{
-			x += ((UIContainer) parent).getHorizontalPadding();
-			y -= ((UIContainer) parent).getVerticalPadding();
-		}
-		setPosition(x, y, Anchor.RIGHT);
-		setSize(5, 5);
-		setZIndex(10);
-		register(this);
+        int x = -1;
+        int y = 1;
+        if (parent instanceof UIContainer) {
+            x += ((UIContainer) parent).getHorizontalPadding();
+            y -= ((UIContainer) parent).getVerticalPadding();
+        }
+        setPosition(x, y, Anchor.RIGHT);
+        setSize(5, 5);
+        setZIndex(10);
+        register(this);
 
-		parent.addControlComponent(this);
+        parent.addControlComponent(this);
 
-		icon = gui.getGuiTexture().getIcon(268, 30, 15, 15);
-	}
+        icon = gui.getGuiTexture().getIcon(268, 30, 15, 15);
+    }
 
-	@Override
-	public boolean onClick(int x, int y)
-	{
-		((ICloseable) getParent()).onClose();
-		return true;
-	}
+    @Override
+    public boolean onClick(int x, int y) {
+        ((ICloseable) getParent()).onClose();
+        return true;
+    }
 
-	@Override
-	public void drawBackground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick)
-	{}
+    @Override
+    public void drawBackground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick) {}
 
-	@Override
-	public void drawForeground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick)
-	{
-		rp.icon.set(icon);
-		renderer.drawShape(shape, rp);
-	}
+    @Override
+    public void drawForeground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick) {
+        rp.icon.set(icon);
+        renderer.drawShape(shape, rp);
+    }
 }

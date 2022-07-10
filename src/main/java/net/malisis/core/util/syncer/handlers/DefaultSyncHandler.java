@@ -25,7 +25,6 @@
 package net.malisis.core.util.syncer.handlers;
 
 import java.lang.reflect.Field;
-
 import net.malisis.core.util.DoubleKeyMap;
 import net.malisis.core.util.DoubleKeyMap.DoubleKeyEntry;
 import net.malisis.core.util.syncer.FieldData;
@@ -36,33 +35,28 @@ import net.malisis.core.util.syncer.ISyncableData;
  * @author Ordinastie
  *
  */
-public abstract class DefaultSyncHandler<T, S extends ISyncableData> implements ISyncHandler<T, S>
-{
-	private DoubleKeyMap<String, Field> fields = new DoubleKeyMap<>();
+public abstract class DefaultSyncHandler<T, S extends ISyncableData> implements ISyncHandler<T, S> {
+    private DoubleKeyMap<String, Field> fields = new DoubleKeyMap<>();
 
-	@Override
-	public void addFieldData(FieldData fieldData)
-	{
-		if (fields.get(fieldData.getName()) != null)
-			throw new RuntimeException(fieldData.getName() + " is already registered");
+    @Override
+    public void addFieldData(FieldData fieldData) {
+        if (fields.get(fieldData.getName()) != null)
+            throw new RuntimeException(fieldData.getName() + " is already registered");
 
-		fields.put(fieldData.getName(), fieldData.getField());
-	}
+        fields.put(fieldData.getName(), fieldData.getField());
+    }
 
-	private FieldData getFieldData(DoubleKeyEntry<String, Field> entry)
-	{
-		return entry != null ? new FieldData(entry.getIndex(), entry.getKey(), entry.getValue()) : null;
-	}
+    private FieldData getFieldData(DoubleKeyEntry<String, Field> entry) {
+        return entry != null ? new FieldData(entry.getIndex(), entry.getKey(), entry.getValue()) : null;
+    }
 
-	@Override
-	public FieldData getFieldData(int index)
-	{
-		return getFieldData(fields.getEntry(index));
-	}
+    @Override
+    public FieldData getFieldData(int index) {
+        return getFieldData(fields.getEntry(index));
+    }
 
-	@Override
-	public FieldData getFieldData(String name)
-	{
-		return getFieldData(fields.getEntry(name));
-	}
+    @Override
+    public FieldData getFieldData(String name) {
+        return getFieldData(fields.getEntry(name));
+    }
 }

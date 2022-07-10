@@ -26,128 +26,102 @@ package net.malisis.core.renderer.font;
 
 import java.awt.Desktop;
 import java.net.URI;
-
 import net.malisis.core.MalisisCore;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiConfirmOpenLink;
 import net.minecraft.client.gui.GuiYesNoCallback;
-
 import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author Ordinastie
  *
  */
-public class Link implements GuiYesNoCallback
-{
-	private int index = 0;
-	private int textIndex = 0;
-	private String url;
-	private String text;
-	private boolean isValid;
+public class Link implements GuiYesNoCallback {
+    private int index = 0;
+    private int textIndex = 0;
+    private String url;
+    private String text;
+    private boolean isValid;
 
-	public Link(int index, String str)
-	{
-		this.index = index;
-		int i = str.indexOf('|');
-		if (i == -1)
-		{
-			url = str;
-			text = str;
-			textIndex = 1;
-		}
-		else
-		{
-			url = str.substring(0, i);
-			text = str.substring(i + 1, str.length());
-			textIndex = i + 1;
-		}
+    public Link(int index, String str) {
+        this.index = index;
+        int i = str.indexOf('|');
+        if (i == -1) {
+            url = str;
+            text = str;
+            textIndex = 1;
+        } else {
+            url = str.substring(0, i);
+            text = str.substring(i + 1, str.length());
+            textIndex = i + 1;
+        }
 
-		checkUrl();
-	}
+        checkUrl();
+    }
 
-	public Link(int index, String url, String text)
-	{
-		this.index = index;
-		this.url = url;
-		this.text = text;
-	}
+    public Link(int index, String url, String text) {
+        this.index = index;
+        this.url = url;
+        this.text = text;
+    }
 
-	private void checkUrl()
-	{
-		isValid = true;
-	}
+    private void checkUrl() {
+        isValid = true;
+    }
 
-	public float getWidth(MalisisFont font, FontRenderOptions fro)
-	{
-		return font.getStringWidth(StringUtils.isEmpty(text) ? url : text, fro);
-	}
+    public float getWidth(MalisisFont font, FontRenderOptions fro) {
+        return font.getStringWidth(StringUtils.isEmpty(text) ? url : text, fro);
+    }
 
-	public int indexAdvance()
-	{
-		return text != null ? url.length() + 2 : 1;
-	}
+    public int indexAdvance() {
+        return text != null ? url.length() + 2 : 1;
+    }
 
-	public boolean isValid()
-	{
-		return isValid;
-	}
+    public boolean isValid() {
+        return isValid;
+    }
 
-	public boolean isUrl(int index)
-	{
-		index += this.index;
-		return index >= 0 && index <= url.length();
-	}
+    public boolean isUrl(int index) {
+        index += this.index;
+        return index >= 0 && index <= url.length();
+    }
 
-	public boolean isText(int index)
-	{
-		index += this.index;
-		return index >= textIndex && index <= text.length();
-	}
+    public boolean isText(int index) {
+        index += this.index;
+        return index >= textIndex && index <= text.length();
+    }
 
-	public void click()
-	{
-		Minecraft.getMinecraft().displayGuiScreen(new GuiConfirmOpenLink(this, url, 0, false));
-	}
+    public void click() {
+        Minecraft.getMinecraft().displayGuiScreen(new GuiConfirmOpenLink(this, url, 0, false));
+    }
 
-	@Override
-	public void confirmClicked(boolean result, int id)
-	{
-		if (result)
-		{
-			MalisisCore.message("Opening " + url);
-			try
-			{
-				Desktop.getDesktop().browse(new URI(url));
-			}
-			catch (Throwable throwable)
-			{
-				MalisisCore.log.error("Couldn't open link", throwable);
-			}
-		}
-		else
-		{
-			MalisisCore.message("Cancel");
-		}
-	}
+    @Override
+    public void confirmClicked(boolean result, int id) {
+        if (result) {
+            MalisisCore.message("Opening " + url);
+            try {
+                Desktop.getDesktop().browse(new URI(url));
+            } catch (Throwable throwable) {
+                MalisisCore.log.error("Couldn't open link", throwable);
+            }
+        } else {
+            MalisisCore.message("Cancel");
+        }
+    }
 
-	@Override
-	public String toString()
-	{
-		return "[" + url + (text != null ? "|" + text : "") + "]";
-	}
+    @Override
+    public String toString() {
+        return "[" + url + (text != null ? "|" + text : "") + "]";
+    }
 
-	public static Link getLink(String str, int index)
-	{
-		Link link = null;
-		int i = index;
-		while (i > 0)
-		{
-			link = FontRenderOptions.getLink(str, i--);
-			if (link != null && index < link.index + link.toString().length())
-				return link;
-		}
+    public static Link getLink(String str, int index) {
+        Link link = null;
+        int i = index;
+        while (i > 0) {
+            link = FontRenderOptions.getLink(str, i--);
+            if (link != null && index < link.index + link.toString().length()) return link;
+        }
 
-		return null;
-	}
+        return null;
+    }
 }

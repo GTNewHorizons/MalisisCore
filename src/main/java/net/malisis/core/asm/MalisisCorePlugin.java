@@ -24,46 +24,43 @@
 
 package net.malisis.core.asm;
 
-import java.util.Map;
-
-import net.malisis.javacompat.JavaCompatibility;
 import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
-import cpw.mods.fml.relauncher.IFMLLoadingPlugin.TransformerExclusions;
+import java.util.Map;
+import net.malisis.core.MalisisCore;
+import net.malisis.javacompat.JavaCompatibility;
 
-@TransformerExclusions({ "net.malisis.core.asm." })
+@IFMLLoadingPlugin.Name(MalisisCore.modname)
+@IFMLLoadingPlugin.TransformerExclusions({"net.malisis.core.asm."})
+@IFMLLoadingPlugin.MCVersion("1.7.10")
 @IFMLLoadingPlugin.SortingIndex(1001)
-public class MalisisCorePlugin implements IFMLLoadingPlugin
-{
+public class MalisisCorePlugin implements IFMLLoadingPlugin {
 
-	@Override
-	public String[] getASMTransformerClass()
-	{
-		JavaCompatibility.checkVersion();
+    @Override
+    public String[] getASMTransformerClass() {
+        JavaCompatibility.checkVersion();
 
-		return new String[] { /*MalisisCoreTransformer.class.getName(),*/
-		"net.malisis.core.util.chunkcollision.ChunkCollisionTransformer", "net.malisis.core.util.chunkblock.ChunkBlockTransformer" };
-	}
+        return new String[] {
+            /*MalisisCoreTransformer.class.getName(),*/
+            "net.malisis.core.util.chunkcollision.ChunkCollisionTransformer",
+            "net.malisis.core.util.chunkblock.ChunkBlockTransformer"
+        };
+    }
 
-	@Override
-	public String getModContainerClass()
-	{
-		return null;
-	}
+    @Override
+    public String getModContainerClass() {
+        return null;
+    }
 
-	@Override
-	public String getSetupClass()
-	{
-		return null;
-	}
+    @Override
+    public String getSetupClass() {
+        return null;
+    }
 
-	@Override
-	public void injectData(Map<String, Object> data)
-	{}
+    @Override
+    public void injectData(Map<String, Object> data) {}
 
-	@Override
-	public String getAccessTransformerClass()
-	{
-		return "net.malisis.core.asm.MalisisCoreAccessTransformer";
-	}
-
+    @Override
+    public String getAccessTransformerClass() {
+        return null;
+    }
 }

@@ -28,7 +28,10 @@ package net.malisis.core.block;
  * @author Ordinastie
  *
  */
-public enum BoundingBoxType
-{
-	SELECTION, COLLISION, RAYTRACE, RENDER, CHUNKCOLLISION
+public enum BoundingBoxType {
+    SELECTION,
+    COLLISION,
+    RAYTRACE,
+    RENDER,
+    CHUNKCOLLISION
 }

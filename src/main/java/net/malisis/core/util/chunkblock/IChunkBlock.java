@@ -29,13 +29,12 @@ package net.malisis.core.util.chunkblock;
  *
  * @author Ordinastie
  */
-public interface IChunkBlock
-{
-	/**
-	 * Gets the block range.<br>
-	 * Defines the distance for which the block will store itself into chunk data.<br>
-	 *
-	 * @return the int
-	 */
-	public int blockRange();
+public interface IChunkBlock {
+    /**
+     * Gets the block range.<br>
+     * Defines the distance for which the block will store itself into chunk data.<br>
+     *
+     * @return the int
+     */
+    public int blockRange();
 }

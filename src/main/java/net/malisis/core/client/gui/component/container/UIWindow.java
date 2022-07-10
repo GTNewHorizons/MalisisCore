@@ -34,73 +34,62 @@ import net.malisis.core.client.gui.element.XYResizableGuiShape;
 /**
  * @author Ordinastie, PaleoCrafter
  */
-public class UIWindow extends UIContainer<UIWindow> implements ICloseable
-{
-	/** Background color multiplier. */
-	protected int backgroundColor = -1;
+public class UIWindow extends UIContainer<UIWindow> implements ICloseable {
+    /** Background color multiplier. */
+    protected int backgroundColor = -1;
 
-	public UIWindow(MalisisGui gui, String title, int width, int height, int anchor)
-	{
-		super(gui, title, width, height);
-		setPadding(5, 5);
-		this.anchor = anchor;
+    public UIWindow(MalisisGui gui, String title, int width, int height, int anchor) {
+        super(gui, title, width, height);
+        setPadding(5, 5);
+        this.anchor = anchor;
 
-		shape = new XYResizableGuiShape();
-		icon = gui.getGuiTexture().getXYResizableIcon(200, 0, 15, 15, 5);
-	}
+        shape = new XYResizableGuiShape();
+        icon = gui.getGuiTexture().getXYResizableIcon(200, 0, 15, 15, 5);
+    }
 
-	public UIWindow(MalisisGui gui, String title, int width, int height)
-	{
-		this(gui, title, width, height, Anchor.CENTER | Anchor.MIDDLE);
-	}
+    public UIWindow(MalisisGui gui, String title, int width, int height) {
+        this(gui, title, width, height, Anchor.CENTER | Anchor.MIDDLE);
+    }
 
-	public UIWindow(MalisisGui gui, int width, int height)
-	{
-		this(gui, null, width, height, Anchor.CENTER | Anchor.MIDDLE);
-	}
+    public UIWindow(MalisisGui gui, int width, int height) {
+        this(gui, null, width, height, Anchor.CENTER | Anchor.MIDDLE);
+    }
 
-	/**
-	 * Sets the background color for {@link UIContainer}.
-	 *
-	 * @param color the color
-	 * @return the UI container
-	 */
-	public UIContainer setBackgroundColor(int color)
-	{
-		this.backgroundColor = color;
-		return this;
-	}
+    /**
+     * Sets the background color for {@link UIContainer}.
+     *
+     * @param color the color
+     * @return the UI container
+     */
+    public UIContainer setBackgroundColor(int color) {
+        this.backgroundColor = color;
+        return this;
+    }
 
-	/**
-	 * Gets the background color.
-	 *
-	 * @return the background color for {@link UIContainer}.
-	 */
-	public int getBackgroundColor()
-	{
-		return backgroundColor;
-	}
+    /**
+     * Gets the background color.
+     *
+     * @return the background color for {@link UIContainer}.
+     */
+    public int getBackgroundColor() {
+        return backgroundColor;
+    }
 
-	@Override
-	public void onClose()
-	{
-		MalisisGui gui = MalisisGui.currentGui();
-		if (gui != null)
-			gui.close();
-	}
+    @Override
+    public void onClose() {
+        MalisisGui gui = MalisisGui.currentGui();
+        if (gui != null) gui.close();
+    }
 
-	@Override
-	public void drawBackground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick)
-	{
-		rp.colorMultiplier.set(getBackgroundColor());
-		rp.icon.set(icon);
-		renderer.drawShape(shape, rp);
-	}
+    @Override
+    public void drawBackground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick) {
+        rp.colorMultiplier.set(getBackgroundColor());
+        rp.icon.set(icon);
+        renderer.drawShape(shape, rp);
+    }
 
-	@Override
-	public ClipArea getClipArea()
-	{
-		return new ClipArea(this, 3);
-	}
-
+    @Override
+    public ClipArea getClipArea() {
+        return new ClipArea(this, 3);
+    }
 }

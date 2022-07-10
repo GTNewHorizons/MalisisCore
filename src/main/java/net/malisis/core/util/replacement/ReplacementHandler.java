@@ -25,7 +25,6 @@
 package net.malisis.core.util.replacement;
 
 import java.util.HashMap;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -38,61 +37,52 @@ import net.minecraft.item.crafting.IRecipe;
  * @author Ordinastie
  * @param <T> the type of {@link IRecipe} handled
  */
-public abstract class ReplacementHandler<T>
-{
-	private static HashMap<Class<?>, ReplacementHandler> handlers = new HashMap();
+public abstract class ReplacementHandler<T> {
+    private static HashMap<Class<?>, ReplacementHandler> handlers = new HashMap();
 
-	public ReplacementHandler(Class<T> clazz)
-	{
-		handlers.put(clazz, this);
-	}
+    public ReplacementHandler(Class<T> clazz) {
+        handlers.put(clazz, this);
+    }
 
-	/**
-	 * Gets the {@link ItemStack} corresponding to the object. Obj is either {@link Item} or {@link Block}.
-	 *
-	 * @param obj the replacement
-	 * @return the item stack
-	 */
-	protected ItemStack getItemStack(Object obj)
-	{
-		if (obj instanceof Item)
-			return new ItemStack((Item) obj);
-		if (obj instanceof Block)
-			return new ItemStack((Block) obj);
+    /**
+     * Gets the {@link ItemStack} corresponding to the object. Obj is either {@link Item} or {@link Block}.
+     *
+     * @param obj the replacement
+     * @return the item stack
+     */
+    protected ItemStack getItemStack(Object obj) {
+        if (obj instanceof Item) return new ItemStack((Item) obj);
+        if (obj instanceof Block) return new ItemStack((Block) obj);
 
-		return null;
-	}
+        return null;
+    }
 
-	/**
-	 * Checks if the object matches the speicified {@link ItemStack}.
-	 *
-	 * @param itemStack the item stack
-	 * @param replaced the replaced
-	 * @return true, if is matched
-	 */
-	protected boolean isMatched(ItemStack itemStack, Object replaced)
-	{
-		if (itemStack == null)
-			return false;
+    /**
+     * Checks if the object matches the speicified {@link ItemStack}.
+     *
+     * @param itemStack the item stack
+     * @param replaced the replaced
+     * @return true, if is matched
+     */
+    protected boolean isMatched(ItemStack itemStack, Object replaced) {
+        if (itemStack == null) return false;
 
-		if (replaced instanceof Item)
-			return itemStack.getItem() == replaced;
+        if (replaced instanceof Item) return itemStack.getItem() == replaced;
 
-		return replaced instanceof Block && itemStack.getItem() instanceof ItemBlock
-				&& ((ItemBlock) itemStack.getItem()).blockInstance == replaced;
-	}
+        return replaced instanceof Block
+                && itemStack.getItem() instanceof ItemBlock
+                && ((ItemBlock) itemStack.getItem()).field_150939_a == replaced;
+    }
 
-	public abstract boolean replace(T object, Object vanilla, Object replacement);
+    public abstract boolean replace(T object, Object vanilla, Object replacement);
 
-	/**
-	 * Gets the handler of a specific {@link IRecipe}.
-	 *
-	 * @param object the object
-	 * @return the handler
-	 */
-	public static ReplacementHandler getHandler(Object object)
-	{
-		return handlers.get(object.getClass());
-	}
-
+    /**
+     * Gets the handler of a specific {@link IRecipe}.
+     *
+     * @param object the object
+     * @return the handler
+     */
+    public static ReplacementHandler getHandler(Object object) {
+        return handlers.get(object.getClass());
+    }
 }

@@ -34,91 +34,79 @@ import net.malisis.core.client.gui.event.ComponentEvent;
  *
  * @param <T> the type of <code>UIComponent</code> that fired this event.
  */
-public abstract class SpaceChangeEvent<T extends UIComponent> extends ComponentEvent<T>
-{
-	public SpaceChangeEvent(T component)
-	{
-		super(component);
-	}
+public abstract class SpaceChangeEvent<T extends UIComponent> extends ComponentEvent<T> {
+    public SpaceChangeEvent(T component) {
+        super(component);
+    }
 
-	/**
-	 * Fired when a {@link UIComponent} changes it's position.
-	 *
-	 * @author Ordinastie
-	 *
-	 * @param <T> the type of <code>UIComponent</code> that fired this event.
-	 */
-	public static class PositionChangeEvent<T extends UIComponent> extends SpaceChangeEvent<T>
-	{
-		protected int newX;
-		protected int newY;
-		protected int newAnchor;
+    /**
+     * Fired when a {@link UIComponent} changes it's position.
+     *
+     * @author Ordinastie
+     *
+     * @param <T> the type of <code>UIComponent</code> that fired this event.
+     */
+    public static class PositionChangeEvent<T extends UIComponent> extends SpaceChangeEvent<T> {
+        protected int newX;
+        protected int newY;
+        protected int newAnchor;
 
-		public PositionChangeEvent(T component, int newX, int newY, int newAnchor)
-		{
-			super(component);
-			this.newX = newX;
-			this.newY = newY;
-			this.newAnchor = newAnchor;
-		}
+        public PositionChangeEvent(T component, int newX, int newY, int newAnchor) {
+            super(component);
+            this.newX = newX;
+            this.newY = newY;
+            this.newAnchor = newAnchor;
+        }
 
-		/**
-		 * @return the new X position for the {@link UIComponent}.
-		 */
-		public int getNewX()
-		{
-			return newX;
-		}
+        /**
+         * @return the new X position for the {@link UIComponent}.
+         */
+        public int getNewX() {
+            return newX;
+        }
 
-		/**
-		 * @return the new Y position for the {@link UIComponent}.
-		 */
-		public int getNewY()
-		{
-			return newY;
-		}
+        /**
+         * @return the new Y position for the {@link UIComponent}.
+         */
+        public int getNewY() {
+            return newY;
+        }
 
-		/**
-		 * @return the new anchor position for the {@link UIComponent}.
-		 */
-		public int getNewAnchor()
-		{
-			return newAnchor;
-		}
-	}
+        /**
+         * @return the new anchor position for the {@link UIComponent}.
+         */
+        public int getNewAnchor() {
+            return newAnchor;
+        }
+    }
 
-	/**
-	 * Fired when a {@link UIComponent} changes its size.
-	 *
-	 * @author Ordinastie
-	 *
-	 * @param <T> the type of <code>UIComponent</code> that fired this event.
-	 */
-	public static class SizeChangeEvent<T extends UIComponent> extends SpaceChangeEvent<T>
-	{
-		protected int newWidth;
-		protected int newHeight;
+    /**
+     * Fired when a {@link UIComponent} changes its size.
+     *
+     * @author Ordinastie
+     *
+     * @param <T> the type of <code>UIComponent</code> that fired this event.
+     */
+    public static class SizeChangeEvent<T extends UIComponent> extends SpaceChangeEvent<T> {
+        protected int newWidth;
+        protected int newHeight;
 
-		public SizeChangeEvent(T component, int newWidth, int newHeight)
-		{
-			super(component);
-		}
+        public SizeChangeEvent(T component, int newWidth, int newHeight) {
+            super(component);
+        }
 
-		/**
-		 * @return the new width for the {@link UIComponent}.
-		 */
-		public int getNewWidth()
-		{
-			return newWidth;
-		}
+        /**
+         * @return the new width for the {@link UIComponent}.
+         */
+        public int getNewWidth() {
+            return newWidth;
+        }
 
-		/**
-		 * @return the new height for the {@link UIComponent}.
-		 */
-		public int getNewHeight()
-		{
-			return newHeight;
-		}
-	}
-
+        /**
+         * @return the new height for the {@link UIComponent}.
+         */
+        public int getNewHeight() {
+            return newHeight;
+        }
+    }
 }

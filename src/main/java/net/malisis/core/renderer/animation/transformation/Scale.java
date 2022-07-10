@@ -24,61 +24,58 @@
 
 package net.malisis.core.renderer.animation.transformation;
 
-public class Scale extends Transformation<Scale, ITransformable.Scale>
-{
-	protected float fromX = 1, fromY = 1, fromZ = 1;
-	protected float toX = 1, toY = 1, toZ = 1;
-	protected float offsetX = 0, offsetY = 0, offsetZ = 0;
+public class Scale extends Transformation<Scale, ITransformable.Scale> {
+    protected float fromX = 1, fromY = 1, fromZ = 1;
+    protected float toX = 1, toY = 1, toZ = 1;
+    protected float offsetX = 0, offsetY = 0, offsetZ = 0;
 
-	public Scale()
-	{}
+    public Scale() {}
 
-	public Scale(float x, float y, float z)
-	{
-		to(x, y, z);
-	}
+    public Scale(float x, float y, float z) {
+        to(x, y, z);
+    }
 
-	public Scale(float fromX, float fromY, float fromZ, float toX, float toY, float toZ)
-	{
-		from(fromX, fromY, fromZ);
-		to(toX, toY, toZ);
-	}
+    public Scale(float fromX, float fromY, float fromZ, float toX, float toY, float toZ) {
+        from(fromX, fromY, fromZ);
+        to(toX, toY, toZ);
+    }
 
-	protected Scale from(float x, float y, float z)
-	{
-		fromX = x;
-		fromY = y;
-		fromZ = z;
-		return this;
-	}
+    protected Scale from(float x, float y, float z) {
+        fromX = x;
+        fromY = y;
+        fromZ = z;
+        return this;
+    }
 
-	protected Scale to(float x, float y, float z)
-	{
-		toX = x;
-		toY = y;
-		toZ = z;
-		return this;
-	}
+    protected Scale to(float x, float y, float z) {
+        toX = x;
+        toY = y;
+        toZ = z;
+        return this;
+    }
 
-	public Scale offset(float x, float y, float z)
-	{
-		offsetX = x;
-		offsetY = y;
-		offsetZ = z;
-		return this;
-	}
+    public Scale offset(float x, float y, float z) {
+        offsetX = x;
+        offsetY = y;
+        offsetZ = z;
+        return this;
+    }
 
-	@Override
-	protected void doTransform(ITransformable.Scale transformable, float comp)
-	{
-		float fromX = reversed ? this.toX : this.fromX;
-		float toX = reversed ? this.fromX : this.toX;
-		float fromY = reversed ? this.toY : this.fromY;
-		float toY = reversed ? this.fromY : this.toY;
-		float fromZ = reversed ? this.toZ : this.fromZ;
-		float toZ = reversed ? this.fromZ : this.toZ;
+    @Override
+    protected void doTransform(ITransformable.Scale transformable, float comp) {
+        float fromX = reversed ? this.toX : this.fromX;
+        float toX = reversed ? this.fromX : this.toX;
+        float fromY = reversed ? this.toY : this.fromY;
+        float toY = reversed ? this.fromY : this.toY;
+        float fromZ = reversed ? this.toZ : this.fromZ;
+        float toZ = reversed ? this.fromZ : this.toZ;
 
-		transformable.scale(fromX + (toX - fromX) * comp, fromY + (toY - fromY) * comp, fromZ + (toZ - fromZ) * comp, offsetX, offsetY,
-				offsetZ);
-	}
+        transformable.scale(
+                fromX + (toX - fromX) * comp,
+                fromY + (toY - fromY) * comp,
+                fromZ + (toZ - fromZ) * comp,
+                offsetX,
+                offsetY,
+                offsetZ);
+    }
 }

@@ -24,52 +24,45 @@
 
 package net.malisis.core.configuration.setting;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.malisis.core.client.gui.MalisisGui;
 import net.malisis.core.client.gui.component.UIComponent;
 import net.malisis.core.client.gui.component.interaction.UICheckBox;
 import net.minecraftforge.common.config.Property;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author Ordinastie
  *
  */
-public class BooleanSetting extends Setting<Boolean>
-{
-	private UICheckBox checkbox;
+public class BooleanSetting extends Setting<Boolean> {
+    private UICheckBox checkbox;
 
-	public BooleanSetting(String key, boolean defaultValue)
-	{
-		super(key, defaultValue);
-		type = Property.Type.BOOLEAN;
-	}
+    public BooleanSetting(String key, boolean defaultValue) {
+        super(key, defaultValue);
+        type = Property.Type.BOOLEAN;
+    }
 
-	@Override
-	public Boolean readValue(String stringValue)
-	{
-		return Boolean.parseBoolean(stringValue);
-	}
+    @Override
+    public Boolean readValue(String stringValue) {
+        return Boolean.parseBoolean(stringValue);
+    }
 
-	@Override
-	public String writeValue(Boolean value)
-	{
-		return value.toString();
-	}
+    @Override
+    public String writeValue(Boolean value) {
+        return value.toString();
+    }
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	public UIComponent getComponent(MalisisGui gui)
-	{
-		checkbox = new UICheckBox(gui, key).setChecked(value);
-		return checkbox;
-	}
+    @SideOnly(Side.CLIENT)
+    @Override
+    public UIComponent getComponent(MalisisGui gui) {
+        checkbox = new UICheckBox(gui, key).setChecked(value);
+        return checkbox;
+    }
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	public Boolean getValueFromComponent()
-	{
-		return checkbox.isChecked();
-	}
-
+    @SideOnly(Side.CLIENT)
+    @Override
+    public Boolean getValueFromComponent() {
+        return checkbox.isChecked();
+    }
 }

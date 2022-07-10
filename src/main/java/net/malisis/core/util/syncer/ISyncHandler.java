@@ -24,8 +24,8 @@
 
 package net.malisis.core.util.syncer;
 
-import net.malisis.core.util.syncer.message.SyncerMessage.Packet;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import net.malisis.core.util.syncer.message.SyncerMessage.Packet;
 
 /**
  * {@link ISyncHandler} are used to define handlers for the {@link Syncer}.<br>
@@ -35,62 +35,61 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
  * @param <T> the generic type
  * @param <S> the generic type
  */
-public interface ISyncHandler<T, S extends ISyncableData>
-{
-	/**
-	 * Gets the name of this {@link ISyncHandler}. That name needs to match the {@link Syncable} value for the class it's applied on.
-	 *
-	 * @return the name
-	 */
-	public String getName();
+public interface ISyncHandler<T, S extends ISyncableData> {
+    /**
+     * Gets the name of this {@link ISyncHandler}. That name needs to match the {@link Syncable} value for the class it's applied on.
+     *
+     * @return the name
+     */
+    public String getName();
 
-	/**
-	 * Gets the object to be synced on the receiving side.
-	 *
-	 * @param ctx the ctx
-	 * @param data the data
-	 * @return the receiver
-	 */
-	public T getReceiver(MessageContext ctx, S data);
+    /**
+     * Gets the object to be synced on the receiving side.
+     *
+     * @param ctx the ctx
+     * @param data the data
+     * @return the receiver
+     */
+    public T getReceiver(MessageContext ctx, S data);
 
-	/**
-	 * Gets the {@link ISyncableData} that holds the extra data to be sent.<br>
-	 * On the receiving side, getSyncData() is called with a null caller, as the data is filled later by
-	 * {@link ISyncableData#fromBytes(io.netty.buffer.ByteBuf)}
-	 *
-	 * @param caller the caller
-	 * @return the sync data
-	 */
-	public S getSyncData(T caller);
+    /**
+     * Gets the {@link ISyncableData} that holds the extra data to be sent.<br>
+     * On the receiving side, getSyncData() is called with a null caller, as the data is filled later by
+     * {@link ISyncableData#fromBytes(io.netty.buffer.ByteBuf)}
+     *
+     * @param caller the caller
+     * @return the sync data
+     */
+    public S getSyncData(T caller);
 
-	/**
-	 * Adds a {@link FieldData} to be handled by this {@link ISyncHandler}.
-	 *
-	 * @param fieldData the field data
-	 */
-	public void addFieldData(FieldData fieldData);
+    /**
+     * Adds a {@link FieldData} to be handled by this {@link ISyncHandler}.
+     *
+     * @param fieldData the field data
+     */
+    public void addFieldData(FieldData fieldData);
 
-	/**
-	 * Gets the {@link FieldData} for the specified index (called from the the SyncerMessage.Packet).
-	 *
-	 * @param index the index
-	 * @return the field data
-	 */
-	public FieldData getFieldData(int index);
+    /**
+     * Gets the {@link FieldData} for the specified index (called from the the SyncerMessage.Packet).
+     *
+     * @param index the index
+     * @return the field data
+     */
+    public FieldData getFieldData(int index);
 
-	/**
-	 * Gets the {@link FieldData} from its name.
-	 *
-	 * @param name the name
-	 * @return the field data
-	 */
-	public FieldData getFieldData(String name);
+    /**
+     * Gets the {@link FieldData} from its name.
+     *
+     * @param name the name
+     * @return the field data
+     */
+    public FieldData getFieldData(String name);
 
-	/**
-	 * Sends the syncing packet.
-	 *
-	 * @param caller the caller
-	 * @param packet the packet
-	 */
-	public void send(T caller, Packet packet);
+    /**
+     * Sends the syncing packet.
+     *
+     * @param caller the caller
+     * @param packet the packet
+     */
+    public void send(T caller, Packet packet);
 }

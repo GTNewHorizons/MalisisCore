@@ -24,57 +24,51 @@
 
 package net.malisis.core.configuration.setting;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.malisis.core.client.gui.MalisisGui;
 import net.malisis.core.client.gui.component.UIComponent;
 import net.malisis.core.client.gui.component.container.UIContainer;
 import net.malisis.core.client.gui.component.decoration.UILabel;
 import net.malisis.core.client.gui.component.interaction.UITextField;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author Ordinastie
  *
  */
-public class StringSetting extends Setting<String>
-{
-	private UITextField textField;
+public class StringSetting extends Setting<String> {
+    private UITextField textField;
 
-	public StringSetting(String key, String defaultValue)
-	{
-		super(key, defaultValue);
-	}
+    public StringSetting(String key, String defaultValue) {
+        super(key, defaultValue);
+    }
 
-	@Override
-	public String readValue(String stringValue)
-	{
-		return stringValue;
-	}
+    @Override
+    public String readValue(String stringValue) {
+        return stringValue;
+    }
 
-	@Override
-	public String writeValue(String value)
-	{
-		return value;
-	}
+    @Override
+    public String writeValue(String value) {
+        return value;
+    }
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	public UIComponent getComponent(MalisisGui gui)
-	{
-		UILabel label = new UILabel(gui, key);
-		textField = new UITextField(gui, writeValue(value)).setSize(50, 0).setPosition(label.getWidth() + 2, 0);
+    @SideOnly(Side.CLIENT)
+    @Override
+    public UIComponent getComponent(MalisisGui gui) {
+        UILabel label = new UILabel(gui, key);
+        textField = new UITextField(gui, writeValue(value)).setSize(50, 0).setPosition(label.getWidth() + 2, 0);
 
-		UIContainer container = new UIContainer(gui, label.getWidth() + 54, 12);
-		container.add(label);
-		container.add(textField);
+        UIContainer container = new UIContainer(gui, label.getWidth() + 54, 12);
+        container.add(label);
+        container.add(textField);
 
-		return container;
-	}
+        return container;
+    }
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	public String getValueFromComponent()
-	{
-		return textField.getText();
-	}
+    @SideOnly(Side.CLIENT)
+    @Override
+    public String getValueFromComponent() {
+        return textField.getText();
+    }
 }

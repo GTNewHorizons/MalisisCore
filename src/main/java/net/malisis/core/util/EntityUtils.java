@@ -30,7 +30,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
 import net.malisis.core.MalisisCore;
 import net.malisis.core.asm.AsmUtils;
 import net.minecraft.entity.Entity;
@@ -53,141 +52,125 @@ import net.minecraftforge.common.util.ForgeDirection;
  * @author Ordinastie
  *
  */
+public class EntityUtils {
+    private static ForgeDirection[] facings = new ForgeDirection[] {
+        ForgeDirection.NORTH,
+        ForgeDirection.EAST,
+        ForgeDirection.SOUTH,
+        ForgeDirection.WEST,
+        ForgeDirection.UP,
+        ForgeDirection.DOWN,
+        ForgeDirection.UNKNOWN
+    };
 
-public class EntityUtils
-{
-	private static ForgeDirection[] facings = new ForgeDirection[] { ForgeDirection.NORTH, ForgeDirection.EAST, ForgeDirection.SOUTH,
-			ForgeDirection.WEST, ForgeDirection.UP, ForgeDirection.DOWN, ForgeDirection.UNKNOWN };
+    private static Method getPlayerInstance;
+    private static Field playersWatchingChunk;
 
-	private static Method getPlayerInstance;
-	private static Field playersWatchingChunk;
-	static
-	{
-		try
-		{
-			getPlayerInstance = AsmUtils.changeMethodAccess(PlayerManager.class, "getPlayerInstance", "func_72690_a", "IIZ");
-			Class<?> clazz = Class.forName("net.minecraft.server.management.PlayerManager$PlayerInstance");
-			playersWatchingChunk = AsmUtils.changeFieldAccess(clazz, "playersWatchingChunk", "field_73263_b");
-		}
-		catch (ClassNotFoundException e)
-		{
-			MalisisCore.log.error("Failed to get PlayerInstance class.", e);
-		}
+    static {
+        try {
+            getPlayerInstance =
+                    AsmUtils.changeMethodAccess(PlayerManager.class, "getPlayerInstance", "func_72690_a", "IIZ");
+            Class<?> clazz = Class.forName("net.minecraft.server.management.PlayerManager$PlayerInstance");
+            playersWatchingChunk = AsmUtils.changeFieldAccess(clazz, "playersWatchingChunk", "field_73263_b");
+        } catch (ClassNotFoundException e) {
+            MalisisCore.log.error("Failed to get PlayerInstance class.", e);
+        }
+    }
 
-	}
+    /**
+     * Eject a new item corresponding to the {@link ItemStack}.
+     *
+     * @param world the world
+     * @param x the x
+     * @param y the y
+     * @param z the z
+     * @param itemStack the item stack
+     */
+    public static void spawnEjectedItem(World world, int x, int y, int z, ItemStack itemStack) {
+        float rx = world.rand.nextFloat() * 0.8F + 0.1F;
+        float ry = world.rand.nextFloat() * 0.8F + 0.1F;
+        float rz = world.rand.nextFloat() * 0.8F + 0.1F;
 
-	/**
-	 * Eject a new item corresponding to the {@link ItemStack}.
-	 *
-	 * @param world the world
-	 * @param x the x
-	 * @param y the y
-	 * @param z the z
-	 * @param itemStack the item stack
-	 */
-	public static void spawnEjectedItem(World world, int x, int y, int z, ItemStack itemStack)
-	{
-		float rx = world.rand.nextFloat() * 0.8F + 0.1F;
-		float ry = world.rand.nextFloat() * 0.8F + 0.1F;
-		float rz = world.rand.nextFloat() * 0.8F + 0.1F;
+        EntityItem entityItem = new EntityItem(world, x + rx, y + ry, z + rz, itemStack);
 
-		EntityItem entityItem = new EntityItem(world, x + rx, y + ry, z + rz, itemStack);
+        float factor = 0.05F;
+        entityItem.motionX = world.rand.nextGaussian() * factor;
+        entityItem.motionY = world.rand.nextGaussian() * factor + 0.2F;
+        entityItem.motionZ = world.rand.nextGaussian() * factor;
+        world.spawnEntityInWorld(entityItem);
+    }
 
-		float factor = 0.05F;
-		entityItem.motionX = world.rand.nextGaussian() * factor;
-		entityItem.motionY = world.rand.nextGaussian() * factor + 0.2F;
-		entityItem.motionZ = world.rand.nextGaussian() * factor;
-		world.spawnEntityInWorld(entityItem);
+    /**
+     * Finds a player by its UUID.
+     *
+     * @param uuid the uuid
+     * @return the player
+     */
+    public static EntityPlayerMP findPlayerFromUUID(UUID uuid) {
+        List<EntityPlayerMP> listPlayers = MinecraftServer.getServer().getConfigurationManager().playerEntityList;
 
-	}
+        for (EntityPlayerMP player : listPlayers) if (player.getUniqueID().equals(uuid)) return player;
 
-	/**
-	 * Finds a player by its UUID.
-	 *
-	 * @param uuid the uuid
-	 * @return the player
-	 */
-	public static EntityPlayerMP findPlayerFromUUID(UUID uuid)
-	{
-		List<EntityPlayerMP> listPlayers = MinecraftServer.getServer().getConfigurationManager().playerEntityList;
+        return null;
+    }
 
-		for (EntityPlayerMP player : listPlayers)
-			if (player.getUniqueID().equals(uuid))
-				return player;
+    /**
+     * Gets the {@link ForgeDirection} the {@link Entity} is currently facing.
+     *
+     * @param entity the entity
+     * @return the direction
+     */
+    public static ForgeDirection getEntityFacing(Entity entity) {
+        return getEntityFacing(entity, false);
+    }
 
-		return null;
-	}
+    /**
+     * Gets the {@link ForgeDirection} the {@link Entity} is currently facing.<br>
+     * If <b>sixWays</b> is <code>true</code>, the direction can be {@link ForgeDirection#UP UP} or {@link ForgeDirection#DOWN DOWN} if the
+     * entity is looking up or down.
+     *
+     * @param entity the entity
+     * @param sixWays whether to consider UP and DOWN for directions
+     * @return the direction
+     */
+    public static ForgeDirection getEntityFacing(Entity entity, boolean sixWays) {
+        return facings[getEntityFacingInt(entity, sixWays)];
+    }
 
-	/**
-	 * Gets the {@link ForgeDirection} the {@link Entity} is currently facing.
-	 *
-	 * @param entity the entity
-	 * @return the direction
-	 */
-	public static ForgeDirection getEntityFacing(Entity entity)
-	{
-		return getEntityFacing(entity, false);
-	}
+    public static int getEntityFacingInt(Entity entity, boolean sixWays) {
+        if (entity == null) return 6;
 
-	/**
-	 * Gets the {@link ForgeDirection} the {@link Entity} is currently facing.<br>
-	 * If <b>sixWays</b> is <code>true</code>, the direction can be {@link ForgeDirection#UP UP} or {@link ForgeDirection#DOWN DOWN} if the
-	 * entity is looking up or down.
-	 *
-	 * @param entity the entity
-	 * @param sixWays whether to consider UP and DOWN for directions
-	 * @return the direction
-	 */
-	public static ForgeDirection getEntityFacing(Entity entity, boolean sixWays)
-	{
-		return facings[getEntityFacingInt(entity, sixWays)];
-	}
+        float pitch = entity.rotationPitch;
+        if (sixWays && pitch < -45) return 5;
+        if (sixWays && pitch > 45) return 4;
 
-	public static int getEntityFacingInt(Entity entity, boolean sixWays)
-	{
-		if (entity == null)
-			return 6;
+        return (MathHelper.floor_double(entity.rotationYaw * 4.0F / 360.0F + 0.5D) + 2) & 3;
+    }
 
-		float pitch = entity.rotationPitch;
-		if (sixWays && pitch < -45)
-			return 5;
-		if (sixWays && pitch > 45)
-			return 4;
+    public static boolean isEquipped(EntityPlayer player, Item item) {
+        return player != null
+                && player.getCurrentEquippedItem() != null
+                && player.getCurrentEquippedItem().getItem() == item;
+    }
 
-		return (MathHelper.floor_double(entity.rotationYaw * 4.0F / 360.0F + 0.5D) + 2) & 3;
-	}
+    public static boolean isEquipped(EntityPlayer player, ItemStack itemStack) {
+        return isEquipped(player, itemStack != null ? itemStack.getItem() : null);
+    }
 
-	public static boolean isEquipped(EntityPlayer player, Item item)
-	{
-		return player != null && player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == item;
-	}
+    public static List<EntityPlayerMP> getPlayersWatchingChunk(Chunk chunk) {
+        return getPlayersWatchingChunk((WorldServer) chunk.worldObj, chunk.xPosition, chunk.zPosition);
+    }
 
-	public static boolean isEquipped(EntityPlayer player, ItemStack itemStack)
-	{
-		return isEquipped(player, itemStack != null ? itemStack.getItem() : null);
-	}
+    public static List<EntityPlayerMP> getPlayersWatchingChunk(WorldServer world, int x, int z) {
+        if (playersWatchingChunk == null) return new ArrayList<>();
 
-	public static List<EntityPlayerMP> getPlayersWatchingChunk(Chunk chunk)
-	{
-		return getPlayersWatchingChunk((WorldServer) chunk.worldObj, chunk.xPosition, chunk.zPosition);
-	}
-
-	public static List<EntityPlayerMP> getPlayersWatchingChunk(WorldServer world, int x, int z)
-	{
-		if (playersWatchingChunk == null)
-			return new ArrayList<>();
-
-		try
-		{
-			Object playerInstance = getPlayerInstance.invoke(world.getPlayerManager(), x, z, false);
-			if (playerInstance == null)
-				return new ArrayList<>();
-			return (List<EntityPlayerMP>) playersWatchingChunk.get(playerInstance);
-		}
-		catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e)
-		{
-			MalisisCore.log.info("Failed to get players watching chunk :", e);
-			return new ArrayList<>();
-		}
-	}
+        try {
+            Object playerInstance = getPlayerInstance.invoke(world.getPlayerManager(), x, z, false);
+            if (playerInstance == null) return new ArrayList<>();
+            return (List<EntityPlayerMP>) playersWatchingChunk.get(playerInstance);
+        } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+            MalisisCore.log.info("Failed to get players watching chunk :", e);
+            return new ArrayList<>();
+        }
+    }
 }

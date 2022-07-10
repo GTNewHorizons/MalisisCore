@@ -30,29 +30,24 @@ import net.malisis.core.renderer.element.Face;
  * @author Ordinastie
  *
  */
-public class SimpleGuiShape extends GuiShape
-{
-	public SimpleGuiShape(Face face)
-	{
-		super(face);
-		storeState();
-	}
+public class SimpleGuiShape extends GuiShape {
+    public SimpleGuiShape(Face face) {
+        super(face);
+        storeState();
+    }
 
-	public SimpleGuiShape()
-	{
-		this(new GuiFace());
-	}
+    public SimpleGuiShape() {
+        this(new GuiFace());
+    }
 
-	@Override
-	public void setSize(float width, float height)
-	{
-		faces[0].factor(width, height, 0);
-	}
+    @Override
+    public void setSize(float width, float height) {
+        faces[0].factor(width, height, 0);
+    }
 
-	@Override
-	public void scale(float x, float y)
-	{
-		super.scale(x, y, 0);
-		applyMatrix();
-	}
+    @Override
+    public void scale(float x, float y) {
+        super.scale(x, y, 0);
+        applyMatrix();
+    }
 }

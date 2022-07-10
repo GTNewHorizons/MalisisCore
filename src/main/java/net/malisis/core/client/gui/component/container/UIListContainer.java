@@ -25,7 +25,6 @@
 package net.malisis.core.client.gui.component.container;
 
 import java.util.Collection;
-
 import net.malisis.core.client.gui.ClipArea;
 import net.malisis.core.client.gui.GuiRenderer;
 import net.malisis.core.client.gui.MalisisGui;
@@ -41,287 +40,245 @@ import net.minecraft.client.gui.GuiScreen;
  * @author Ordinastie
  *
  */
-public abstract class UIListContainer<T extends UIListContainer, S> extends UIComponent<T> implements IScrollable, IClipable
-{
-	protected int elementSpacing = 0;
-	protected boolean unselect = true;
-	protected Collection<S> elements;
-	protected S selected;
-	protected int lastSize = 0;
+public abstract class UIListContainer<T extends UIListContainer, S> extends UIComponent<T>
+        implements IScrollable, IClipable {
+    protected int elementSpacing = 0;
+    protected boolean unselect = true;
+    protected Collection<S> elements;
+    protected S selected;
+    protected int lastSize = 0;
 
-	//IScrollable
-	/** Vertical Scrollbar. */
-	protected UIScrollBar scrollbar;
-	/** Y Offset for the contents of this {@link UIListContainer}. */
-	protected int yOffset;
+    // IScrollable
+    /** Vertical Scrollbar. */
+    protected UIScrollBar scrollbar;
+    /** Y Offset for the contents of this {@link UIListContainer}. */
+    protected int yOffset;
 
-	public UIListContainer(MalisisGui gui)
-	{
-		super(gui);
-		scrollbar = new UIScrollBar(gui, this, UIScrollBar.Type.VERTICAL);
-	}
+    public UIListContainer(MalisisGui gui) {
+        super(gui);
+        scrollbar = new UIScrollBar(gui, this, UIScrollBar.Type.VERTICAL);
+    }
 
-	public UIListContainer(MalisisGui gui, int width, int height)
-	{
-		this(gui);
-		setSize(width, height);
-	}
+    public UIListContainer(MalisisGui gui, int width, int height) {
+        this(gui);
+        setSize(width, height);
+    }
 
-	public void setElements(Collection<S> elements)
-	{
-		this.elements = elements;
-		fireEvent(new ContentUpdateEvent(this));
-	}
+    public void setElements(Collection<S> elements) {
+        this.elements = elements;
+        fireEvent(new ContentUpdateEvent(this));
+    }
 
-	public Iterable<S> getElements()
-	{
-		return elements;
-	}
+    public Iterable<S> getElements() {
+        return elements;
+    }
 
-	public void setElementSpacing(int elementSpacing)
-	{
-		this.elementSpacing = elementSpacing;
-	}
+    public void setElementSpacing(int elementSpacing) {
+        this.elementSpacing = elementSpacing;
+    }
 
-	public boolean canUnselect()
-	{
-		return unselect;
-	}
+    public boolean canUnselect() {
+        return unselect;
+    }
 
-	public void setUnselect(boolean unselect)
-	{
-		this.unselect = unselect;
-	}
+    public void setUnselect(boolean unselect) {
+        this.unselect = unselect;
+    }
 
-	public void setSelected(S comp)
-	{
-		selected = comp;
-	}
+    public void setSelected(S comp) {
+        selected = comp;
+    }
 
-	public S getSelected()
-	{
-		return selected;
-	}
+    public S getSelected() {
+        return selected;
+    }
 
-	public boolean isSelected(S element)
-	{
-		return element == selected;
-	}
+    public boolean isSelected(S element) {
+        return element == selected;
+    }
 
-	public S select(S element)
-	{
-		if (!fireEvent(new SelectEvent<S>(this, element)))
-			return getSelected();
+    public S select(S element) {
+        if (!fireEvent(new SelectEvent<S>(this, element))) return getSelected();
 
-		setSelected(element);
-		return element;
-	}
+        setSelected(element);
+        return element;
+    }
 
-	//#region IClipable
-	/**
-	 * Gets the {@link ClipArea}.
-	 *
-	 * @return the clip area
-	 */
-	@Override
-	public ClipArea getClipArea()
-	{
-		return new ClipArea(this);
-	}
+    // #region IClipable
+    /**
+     * Gets the {@link ClipArea}.
+     *
+     * @return the clip area
+     */
+    @Override
+    public ClipArea getClipArea() {
+        return new ClipArea(this);
+    }
 
-	/**
-	 * Sets whether this {@link UIContainer} should clip its contents
-	 *
-	 * @param clipContent if true, clip contents
-	 */
-	@Override
-	public void setClipContent(boolean clipContent)
-	{}
+    /**
+     * Sets whether this {@link UIContainer} should clip its contents
+     *
+     * @param clipContent if true, clip contents
+     */
+    @Override
+    public void setClipContent(boolean clipContent) {}
 
-	/**
-	 * Checks whether this {@link UIContainer} should clip its contents
-	 *
-	 * @return true, if should clip contents
-	 */
-	@Override
-	public boolean shouldClipContent()
-	{
-		return true;
-	}
+    /**
+     * Checks whether this {@link UIContainer} should clip its contents
+     *
+     * @return true, if should clip contents
+     */
+    @Override
+    public boolean shouldClipContent() {
+        return true;
+    }
 
-	//#end IClipable
+    // #end IClipable
 
-	//#region IScrollable
-	@Override
-	public int getContentWidth()
-	{
-		return getWidth();
-	}
+    // #region IScrollable
+    @Override
+    public int getContentWidth() {
+        return getWidth();
+    }
 
-	@Override
-	public int getContentHeight()
-	{
-		if (elements == null || elements.size() == 0)
-			return 0;
+    @Override
+    public int getContentHeight() {
+        if (elements == null || elements.size() == 0) return 0;
 
-		int height = 0;
-		for (S element : elements)
-			height += getElementHeight(element) + elementSpacing;
-		return height;
-	}
+        int height = 0;
+        for (S element : elements) height += getElementHeight(element) + elementSpacing;
+        return height;
+    }
 
-	@Override
-	public float getOffsetX()
-	{
-		return 0;
-	}
+    @Override
+    public float getOffsetX() {
+        return 0;
+    }
 
-	@Override
-	public void setOffsetX(float offsetX, int delta)
-	{}
+    @Override
+    public void setOffsetX(float offsetX, int delta) {}
 
-	@Override
-	public float getOffsetY()
-	{
-		return (float) yOffset / (getContentHeight() - getHeight());
-	}
+    @Override
+    public float getOffsetY() {
+        return (float) yOffset / (getContentHeight() - getHeight());
+    }
 
-	@Override
-	public void setOffsetY(float offsetY, int delta)
-	{
-		float newOffset = (getContentHeight() - getHeight() + delta) * offsetY;
-		this.yOffset = (int) (yOffset - newOffset > 0 ? Math.floor(newOffset) : Math.ceil(newOffset));
-	}
+    @Override
+    public void setOffsetY(float offsetY, int delta) {
+        float newOffset = (getContentHeight() - getHeight() + delta) * offsetY;
+        this.yOffset = (int) (yOffset - newOffset > 0 ? Math.floor(newOffset) : Math.ceil(newOffset));
+    }
 
-	@Override
-	public float getScrollStep()
-	{
-		return (GuiScreen.isCtrlKeyDown() ? 0.125F : 0.025F);
-	}
+    @Override
+    public float getScrollStep() {
+        return (GuiScreen.isCtrlKeyDown() ? 0.125F : 0.025F);
+    }
 
-	/**
-	 * Gets the horizontal padding.
-	 *
-	 * @return horizontal padding of this {@link UIContainer}.
-	 */
-	@Override
-	public int getHorizontalPadding()
-	{
-		return 0;
-	}
+    /**
+     * Gets the horizontal padding.
+     *
+     * @return horizontal padding of this {@link UIContainer}.
+     */
+    @Override
+    public int getHorizontalPadding() {
+        return 0;
+    }
 
-	/**
-	 * Gets the vertical padding.
-	 *
-	 * @return horizontal padding of this {@link UIContainer}.
-	 */
-	@Override
-	public int getVerticalPadding()
-	{
-		return 0;
-	}
+    /**
+     * Gets the vertical padding.
+     *
+     * @return horizontal padding of this {@link UIContainer}.
+     */
+    @Override
+    public int getVerticalPadding() {
+        return 0;
+    }
 
-	//#end IScrollable
+    // #end IScrollable
 
-	public S getElementAt(int x, int y)
-	{
-		if (!isHovered())
-			return null;
-		int ey = 0;
-		int cy = relativeY(y) + yOffset;
-		for (S element : elements)
-		{
-			int h = getElementHeight(element) + elementSpacing;
-			if (ey + h > cy)
-				return element;
-			ey += h;
-		}
+    public S getElementAt(int x, int y) {
+        if (!isHovered()) return null;
+        int ey = 0;
+        int cy = relativeY(y) + yOffset;
+        for (S element : elements) {
+            int h = getElementHeight(element) + elementSpacing;
+            if (ey + h > cy) return element;
+            ey += h;
+        }
 
-		return null;
-	}
+        return null;
+    }
 
-	@Override
-	public boolean onClick(int x, int y)
-	{
-		S element = getElementAt(x, y);
-		if (!canUnselect() && (element == null || isSelected(element)))
-			return super.onClick(x, y);
+    @Override
+    public boolean onClick(int x, int y) {
+        S element = getElementAt(x, y);
+        if (!canUnselect() && (element == null || isSelected(element))) return super.onClick(x, y);
 
-		select(isSelected(element) ? null : element);
-		return true;
-	}
+        select(isSelected(element) ? null : element);
+        return true;
+    }
 
-	@Override
-	public void draw(GuiRenderer renderer, int mouseX, int mouseY, float partialTick)
-	{
-		super.draw(renderer, mouseX, mouseY, partialTick);
-		getGui().addDebug("Pos", relativeX(mouseX), relativeY(mouseY));
-	}
+    @Override
+    public void draw(GuiRenderer renderer, int mouseX, int mouseY, float partialTick) {
+        super.draw(renderer, mouseX, mouseY, partialTick);
+        getGui().addDebug("Pos", relativeX(mouseX), relativeY(mouseY));
+    }
 
-	@Override
-	public void drawBackground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick)
-	{}
+    @Override
+    public void drawBackground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick) {}
 
-	@Override
-	public void drawForeground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick)
-	{
-		drawElements(renderer, mouseX, mouseY, partialTick);
-	}
+    @Override
+    public void drawForeground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick) {
+        drawElements(renderer, mouseX, mouseY, partialTick);
+    }
 
-	public void drawElements(GuiRenderer renderer, int mouseX, int mouseY, float partialTick)
-	{
-		if (elements == null || elements.size() == 0)
-		{
-			drawEmtpy(renderer, mouseX, mouseY, partialTick);
-			return;
-		}
+    public void drawElements(GuiRenderer renderer, int mouseX, int mouseY, float partialTick) {
+        if (elements == null || elements.size() == 0) {
+            drawEmtpy(renderer, mouseX, mouseY, partialTick);
+            return;
+        }
 
-		S hoveredElement = getElementAt(mouseX, mouseY);
+        S hoveredElement = getElementAt(mouseX, mouseY);
 
-		int bk = y;
-		y -= yOffset;
-		for (S element : elements)
-		{
-			drawElementBackground(renderer, mouseX, mouseY, partialTick, element, hoveredElement == element);
-			drawElementForeground(renderer, mouseX, mouseY, partialTick, element, hoveredElement == element);
-			y += getElementHeight(element) + elementSpacing;
-		}
+        int bk = y;
+        y -= yOffset;
+        for (S element : elements) {
+            drawElementBackground(renderer, mouseX, mouseY, partialTick, element, hoveredElement == element);
+            drawElementForeground(renderer, mouseX, mouseY, partialTick, element, hoveredElement == element);
+            y += getElementHeight(element) + elementSpacing;
+        }
 
-		y = bk;
+        y = bk;
+    }
 
-	}
+    public void drawEmtpy(GuiRenderer renderer, int mouseX, int mouseY, float partialTick) {
+        renderer.drawText("No element");
+    }
 
-	public void drawEmtpy(GuiRenderer renderer, int mouseX, int mouseY, float partialTick)
-	{
-		renderer.drawText("No element");
-	}
+    public abstract int getElementHeight(S element);
 
-	public abstract int getElementHeight(S element);
+    public abstract void drawElementBackground(
+            GuiRenderer renderer, int mouseX, int mouseY, float partialTick, S element, boolean isHovered);
 
-	public abstract void drawElementBackground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick, S element, boolean isHovered);
+    public abstract void drawElementForeground(
+            GuiRenderer renderer, int mouseX, int mouseY, float partialTick, S element, boolean isHovered);
 
-	public abstract void drawElementForeground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick, S element, boolean isHovered);
+    /**
+     * Event fired when a {@link UIListContainer} changes its selected element.<br>
+     * Cancelling the event will prevent the element to be selected.
+     */
+    public static class SelectEvent<T> extends ValueChange<UIListContainer, T> {
+        public SelectEvent(UIListContainer component, T selected) {
+            super(component, (T) component.getSelected(), selected);
+        }
 
-	/**
-	 * Event fired when a {@link UIListContainer} changes its selected element.<br>
-	 * Cancelling the event will prevent the element to be selected.
-	 */
-	public static class SelectEvent<T> extends ValueChange<UIListContainer, T>
-	{
-		public SelectEvent(UIListContainer component, T selected)
-		{
-			super(component, (T) component.getSelected(), selected);
-		}
-
-		/**
-		 * Gets the new element to be set.
-		 *
-		 * @return the new option
-		 */
-		public T getSelected()
-		{
-			return newValue;
-		}
-	}
-
+        /**
+         * Gets the new element to be set.
+         *
+         * @return the new option
+         */
+        public T getSelected() {
+            return newValue;
+        }
+    }
 }

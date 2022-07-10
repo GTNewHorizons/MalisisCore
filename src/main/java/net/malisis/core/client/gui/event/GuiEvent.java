@@ -31,27 +31,23 @@ import net.malisis.core.client.gui.MalisisGui;
  *
  * @author PaleoCrafter
  */
-public class GuiEvent
-{
-	private boolean cancelled = false;
+public class GuiEvent {
+    private boolean cancelled = false;
 
-	public GuiEvent()
-	{}
+    public GuiEvent() {}
 
-	/**
-	 * Marks this {@link GuiEvent} as cancelled.
-	 *
-	 */
-	public void cancel()
-	{
-		cancelled = true;
-	}
+    /**
+     * Marks this {@link GuiEvent} as cancelled.
+     *
+     */
+    public void cancel() {
+        cancelled = true;
+    }
 
-	/**
-	 * @return whether this {@link GuiEvent} is cancelled.
-	 */
-	public boolean isCancelled()
-	{
-		return cancelled;
-	}
+    /**
+     * @return whether this {@link GuiEvent} is cancelled.
+     */
+    public boolean isCancelled() {
+        return cancelled;
+    }
 }

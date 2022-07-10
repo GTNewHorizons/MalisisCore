@@ -25,7 +25,6 @@
 package net.malisis.core.util.replacement;
 
 import java.lang.reflect.Field;
-
 import net.malisis.core.asm.AsmUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -34,46 +33,37 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
  * @author Ordinastie
  *
  */
-public class ShapedOreRecipeHandler extends ReplacementHandler<ShapedOreRecipe>
-{
-	private Field inputField;
-	private Field outputField;
+public class ShapedOreRecipeHandler extends ReplacementHandler<ShapedOreRecipe> {
+    private Field inputField;
+    private Field outputField;
 
-	public ShapedOreRecipeHandler()
-	{
-		super(ShapedOreRecipe.class);
-		inputField = AsmUtils.changeFieldAccess(ShapedOreRecipe.class, "input");
-		outputField = AsmUtils.changeFieldAccess(ShapedOreRecipe.class, "output");
-	}
+    public ShapedOreRecipeHandler() {
+        super(ShapedOreRecipe.class);
+        inputField = AsmUtils.changeFieldAccess(ShapedOreRecipe.class, "input");
+        outputField = AsmUtils.changeFieldAccess(ShapedOreRecipe.class, "output");
+    }
 
-	@Override
-	public boolean replace(ShapedOreRecipe recipe, Object vanilla, Object replacement)
-	{
-		boolean replaced = false;
-		try
-		{
-			if (isMatched(recipe.getRecipeOutput(), vanilla))
-			{
-				outputField.set(recipe, getItemStack(replacement));
-				replaced = true;
-			}
+    @Override
+    public boolean replace(ShapedOreRecipe recipe, Object vanilla, Object replacement) {
+        boolean replaced = false;
+        try {
+            if (isMatched(recipe.getRecipeOutput(), vanilla)) {
+                outputField.set(recipe, getItemStack(replacement));
+                replaced = true;
+            }
 
-			Object[] input = (Object[]) inputField.get(recipe);
+            Object[] input = (Object[]) inputField.get(recipe);
 
-			for (int i = 0; i < input.length; i++)
-			{
-				if (input[i] instanceof ItemStack && isMatched((ItemStack) input[i], vanilla))
-				{
-					input[i] = getItemStack(replacement);
-					replaced = true;
-				}
-			}
-		}
-		catch (IllegalArgumentException | IllegalAccessException e)
-		{
-			e.printStackTrace();
-		}
+            for (int i = 0; i < input.length; i++) {
+                if (input[i] instanceof ItemStack && isMatched((ItemStack) input[i], vanilla)) {
+                    input[i] = getItemStack(replacement);
+                    replaced = true;
+                }
+            }
+        } catch (IllegalArgumentException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
 
-		return replaced;
-	}
+        return replaced;
+    }
 }

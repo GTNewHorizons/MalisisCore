@@ -28,24 +28,19 @@ package net.malisis.core.util.parser.token;
  * @author Ordinastie
  *
  */
-public class LetterToken extends Token<Character>
-{
+public class LetterToken extends Token<Character> {
 
-	@Override
-	public boolean matches(String s, int index)
-	{
-		value = null;
-		if (index >= s.length() || !Character.isLetter(s.charAt(index)))
-			return false;
+    @Override
+    public boolean matches(String s, int index) {
+        value = null;
+        if (index >= s.length() || !Character.isLetter(s.charAt(index))) return false;
 
-		value = s.charAt(index);
-		return true;
-	}
+        value = s.charAt(index);
+        return true;
+    }
 
-	@Override
-	public int size()
-	{
-		return 1;
-	}
-
+    @Override
+    public int size() {
+        return 1;
+    }
 }

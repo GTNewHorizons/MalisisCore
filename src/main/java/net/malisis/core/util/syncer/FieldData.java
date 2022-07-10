@@ -30,31 +30,26 @@ import java.lang.reflect.Field;
  * @author Ordinastie
  *
  */
-public class FieldData
-{
-	private final int index;
-	private final String name;
-	private final Field field;
+public class FieldData {
+    private final int index;
+    private final String name;
+    private final Field field;
 
-	public FieldData(int index, String name, Field field)
-	{
-		this.index = index;
-		this.name = name;
-		this.field = field;
-	}
+    public FieldData(int index, String name, Field field) {
+        this.index = index;
+        this.name = name;
+        this.field = field;
+    }
 
-	public int getIndex()
-	{
-		return index;
-	}
+    public int getIndex() {
+        return index;
+    }
 
-	public String getName()
-	{
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public Field getField()
-	{
-		return field;
-	}
+    public Field getField() {
+        return field;
+    }
 }

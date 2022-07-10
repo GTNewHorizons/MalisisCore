@@ -34,96 +34,83 @@ import net.malisis.core.client.gui.event.ComponentEvent;
  *
  * @param <T> the type of <code>UIComponent</code> that fired this event.
  */
-public abstract class StateChangeEvent<T extends UIComponent> extends ComponentEvent<T>
-{
-	protected boolean state;
+public abstract class StateChangeEvent<T extends UIComponent> extends ComponentEvent<T> {
+    protected boolean state;
 
-	public StateChangeEvent(T component, boolean state)
-	{
-		super(component);
-		this.state = state;
-	}
+    public StateChangeEvent(T component, boolean state) {
+        super(component);
+        this.state = state;
+    }
 
-	/**
-	 * @return the new state for the {@link UIComponent} that fired this {@link StateChangeEvent} event.
-	 */
-	public boolean getState()
-	{
-		return state;
-	}
+    /**
+     * @return the new state for the {@link UIComponent} that fired this {@link StateChangeEvent} event.
+     */
+    public boolean getState() {
+        return state;
+    }
 
-	/**
-	 * Fired when a {@link UIComponent} gets hovered.
-	 *
-	 * @author Ordinastie
-	 *
-	 * @param <T> the type of <code>UIComponent</code> that fired this event.
-	 */
-	public static class HoveredStateChange<T extends UIComponent> extends StateChangeEvent<T>
-	{
-		public HoveredStateChange(T component, boolean hovered)
-		{
-			super(component, hovered);
-		}
-	}
+    /**
+     * Fired when a {@link UIComponent} gets hovered.
+     *
+     * @author Ordinastie
+     *
+     * @param <T> the type of <code>UIComponent</code> that fired this event.
+     */
+    public static class HoveredStateChange<T extends UIComponent> extends StateChangeEvent<T> {
+        public HoveredStateChange(T component, boolean hovered) {
+            super(component, hovered);
+        }
+    }
 
-	/**
-	 * Fired when a {@link UIComponent} gets focused.
-	 *
-	 * @author Ordinastie
-	 *
-	 * @param <T> the type of <code>UIComponent</code> that fired this event.
-	 */
-	public static class FocusStateChange<T extends UIComponent> extends StateChangeEvent<T>
-	{
-		public FocusStateChange(T component, boolean focused)
-		{
-			super(component, focused);
-		}
-	}
+    /**
+     * Fired when a {@link UIComponent} gets focused.
+     *
+     * @author Ordinastie
+     *
+     * @param <T> the type of <code>UIComponent</code> that fired this event.
+     */
+    public static class FocusStateChange<T extends UIComponent> extends StateChangeEvent<T> {
+        public FocusStateChange(T component, boolean focused) {
+            super(component, focused);
+        }
+    }
 
-	/**
-	 * Fired when a {@link UIComponent} gets activated or deactivated.
-	 *
-	 * @author Ordinastie
-	 *
-	 * @param <T> the type of <code>UIComponent</code> that fired this event.
-	 */
-	public static class ActiveStateChange<T extends UIComponent> extends StateChangeEvent<T>
-	{
-		public ActiveStateChange(T component, boolean active)
-		{
-			super(component, active);
-		}
-	}
+    /**
+     * Fired when a {@link UIComponent} gets activated or deactivated.
+     *
+     * @author Ordinastie
+     *
+     * @param <T> the type of <code>UIComponent</code> that fired this event.
+     */
+    public static class ActiveStateChange<T extends UIComponent> extends StateChangeEvent<T> {
+        public ActiveStateChange(T component, boolean active) {
+            super(component, active);
+        }
+    }
 
-	/**
-	 * Fired when a {@link UIComponent} visibility changes.
-	 *
-	 * @author Ordinastie
-	 *
-	 * @param <T> the type of <code>UIComponent</code> that fired this event.
-	 */
-	public static class VisibleStateChange<T extends UIComponent> extends StateChangeEvent<T>
-	{
-		public VisibleStateChange(T component, boolean visible)
-		{
-			super(component, visible);
-		}
-	}
+    /**
+     * Fired when a {@link UIComponent} visibility changes.
+     *
+     * @author Ordinastie
+     *
+     * @param <T> the type of <code>UIComponent</code> that fired this event.
+     */
+    public static class VisibleStateChange<T extends UIComponent> extends StateChangeEvent<T> {
+        public VisibleStateChange(T component, boolean visible) {
+            super(component, visible);
+        }
+    }
 
-	/**
-	 * Fired when a {@link UIComponent} visibility changes.
-	 *
-	 * @author Ordinastie
-	 *
-	 * @param <T> the type of <code>UIComponent</code> that fired this event.
-	 */
-	public static class DisabledStateChange<T extends UIComponent> extends StateChangeEvent<T>
-	{
-		public DisabledStateChange(T component, boolean disabled)
-		{
-			super(component, disabled);
-		}
-	}
+    /**
+     * Fired when a {@link UIComponent} visibility changes.
+     *
+     * @author Ordinastie
+     *
+     * @param <T> the type of <code>UIComponent</code> that fired this event.
+     */
+    public static class DisabledStateChange<T extends UIComponent> extends StateChangeEvent<T> {
+        public DisabledStateChange(T component, boolean disabled) {
+            super(component, disabled);
+        }
+    }
 }

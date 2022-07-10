@@ -32,88 +32,80 @@ import net.malisis.core.client.gui.component.UIComponent;
  * @author Ordinastie, PaleoCrafter
  * @param <T> Type of the <code>UIComponent</code> firing this Event
  */
-public abstract class ComponentEvent<T extends UIComponent> extends GuiEvent
-{
-	/** {@link UIComponent} firing this {@link ComponentEvent} */
-	protected T component;
+public abstract class ComponentEvent<T extends UIComponent> extends GuiEvent {
+    /** {@link UIComponent} firing this {@link ComponentEvent} */
+    protected T component;
 
-	/**
-	 * Instantiates a new {@link ComponentEvent}
-	 *
-	 * @param component the component
-	 */
-	public ComponentEvent(T component)
-	{
-		this.component = component;
-	}
+    /**
+     * Instantiates a new {@link ComponentEvent}
+     *
+     * @param component the component
+     */
+    public ComponentEvent(T component) {
+        this.component = component;
+    }
 
-	/**
-	 * Gets the {@link UIComponent} that fired this {@link ComponentEvent}.
-	 *
-	 * @return the component
-	 */
-	public T getComponent()
-	{
-		return component;
-	}
+    /**
+     * Gets the {@link UIComponent} that fired this {@link ComponentEvent}.
+     *
+     * @return the component
+     */
+    public T getComponent() {
+        return component;
+    }
 
-	/**
-	 * Checks if this {@link ComponentEvent} was fired by a {@link UIComponent} with this name.
-	 *
-	 * @param name the name
-	 * @return true, if the name is equals to component's name
-	 */
-	public boolean isFrom(String name)
-	{
-		return name.equals(component.getName());
-	}
+    /**
+     * Checks if this {@link ComponentEvent} was fired by a {@link UIComponent} with this name.
+     *
+     * @param name the name
+     * @return true, if the name is equals to component's name
+     */
+    public boolean isFrom(String name) {
+        return name.equals(component.getName());
+    }
 
-	/**
-	 * Fired when a {@link UIComponent} gets it's value changed.
-	 *
-	 *
-	 * @param <T> the type of <code>UIComponent</code> that fired this event.
-	 * @param <S> the type of the value being changed.
-	 */
-	public static class ValueChange<T extends UIComponent, S> extends ComponentEvent<T>
-	{
-		/** The old value. */
-		protected S oldValue;
-		/** The new value. */
-		protected S newValue;
+    /**
+     * Fired when a {@link UIComponent} gets it's value changed.
+     *
+     *
+     * @param <T> the type of <code>UIComponent</code> that fired this event.
+     * @param <S> the type of the value being changed.
+     */
+    public static class ValueChange<T extends UIComponent, S> extends ComponentEvent<T> {
+        /** The old value. */
+        protected S oldValue;
+        /** The new value. */
+        protected S newValue;
 
-		/**
-		 * Instantiates a new {@link net.malisis.core.client.gui.event.ComponentEvent.ValueChange}
-		 *
-		 * @param component the component
-		 * @param oldValue the old value
-		 * @param newValue the new value
-		 */
-		public ValueChange(T component, S oldValue, S newValue)
-		{
-			super(component);
-			this.oldValue = oldValue;
-			this.newValue = newValue;
-		}
+        /**
+         * Instantiates a new {@link net.malisis.core.client.gui.event.ComponentEvent.ValueChange}
+         *
+         * @param component the component
+         * @param oldValue the old value
+         * @param newValue the new value
+         */
+        public ValueChange(T component, S oldValue, S newValue) {
+            super(component);
+            this.oldValue = oldValue;
+            this.newValue = newValue;
+        }
 
-		/**
-		 * Gets the value being changed for the {@link UIComponent}.
-		 *
-		 * @return the old value
-		 */
-		public S getOldValue()
-		{
-			return oldValue;
-		}
+        /**
+         * Gets the value being changed for the {@link UIComponent}.
+         *
+         * @return the old value
+         */
+        public S getOldValue() {
+            return oldValue;
+        }
 
-		/**
-		 * Gets the value being set for the {@link UIComponent}.
-		 *
-		 * @return the new value
-		 */
-		public S getNewValue()
-		{
-			return newValue;
-		}
-	}
+        /**
+         * Gets the value being set for the {@link UIComponent}.
+         *
+         * @return the new value
+         */
+        public S getNewValue() {
+            return newValue;
+        }
+    }
 }

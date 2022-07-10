@@ -39,7 +39,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Syncable
-{
-	String value();
+public @interface Syncable {
+    String value();
 }

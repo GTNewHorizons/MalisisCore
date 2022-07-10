@@ -24,6 +24,11 @@
 
 package net.malisis.core.inventory.message;
 
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.malisis.core.MalisisCore;
 import net.malisis.core.client.gui.MalisisGui;
@@ -31,11 +36,6 @@ import net.malisis.core.inventory.MalisisInventory;
 import net.malisis.core.inventory.MalisisInventoryContainer;
 import net.malisis.core.network.MalisisMessage;
 import net.minecraft.entity.player.EntityPlayerMP;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Message to tell the client to open a GUI.
@@ -44,65 +44,54 @@ import cpw.mods.fml.relauncher.SideOnly;
  *
  */
 @MalisisMessage
-public class CloseInventoryMessage implements IMessageHandler<CloseInventoryMessage.Packet, IMessage>
-{
-	public enum ContainerType
-	{
-		TYPE_TILEENTITY, TYPE_ITEM;
-	}
+public class CloseInventoryMessage implements IMessageHandler<CloseInventoryMessage.Packet, IMessage> {
+    public enum ContainerType {
+        TYPE_TILEENTITY,
+        TYPE_ITEM;
+    }
 
-	public CloseInventoryMessage()
-	{
-		MalisisCore.network.registerMessage(this, Packet.class, Side.CLIENT);
-	}
+    public CloseInventoryMessage() {
+        MalisisCore.network.registerMessage(this, Packet.class, Side.CLIENT);
+    }
 
-	/**
-	 * Handles the received {@link Packet} on the client. Close the GUI.
-	 *
-	 * @param message the message
-	 * @param ctx the ctx
-	 * @return the i message
-	 */
-	@Override
-	public IMessage onMessage(Packet message, MessageContext ctx)
-	{
-		if (ctx.side == Side.CLIENT)
-			closeGui();
-		return null;
-	}
+    /**
+     * Handles the received {@link Packet} on the client. Close the GUI.
+     *
+     * @param message the message
+     * @param ctx the ctx
+     * @return the i message
+     */
+    @Override
+    public IMessage onMessage(Packet message, MessageContext ctx) {
+        if (ctx.side == Side.CLIENT) closeGui();
+        return null;
+    }
 
-	/**
-	 * Closes a the GUI for the {@link MalisisInventoryContainer}.
-	 */
-	@SideOnly(Side.CLIENT)
-	private void closeGui()
-	{
-		if (MalisisGui.currentGui() != null)
-			MalisisGui.currentGui().close();
-	}
+    /**
+     * Closes a the GUI for the {@link MalisisInventoryContainer}.
+     */
+    @SideOnly(Side.CLIENT)
+    private void closeGui() {
+        if (MalisisGui.currentGui() != null) MalisisGui.currentGui().close();
+    }
 
-	/**
-	 * Sends a packet to client to notify it to open a {@link MalisisInventory}.
-	 *
-	 * @param player the player
-	 */
-	public static void send(EntityPlayerMP player)
-	{
-		Packet packet = new Packet();
-		MalisisCore.network.sendTo(packet, player);
-	}
+    /**
+     * Sends a packet to client to notify it to open a {@link MalisisInventory}.
+     *
+     * @param player the player
+     */
+    public static void send(EntityPlayerMP player) {
+        Packet packet = new Packet();
+        MalisisCore.network.sendTo(packet, player);
+    }
 
-	public static class Packet implements IMessage
-	{
-		public Packet()
-		{}
+    public static class Packet implements IMessage {
+        public Packet() {}
 
-		@Override
-		public void fromBytes(ByteBuf buf)
-		{}
+        @Override
+        public void fromBytes(ByteBuf buf) {}
 
-		@Override
-		public void toBytes(ByteBuf buf)
-		{}
-	}
+        @Override
+        public void toBytes(ByteBuf buf) {}
+    }
 }

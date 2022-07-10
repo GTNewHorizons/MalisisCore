@@ -28,36 +28,31 @@ package net.malisis.core.client.gui.element;
  * @author Ordinastie
  *
  */
-public class XResizableGuiShape extends GuiShape
-{
-	protected int sideWidth;
+public class XResizableGuiShape extends GuiShape {
+    protected int sideWidth;
 
-	public XResizableGuiShape(int sideWidth)
-	{
-		super(3);
-		this.sideWidth = sideWidth;
-		storeState();
-	}
+    public XResizableGuiShape(int sideWidth) {
+        super(3);
+        this.sideWidth = sideWidth;
+        storeState();
+    }
 
-	public XResizableGuiShape()
-	{
-		this(5);
-	}
+    public XResizableGuiShape() {
+        this(5);
+    }
 
-	@Override
-	public void setSize(float w, float h)
-	{
-		w = Math.max(w - 2 * sideWidth, 0);
+    @Override
+    public void setSize(float w, float h) {
+        w = Math.max(w - 2 * sideWidth, 0);
 
-		faces[0].factor(sideWidth, h, 0);
-		faces[1].factor(w, h, 0);
-		faces[2].factor(sideWidth, h, 0);
+        faces[0].factor(sideWidth, h, 0);
+        faces[1].factor(w, h, 0);
+        faces[2].factor(sideWidth, h, 0);
 
-		faces[1].translate(sideWidth, 0, 0);
-		faces[2].translate(sideWidth + w, 0, 0);
-	}
+        faces[1].translate(sideWidth, 0, 0);
+        faces[2].translate(sideWidth + w, 0, 0);
+    }
 
-	@Override
-	public void scale(float x, float y)
-	{}
+    @Override
+    public void scale(float x, float y) {}
 }

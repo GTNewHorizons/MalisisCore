@@ -24,16 +24,14 @@
 
 package net.malisis.core.configuration.setting;
 
+import com.google.common.base.Preconditions;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.malisis.core.client.gui.MalisisGui;
 import net.malisis.core.client.gui.component.UIComponent;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
-
-import com.google.common.base.Preconditions;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * The Class Setting.
@@ -41,133 +39,122 @@ import cpw.mods.fml.relauncher.SideOnly;
  * @author Ordinastie
  * @param <T> the generic type
  */
-public abstract class Setting<T>
-{
-	protected Property property;
-	protected Property.Type type;
-	protected String category = "General";
-	protected String key;
-	protected String[] comments = new String[0];
-	protected T defaultValue;
-	protected T value;
+public abstract class Setting<T> {
+    protected Property property;
+    protected Property.Type type;
+    protected String category = "General";
+    protected String key;
+    protected String[] comments = new String[0];
+    protected T defaultValue;
+    protected T value;
 
-	/**
-	 * Instantiates a new setting.
-	 *
-	 * @param key the key
-	 * @param defaultValue the default value
-	 */
-	public Setting(String key, T defaultValue)
-	{
-		this.type = Property.Type.STRING;
-		this.key = key;
-		this.defaultValue = Preconditions.checkNotNull(defaultValue);
-	}
+    /**
+     * Instantiates a new setting.
+     *
+     * @param key the key
+     * @param defaultValue the default value
+     */
+    public Setting(String key, T defaultValue) {
+        this.type = Property.Type.STRING;
+        this.key = key;
+        this.defaultValue = Preconditions.checkNotNull(defaultValue);
+    }
 
-	/**
-	 * Sets the category.
-	 *
-	 * @param category the new category
-	 */
-	public void setCategory(String category)
-	{
-		this.category = category;
-	}
+    /**
+     * Sets the category.
+     *
+     * @param category the new category
+     */
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
-	/**
-	 * Sets the comment.
-	 *
-	 * @param comment the new comment
-	 */
-	public void setComment(String... comment)
-	{
-		this.comments = comment;
-	}
+    /**
+     * Sets the comment.
+     *
+     * @param comment the new comment
+     */
+    public void setComment(String... comment) {
+        this.comments = comment;
+    }
 
-	/**
-	 * Sets the value.
-	 *
-	 * @param value the value
-	 */
-	public void set(T value)
-	{
-		this.value = Preconditions.checkNotNull(value);
-	}
+    /**
+     * Sets the value.
+     *
+     * @param value the value
+     */
+    public void set(T value) {
+        this.value = Preconditions.checkNotNull(value);
+    }
 
-	/**
-	 * Gets the value.
-	 *
-	 * @return the t
-	 */
-	public T get()
-	{
-		return value;
-	}
+    /**
+     * Gets the value.
+     *
+     * @return the t
+     */
+    public T get() {
+        return value;
+    }
 
-	/**
-	 * Loads the configuration.
-	 *
-	 * @param config the config
-	 */
-	public void load(Configuration config)
-	{
-		String comment = null;
-		for (String c : comments)
-			comment += StatCollector.translateToLocal(c) + " ";
-		property = config.get(category, key, writeValue(defaultValue), comment, type);
-		value = readValue(property.getString());
-		if (value == null)
-			throw new NullPointerException("readPropertyValue should not return null!");
-	}
+    /**
+     * Loads the configuration.
+     *
+     * @param config the config
+     */
+    public void load(Configuration config) {
+        String comment = null;
+        for (String c : comments) comment += StatCollector.translateToLocal(c) + " ";
+        property = config.get(category, key, writeValue(defaultValue), comment, type);
+        value = readValue(property.getString());
+        if (value == null) throw new NullPointerException("readPropertyValue should not return null!");
+    }
 
-	/**
-	 * Save the configuration.
-	 */
-	public void save()
-	{
-		property.set(writeValue(value));
-	}
+    /**
+     * Save the configuration.
+     */
+    public void save() {
+        property.set(writeValue(value));
+    }
 
-	/**
-	 * Gets the comments.
-	 *
-	 * @return the comments
-	 */
-	public String[] getComments()
-	{
-		return comments;
-	}
+    /**
+     * Gets the comments.
+     *
+     * @return the comments
+     */
+    public String[] getComments() {
+        return comments;
+    }
 
-	/**
-	 * Reads the value.
-	 *
-	 * @param stringValue the string value
-	 * @return the t
-	 */
-	public abstract T readValue(String stringValue);
+    /**
+     * Reads the value.
+     *
+     * @param stringValue the string value
+     * @return the t
+     */
+    public abstract T readValue(String stringValue);
 
-	/**
-	 * Writes the value.
-	 *
-	 * @param value the value
-	 * @return the string
-	 */
-	public abstract String writeValue(T value);
+    /**
+     * Writes the value.
+     *
+     * @param value the value
+     * @return the string
+     */
+    public abstract String writeValue(T value);
 
-	/**
-	 * Gets the component.
-	 *
-	 * @param gui the gui
-	 * @return the component
-	 */
-	@SideOnly(Side.CLIENT)
-	public abstract UIComponent getComponent(MalisisGui gui);
+    /**
+     * Gets the component.
+     *
+     * @param gui the gui
+     * @return the component
+     */
+    @SideOnly(Side.CLIENT)
+    public abstract UIComponent getComponent(MalisisGui gui);
 
-	/**
-	 * Gets the value from component.
-	 *
-	 * @return the value from component
-	 */
-	@SideOnly(Side.CLIENT)
-	public abstract T getValueFromComponent();
+    /**
+     * Gets the value from component.
+     *
+     * @return the value from component
+     */
+    @SideOnly(Side.CLIENT)
+    public abstract T getValueFromComponent();
 }

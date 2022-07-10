@@ -28,30 +28,24 @@ package net.malisis.core.util.parser.token;
  * @author Ordinastie
  *
  */
-public class StringToken extends Token<String>
-{
-	@Override
-	public boolean matches(String s, int index)
-	{
-		value = null;
-		if (s.charAt(index) != '"')
-			return false;
-		int e = index;
-		while (++e < s.length())
-		{
-			if (s.charAt(e) == '"')
-			{
-				value = s.substring(index + 1, e);
-				return true;
-			}
-		}
+public class StringToken extends Token<String> {
+    @Override
+    public boolean matches(String s, int index) {
+        value = null;
+        if (s.charAt(index) != '"') return false;
+        int e = index;
+        while (++e < s.length()) {
+            if (s.charAt(e) == '"') {
+                value = s.substring(index + 1, e);
+                return true;
+            }
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	@Override
-	public int size()
-	{
-		return value != null ? value.length() + 2 : 1;
-	}
+    @Override
+    public int size() {
+        return value != null ? value.length() + 2 : 1;
+    }
 }
