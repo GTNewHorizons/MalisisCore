@@ -113,7 +113,7 @@ public class ReplacementTool {
      * @param replacement the replacement
      * @param vanilla the vanilla
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({"rawtypes", "unchecked"})
     private void replaceVanilla(int id, String name, String srgFieldName, Object replacement, Object vanilla) {
         boolean block = replacement instanceof Block;
         RegistryNamespaced registry = block ? Block.blockRegistry : Item.itemRegistry;
