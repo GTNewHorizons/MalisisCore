@@ -27,10 +27,7 @@ package net.malisis.core.renderer;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.relauncher.ReflectionHelper;
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import net.malisis.core.MalisisCore;
@@ -1111,19 +1108,9 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         if (damagedBlocks != null) return damagedBlocks;
 
         try {
-            Field modifiers = Field.class.getDeclaredField("modifiers");
-            modifiers.setAccessible(true);
 
-            Field f = ReflectionHelper.findField(
-                    RenderGlobal.class, MalisisCore.isObfEnv ? "field_94141_F" : "destroyBlockIcons");
-            modifiers.setInt(f, f.getModifiers() & ~Modifier.FINAL);
-            damagedIcons = (IIcon[]) f.get(Minecraft.getMinecraft().renderGlobal);
-
-            f = ReflectionHelper.findField(
-                    RenderGlobal.class, MalisisCore.isObfEnv ? "field_72738_E" : "damagedBlocks");
-
-            modifiers.setInt(f, f.getModifiers());
-            damagedBlocks = (HashMap) f.get(Minecraft.getMinecraft().renderGlobal);
+            damagedIcons = Minecraft.getMinecraft().renderGlobal.destroyBlockIcons;
+            damagedBlocks = Minecraft.getMinecraft().renderGlobal.damagedBlocks;
 
             return damagedBlocks;
         } catch (Exception e) {

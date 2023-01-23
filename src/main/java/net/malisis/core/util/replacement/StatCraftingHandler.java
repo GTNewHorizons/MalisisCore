@@ -26,6 +26,7 @@ package net.malisis.core.util.replacement;
 
 import java.lang.reflect.Field;
 import net.malisis.core.asm.AsmUtils;
+import net.minecraft.item.Item;
 import net.minecraft.stats.StatCrafting;
 
 /**
@@ -43,11 +44,11 @@ public class StatCraftingHandler extends ReplacementHandler<StatCrafting> {
     @Override
     public boolean replace(StatCrafting stat, Object vanilla, Object replacement) {
         try {
-            if (itemField.get(stat) == vanilla) {
-                itemField.set(stat, replacement);
+            if (stat.field_150960_a == vanilla) {
+                stat.field_150960_a = (Item) replacement;
                 return true;
             }
-        } catch (IllegalArgumentException | IllegalAccessException e) {
+        } catch (ClassCastException e) {
             e.printStackTrace();
         }
         return false;
