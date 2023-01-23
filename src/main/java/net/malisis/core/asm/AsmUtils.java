@@ -30,7 +30,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.util.Collections;
 import java.util.ListIterator;
 import net.malisis.core.MalisisCore;
@@ -211,9 +210,6 @@ public class AsmUtils {
             // modify reference in Blocks class
             Field f = clazz.getDeclaredField(MalisisCore.isObfEnv ? srgName : fieldName);
             f.setAccessible(true);
-            Field modifiers = Field.class.getDeclaredField("modifiers");
-            modifiers.setAccessible(true);
-            modifiers.setInt(f, f.getModifiers() & ~Modifier.FINAL);
 
             return f;
         } catch (ReflectiveOperationException e) {

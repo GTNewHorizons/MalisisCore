@@ -62,7 +62,11 @@ import org.apache.logging.log4j.Logger;
 /**
  * The Class MalisisCore.
  */
-@Mod(modid = MalisisCore.modid, name = MalisisCore.modname, version = MalisisCore.version)
+@Mod(
+        modid = MalisisCore.modid,
+        name = MalisisCore.modname,
+        version = MalisisCore.version,
+        dependencies = "required-after:gtnhlib@[0.0.10,)")
 public class MalisisCore implements IMalisisMod {
     /** Mod ID. */
     public static final String modid = "malisiscore";

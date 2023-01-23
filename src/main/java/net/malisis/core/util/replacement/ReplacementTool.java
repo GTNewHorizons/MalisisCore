@@ -24,18 +24,17 @@
 
 package net.malisis.core.util.replacement;
 
+import com.gtnewhorizon.gtnhlib.reflect.Fields;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.FMLControlledNamespacedRegistry;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import net.malisis.core.MalisisCore;
-import net.malisis.core.asm.AsmUtils;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -123,12 +122,13 @@ public class ReplacementTool {
 
         try {
             method.invoke(registry, id, "minecraft:" + name, replacement);
-            Field f = AsmUtils.changeFieldAccess(clazz, name, srgFieldName);
-            f.set(null, replacement);
+            final Fields.ClassFields.Field field = Fields.ofClass(clazz)
+                    .getUntypedField(Fields.LookupType.DECLARED, MalisisCore.isObfEnv ? srgFieldName : name);
+            field.setValue(null, replacement);
 
-            if (ib != null)
-                AsmUtils.changeFieldAccess(ItemBlock.class, "field_150939_a", "field_150939_a")
-                        .set(ib, replacement);
+            if (ib != null) {
+                ib.field_150939_a = (Block) replacement;
+            }
 
             map.put(replacement, vanilla);
             replaceIn(CraftingManager.getInstance().getRecipeList(), vanilla, replacement);
