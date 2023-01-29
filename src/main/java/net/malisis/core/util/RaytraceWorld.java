@@ -1,30 +1,20 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.util;
 
 import java.util.HashMap;
+
 import net.malisis.core.MalisisCore;
 import net.malisis.core.util.chunkcollision.ChunkCollision;
 import net.minecraft.block.Block;
@@ -40,6 +30,7 @@ import net.minecraft.world.World;
  *
  */
 public class RaytraceWorld {
+
     /** Number of blocks before we consider ray trace failed. */
     private static int MAX_BLOCKS = 200;
     /** World object (needed for ray tracing inside each block). */
@@ -64,8 +55,8 @@ public class RaytraceWorld {
     private int currentZ;
 
     /**
-     * The first block to be hit. If ray trace reaches <code>dest</code> without any hit, <code>firstHit</code> will have
-     * <code>typeOfHit</code> = <b>MISS</b>
+     * The first block to be hit. If ray trace reaches <code>dest</code> without any hit, <code>firstHit</code> will
+     * have <code>typeOfHit</code> = <b>MISS</b>
      */
     public MovingObjectPosition firstHit;
     /** List of blocks passed by the ray trace. Only set if options <code>LOG_BLOCK_PASSED</code> is set */
@@ -76,7 +67,7 @@ public class RaytraceWorld {
     /**
      * Instantiates a new {@link RaytraceWorld}.
      *
-     * @param ray the ray
+     * @param ray     the ray
      * @param options the options
      */
     public RaytraceWorld(Ray ray, int options) {
@@ -109,8 +100,8 @@ public class RaytraceWorld {
     /**
      * Instantiates a new {@link RaytraceWorld}.
      *
-     * @param src the src
-     * @param v the v
+     * @param src     the src
+     * @param v       the v
      * @param options the options
      */
     public RaytraceWorld(Point src, Vector v, int options) {
@@ -121,7 +112,7 @@ public class RaytraceWorld {
      * Instantiates a new {@link RaytraceWorld}.
      *
      * @param src the src
-     * @param v the v
+     * @param v   the v
      */
     public RaytraceWorld(Point src, Vector v) {
         this(new Ray(src, v), 0);
@@ -130,8 +121,8 @@ public class RaytraceWorld {
     /**
      * Instantiates a new {@link RaytraceWorld}.
      *
-     * @param src the src
-     * @param dest the dest
+     * @param src     the src
+     * @param dest    the dest
      * @param options the options
      */
     public RaytraceWorld(Point src, Point dest, int options) {
@@ -143,7 +134,7 @@ public class RaytraceWorld {
     /**
      * Instantiates a new {@link RaytraceWorld}.
      *
-     * @param src the src
+     * @param src  the src
      * @param dest the dest
      */
     public RaytraceWorld(Point src, Point dest) {
@@ -211,8 +202,8 @@ public class RaytraceWorld {
     /**
      * Does the raytracing.
      *
-     * @return {@link MovingObjectPosition} with <code>typeOfHit</code> <b>BLOCK</b> if a ray hits a block in the way, or <b>MISS</b> if it
-     *         reaches <code>dest</code> without any hit
+     * @return {@link MovingObjectPosition} with <code>typeOfHit</code> <b>BLOCK</b> if a ray hits a block in the way,
+     *         or <b>MISS</b> if it reaches <code>dest</code> without any hit
      */
     public MovingObjectPosition trace() {
         MovingObjectPosition mop = null;
@@ -239,10 +230,10 @@ public class RaytraceWorld {
             if (hasOption(Options.LOG_BLOCK_PASSED))
                 blockPassed.put(new ChunkPosition(currentX, currentY, currentZ), mop);
 
-            if (dest != null
-                    && currentX == blockDest.chunkPosX
+            if (dest != null && currentX == blockDest.chunkPosX
                     && currentY == blockDest.chunkPosY
-                    && currentZ == blockDest.chunkPosZ) ret = true;
+                    && currentZ == blockDest.chunkPosZ)
+                ret = true;
 
             if (!ret) {
                 if (min == tX) currentX += step.x;
@@ -259,9 +250,8 @@ public class RaytraceWorld {
         ChunkCollision.get().setRayTraceInfos(src, dest);
         firstHit = ChunkCollision.get().getRayTraceResult(world, firstHit);
 
-        if (!ret)
-            MalisisCore.message("Trace fail : " + MAX_BLOCKS + " blocks passed (" + currentX + "," + currentY + ","
-                    + currentZ + ")");
+        if (!ret) MalisisCore.message(
+                "Trace fail : " + MAX_BLOCKS + " blocks passed (" + currentX + "," + currentY + "," + currentZ + ")");
         return firstHit;
     }
 
@@ -271,7 +261,8 @@ public class RaytraceWorld {
      * @param x the x
      * @param y the y
      * @param z the z
-     * @return <code>Double.NaN</code> if <code>x</code>, <code>y</code> and <code>z</code> are all three are <code>Double.NaN</code>
+     * @return <code>Double.NaN</code> if <code>x</code>, <code>y</code> and <code>z</code> are all three are
+     *         <code>Double.NaN</code>
      */
     public double getMin(double x, double y, double z) {
         double ret = Double.NaN;
@@ -291,9 +282,9 @@ public class RaytraceWorld {
      * Raytraces inside an actual block area. Calls
      * {@link Block#collisionRayTrace(World, int, int, int, net.minecraft.util.Vec3, net.minecraft.util.Vec3)}
      *
-     * @param x the x coordinate of the block to trace
-     * @param y the y coordinate of the block to trace
-     * @param z the z coordinate of the block to trace
+     * @param x    the x coordinate of the block to trace
+     * @param y    the y coordinate of the block to trace
+     * @param z    the z coordinate of the block to trace
      * @param exit the exit
      * @return the {@link MovingObjectPosition} return by block raytrace
      */
@@ -310,6 +301,7 @@ public class RaytraceWorld {
      * The Class Options.
      */
     public static class Options {
+
         /** Ray tracing through liquids returns a hit. */
         public static int HIT_LIQUIDS = 1;
         /** Don't stop ray tracing on hit. */

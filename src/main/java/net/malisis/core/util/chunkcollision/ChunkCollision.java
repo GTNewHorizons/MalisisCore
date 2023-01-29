@@ -1,30 +1,20 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.util.chunkcollision;
 
 import java.util.List;
+
 import net.malisis.core.block.BoundingBoxType;
 import net.malisis.core.util.AABBUtils;
 import net.malisis.core.util.BlockPos;
@@ -52,6 +42,7 @@ import net.minecraft.world.chunk.Chunk;
  *
  */
 public class ChunkCollision {
+
     private static ChunkCollision instance = new ChunkCollision();
 
     private Point src;
@@ -62,9 +53,9 @@ public class ChunkCollision {
      * Gets the collision bounding boxes for the intersecting chunks.<br>
      * Called via ASM from {@link World#getCollidingBoundingBoxes(Entity, AxisAlignedBB)}
      *
-     * @param world the world
-     * @param mask the mask
-     * @param list the list
+     * @param world  the world
+     * @param mask   the mask
+     * @param list   the list
      * @param entity the entity
      */
     public void getCollisionBoundingBoxes(World world, AxisAlignedBB mask, List<AxisAlignedBB> list, Entity entity) {
@@ -81,7 +72,7 @@ public class ChunkCollision {
      * Sets the ray trace infos.<br>
      * Called via ASM at the beginning of {@link World#rayTraceBlocks(Vec3, Vec3, boolean, boolean, boolean)}
      *
-     * @param src the src
+     * @param src  the src
      * @param dest the dest
      */
     public void setRayTraceInfos(Vec3 src, Vec3 dest) {
@@ -92,7 +83,7 @@ public class ChunkCollision {
     /**
      * Sets the ray trace infos.
      *
-     * @param src the src
+     * @param src  the src
      * @param dest the dest
      */
     public void setRayTraceInfos(Point src, Point dest) {
@@ -105,7 +96,7 @@ public class ChunkCollision {
      * Called via ASM from {@link World#rayTraceBlocks(Vec3, Vec3, boolean, boolean, boolean)} before each return.
      *
      * @param world the world
-     * @param mop the mop
+     * @param mop   the mop
      * @return the ray trace result
      */
     public MovingObjectPosition getRayTraceResult(World world, MovingObjectPosition mop) {
@@ -124,7 +115,7 @@ public class ChunkCollision {
     /**
      * Gets the closest {@link MovingObjectPosition} to the source.
      *
-     * @param src the src
+     * @param src  the src
      * @param mop1 the mop1
      * @param mop2 the mop2
      * @return the closest
@@ -146,20 +137,21 @@ public class ChunkCollision {
     // #region canPlaceBlockAt
     /**
      * Checks whether the block can be placed at the position.<br>
-     * Called via ASM from {@link World#canPlaceEntityOnSide(Block, int, int, int, boolean, int, Entity, net.minecraft.item.ItemStack)} at
+     * Called via ASM from
+     * {@link World#canPlaceEntityOnSide(Block, int, int, int, boolean, int, Entity, net.minecraft.item.ItemStack)} at
      * the begining.<br>
-     * Tests the block bounding box (boxes if {@link IChunkCollidable}) against the occupied blocks position, then against all the bounding
-     * boxes of the {@link IChunkCollidable} available for those chunks.
+     * Tests the block bounding box (boxes if {@link IChunkCollidable}) against the occupied blocks position, then
+     * against all the bounding boxes of the {@link IChunkCollidable} available for those chunks.
      *
      * @param world the world
      * @param block the block
-     * @param x the x
-     * @param y the y
-     * @param z the z
+     * @param x     the x
+     * @param y     the y
+     * @param z     the z
      * @return true, if can be placed
      */
-    public boolean canPlaceBlockAt(
-            ItemStack itemStack, EntityPlayer player, World world, Block block, int x, int y, int z, int side) {
+    public boolean canPlaceBlockAt(ItemStack itemStack, EntityPlayer player, World world, Block block, int x, int y,
+            int z, int side) {
         AxisAlignedBB[] aabbs;
         if (block instanceof IChunkCollidable)
             aabbs = ((IChunkCollidable) block).getPlacedBoundingBox(world, x, y, z, side, player, itemStack);
@@ -171,16 +163,16 @@ public class ChunkCollision {
 
         // check against each block position occupied by the AABBs
         if (block instanceof IChunkCollidable) {
-            for (AxisAlignedBB aabb : aabbs)
-                for (BlockPos pos : BlockPos.getAllInBox(aabb)) {
-                    boolean b = false;
-                    b |= !world.getBlock(pos.getX(), pos.getY(), pos.getZ())
-                            .isReplaceable(world, pos.getX(), pos.getY(), pos.getZ());
-                    b &= AABBUtils.isColliding(
-                            aabb, AABBUtils.getCollisionBoundingBoxes(world, new BlockState(world, pos), true));
+            for (AxisAlignedBB aabb : aabbs) for (BlockPos pos : BlockPos.getAllInBox(aabb)) {
+                boolean b = false;
+                b |= !world.getBlock(pos.getX(), pos.getY(), pos.getZ())
+                        .isReplaceable(world, pos.getX(), pos.getY(), pos.getZ());
+                b &= AABBUtils.isColliding(
+                        aabb,
+                        AABBUtils.getCollisionBoundingBoxes(world, new BlockState(world, pos), true));
 
-                    if (b) return false;
-                }
+                if (b) return false;
+            }
         }
 
         CheckCollisionProcedure procedure = new CheckCollisionProcedure(aabbs);
@@ -220,6 +212,7 @@ public class ChunkCollision {
      * The procedure used to check the collision for a {@link IChunkCollidable} coordinate.<br>
      */
     private static class CollisionProcedure extends ChunkProcedure {
+
         private AxisAlignedBB mask;
         private List<AxisAlignedBB> list;
 
@@ -233,12 +226,14 @@ public class ChunkCollision {
             if (!check(coord)) return true;
 
             if (state.getBlock() instanceof IChunkCollidable) {
-                AxisAlignedBB[] aabbs = ((IChunkCollidable) state.getBlock())
-                        .getBoundingBox(
-                                world, state.getX(), state.getY(), state.getZ(), BoundingBoxType.CHUNKCOLLISION);
+                AxisAlignedBB[] aabbs = ((IChunkCollidable) state.getBlock()).getBoundingBox(
+                        world,
+                        state.getX(),
+                        state.getY(),
+                        state.getZ(),
+                        BoundingBoxType.CHUNKCOLLISION);
                 for (AxisAlignedBB aabb : aabbs) {
-                    if (mask != null
-                            && aabb != null
+                    if (mask != null && aabb != null
                             && mask.intersectsWith(aabb.offset(state.getX(), state.getY(), state.getZ())))
                         list.add(aabb);
                 }
@@ -258,6 +253,7 @@ public class ChunkCollision {
      * The procedure used to check ray tracing for a {@link IChunkCollidable} coordinate.
      */
     private static class RayTraceProcedure extends ChunkProcedure {
+
         private Point src;
         private Point dest;
         private MovingObjectPosition mop;
@@ -288,9 +284,11 @@ public class ChunkCollision {
     }
 
     /**
-     * The procedure used to check intersection from {@link IChunkCollidable} coordinates with {@link AxisAlignedBB} array.
+     * The procedure used to check intersection from {@link IChunkCollidable} coordinates with {@link AxisAlignedBB}
+     * array.
      */
     private static class CheckCollisionProcedure extends ChunkProcedure {
+
         private AxisAlignedBB[] aabbs;
         private boolean collide = false;
 

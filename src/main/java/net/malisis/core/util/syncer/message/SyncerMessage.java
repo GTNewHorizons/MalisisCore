@@ -1,38 +1,22 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.util.syncer.message;
 
-import cpw.mods.fml.common.network.ByteBufUtils;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import cpw.mods.fml.relauncher.Side;
-import io.netty.buffer.ByteBuf;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
 import net.malisis.core.MalisisCore;
 import net.malisis.core.inventory.MalisisInventoryContainer;
 import net.malisis.core.network.MalisisMessage;
@@ -40,6 +24,13 @@ import net.malisis.core.util.syncer.FieldData;
 import net.malisis.core.util.syncer.ISyncHandler;
 import net.malisis.core.util.syncer.ISyncableData;
 import net.malisis.core.util.syncer.Syncer;
+
+import cpw.mods.fml.common.network.ByteBufUtils;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
+import io.netty.buffer.ByteBuf;
 
 /**
  * Message to update the slots in the opened {@link MalisisInventoryContainer} on the client.
@@ -49,6 +40,7 @@ import net.malisis.core.util.syncer.Syncer;
  */
 @MalisisMessage
 public class SyncerMessage implements IMessageHandler<SyncerMessage.Packet, IMessage> {
+
     public SyncerMessage() {
         MalisisCore.network.registerMessage(this, Packet.class, Side.CLIENT);
     }
@@ -58,7 +50,7 @@ public class SyncerMessage implements IMessageHandler<SyncerMessage.Packet, IMes
      * Updates the fields for the receiver object.
      *
      * @param message the message
-     * @param ctx the ctx
+     * @param ctx     the ctx
      * @return the i message
      */
     @Override
@@ -72,6 +64,7 @@ public class SyncerMessage implements IMessageHandler<SyncerMessage.Packet, IMes
     }
 
     public static class Packet<T> implements IMessage {
+
         private ISyncHandler<? super T, ? extends ISyncableData> handler;
         private ISyncableData data;
         private int indexes;
@@ -79,10 +72,7 @@ public class SyncerMessage implements IMessageHandler<SyncerMessage.Packet, IMes
 
         public Packet() {}
 
-        public Packet(
-                ISyncHandler<? super T, ? extends ISyncableData> handler,
-                ISyncableData data,
-                int fieldIndexes,
+        public Packet(ISyncHandler<? super T, ? extends ISyncableData> handler, ISyncableData data, int fieldIndexes,
                 Map<String, Object> fieldValues) {
             this.handler = handler;
             this.data = data;
@@ -93,8 +83,7 @@ public class SyncerMessage implements IMessageHandler<SyncerMessage.Packet, IMes
         @Override
         public void fromBytes(ByteBuf buf) {
             // handler
-            handler = (ISyncHandler<? super T, ? extends ISyncableData>)
-                    Syncer.get().getHandlerFromId(buf.readInt());
+            handler = (ISyncHandler<? super T, ? extends ISyncableData>) Syncer.get().getHandlerFromId(buf.readInt());
             if (handler == null) return;
 
             // data

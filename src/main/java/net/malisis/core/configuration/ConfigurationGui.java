@@ -1,34 +1,23 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.configuration;
 
-import com.google.common.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+
 import net.malisis.core.client.gui.Anchor;
 import net.malisis.core.client.gui.MalisisGui;
 import net.malisis.core.client.gui.component.UIComponent;
@@ -39,13 +28,17 @@ import net.malisis.core.client.gui.component.decoration.UILabel;
 import net.malisis.core.client.gui.component.interaction.UIButton;
 import net.malisis.core.client.gui.event.component.StateChangeEvent.HoveredStateChange;
 import net.malisis.core.configuration.setting.Setting;
+
 import org.apache.commons.lang3.StringUtils;
+
+import com.google.common.eventbus.Subscribe;
 
 /**
  * @author Ordinastie
  *
  */
 public class ConfigurationGui extends MalisisGui {
+
     private Settings settings;
     protected ArrayList<UIPanel> pannels = new ArrayList<>();
     protected HashMap<UIComponent, Setting> componentSettings = new HashMap<>();
@@ -73,8 +66,7 @@ public class ConfigurationGui extends MalisisGui {
         UIWindow window = new UIWindow(this, "config.title", windowWidth, windowHeight);
 
         for (String category : categories) {
-            windowHeight =
-                    Math.max(windowHeight, (settings.getSettings(category).size() * 14 + 40));
+            windowHeight = Math.max(windowHeight, (settings.getSettings(category).size() * 14 + 40));
             window.add(createSettingContainer(category));
         }
 
@@ -87,12 +79,8 @@ public class ConfigurationGui extends MalisisGui {
         panelComment.setBackgroundColor(0xCCCCCC);
         panelComment.add(comment);
 
-        btnCancel = new UIButton(this, "gui.cancel")
-                .setPosition(-32, 0, Anchor.BOTTOM | Anchor.CENTER)
-                .register(this);
-        btnSave = new UIButton(this, "gui.done")
-                .setPosition(32, 0, Anchor.BOTTOM | Anchor.CENTER)
-                .register(this);
+        btnCancel = new UIButton(this, "gui.cancel").setPosition(-32, 0, Anchor.BOTTOM | Anchor.CENTER).register(this);
+        btnSave = new UIButton(this, "gui.done").setPosition(32, 0, Anchor.BOTTOM | Anchor.CENTER).register(this);
 
         window.add(panelComment);
         window.add(btnCancel);
@@ -103,8 +91,8 @@ public class ConfigurationGui extends MalisisGui {
 
     private UIContainer createSettingContainer(String category) {
         List<Setting> categorySettings = settings.getSettings(category);
-        UIContainer container =
-                new UIContainer<UIContainer>(this, windowWidth - 105, windowHeight - 35).setPosition(5, 12);
+        UIContainer container = new UIContainer<UIContainer>(this, windowWidth - 105, windowHeight - 35)
+                .setPosition(5, 12);
 
         int y = 0;
         for (Setting setting : categorySettings) {

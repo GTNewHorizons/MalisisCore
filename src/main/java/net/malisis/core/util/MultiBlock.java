@@ -1,25 +1,14 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.util;
@@ -36,8 +25,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 /**
- * This class handle MultiBlock structures. Primary aim is to emulate block bigger than 1x1x1 so that the logic is only concerning the
- * original block.<br>
+ * This class handle MultiBlock structures. Primary aim is to emulate block bigger than 1x1x1 so that the logic is only
+ * concerning the original block.<br>
  * IProviders should only do processes for the one tied to the original placed block.<br >
  * Renderers should check for original block/tileEntity before rendering.
  *
@@ -45,6 +34,7 @@ import net.minecraftforge.common.util.ForgeDirection;
  *
  */
 public class MultiBlock {
+
     protected World world;
     protected Block block;
     protected AxisAlignedBB aabb;
@@ -143,9 +133,9 @@ public class MultiBlock {
     /**
      * Sets the size for this {@link MultiBlock}.
      *
-     * @param width the width
+     * @param width  the width
      * @param height the height
-     * @param depth the depth
+     * @param depth  the depth
      */
     public void setSize(int width, int height, int depth) {
         int minX = width > 0 ? 0 : width + 1;
@@ -180,7 +170,12 @@ public class MultiBlock {
         if (this.aabb == null) return null;
 
         AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(
-                this.aabb.minX, this.aabb.minY, this.aabb.minZ, this.aabb.maxX, this.aabb.maxY, this.aabb.maxZ);
+                this.aabb.minX,
+                this.aabb.minY,
+                this.aabb.minZ,
+                this.aabb.maxX,
+                this.aabb.maxY,
+                this.aabb.maxZ);
 
         if (direction != null) {
             if (direction == ForgeDirection.EAST || direction == ForgeDirection.WEST)
@@ -222,10 +217,9 @@ public class MultiBlock {
 
         int n = 0;
         for (int i = sX; i < eX; i++)
-            for (int j = sY; j < eY; j++)
-                for (int k = sZ; k < eZ; k++)
-                    if (i != x || j != y || k != z) // exclude origin
-                    pos[n++] = new ChunkPosition(i, j, k);
+            for (int j = sY; j < eY; j++) for (int k = sZ; k < eZ; k++) if (i != x || j != y || k != z) // exclude
+                                                                                                        // origin
+                pos[n++] = new ChunkPosition(i, j, k);
 
         return pos;
     }
@@ -253,7 +247,10 @@ public class MultiBlock {
         if (placeOrigin) {
             if (getBlock() == null) {
                 MalisisCore.log.error(
-                        "[MultiBlock] Tried to set multiblock origin at {}, {}, {}, but no block is set.", x, y, z);
+                        "[MultiBlock] Tried to set multiblock origin at {}, {}, {}, but no block is set.",
+                        x,
+                        y,
+                        z);
                 return false;
             }
             if (getBlock().canPlaceBlockAt(world, x, y, z)) world.setBlock(x, y, z, getBlock(), 0, 3);
@@ -263,7 +260,7 @@ public class MultiBlock {
         ChunkPosition[] listPos = getListPositions();
         for (ChunkPosition pos : listPos) {
             if (pos == null) // should not happen
-            return false;
+                return false;
 
             if (!getBlock().canPlaceBlockAt(world, pos.chunkPosX, pos.chunkPosY, pos.chunkPosZ)) {
                 // cancel placement : remove block
@@ -275,7 +272,10 @@ public class MultiBlock {
         IProvider te = TileEntityUtils.getTileEntity(IProvider.class, world, x, y, z);
         if (te == null) {
             MalisisCore.log.error(
-                    "[MultiBlock] Tried to set multiblock in provider, but no IProvider found at {}, {}, {}", x, y, z);
+                    "[MultiBlock] Tried to set multiblock in provider, but no IProvider found at {}, {}, {}",
+                    x,
+                    y,
+                    z);
             return false;
         }
         te.setMultiBlock(this);
@@ -349,9 +349,9 @@ public class MultiBlock {
      * To be called from inside Block.removedByPlayer().
      *
      * @param world the world
-     * @param x the x
-     * @param y the y
-     * @param z the z
+     * @param x     the x
+     * @param y     the y
+     * @param z     the z
      * @return true if blocks were removed
      */
     public static boolean destroy(World world, int x, int y, int z) {
@@ -374,9 +374,9 @@ public class MultiBlock {
      * Gets the {@link MultiBlock} instance at the specified coordinates.<br>
      *
      * @param world the world
-     * @param x the x
-     * @param y the y
-     * @param z the z
+     * @param x     the x
+     * @param y     the y
+     * @param z     the z
      * @return the MultiBlock
      */
     public static MultiBlock getMultiBlock(IBlockAccess world, int x, int y, int z) {
@@ -390,9 +390,9 @@ public class MultiBlock {
      * Checks whether the coordinates passed are the origin of a {@link MultiBlock}.
      *
      * @param world the world
-     * @param x the x
-     * @param y the y
-     * @param z the z
+     * @param x     the x
+     * @param y     the y
+     * @param z     the z
      * @return true, if the specified coordinates match the origin
      */
     public static boolean isOrigin(IBlockAccess world, int x, int y, int z) {
@@ -401,8 +401,8 @@ public class MultiBlock {
         return mb.isOrigin(x, y, z);
     }
 
-    public static <T extends TileEntity & IProvider> T getOriginProvider(
-            Class<T> providerClass, IBlockAccess world, int x, int y, int z) {
+    public static <T extends TileEntity & IProvider> T getOriginProvider(Class<T> providerClass, IBlockAccess world,
+            int x, int y, int z) {
         return getOriginProvider(TileEntityUtils.getTileEntity(providerClass, world, x, y, z));
     }
 
@@ -422,6 +422,7 @@ public class MultiBlock {
     }
 
     public static interface IProvider {
+
         /**
          * Sets the {@link MultiBlock} instance for this {@link IProvider}.
          *

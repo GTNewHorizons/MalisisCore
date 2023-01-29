@@ -1,25 +1,14 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.client.gui.component.interaction;
@@ -46,6 +35,7 @@ import net.minecraft.util.IIcon;
  *
  */
 public class UITab extends UIComponent<UITab> implements IGuiText<UITab> {
+
     /** The {@link MalisisFont} to use for this {@link UITooltip}. */
     protected MalisisFont font = MalisisFont.minecraftFont;
     /** The {@link FontRenderOptions} to use for this {@link UITooltip}. */
@@ -73,7 +63,7 @@ public class UITab extends UIComponent<UITab> implements IGuiText<UITab> {
     /**
      * Instantiates a new {@link UITab}.
      *
-     * @param gui the gui
+     * @param gui   the gui
      * @param label the label
      */
     public UITab(MalisisGui gui, String label) {
@@ -92,7 +82,7 @@ public class UITab extends UIComponent<UITab> implements IGuiText<UITab> {
     /**
      * Instantiates a new {@link UITab}.
      *
-     * @param gui the gui
+     * @param gui   the gui
      * @param image the image
      */
     public UITab(MalisisGui gui, UIImage image) {
@@ -221,7 +211,7 @@ public class UITab extends UIComponent<UITab> implements IGuiText<UITab> {
      * Sets the size of this {@link UITab}.<br>
      * If width or height is 0, it will be automatically calculated base on {@link #label} or {@link #image}.
      *
-     * @param width the width
+     * @param width  the width
      * @param height the height
      * @return this {@link UITab}
      */

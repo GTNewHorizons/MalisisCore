@@ -1,38 +1,20 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.network;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Ordering;
-import cpw.mods.fml.common.discovery.ASMDataTable;
-import cpw.mods.fml.common.discovery.ASMDataTable.ASMData;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import cpw.mods.fml.relauncher.Side;
 import java.util.List;
+
 import net.malisis.core.IMalisisMod;
 import net.malisis.core.MalisisCore;
 import net.malisis.core.inventory.message.OpenInventoryMessage;
@@ -40,10 +22,21 @@ import net.malisis.core.util.EntityUtils;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.chunk.Chunk;
 
+import com.google.common.base.Function;
+import com.google.common.collect.Ordering;
+
+import cpw.mods.fml.common.discovery.ASMDataTable;
+import cpw.mods.fml.common.discovery.ASMDataTable.ASMData;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.relauncher.Side;
+
 /**
- * {@link MalisisNetwork} is a wrapper around {@link SimpleNetworkWrapper} in order to ease the handling of discriminators.<br>
- * Each mod should instantiate a {@code MalisisNetwork} instance when constructed, and {@link IMessageHandler} should be annotated with
- * {@link MalisisMessage} and register their packets inside their own public paramless constructors.<br>
+ * {@link MalisisNetwork} is a wrapper around {@link SimpleNetworkWrapper} in order to ease the handling of
+ * discriminators.<br>
+ * Each mod should instantiate a {@code MalisisNetwork} instance when constructed, and {@link IMessageHandler} should be
+ * annotated with {@link MalisisMessage} and register their packets inside their own public paramless constructors.<br>
  * <br>
  * Example : {@link OpenInventoryMessage}.
  *
@@ -51,6 +44,7 @@ import net.minecraft.world.chunk.Chunk;
  * @author Ordinastie
  */
 public class MalisisNetwork extends SimpleNetworkWrapper {
+
     /** The global discriminator for each packet. */
     private int discriminator = 0;
     /** Name of the channel used **/
@@ -80,7 +74,7 @@ public class MalisisNetwork extends SimpleNetworkWrapper {
      * The {@link IMessageHandler} for the message type should be on the CLIENT side.
      *
      * @param message the message
-     * @param chunk the chunk
+     * @param chunk   the chunk
      */
     public void sendToPlayersWatchingChunk(IMessage message, Chunk chunk) {
         for (EntityPlayerMP player : EntityUtils.getPlayersWatchingChunk(chunk)) sendTo(message, player);
@@ -89,33 +83,45 @@ public class MalisisNetwork extends SimpleNetworkWrapper {
     /**
      * Register a message with the next discriminator available.
      *
-     * @param <REQ> the generic type
-     * @param <REPLY> the generic type
-     * @param messageHandler the message handler
+     * @param <REQ>              the generic type
+     * @param <REPLY>            the generic type
+     * @param messageHandler     the message handler
      * @param requestMessageType the request message type
-     * @param side the side
+     * @param side               the side
      */
     public <REQ extends IMessage, REPLY extends IMessage> void registerMessage(
             Class<? extends IMessageHandler<REQ, REPLY>> messageHandler, Class<REQ> requestMessageType, Side side) {
         super.registerMessage(messageHandler, requestMessageType, discriminator++, side);
-        MalisisCore.log.info("Registering " + messageHandler.getSimpleName() + " for "
-                + requestMessageType.getSimpleName() + " with discriminator " + discriminator + " in channel " + name);
+        MalisisCore.log.info(
+                "Registering " + messageHandler.getSimpleName()
+                        + " for "
+                        + requestMessageType.getSimpleName()
+                        + " with discriminator "
+                        + discriminator
+                        + " in channel "
+                        + name);
     }
 
     /**
      * Register a message with the next discriminator available.
      *
-     * @param <REQ> the generic type
-     * @param <REPLY> the generic type
-     * @param messageHandler the message handler
+     * @param <REQ>              the generic type
+     * @param <REPLY>            the generic type
+     * @param messageHandler     the message handler
      * @param requestMessageType the request message type
-     * @param side the side
+     * @param side               the side
      */
     public <REQ extends IMessage, REPLY extends IMessage> void registerMessage(
             IMessageHandler<? super REQ, ? extends REPLY> messageHandler, Class<REQ> requestMessageType, Side side) {
         super.registerMessage(messageHandler, requestMessageType, discriminator++, side);
-        MalisisCore.log.info("Registering " + messageHandler.getClass().getSimpleName() + " for "
-                + requestMessageType.getSimpleName() + " with discriminator " + discriminator + " in channel " + name);
+        MalisisCore.log.info(
+                "Registering " + messageHandler.getClass().getSimpleName()
+                        + " for "
+                        + requestMessageType.getSimpleName()
+                        + " with discriminator "
+                        + discriminator
+                        + " in channel "
+                        + name);
     }
 
     /**
@@ -133,22 +139,21 @@ public class MalisisNetwork extends SimpleNetworkWrapper {
      * @param asmDataTable the asm data table
      */
     public static void createMessages(ASMDataTable asmDataTable) {
-        List<ASMData> classes = Ordering.natural()
-                .onResultOf(new Function<ASMData, String>() {
-                    @Override
-                    public String apply(ASMData data) {
-                        return data.getClassName();
-                    }
-                })
-                .sortedCopy(asmDataTable.getAll(MalisisMessage.class.getName()));
+        List<ASMData> classes = Ordering.natural().onResultOf(new Function<ASMData, String>() {
+
+            @Override
+            public String apply(ASMData data) {
+                return data.getClassName();
+            }
+        }).sortedCopy(asmDataTable.getAll(MalisisMessage.class.getName()));
 
         for (ASMData data : classes) {
             try {
                 Class clazz = Class.forName(data.getClassName());
                 if (IMessageHandler.class.isAssignableFrom(clazz)) clazz.newInstance();
-                else
-                    MalisisCore.log.error(
-                            "@MalisisMessage found on {} that does not implement IMessageHandler", data.getClassName());
+                else MalisisCore.log.error(
+                        "@MalisisMessage found on {} that does not implement IMessageHandler",
+                        data.getClassName());
             } catch (Exception e) {
                 MalisisCore.log.error("Could not create {} message.", data.getClassName(), e);
             }

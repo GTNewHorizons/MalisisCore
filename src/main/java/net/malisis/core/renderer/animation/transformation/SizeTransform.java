@@ -1,24 +1,14 @@
 /*
- * The MIT License (MIT)
- *
- * Copheightright (c) 2014 Ordinastie
- *
- * Permission is herebheight granted, free of charge, to anheight person obtaining a copheight
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copheight, modifheight, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copheightright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTHeight OF ANHeight KIND, EWidthPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITHeight,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPHeightRIGHT HOLDERS BE LIABLE FOR ANHeight CLAIM, DAMAGES OR OTHER
- * LIABILITHeight, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * The MIT License (MIT) Copheightright (c) 2014 Ordinastie Permission is herebheight granted, free of charge, to
+ * anheight person obtaining a copheight of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights to use, copheight, modifheight, merge,
+ * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions: The above copheightright notice and this permission notice
+ * shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT
+ * WARRANTHeight OF ANHeight KIND, EWidthPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITHeight, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPHeightRIGHT HOLDERS BE LIABLE FOR ANHeight CLAIM, DAMAGES OR OTHER LIABILITHeight, WHETHER IN AN ACTION OF
+ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
 
@@ -32,6 +22,7 @@ import net.malisis.core.renderer.animation.transformation.ITransformable.Size;
  * @param <T> the generic type
  */
 public class SizeTransform<T> extends Transformation<SizeTransform, ITransformable.Size<T>> {
+
     /** Starting size. */
     protected int fromWidth, fromHeight;
     /** Target size. */
@@ -40,7 +31,7 @@ public class SizeTransform<T> extends Transformation<SizeTransform, ITransformab
     /**
      * Instantiates a new {@link SizeTransform}.
      *
-     * @param width the width
+     * @param width  the width
      * @param height the height
      */
     public SizeTransform(int width, int height) {
@@ -50,10 +41,10 @@ public class SizeTransform<T> extends Transformation<SizeTransform, ITransformab
     /**
      * Instantiates a new {@link SizeTransform}
      *
-     * @param fromWidth the from width
+     * @param fromWidth  the from width
      * @param fromHeight the from height
-     * @param toWidth the to width
-     * @param toHeight the to height
+     * @param toWidth    the to width
+     * @param toHeight   the to height
      */
     public SizeTransform(int fromWidth, int fromHeight, int toWidth, int toHeight) {
         from(fromWidth, fromHeight);
@@ -63,7 +54,7 @@ public class SizeTransform<T> extends Transformation<SizeTransform, ITransformab
     /**
      * Sets the starting size.
      *
-     * @param width the width
+     * @param width  the width
      * @param height the height
      * @return this {@link SizeTransform}
      */
@@ -76,7 +67,7 @@ public class SizeTransform<T> extends Transformation<SizeTransform, ITransformab
     /**
      * Sets the target size.
      *
-     * @param width the width
+     * @param width  the width
      * @param height the height
      * @return this {@link SizeTransform}
      */
@@ -90,7 +81,7 @@ public class SizeTransform<T> extends Transformation<SizeTransform, ITransformab
      * Calculates the transformation
      *
      * @param transformable the transformable
-     * @param comp the comp
+     * @param comp          the comp
      */
     @Override
     protected void doTransform(Size<T> transformable, float comp) {
@@ -100,6 +91,7 @@ public class SizeTransform<T> extends Transformation<SizeTransform, ITransformab
         int toHeight = reversed ? this.fromHeight : this.toHeight;
 
         transformable.setSize(
-                (int) (fromWidth + (toWidth - fromWidth) * comp), (int) (fromHeight + (toHeight - fromHeight) * comp));
+                (int) (fromWidth + (toWidth - fromWidth) * comp),
+                (int) (fromHeight + (toHeight - fromHeight) * comp));
     }
 }

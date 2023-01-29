@@ -1,31 +1,21 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.renderer.element;
 
 import java.util.HashMap;
 import java.util.List;
+
 import net.malisis.core.renderer.RenderParameters;
 import net.malisis.core.renderer.animation.transformation.ITransformable;
 import net.malisis.core.renderer.icon.MalisisIcon;
@@ -34,6 +24,7 @@ import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class Face implements ITransformable.Translate, ITransformable.Rotate {
+
     protected String name;
     protected Vertex[] vertexes;
     protected RenderParameters params;
@@ -65,8 +56,8 @@ public class Face implements ITransformable.Translate, ITransformable.Rotate {
     }
 
     /**
-     * Sets the base name for this {@link Face}. If the name specified is null, it is automatically determined based on the {@link Vertex}
-     * positions.
+     * Sets the base name for this {@link Face}. If the name specified is null, it is automatically determined based on
+     * the {@link Vertex} positions.
      *
      * @param name the base name
      */
@@ -74,7 +65,7 @@ public class Face implements ITransformable.Translate, ITransformable.Rotate {
         if (name == null) {
             name = "";
             HashMap<String, Integer> map = new HashMap<String, Integer>();
-            String[] dirs = new String[] {"North", "South", "East", "West", "Top", "Bottom"};
+            String[] dirs = new String[] { "North", "South", "East", "West", "Top", "Bottom" };
             for (String dir : dirs) {
                 map.put(dir, 0);
                 for (Vertex v : vertexes) {
@@ -168,7 +159,7 @@ public class Face implements ITransformable.Translate, ITransformable.Rotate {
             factorV = getFactorV(vertex);
 
             int k = i;
-            uvs[k] = new float[] {interpolate(u, U, factorU, false), interpolate(v, V, factorV, false)};
+            uvs[k] = new float[] { interpolate(u, U, factorU, false), interpolate(v, V, factorV, false) };
         }
 
         for (int i = 0; i < vertexes.length; i++) vertexes[i].setUV(uvs[i][0], uvs[i][1]);
@@ -197,7 +188,7 @@ public class Face implements ITransformable.Translate, ITransformable.Rotate {
             if (icon instanceof MalisisIcon) {
                 k = (i + ((MalisisIcon) icon).getRotation()) % vertexes.length;
             }
-            uvs[k] = new float[] {interpolate(u, U, factorU, flippedU), interpolate(v, V, factorV, flippedV)};
+            uvs[k] = new float[] { interpolate(u, U, factorU, flippedU), interpolate(v, V, factorV, flippedV) };
         }
 
         for (int i = 0; i < vertexes.length; i++) vertexes[i].setUV(uvs[i][0], uvs[i][1]);
@@ -402,10 +393,10 @@ public class Face implements ITransformable.Translate, ITransformable.Rotate {
             params.aoMatrix.set(calculateAoMatrix(dir));
         }
 
-        //		double fx = Math.asin(Math.abs(normal.x)) / Math.PI * 2 * 0.6F;
-        //		double fy = Math.asin(Math.abs(normal.y)) / Math.PI * 2 * (normal.y >= 0 ? 1 : 0.5F);
-        //		double fz = Math.asin(Math.abs(normal.z)) / Math.PI * 2 * 0.8F;
-        //		float f = (float) (fx + fy + fz);
+        // double fx = Math.asin(Math.abs(normal.x)) / Math.PI * 2 * 0.6F;
+        // double fy = Math.asin(Math.abs(normal.y)) / Math.PI * 2 * (normal.y >= 0 ? 1 : 0.5F);
+        // double fz = Math.asin(Math.abs(normal.z)) / Math.PI * 2 * 0.8F;
+        // float f = (float) (fx + fy + fz);
 
         // fry's patent
         float f = (float) ((normal.x * normal.x * 0.6 + normal.y * (normal.y * 3 + 1) / 4 + normal.z * normal.z * 0.8));

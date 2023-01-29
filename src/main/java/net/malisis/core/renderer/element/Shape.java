@@ -1,25 +1,14 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.renderer.element;
@@ -28,22 +17,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import net.malisis.core.renderer.MalisisRenderer;
 import net.malisis.core.renderer.RenderParameters;
 import net.malisis.core.renderer.animation.transformation.ITransformable;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 
 /**
- * Base class for anything drawn with a {@link MalisisRenderer}. Supports basic transformations like scaling, translation and rotations.
+ * Base class for anything drawn with a {@link MalisisRenderer}. Supports basic transformations like scaling,
+ * translation and rotations.
  *
  * @author Ordinastie
  *
  */
 public class Shape implements ITransformable.Translate, ITransformable.Rotate, ITransformable.Scale {
+
     /** {@link Face Faces} making up this {@link Shape} */
     protected Face[] faces;
 
@@ -108,7 +101,7 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
     /**
      * Adds {@link Face faces} to this {@link Shape} with the specified <b>groupName</b>.
      *
-     * @param faces the faces
+     * @param faces     the faces
      * @param groupName the group name
      * @return this {@link Shape}
      */
@@ -155,7 +148,8 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
     }
 
     /**
-     * Removes a {@link Face} from this {@link Shape}. Has no effect if the <code>Face</code> doesn't belong to this <code>Shape</code>.
+     * Removes a {@link Face} from this {@link Shape}. Has no effect if the <code>Face</code> doesn't belong to this
+     * <code>Shape</code>.
      *
      * @param face the face
      * @return this {@link Shape}
@@ -176,7 +170,8 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
 
     // #region VERTEXES
     /**
-     * Enables the {@link MergedVertex} for this {@link Shape}. Will transfer the current transformation matrix to the {@link MergedVertex}
+     * Enables the {@link MergedVertex} for this {@link Shape}. Will transfer the current transformation matrix to the
+     * {@link MergedVertex}
      */
     public void enableMergedVertexes() {
         if (mergedVertexes != null) return;
@@ -293,8 +288,8 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
     }
 
     /**
-     * Applies the transformations matrix to this {@link Shape}. This modifies the position of the {@link Vertex vertexes} making up the
-     * {@link Face faces} of this <code>Shape</code>.
+     * Applies the transformations matrix to this {@link Shape}. This modifies the position of the {@link Vertex
+     * vertexes} making up the {@link Face faces} of this <code>Shape</code>.
      *
      * @return the shape
      */
@@ -321,24 +316,23 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
      * Sets the parameters for all the {@link Face faces} making up this {@link Shape}.
      *
      * @param params the params
-     * @param merge the merge
+     * @param merge  the merge
      * @return this {@link Shape}
      */
     public Shape setParameters(RenderParameters params, boolean merge) {
-        for (Face f : faces)
-            if (merge) f.getParameters().merge(params);
-            else f.setParameters(params);
+        for (Face f : faces) if (merge) f.getParameters().merge(params);
+        else f.setParameters(params);
 
         return this;
     }
 
     /**
-     * Set {@link RenderParameters} for {@link Face faces} matching the specified <b>name</b>. If <b>merge</b> is true, the parameters will
-     * be merge with the <code>face</code> parameters instead of completely overriding them.
+     * Set {@link RenderParameters} for {@link Face faces} matching the specified <b>name</b>. If <b>merge</b> is true,
+     * the parameters will be merge with the <code>face</code> parameters instead of completely overriding them.
      *
-     * @param name the name
+     * @param name   the name
      * @param params the params
-     * @param merge the merge
+     * @param merge  the merge
      * @return this {@link Shape}
      */
     public Shape setParameters(String name, RenderParameters params, boolean merge) {
@@ -351,12 +345,12 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
     }
 
     /**
-     * Sets the size of this {@link Shape}. <b>width</b> represents East-West axis, <b>height</b> represents Bottom-Top axis and
-     * <b>Depth</b> represents North-South axis. The calculations are based on {@link Vertex#baseName()}.
+     * Sets the size of this {@link Shape}. <b>width</b> represents East-West axis, <b>height</b> represents Bottom-Top
+     * axis and <b>Depth</b> represents North-South axis. The calculations are based on {@link Vertex#baseName()}.
      *
-     * @param width the width
+     * @param width  the width
      * @param height the height
-     * @param depth the depth
+     * @param depth  the depth
      * @return this {@link Shape}
      */
     public Shape setSize(float width, float height, float depth) {
@@ -479,9 +473,9 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
     /**
      * Scales this {@link Shape}.
      *
-     * @param x the x
-     * @param y the y
-     * @param z the z
+     * @param x       the x
+     * @param y       the y
+     * @param z       the z
      * @param offsetX the offset x
      * @param offsetY the offset y
      * @param offsetZ the offset z
@@ -501,9 +495,9 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
      * Rotates this {@link Shape} around the given axis the specified angle.
      *
      * @param angle the angle
-     * @param x the x
-     * @param y the y
-     * @param z the z
+     * @param x     the x
+     * @param y     the y
+     * @param z     the z
      */
     public void rotate(float angle, float x, float y, float z) {
         rotate(angle, x, y, z, 0, 0, 0);
@@ -512,10 +506,10 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
     /**
      * Rotates this {@link Shape} around the given axis the specified angle. Offsets the origin for the rotation.
      *
-     * @param angle the angle
-     * @param x the x
-     * @param y the y
-     * @param z the z
+     * @param angle   the angle
+     * @param x       the x
+     * @param y       the y
+     * @param z       the z
      * @param offsetX the offset x
      * @param offsetY the offset y
      * @param offsetZ the offset z
@@ -558,7 +552,8 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
     }
 
     /**
-     * Interpolates the UVs of each vertex making up this {@link Shape} based on their position and the {@link Face} orientation.
+     * Interpolates the UVs of each vertex making up this {@link Shape} based on their position and the {@link Face}
+     * orientation.
      *
      * @return this {@link Shape}
      */
@@ -569,10 +564,10 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
     }
 
     /**
-     * Shrinks the {@link Face} matching <b>face</b> name by a certain <b>factor</b>. The {@link Vertex vertexes} of connected faces are
-     * moved too.
+     * Shrinks the {@link Face} matching <b>face</b> name by a certain <b>factor</b>. The {@link Vertex vertexes} of
+     * connected faces are moved too.
      *
-     * @param dir the dir
+     * @param dir    the dir
      * @param factor the factor
      * @return the shape
      */

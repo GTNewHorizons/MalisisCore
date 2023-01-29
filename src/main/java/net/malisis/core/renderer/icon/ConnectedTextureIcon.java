@@ -1,25 +1,14 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.renderer.icon;
@@ -33,14 +22,16 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
 
 /**
- * Implementation that handles automatically connected textures. Two texture files are required, that will be stiched to the texture sheet.
- * The {@link ConnectedTextureIcon} will then clip different parts for different connection cases.<br>
+ * Implementation that handles automatically connected textures. Two texture files are required, that will be stiched to
+ * the texture sheet. The {@link ConnectedTextureIcon} will then clip different parts for different connection
+ * cases.<br>
  * The textures need to have a specific pattern (http://puu.sh/bIWaX.png).
  *
  * @author Ordinastie
  *
  */
 public class ConnectedTextureIcon extends MalisisIcon {
+
     private static int NONE = 0;
     private static int LEFT = 1;
     private static int TOP = 1 << 1;
@@ -123,10 +114,10 @@ public class ConnectedTextureIcon extends MalisisIcon {
      * Gets the corresponding {@link IIcon} based on the connections available.
      *
      * @param world the world
-     * @param x the x
-     * @param y the y
-     * @param z the z
-     * @param side the side
+     * @param x     the x
+     * @param y     the y
+     * @param z     the z
+     * @param side  the side
      * @return the icon
      */
     public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
@@ -138,10 +129,10 @@ public class ConnectedTextureIcon extends MalisisIcon {
      * Determines the connections available at this position for the specified <b>side</b>.
      *
      * @param world the world
-     * @param x the x
-     * @param y the y
-     * @param z the z
-     * @param side the side
+     * @param x     the x
+     * @param y     the y
+     * @param z     the z
+     * @param side  the side
      * @return the connections
      */
     private int getConnections(IBlockAccess world, int x, int y, int z, int side) {
@@ -151,10 +142,10 @@ public class ConnectedTextureIcon extends MalisisIcon {
         int connection = 0;
         for (int i = 0; i < 4; i++) {
             if (world.getBlock(
-                            x + sides[dir.ordinal()][i].offsetX,
-                            y + sides[dir.ordinal()][i].offsetY,
-                            z + sides[dir.ordinal()][i].offsetZ)
-                    == block) connection |= (1 << i);
+                    x + sides[dir.ordinal()][i].offsetX,
+                    y + sides[dir.ordinal()][i].offsetY,
+                    z + sides[dir.ordinal()][i].offsetZ) == block)
+                connection |= (1 << i);
         }
         return ~connection & 15;
     }

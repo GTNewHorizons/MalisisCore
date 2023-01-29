@@ -1,37 +1,21 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.client.gui.component.interaction;
 
-import com.google.common.base.Function;
-import com.google.common.base.Functions;
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-import com.google.common.collect.FluentIterable;
-import com.google.common.collect.Iterables;
 import java.util.Collections;
 import java.util.Iterator;
+
 import net.malisis.core.client.gui.ClipArea;
 import net.malisis.core.client.gui.GuiRenderer;
 import net.malisis.core.client.gui.MalisisGui;
@@ -50,8 +34,16 @@ import net.malisis.core.client.gui.event.ComponentEvent.ValueChange;
 import net.malisis.core.client.gui.icon.GuiIcon;
 import net.malisis.core.renderer.font.FontRenderOptions;
 import net.malisis.core.renderer.font.MalisisFont;
+
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.input.Keyboard;
+
+import com.google.common.base.Function;
+import com.google.common.base.Functions;
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
+import com.google.common.collect.FluentIterable;
+import com.google.common.collect.Iterables;
 
 /**
  * The Class UISelect.
@@ -60,6 +52,7 @@ import org.lwjgl.input.Keyboard;
  */
 public class UISelect<T> extends UIComponent<UISelect<T>>
         implements Iterable<Option<T>>, IClipable, IGuiText<UISelect<T>>, IScrollable {
+
     /** The {@link MalisisFont} to use for this {@link UISelect}. */
     protected MalisisFont font = MalisisFont.minecraftFont;
     /** The {@link FontRenderOptions} to use for this {@link UISelect}. */
@@ -95,6 +88,7 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
     protected Predicate<T> disablePredicate = Predicates.alwaysFalse();
     /** Default function to build options **/
     private Function<T, Option<T>> toOption = new Function<T, Option<T>>() {
+
         @Override
         public Option<T> apply(T input) {
             Option<T> option = optionFunction != null ? optionFunction.apply(input) : new Option(input);
@@ -130,8 +124,8 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
     /**
      * Instantiates a new {@link UISelect}.
      *
-     * @param gui the gui
-     * @param width the width
+     * @param gui    the gui
+     * @param width  the width
      * @param values the values
      */
     public UISelect(MalisisGui gui, int width, Iterable<T> values) {
@@ -167,7 +161,7 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
     /**
      * Instantiates a new {@link UISelect}.
      *
-     * @param gui the gui
+     * @param gui   the gui
      * @param width the width
      */
     public UISelect(MalisisGui gui, int width) {
@@ -346,9 +340,8 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
      */
     private void calcOptionsSize() {
         optionsWidth = getWidth() - 4;
-        for (Option<?> option : this)
-            optionsWidth = Math.max(
-                    optionsWidth, (int) MalisisFont.minecraftFont.getStringWidth(option.getLabel(labelPattern)));
+        for (Option<?> option : this) optionsWidth = Math
+                .max(optionsWidth, (int) MalisisFont.minecraftFont.getStringWidth(option.getLabel(labelPattern)));
 
         optionsWidth += 4;
         if (maxExpandedWidth > 0) optionsWidth = Math.min(maxExpandedWidth, optionsWidth);
@@ -553,8 +546,7 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
 
         if (!expanded || !isVisible()) return false;
 
-        return x >= screenX()
-                && x <= screenX() + optionsWidth
+        return x >= screenX() && x <= screenX() + optionsWidth
                 && y >= screenY() + 12
                 && y <= screenY() + 12 + optionsHeight;
     }
@@ -568,7 +560,12 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
     @Override
     public ClipArea getClipArea() {
         return new ClipArea(
-                this, screenX(), screenY(), screenX() + optionsWidth, screenY() + optionsHeight + 12, false);
+                this,
+                screenX(),
+                screenY(),
+                screenX() + optionsWidth,
+                screenY() + optionsHeight + 12,
+                false);
     }
 
     @Override
@@ -752,6 +749,7 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
      * @param <T> the generic type
      */
     public static class Option<T> {
+
         /** The key. */
         private T key;
         /** The label. */
@@ -771,7 +769,7 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
         /**
          * Instantiates a new {@link Option} with a label.
          *
-         * @param key the key
+         * @param key   the key
          * @param label the label
          */
         public Option(T key, String label) {
@@ -840,21 +838,20 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
             return (int) (select.font.getStringHeight(select.fro) + 1);
         }
 
-        public void draw(
-                UISelect select,
-                GuiRenderer renderer,
-                int x,
-                int y,
-                int z,
-                float partialTick,
-                boolean hovered,
+        public void draw(UISelect select, GuiRenderer renderer, int x, int y, int z, float partialTick, boolean hovered,
                 boolean isTop) {
             String text = getLabel(select.labelPattern);
             if (StringUtils.isEmpty(text)) return;
 
             if (hovered && !disabled) {
                 renderer.drawRectangle(
-                        x + 1, y - 1, z + 2, select.optionsWidth - 2, getHeight(select), select.getHoverBgColor(), 255);
+                        x + 1,
+                        y - 1,
+                        z + 2,
+                        select.optionsWidth - 2,
+                        getHeight(select),
+                        select.getHoverBgColor(),
+                        255);
             }
 
             if (isTop) text = MalisisFont.minecraftFont.clipString(text, select.getWidth() - 15);
@@ -880,6 +877,7 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
      * Cancelling the event will prevent the {@code Option} to be set for the {@code UISelect} .
      */
     public static class SelectEvent<T> extends ValueChange<UISelect, T> {
+
         public SelectEvent(UISelect<T> component, T newValue) {
             super(component, component.getSelectedValue(), newValue);
         }

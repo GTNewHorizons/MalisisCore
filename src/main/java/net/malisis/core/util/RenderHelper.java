@@ -1,25 +1,14 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 PaleoCrafter, Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 PaleoCrafter, Ordinastie Permission is hereby granted, free of charge, to
+ * any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the
+ * Software without restriction, including without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished
+ * to do so, subject to the following conditions: The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
+ * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.util;
@@ -27,15 +16,17 @@ package net.malisis.core.util;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL20.*;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 import org.lwjgl.util.Color;
+
+import cpw.mods.fml.client.FMLClientHandler;
 
 /**
  * RenderHelper
@@ -82,8 +73,8 @@ public class RenderHelper {
         return FMLClientHandler.instance().getClient();
     }
 
-    public static void drawString(
-            String text, int x, int y, int z, int canvasWidth, int canvasHeight, int color, boolean drawShadow) {
+    public static void drawString(String text, int x, int y, int z, int canvasWidth, int canvasHeight, int color,
+            boolean drawShadow) {
         drawString(
                 text,
                 x + (canvasWidth - getStringWidth(text)) / 2,
@@ -114,8 +105,8 @@ public class RenderHelper {
         drawLine(color, 1F, startX, startY, endX, endY, width, zLevel);
     }
 
-    public static void drawLine(
-            int color, float alpha, int startX, int startY, int endX, int endY, float width, int zLevel) {
+    public static void drawLine(int color, float alpha, int startX, int startY, int endX, int endY, float width,
+            int zLevel) {
         Color rgb = RenderHelper.getRGBFromColor(color);
         rgb.setAlpha((int) (alpha * 255));
         drawLine(rgb, startX, startY, endX, endY, width, zLevel);
@@ -163,22 +154,13 @@ public class RenderHelper {
         GL11.glEnable(GL11.GL_TEXTURE_2D);
     }
 
-    public static void drawRectangle(
-            ResourceLocation texture, int x, int y, int z, int width, int height, int u, int v) {
+    public static void drawRectangle(ResourceLocation texture, int x, int y, int z, int width, int height, int u,
+            int v) {
         drawRectangle(texture, x, y, z, width, height, u, v, 256, 256);
     }
 
-    public static void drawRectangle(
-            ResourceLocation texture,
-            int x,
-            int y,
-            int z,
-            int width,
-            int height,
-            int u,
-            int v,
-            int textureWidth,
-            int textureHeight) {
+    public static void drawRectangle(ResourceLocation texture, int x, int y, int z, int width, int height, int u, int v,
+            int textureWidth, int textureHeight) {
         bindTexture(texture);
         drawRectangle(x, y, z, width, height, u, v, textureWidth, textureHeight);
     }
@@ -187,8 +169,8 @@ public class RenderHelper {
         drawRectangle(x, y, z, width, height, u, v, 256, 256);
     }
 
-    public static void drawRectangle(
-            int x, int y, int z, int width, int height, int u, int v, int textureWidth, int textureHeight) {
+    public static void drawRectangle(int x, int y, int z, int width, int height, int u, int v, int textureWidth,
+            int textureHeight) {
         drawQuad(
                 x,
                 y,
@@ -214,35 +196,14 @@ public class RenderHelper {
         glDisable(GL_BLEND);
     }
 
-    public static void drawRectangleRepeated(
-            ResourceLocation texture,
-            int x,
-            int y,
-            int z,
-            int width,
-            int height,
-            float u,
-            float v,
-            float uMax,
-            float vMax,
-            int tileWidth,
-            int tileHeight) {
+    public static void drawRectangleRepeated(ResourceLocation texture, int x, int y, int z, int width, int height,
+            float u, float v, float uMax, float vMax, int tileWidth, int tileHeight) {
         RenderHelper.bindTexture(texture);
         drawRectangleRepeated(x, y, z, width, height, u, v, uMax, vMax, tileWidth, tileHeight);
     }
 
-    public static void drawRectangleRepeated(
-            int x,
-            int y,
-            int z,
-            int width,
-            int height,
-            float u,
-            float v,
-            float uMax,
-            float vMax,
-            int tileWidth,
-            int tileHeight) {
+    public static void drawRectangleRepeated(int x, int y, int z, int width, int height, float u, float v, float uMax,
+            float vMax, int tileWidth, int tileHeight) {
         loadShaders();
         shaders.activate();
         shaders.setUniform1i("tex", 0);
@@ -261,8 +222,8 @@ public class RenderHelper {
         shaders.deactivate();
     }
 
-    public static void drawRectangleXRepeated(
-            int x, int y, int z, int width, int height, float u, float v, float uMax, float vMax, int tileWidth) {
+    public static void drawRectangleXRepeated(int x, int y, int z, int width, int height, float u, float v, float uMax,
+            float vMax, int tileWidth) {
         loadShaders();
         shaders.activate();
         shaders.setUniform1i("tex", 0);
@@ -272,8 +233,8 @@ public class RenderHelper {
         shaders.deactivate();
     }
 
-    public static void drawRectangleYRepeated(
-            int x, int y, int z, int width, int height, float u, float v, float uMax, float vMax, int tileHeight) {
+    public static void drawRectangleYRepeated(int x, int y, int z, int width, int height, float u, float v, float uMax,
+            float vMax, int tileHeight) {
         loadShaders();
         shaders.activate();
         shaders.setUniform1i("tex", 0);
@@ -290,8 +251,10 @@ public class RenderHelper {
     private static ShaderSystem shaders;
 
     private static final String REPEAT_SHADER = "#version 120\n"
-            + "uniform sampler2D tex; uniform vec2 iconOffset; uniform vec2 iconSize;\n" + "void main() {\n"
-            + "gl_FragColor = texture2D(tex, iconOffset + fract(gl_TexCoord[0].st) * iconSize) * gl_Color;\n" + "}";
+            + "uniform sampler2D tex; uniform vec2 iconOffset; uniform vec2 iconSize;\n"
+            + "void main() {\n"
+            + "gl_FragColor = texture2D(tex, iconOffset + fract(gl_TexCoord[0].st) * iconSize) * gl_Color;\n"
+            + "}";
 
     public static void loadShaders() {
         if (shaders == null) {
@@ -325,8 +288,7 @@ public class RenderHelper {
             k = 1000;
         }
 
-        while (scaleFactor < k
-                && mc.displayWidth / (scaleFactor + 1) >= 320
+        while (scaleFactor < k && mc.displayWidth / (scaleFactor + 1) >= 320
                 && mc.displayHeight / (scaleFactor + 1) >= 240) {
             ++scaleFactor;
         }

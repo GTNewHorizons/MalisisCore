@@ -1,32 +1,21 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 PaleoCrafter, Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 PaleoCrafter, Ordinastie Permission is hereby granted, free of charge, to
+ * any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the
+ * Software without restriction, including without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished
+ * to do so, subject to the following conditions: The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
+ * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.client.gui.component.decoration;
 
-import com.google.common.eventbus.Subscribe;
 import java.util.LinkedList;
 import java.util.List;
+
 import net.malisis.core.client.gui.GuiRenderer;
 import net.malisis.core.client.gui.MalisisGui;
 import net.malisis.core.client.gui.component.IGuiText;
@@ -42,7 +31,10 @@ import net.malisis.core.util.bbcode.BBString;
 import net.malisis.core.util.bbcode.render.BBCodeRenderer;
 import net.malisis.core.util.bbcode.render.IBBCodeRenderer;
 import net.minecraft.client.gui.GuiScreen;
+
 import org.apache.commons.lang3.StringUtils;
+
+import com.google.common.eventbus.Subscribe;
 
 /**
  * UILabel.
@@ -50,6 +42,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author Ordinastie
  */
 public class UILabel extends UIComponent<UILabel> implements IScrollable, IGuiText<UILabel>, IBBCodeRenderer<UILabel> {
+
     /** The {@link MalisisFont} to use for this {@link UILabel}. */
     protected MalisisFont font = MalisisFont.minecraftFont;
     /** The {@link FontRenderOptions} to use for this {@link UILabel}. */
@@ -83,8 +76,8 @@ public class UILabel extends UIComponent<UILabel> implements IScrollable, IGuiTe
     /**
      * Instantiates a new {@link UILabel}.
      *
-     * @param gui the gui
-     * @param text the text
+     * @param gui       the gui
+     * @param text      the text
      * @param multiLine the multi line
      */
     public UILabel(MalisisGui gui, String text, boolean multiLine) {
@@ -97,7 +90,7 @@ public class UILabel extends UIComponent<UILabel> implements IScrollable, IGuiTe
     /**
      * Instantiates a new {@link UILabel}.
      *
-     * @param gui the gui
+     * @param gui  the gui
      * @param text the text
      */
     public UILabel(MalisisGui gui, BBString text) {
@@ -110,7 +103,7 @@ public class UILabel extends UIComponent<UILabel> implements IScrollable, IGuiTe
     /**
      * Instantiates a new {@link UILabel}.
      *
-     * @param gui the gui
+     * @param gui  the gui
      * @param text the text
      */
     public UILabel(MalisisGui gui, String text) {
@@ -120,7 +113,7 @@ public class UILabel extends UIComponent<UILabel> implements IScrollable, IGuiTe
     /**
      * Instantiates a new {@link UILabel}.
      *
-     * @param gui the gui
+     * @param gui       the gui
      * @param multiLine the multi line
      */
     public UILabel(MalisisGui gui, boolean multiLine) {
@@ -342,9 +335,9 @@ public class UILabel extends UIComponent<UILabel> implements IScrollable, IGuiTe
     /**
      * Draws the background.
      *
-     * @param renderer the renderer
-     * @param mouseX the mouse x
-     * @param mouseY the mouse y
+     * @param renderer    the renderer
+     * @param mouseX      the mouse x
+     * @param mouseY      the mouse y
      * @param partialTick the partial tick
      */
     @Override
@@ -353,9 +346,9 @@ public class UILabel extends UIComponent<UILabel> implements IScrollable, IGuiTe
     /**
      * Draws the foreground.
      *
-     * @param renderer the renderer
-     * @param mouseX the mouse x
-     * @param mouseY the mouse y
+     * @param renderer    the renderer
+     * @param mouseX      the mouse x
+     * @param mouseY      the mouse y
      * @param partialTick the partial tick
      */
     @Override

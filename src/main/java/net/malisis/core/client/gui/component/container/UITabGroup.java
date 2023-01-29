@@ -1,31 +1,21 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.client.gui.component.container;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 import net.malisis.core.client.gui.Anchor;
 import net.malisis.core.client.gui.ComponentPosition;
 import net.malisis.core.client.gui.MalisisGui;
@@ -61,7 +51,7 @@ public class UITabGroup extends UIContainer<UITabGroup> {
     /**
      * Instantiates a new {@link UITabGroup}.
      *
-     * @param gui the gui
+     * @param gui         the gui
      * @param tabPosition the tab position
      */
     public UITabGroup(MalisisGui gui, ComponentPosition tabPosition) {
@@ -168,7 +158,7 @@ public class UITabGroup extends UIContainer<UITabGroup> {
      * Adds a {@link UITab} and its corresponding {@link UIContainer} to this {@link UITabGroup}.<br>
      * Also sets the width of this {@code UITabGroup}.
      *
-     * @param tab tab to add to the UITabGroup
+     * @param tab       tab to add to the UITabGroup
      * @param container {@link UIContainer} linked to the {@link UITab}
      * @return this {@link UITab}
      */
@@ -248,7 +238,7 @@ public class UITabGroup extends UIContainer<UITabGroup> {
      * Attach this {@link UITabGroup} to a {@link UIContainer}.
      *
      * @param container the container to attach to.
-     * @param displace if true, moves and resize the UIContainer to make place for the UITabGroup
+     * @param displace  if true, moves and resize the UIContainer to make place for the UITabGroup
      * @return this {@link UITab}
      */
     public UITabGroup attachTo(UIContainer container, boolean displace) {
@@ -344,6 +334,7 @@ public class UITabGroup extends UIContainer<UITabGroup> {
      *
      */
     public static class TabChangeEvent extends ComponentEvent<UITabGroup> {
+
         private UITab newTab;
 
         public TabChangeEvent(UITabGroup component, UITab newTab) {

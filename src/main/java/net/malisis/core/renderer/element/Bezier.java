@@ -1,25 +1,14 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.renderer.element;
@@ -34,6 +23,7 @@ import java.util.List;
  * @author Ordinastie
  */
 public class Bezier {
+
     /** Generated vertexes. */
     private List<Vertex> vertexes = new ArrayList<>();
     /** Control points. */
@@ -47,7 +37,7 @@ public class Bezier {
      * Instantiates a new {@link Bezier}
      *
      * @param controlPoints the control points
-     * @param precision the precision
+     * @param precision     the precision
      */
     public Bezier(List<Vertex> controlPoints, int precision) {
         setControlPoints(controlPoints);
@@ -58,7 +48,7 @@ public class Bezier {
      * Instantiates a new {@link Bezier}
      *
      * @param controlPoints the control points
-     * @param precision the precision
+     * @param precision     the precision
      */
     public Bezier(Vertex[] controlPoints, int precision) {
         this(Arrays.asList(controlPoints), precision);
@@ -155,9 +145,9 @@ public class Bezier {
      * Interpolate the vertexes places.
      *
      * @param vertexes the vertexes
-     * @param r the degree
-     * @param index the index of the vertex
-     * @param t the completion among the path
+     * @param r        the degree
+     * @param index    the index of the vertex
+     * @param t        the completion among the path
      * @return the vertex
      */
     public Vertex interpolateAll(List<Vertex> vertexes, int r, int index, double t) {
@@ -174,8 +164,8 @@ public class Bezier {
      * Interpolate the place of a {@link Vertex} between two.
      *
      * @param start the start
-     * @param end the end
-     * @param t the t
+     * @param end   the end
+     * @param t     the t
      * @return the vertex
      */
     private Vertex interpolate(Vertex start, Vertex end, double t) {
@@ -190,8 +180,8 @@ public class Bezier {
      * Interpolate a value between two.
      *
      * @param start the start
-     * @param end the end
-     * @param t the t
+     * @param end   the end
+     * @param t     the t
      * @return the double
      */
     private double interpolate(double start, double end, double t) {

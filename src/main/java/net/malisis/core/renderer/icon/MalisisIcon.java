@@ -1,31 +1,21 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.renderer.icon;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.IIcon;
@@ -38,6 +28,7 @@ import net.minecraft.util.IIcon;
  *
  */
 public class MalisisIcon extends TextureAtlasSprite {
+
     /**
      * Width of the global texture sheet.
      */
@@ -92,8 +83,8 @@ public class MalisisIcon extends TextureAtlasSprite {
     }
 
     /**
-     * Adds a {@link MalisisIcon} to be dependant on this one. Will call {@link #initIcon(MalisisIcon, int, int, int, int, boolean)} when
-     * stiched to the sheet.
+     * Adds a {@link MalisisIcon} to be dependant on this one. Will call
+     * {@link #initIcon(MalisisIcon, int, int, int, int, boolean)} when stiched to the sheet.
      *
      * @param icon the icon
      */
@@ -105,7 +96,7 @@ public class MalisisIcon extends TextureAtlasSprite {
     /**
      * Sets the size in pixel of this {@link MalisisIcon}.
      *
-     * @param width the width
+     * @param width  the width
      * @param height the height
      */
     public void setSize(int width, int height) {
@@ -144,7 +135,7 @@ public class MalisisIcon extends TextureAtlasSprite {
      * Sets this {@link MalisisIcon} to be flipped.
      *
      * @param horizontal whether to flip horizontally
-     * @param vertical whether to flip vertically
+     * @param vertical   whether to flip vertically
      * @return this {@link MalisisIcon}
      */
     public MalisisIcon flip(boolean horizontal, boolean vertical) {
@@ -193,21 +184,23 @@ public class MalisisIcon extends TextureAtlasSprite {
     // #end getters/setters
 
     /**
-     * Initializes this {@link MalisisIcon}. Called from the icon this one depends on, copying the <b>baseIcon</b> values.
+     * Initializes this {@link MalisisIcon}. Called from the icon this one depends on, copying the <b>baseIcon</b>
+     * values.
      *
      * @param baseIcon the base icon
-     * @param width the width
-     * @param height the height
-     * @param x the x
-     * @param y the y
-     * @param rotated the rotated
+     * @param width    the width
+     * @param height   the height
+     * @param x        the x
+     * @param y        the y
+     * @param rotated  the rotated
      */
     protected void initIcon(MalisisIcon baseIcon, int width, int height, int x, int y, boolean rotated) {
         copyFrom(baseIcon);
     }
 
     /**
-     * Offsets this {@link MalisisIcon} by a specified amount. <b>offsetX</b> and <b>offsetY</b> are specified in pixels.
+     * Offsets this {@link MalisisIcon} by a specified amount. <b>offsetX</b> and <b>offsetY</b> are specified in
+     * pixels.
      *
      * @param offsetX the x offset
      * @param offsetY the y offset
@@ -219,12 +212,13 @@ public class MalisisIcon extends TextureAtlasSprite {
     }
 
     /**
-     * Clips this {@link MalisisIcon}. <b>offsetX</b>, <b>offsetY</b>, <b>width</b> and <b>height</b> are specified in pixels.
+     * Clips this {@link MalisisIcon}. <b>offsetX</b>, <b>offsetY</b>, <b>width</b> and <b>height</b> are specified in
+     * pixels.
      *
      * @param offsetX the x offset
      * @param offsetY the y offset
-     * @param width the width
-     * @param height the height
+     * @param width   the width
+     * @param height  the height
      * @return this {@link MalisisIcon}
      */
     public MalisisIcon clip(int offsetX, int offsetY, int width, int height) {
@@ -236,13 +230,13 @@ public class MalisisIcon extends TextureAtlasSprite {
     }
 
     /**
-     * Clips this {@link MalisisIcon}. <b>offsetXFactor</b>, <b>offsetYFactor</b>, <b>widthFactor</b> and <b>heightFactor</b> are values
-     * from zero to one.
+     * Clips this {@link MalisisIcon}. <b>offsetXFactor</b>, <b>offsetYFactor</b>, <b>widthFactor</b> and
+     * <b>heightFactor</b> are values from zero to one.
      *
      * @param offsetXFactor the x factor for offset
      * @param offsetYFactor the y factor for offset
-     * @param widthFactor the width factor
-     * @param heightFactor the height factor
+     * @param widthFactor   the width factor
+     * @param heightFactor  the height factor
      * @return this {@link MalisisIcon}
      */
     public MalisisIcon clip(float offsetXFactor, float offsetYFactor, float widthFactor, float heightFactor) {
@@ -268,12 +262,13 @@ public class MalisisIcon extends TextureAtlasSprite {
     }
 
     /**
-     * Called when the part represented by this {@link MalisisIcon} is stiched to the texture. Sets most of the icon fields.
+     * Called when the part represented by this {@link MalisisIcon} is stiched to the texture. Sets most of the icon
+     * fields.
      *
-     * @param width the width
-     * @param height the height
-     * @param x the x
-     * @param y the y
+     * @param width   the width
+     * @param height  the height
+     * @param x       the x
+     * @param y       the y
      * @param rotated the rotated
      */
     @Override
@@ -310,11 +305,12 @@ public class MalisisIcon extends TextureAtlasSprite {
     }
 
     /**
-     * Attempts to register this {@link MalisisIcon} to the {@link TextureMap}. If an {@link IIcon} is already registered with this name,
-     * that registered icon will be returned instead.
+     * Attempts to register this {@link MalisisIcon} to the {@link TextureMap}. If an {@link IIcon} is already
+     * registered with this name, that registered icon will be returned instead.
      *
      * @param register the TextureMap
-     * @return this {@link MalisisIcon} if not already registered, otherwise, the MalisisIcon already inside the registry.
+     * @return this {@link MalisisIcon} if not already registered, otherwise, the MalisisIcon already inside the
+     *         registry.
      */
     public MalisisIcon register(TextureMap register) {
         TextureAtlasSprite icon = register.getTextureExtry(getIconName());

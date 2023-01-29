@@ -1,25 +1,14 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.asm;
@@ -28,6 +17,7 @@ import static net.malisis.core.util.parser.token.Token.*;
 
 import net.malisis.core.util.parser.Parser;
 import net.malisis.core.util.parser.token.Token;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.mutable.Mutable;
 import org.apache.commons.lang3.mutable.MutableObject;
@@ -37,6 +27,7 @@ import org.apache.commons.lang3.mutable.MutableObject;
  *
  */
 public class MethodDescriptor {
+
     private Class<?>[] params;
     private Class<?> returnType;
 
@@ -67,6 +58,7 @@ public class MethodDescriptor {
     }
 
     private static class MethodSignatureParser extends Parser<MethodDescriptor> {
+
         MethodDescriptor desc;
 
         public MethodSignatureParser(MethodDescriptor desc, String s) {
@@ -95,6 +87,7 @@ public class MethodDescriptor {
     }
 
     private static class TypeToken extends Token<Class<?>> {
+
         private static TypeToken token = (TypeToken) new TypeToken().name("TypeToken");
 
         private int size;
@@ -146,8 +139,7 @@ public class MethodDescriptor {
             int e = s.indexOf(';', index);
             if (e == -1) return null;
             try {
-                String name = s.substring(isArray ? index : index + 1, isArray ? e + 1 : e)
-                        .replace('/', '.');
+                String name = s.substring(isArray ? index : index + 1, isArray ? e + 1 : e).replace('/', '.');
                 System.out.println(name);
                 size = name.length() + (isArray ? 0 : 2);
                 return Class.forName(name);

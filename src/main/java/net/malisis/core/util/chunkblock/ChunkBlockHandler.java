@@ -1,38 +1,23 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.util.chunkblock;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import gnu.trove.procedure.TLongProcedure;
-import gnu.trove.set.hash.TLongHashSet;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
+
 import net.malisis.core.MalisisCore;
 import net.malisis.core.util.BlockPos;
 import net.malisis.core.util.BlockState;
@@ -48,6 +33,12 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.event.world.ChunkDataEvent;
 import net.minecraftforge.event.world.ChunkWatchEvent;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import gnu.trove.procedure.TLongProcedure;
+import gnu.trove.set.hash.TLongHashSet;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
+
 /**
  * This class is the enty point for all the chunk collision related calculation.<br>
  * The static methods are called via ASM which then call the process for the corresponding server or client instance.
@@ -56,6 +47,7 @@ import net.minecraftforge.event.world.ChunkWatchEvent;
  *
  */
 public class ChunkBlockHandler implements IChunkBlockHandler {
+
     private static ChunkBlockHandler instance = new ChunkBlockHandler();
 
     private Map<Chunk, TLongHashSet> serverChunks = new WeakHashMap();
@@ -79,7 +71,7 @@ public class ChunkBlockHandler implements IChunkBlockHandler {
     /**
      * Call a {@link ChunkProcedure} this specified {@link Chunk}.
      *
-     * @param chunk the chunk
+     * @param chunk     the chunk
      * @param procedure the procedure
      */
     public void callProcedure(Chunk chunk, ChunkProcedure procedure) {
@@ -95,14 +87,14 @@ public class ChunkBlockHandler implements IChunkBlockHandler {
     // #region updateCoordinates
     /**
      * Update chunk coordinates.<br>
-     * Called via ASM from {@link Chunk#setBlockIDWithMetadata(int, int, int, Block, int)} Notifies all {@link IBlockListener} for that
-     * chunk.<br>
+     * Called via ASM from {@link Chunk#setBlockIDWithMetadata(int, int, int, Block, int)} Notifies all
+     * {@link IBlockListener} for that chunk.<br>
      *
      * @param chunk the chunk
-     * @param x the x
-     * @param y the y
-     * @param z the z
-     * @param old the old
+     * @param x     the x
+     * @param y     the y
+     * @param z     the z
+     * @param old   the old
      * @param block the block
      * @return true, if block can be placed, false if canceled
      */
@@ -129,8 +121,8 @@ public class ChunkBlockHandler implements IChunkBlockHandler {
      * Adds coordinate for the {@link Chunk}s around {@link BlockPos}.
      *
      * @param world the world
-     * @param pos the pos
-     * @param size the size
+     * @param pos   the pos
+     * @param size  the size
      */
     private void addCoord(World world, BlockPos pos, int size) {
         List<Chunk> affectedChunks = getAffectedChunks(world, pos.getX(), pos.getZ(), size);
@@ -141,7 +133,7 @@ public class ChunkBlockHandler implements IChunkBlockHandler {
      * Adds coordinate for the specified {@link Chunk}.
      *
      * @param chunk the chunk
-     * @param pos the pos
+     * @param pos   the pos
      */
     private void addCoord(Chunk chunk, BlockPos pos) {
         // MalisisCore.message("Added " + pos + " to " + chunk.xPosition + ", " + chunk.zPosition);
@@ -152,8 +144,8 @@ public class ChunkBlockHandler implements IChunkBlockHandler {
      * Removes coordinate from the {@link Chunk}s around the {@link BlockPos}.
      *
      * @param world the world
-     * @param pos the pos
-     * @param size the size
+     * @param pos   the pos
+     * @param size  the size
      */
     private void removeCoord(World world, BlockPos pos, int size) {
         List<Chunk> affectedChunks = getAffectedChunks(world, pos.getX(), pos.getZ(), size);
@@ -164,13 +156,13 @@ public class ChunkBlockHandler implements IChunkBlockHandler {
      * Removes coordiante from the specified {@link Chunk}.
      *
      * @param chunk the chunk
-     * @param pos the pos
+     * @param pos   the pos
      */
     private void removeCoord(Chunk chunk, BlockPos pos) {
         if (!getCoords(chunk).remove(pos.toLong()))
             MalisisCore.log.error("Failed to remove : {} ({})", pos, pos.toLong());
         // else
-        //	MalisisCore.message("Removed " + pos + " from " + chunk.xPosition + ", " + chunk.zPosition);
+        // MalisisCore.message("Removed " + pos + " from " + chunk.xPosition + ", " + chunk.zPosition);
     }
 
     // #end updateCoordinates
@@ -220,7 +212,7 @@ public class ChunkBlockHandler implements IChunkBlockHandler {
      * From IvNBTHelper.writeNBTLongs()
      *
      * @param compound the compound
-     * @param longs the longs
+     * @param longs    the longs
      * @author Ivorius
      */
     private void writeLongArray(NBTTagCompound compound, long[] longs) {
@@ -263,15 +255,15 @@ public class ChunkBlockHandler implements IChunkBlockHandler {
     /**
      * Gets the chunks inside distance from coordinates.
      *
-     * @param world the world
-     * @param x the x
-     * @param z the z
+     * @param world    the world
+     * @param x        the x
+     * @param z        the z
      * @param distance the size
      * @return the chunks
      */
     public List<Chunk> getAffectedChunks(World world, int x, int z, int distance) {
-        AxisAlignedBB aabb =
-                AxisAlignedBB.getBoundingBox(x - distance, 0, z - distance, x + distance + 1, 1, z + distance + 1);
+        AxisAlignedBB aabb = AxisAlignedBB
+                .getBoundingBox(x - distance, 0, z - distance, x + distance + 1, 1, z + distance + 1);
         return getAffectedChunks(world, aabb);
     }
 
@@ -287,8 +279,7 @@ public class ChunkBlockHandler implements IChunkBlockHandler {
         for (AxisAlignedBB aabb : aabbs) {
             for (int cx = (int) Math.floor(aabb.minX) >> 4; cx <= (int) Math.ceil(aabb.maxX) >> 4; cx++) {
                 for (int cz = (int) Math.floor(aabb.minZ) >> 4; cz <= (int) Math.ceil(aabb.maxZ) >> 4; cz++) {
-                    if (world.getChunkProvider() != null
-                            && world.getChunkProvider().chunkExists(cx, cz))
+                    if (world.getChunkProvider() != null && world.getChunkProvider().chunkExists(cx, cz))
                         chunks.add(world.getChunkFromChunkCoords(cx, cz));
                 }
             }
@@ -301,6 +292,7 @@ public class ChunkBlockHandler implements IChunkBlockHandler {
     }
 
     public abstract static class ChunkProcedure implements TLongProcedure {
+
         protected World world;
         protected Chunk chunk;
         protected BlockState state;
@@ -311,7 +303,8 @@ public class ChunkBlockHandler implements IChunkBlockHandler {
         }
 
         /**
-         * Checks whether the passed coordinate is a valid {@link IChunkCollidable} and that it belong to the current {@link Chunk}.<br>
+         * Checks whether the passed coordinate is a valid {@link IChunkCollidable} and that it belong to the current
+         * {@link Chunk}.<br>
          * Also sets the x, y, z and block field for this {@link ChunkProcedure}.
          *
          * @param coord the coord

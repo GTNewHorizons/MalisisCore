@@ -1,33 +1,22 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 PaleoCrafter, Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 PaleoCrafter, Ordinastie Permission is hereby granted, free of charge, to
+ * any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the
+ * Software without restriction, including without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished
+ * to do so, subject to the following conditions: The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
+ * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.client.gui.component.control;
 
-import com.google.common.eventbus.Subscribe;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.WeakHashMap;
+
 import net.malisis.core.client.gui.Anchor;
 import net.malisis.core.client.gui.GuiRenderer;
 import net.malisis.core.client.gui.MalisisGui;
@@ -39,7 +28,10 @@ import net.malisis.core.client.gui.event.component.ContentUpdateEvent;
 import net.malisis.core.client.gui.icon.GuiIcon;
 import net.malisis.core.util.MouseButton;
 import net.minecraft.client.gui.GuiScreen;
+
 import org.lwjgl.input.Keyboard;
+
+import com.google.common.eventbus.Subscribe;
 
 /**
  * UIScrollBar
@@ -47,6 +39,7 @@ import org.lwjgl.input.Keyboard;
  * @author Ordinastie
  */
 public class UIScrollBar extends UIComponent<UIScrollBar> implements IControlComponent {
+
     public enum Type {
         HORIZONTAL,
         VERTICAL
@@ -94,7 +87,7 @@ public class UIScrollBar extends UIComponent<UIScrollBar> implements IControlCom
      * Sets the scroll size.
      *
      * @param thickness the thickness
-     * @param height the height
+     * @param height    the height
      */
     public void setScrollSize(int thickness, int height) {
         scrollThickness = thickness;
@@ -172,8 +165,8 @@ public class UIScrollBar extends UIComponent<UIScrollBar> implements IControlCom
     }
 
     /**
-     * Sets whether this {@link UIScrollBar} should automatically hide when scrolling is not possible (content size is inferior to component
-     * size).
+     * Sets whether this {@link UIScrollBar} should automatically hide when scrolling is not possible (content size is
+     * inferior to component size).
      *
      * @param autoHide the auto hide
      * @return this {@link UIScrollBar}
@@ -190,15 +183,13 @@ public class UIScrollBar extends UIComponent<UIScrollBar> implements IControlCom
 
     @Override
     public int getWidth() {
-        return isHorizontal()
-                ? getParent().getWidth() - (hasVisibleOtherScrollbar() ? scrollThickness : 0)
+        return isHorizontal() ? getParent().getWidth() - (hasVisibleOtherScrollbar() ? scrollThickness : 0)
                 : scrollThickness;
     }
 
     @Override
     public int getHeight() {
-        return isHorizontal()
-                ? scrollThickness
+        return isHorizontal() ? scrollThickness
                 : getParent().getHeight() - (hasVisibleOtherScrollbar() ? scrollThickness : 0);
     }
 
@@ -361,7 +352,11 @@ public class UIScrollBar extends UIComponent<UIScrollBar> implements IControlCom
 
     @Override
     public String getPropertyString() {
-        return type + " | O=" + getOffset() + "(" + getScrollable().getContentHeight() + ") | "
+        return type + " | O="
+                + getOffset()
+                + "("
+                + getScrollable().getContentHeight()
+                + ") | "
                 + super.getPropertyString();
     }
 
@@ -369,7 +364,7 @@ public class UIScrollBar extends UIComponent<UIScrollBar> implements IControlCom
      * Gets the {@link UIScrollBar} for the {@link UIComponent}, if any.
      *
      * @param component the component
-     * @param type the type
+     * @param type      the type
      * @return the scrollbar
      */
     public static UIScrollBar getScrollbar(UIComponent component, Type type) {

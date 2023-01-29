@@ -1,35 +1,22 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.renderer;
 
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 import java.lang.reflect.Field;
 import java.util.Iterator;
 import java.util.Map;
+
 import net.malisis.core.MalisisCore;
 import net.malisis.core.asm.AsmUtils;
 import net.malisis.core.renderer.element.Face;
@@ -62,17 +49,24 @@ import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+
 /**
- * Base class for rendering. Handle the rendering for {@link ISimpleBlockRenderingHandler}, {@link TileEntitySpecialRenderer}, and
- * {@link IItemRenderer}. Provides easy registration of the renderer, and automatically sets up the context for the rendering.
+ * Base class for rendering. Handle the rendering for {@link ISimpleBlockRenderingHandler},
+ * {@link TileEntitySpecialRenderer}, and {@link IItemRenderer}. Provides easy registration of the renderer, and
+ * automatically sets up the context for the rendering.
  *
  * @author Ordinastie
  *
  */
 public class MalisisRenderer extends TileEntitySpecialRenderer
         implements ISimpleBlockRenderingHandler, IItemRenderer, IRenderWorldLast {
+
     // Reference to Minecraft.renderGlobal.damagedBlocks (lazy loaded)
     /** The damaged blocks. */
     private static Map damagedBlocks;
@@ -170,11 +164,11 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     /**
      * Sets informations for this {@link MalisisRenderer}.
      *
-     * @param world the world
-     * @param block the block
-     * @param x the x
-     * @param y the y
-     * @param z the z
+     * @param world    the world
+     * @param block    the block
+     * @param x        the x
+     * @param y        the y
+     * @param z        the z
      * @param metadata the metadata
      */
     public void set(IBlockAccess world, Block block, int x, int y, int z, int metadata) {
@@ -216,7 +210,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     /**
      * Sets informations for this {@link MalisisRenderer}.
      *
-     * @param block the block
+     * @param block         the block
      * @param blockMetadata the block metadata
      */
     public void set(Block block, int blockMetadata) {
@@ -237,7 +231,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     /**
      * Sets informations for this {@link MalisisRenderer}.
      *
-     * @param te the te
+     * @param te          the te
      * @param partialTick the partial tick
      */
     public void set(TileEntity te, float partialTick) {
@@ -249,7 +243,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     /**
      * Sets informations for this {@link MalisisRenderer}.
      *
-     * @param type the type
+     * @param type      the type
      * @param itemStack the item stack
      */
     public void set(ItemRenderType type, ItemStack itemStack) {
@@ -264,9 +258,9 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     /**
      * Renders inventory block.
      *
-     * @param block the block
+     * @param block    the block
      * @param metadata the metadata
-     * @param modelId renderId
+     * @param modelId  renderId
      * @param renderer RenderBlocks
      */
     @Override
@@ -281,18 +275,18 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     /**
      * Renders world block.
      *
-     * @param world the world
-     * @param x the x
-     * @param y the y
-     * @param z the z
-     * @param block the block
-     * @param modelId renderId
+     * @param world    the world
+     * @param x        the x
+     * @param y        the y
+     * @param z        the z
+     * @param block    the block
+     * @param modelId  renderId
      * @param renderer RenderBlocks
      * @return true, if something was drawn, false otherwise
      */
     @Override
-    public boolean renderWorldBlock(
-            IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+            RenderBlocks renderer) {
         set(world, block, x, y, z, world.getBlockMetadata(x, y, z));
         tileEntity = world.getTileEntity(x, y, z);
         renderBlocks = renderer;
@@ -320,7 +314,8 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
 
     // #region IItemRenderer
     /**
-     * Checks whether to use this {@link MalisisRenderer} for the specified {@link net.minecraftforge.client.IItemRenderer.ItemRenderType}.
+     * Checks whether to use this {@link MalisisRenderer} for the specified
+     * {@link net.minecraftforge.client.IItemRenderer.ItemRenderType}.
      *
      * @param item the item
      * @param type ItemRenderType
@@ -334,8 +329,8 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     /**
      * Checks whether a render helper should be used for this {@link MalisisRenderer}.
      *
-     * @param type the type
-     * @param item the item
+     * @param type   the type
+     * @param item   the item
      * @param helper the helper
      * @return true, if successful
      */
@@ -365,10 +360,10 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     /**
      * Renders a {@link TileEntitySpecialRenderer}.
      *
-     * @param te the TileEntity
-     * @param x the x
-     * @param y the y
-     * @param z the z
+     * @param te          the TileEntity
+     * @param x           the x
+     * @param y           the y
+     * @param z           the z
      * @param partialTick the partial tick
      */
     @Override
@@ -432,11 +427,12 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
 
     // #region prepare()
     /**
-     * Prepares the {@link Tessellator} and the GL states for the <b>renderType</b>. <b>data</b> is only used for TESR and IRWL.<br>
+     * Prepares the {@link Tessellator} and the GL states for the <b>renderType</b>. <b>data</b> is only used for TESR
+     * and IRWL.<br>
      * TESR and IRWL rendering are surrounded by glPushAttrib(GL_LIGHTING_BIT) and block texture sheet is bound.
      *
      * @param renderType the render type
-     * @param data the data
+     * @param data       the data
      */
     public void prepare(RenderType renderType, double... data) {
         _initialize();
@@ -625,8 +621,8 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
 
     /**
      * Initializes this {@link MalisisRenderer}. Does nothing by default.<br>
-     * Called the first time a rendering is done and should be overridden if some setup is needed for the rendering (building shape and
-     * parameters).
+     * Called the first time a rendering is done and should be overridden if some setup is needed for the rendering
+     * (building shape and parameters).
      */
     protected void initialize() {}
 
@@ -661,11 +657,12 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Renders the destroy progress manually for TESR. Called if {@link MalisisRenderer#destroyBlockProgress} is not <code>null</code>.
+     * Renders the destroy progress manually for TESR. Called if {@link MalisisRenderer#destroyBlockProgress} is not
+     * <code>null</code>.
      */
     public void renderDestroyProgress() {
         if (destroyBlockProgress != null) overrideTexture = damagedIcons[destroyBlockProgress.getPartialBlockDamage()];
-        //	enableBlending();
+        // enableBlending();
         render();
     }
 
@@ -681,7 +678,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     /**
      * Draws a {@link Shape} with specified {@link RenderParameters}.
      *
-     * @param s the s
+     * @param s      the s
      * @param params the params
      */
     public void drawShape(Shape s, RenderParameters params) {
@@ -713,7 +710,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     /**
      * Draws a {@link Face} with specified {@link RenderParameters}.
      *
-     * @param f the f
+     * @param f          the f
      * @param faceParams the face params
      */
     protected void drawFace(Face f, RenderParameters faceParams) {
@@ -735,10 +732,8 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         if (!shouldRenderFace(face)) return;
 
         // use normals if available
-        if ((renderType == RenderType.ITEM_INVENTORY
-                        || renderType == RenderType.ISBRH_INVENTORY
-                        || params.useNormals.get())
-                && params.direction.get() != null)
+        if ((renderType == RenderType.ITEM_INVENTORY || renderType == RenderType.ISBRH_INVENTORY
+                || params.useNormals.get()) && params.direction.get() != null)
             t.setNormal(params.direction.get().offsetX, params.direction.get().offsetY, params.direction.get().offsetZ);
 
         baseBrightness = getBaseBrightness();
@@ -746,10 +741,10 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         drawVertexes(face.getVertexes());
 
         // we need to separate each face
-        if (drawMode == GL11.GL_POLYGON
-                || drawMode == GL11.GL_LINE
+        if (drawMode == GL11.GL_POLYGON || drawMode == GL11.GL_LINE
                 || drawMode == GL11.GL_LINE_STRIP
-                || drawMode == GL11.GL_LINE_LOOP) next();
+                || drawMode == GL11.GL_LINE_LOOP)
+            next();
     }
 
     /**
@@ -792,14 +787,15 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Draws a string at the specified coordinates, with color and shadow. The string gets translated. Uses FontRenderer.drawString().
+     * Draws a string at the specified coordinates, with color and shadow. The string gets translated. Uses
+     * FontRenderer.drawString().
      *
      * @param font the font
      * @param text the text
-     * @param x the x
-     * @param y the y
-     * @param z the z
-     * @param fro the fro
+     * @param x    the x
+     * @param y    the y
+     * @param z    the z
+     * @param fro  the fro
      */
     public void drawText(MalisisFont font, String text, float x, float y, float z, FontRenderOptions fro) {
         if (font == null) font = MalisisFont.minecraftFont;
@@ -820,8 +816,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         else if (overrideTexture != null) icon = overrideTexture;
         else if (block != null && icon == null) {
             int side = 0;
-            if (params.textureSide.get() != null)
-                side = params.textureSide.get().ordinal();
+            if (params.textureSide.get() != null) side = params.textureSide.get().ordinal();
             if (world != null && params.useWorldSensitiveIcon.get()) icon = block.getIcon(world, x, y, z, side);
             else icon = block.getIcon(side, blockMetadata);
         }
@@ -830,7 +825,8 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Checks if a {@link Face} should be rendered. {@link RenderParameters#direction} needs to be defined for the <b>face</b>.
+     * Checks if a {@link Face} should be rendered. {@link RenderParameters#direction} needs to be defined for the
+     * <b>face</b>.
      *
      * @param face the face
      * @return true, if successful
@@ -853,8 +849,8 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
 
     /**
      * Applies the texture to the {@link Shape}.<br>
-     * Usually necessary before some shape transformations in conjunction with {@link RenderParameters#applyTexture} set to
-     * <code>false</code> to prevent reapplying texture when rendering.
+     * Usually necessary before some shape transformations in conjunction with {@link RenderParameters#applyTexture} set
+     * to <code>false</code> to prevent reapplying texture when rendering.
      *
      * @param shape the shape
      */
@@ -864,10 +860,10 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
 
     /**
      * Applies the texture to the {@link Shape} with specified {@link RenderParameters}.<br>
-     * Usually necessary before some shape transformations in conjunction with {@link RenderParameters#applyTexture} set to
-     * <code>false</code> to prevent reapplying texture when rendering.
+     * Usually necessary before some shape transformations in conjunction with {@link RenderParameters#applyTexture} set
+     * to <code>false</code> to prevent reapplying texture when rendering.
      *
-     * @param shape the shape
+     * @param shape      the shape
      * @param parameters the parameters
      */
     public void applyTexture(Shape shape, RenderParameters parameters) {
@@ -890,10 +886,11 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
 
     /**
      * Calculates the ambient occlusion for a {@link Vertex} and also apply the side dependent shade.<br>
-     * <b>aoMatrix</b> is the list of block coordinates necessary to compute AO. If it's empty, only the global face shade is applied.<br>
+     * <b>aoMatrix</b> is the list of block coordinates necessary to compute AO. If it's empty, only the global face
+     * shade is applied.<br>
      * Also, <i>params.colorMultiplier</i> is applied as well.
      *
-     * @param vertex the vertex
+     * @param vertex   the vertex
      * @param aoMatrix the ao matrix
      * @return the int
      */
@@ -901,21 +898,20 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         int color = 0xFFFFFF;
 
         if (params.usePerVertexColor.get()) // vertex should use their own colors
-        color = vertex.getColor();
+            color = vertex.getColor();
         if (params.colorMultiplier.get() != null) // global color multiplier is set
-        color = params.colorMultiplier.get();
+            color = params.colorMultiplier.get();
         else if (block != null) // use block color mulitplier
-        color = world != null ? block.colorMultiplier(world, x, y, z) : block.getRenderColor(blockMetadata);
+            color = world != null ? block.colorMultiplier(world, x, y, z) : block.getRenderColor(blockMetadata);
 
         if (drawMode == GL11.GL_LINE) // no AO for lines
-        return color;
+            return color;
         if (renderType != RenderType.ISBRH_WORLD && renderType != RenderType.TESR_WORLD) // no AO for item/inventories
-        return color;
+            return color;
 
         float factor = 1;
         // calculate AO
-        if (params.calculateAOColor.get()
-                && aoMatrix != null
+        if (params.calculateAOColor.get() && aoMatrix != null
                 && Minecraft.isAmbientOcclusionEnabled()
                 && block.getLightValue(world, x, y, z) == 0) {
             factor = getBlockAmbientOcclusion(
@@ -944,8 +940,8 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
 
     /**
      * Gets the base brightness for the current {@link Face}.<br>
-     * If <i>params.useBlockBrightness</i> = false, <i>params.brightness</i>. Else, the brightness is determined based on
-     * <i>params.offset</i> and <i>getBlockBounds()</i>
+     * If <i>params.useBlockBrightness</i> = false, <i>params.brightness</i>. Else, the brightness is determined based
+     * on <i>params.offset</i> and <i>getBlockBounds()</i>
      *
      * @return the base brightness
      */
@@ -987,23 +983,23 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Calculates the ambient occlusion brightness for a {@link Vertex}. <b>aoMatrix</b> is the list of block coordinates necessary to
-     * compute AO. Only first 3 blocks are used.<br>
+     * Calculates the ambient occlusion brightness for a {@link Vertex}. <b>aoMatrix</b> is the list of block
+     * coordinates necessary to compute AO. Only first 3 blocks are used.<br>
      *
-     * @param vertex the vertex
+     * @param vertex   the vertex
      * @param aoMatrix the ao matrix
      * @return the int
      */
     protected int calcVertexBrightness(Vertex vertex, int[][] aoMatrix) {
         if (params.usePerVertexBrightness.get()) return vertex.getBrightness();
         if (drawMode == GL11.GL_LINE) // no AO for lines
-        return baseBrightness;
+            return baseBrightness;
         if (renderType != RenderType.ISBRH_WORLD && renderType != RenderType.TESR_WORLD) // not in world
-        return baseBrightness;
+            return baseBrightness;
         if (!params.calculateBrightness.get() || aoMatrix == null) // no data
-        return baseBrightness;
+            return baseBrightness;
         if (!Minecraft.isAmbientOcclusionEnabled() || block.getLightValue(world, x, y, z) != 0) // emit light
-        return baseBrightness;
+            return baseBrightness;
 
         int[] b = new int[Math.max(3, aoMatrix.length)];
 
@@ -1018,9 +1014,9 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     /**
      * Does the actual brightness calculation (copied from net.minecraft.client.renderer.BlocksRenderer.java)
      *
-     * @param b1 the b1
-     * @param b2 the b2
-     * @param b3 the b3
+     * @param b1   the b1
+     * @param b2   the b2
+     * @param b3   the b3
      * @param base the base
      * @return the ao brightness
      */
@@ -1033,14 +1029,14 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Gets the block ambient occlusion value. Contrary to base Minecraft code, it's the actual block at the <b>x</b>, <b>y</b> and <b>z</b>
-     * coordinates which is used to get the value, and not value of the block drawn. This allows to have different logic behaviors for AO
-     * values for a block.
+     * Gets the block ambient occlusion value. Contrary to base Minecraft code, it's the actual block at the <b>x</b>,
+     * <b>y</b> and <b>z</b> coordinates which is used to get the value, and not value of the block drawn. This allows
+     * to have different logic behaviors for AO values for a block.
      *
      * @param world the world
-     * @param x the x
-     * @param y the y
-     * @param z the z
+     * @param x     the x
+     * @param y     the y
+     * @param z     the z
      * @return the block ambient occlusion
      */
     protected float getBlockAmbientOcclusion(IBlockAccess world, int x, int y, int z) {
@@ -1054,9 +1050,9 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
      * Gets the mix brightness for a block (sky + block source).
      *
      * @param world the world
-     * @param x the x
-     * @param y the y
-     * @param z the z
+     * @param x     the x
+     * @param y     the y
+     * @param z     the z
      * @return the mixed brightness for block
      */
     protected int getMixedBrightnessForBlock(IBlockAccess world, int x, int y, int z) {
@@ -1065,8 +1061,8 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Gets the rendering bounds. If <i>params.useBlockBounds</i> = false, <i>params.renderBounds</i> is used instead of the actual block
-     * bounds.
+     * Gets the rendering bounds. If <i>params.useBlockBounds</i> = false, <i>params.renderBounds</i> is used instead of
+     * the actual block bounds.
      *
      * @return the render bounds
      */

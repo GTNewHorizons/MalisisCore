@@ -1,25 +1,14 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.renderer.preset;
@@ -154,376 +143,376 @@ public class FacePreset {
     //
     //    //@formatter:on
     //
-    //	private static HashMap<String, int[]> aom = new HashMap<String, int[]>();
+    // private static HashMap<String, int[]> aom = new HashMap<String, int[]>();
     //
-    //	static
-    //	{
-    //		buildDirectionMatrix();
-    //		RenderParameters rp;
+    // static
+    // {
+    // buildDirectionMatrix();
+    // RenderParameters rp;
     //
-    //		/**
-    //		 * Regular faces
-    //		 */
-    //		// Bottom
+    // /**
+    // * Regular faces
+    // */
+    // // Bottom
     //
-    //		// Top
+    // // Top
     //
-    //		// West
+    // // West
     //
-    //		// North
+    // // North
     //
-    //		// East
+    // // East
     //
-    //		// South
+    // // South
     //
-    //		/**
-    //		 * Corners
-    //		 */
-    //		// NorthWest
-    //		rp = new RenderParameters();
-    //		rp.direction.set(NORTH);
-    //		rp.textureSide.set(NORTH);
-    //		rp.colorFactor.set(0.7F);
-    //		rp.aoMatrix.set(new int[][][] { { aom("Top"), aom("TopEast"), aom("TopNorthEast"), aom("NorthEast") },
-    //				{ aom("Bottom"), aom("BottomEast"), aom("BottomNorthEast"), aom("NorthEast") },
-    //				{ aom("Bottom"), aom("BottomSouth"), aom("BottomSouthWest"), aom("SouthWest") },
-    //				{ aom("Top"), aom("TopSouth"), aom("TopSouthWest"), aom("SouthWest") } });
-    //		NorthWest.setParameters(rp);
+    // /**
+    // * Corners
+    // */
+    // // NorthWest
+    // rp = new RenderParameters();
+    // rp.direction.set(NORTH);
+    // rp.textureSide.set(NORTH);
+    // rp.colorFactor.set(0.7F);
+    // rp.aoMatrix.set(new int[][][] { { aom("Top"), aom("TopEast"), aom("TopNorthEast"), aom("NorthEast") },
+    // { aom("Bottom"), aom("BottomEast"), aom("BottomNorthEast"), aom("NorthEast") },
+    // { aom("Bottom"), aom("BottomSouth"), aom("BottomSouthWest"), aom("SouthWest") },
+    // { aom("Top"), aom("TopSouth"), aom("TopSouthWest"), aom("SouthWest") } });
+    // NorthWest.setParameters(rp);
     //
-    //		// NorthEast
-    //		rp = new RenderParameters();
-    //		rp.direction.set(EAST);
-    //		rp.textureSide.set(EAST);
-    //		rp.colorFactor.set(0.7F);
-    //		rp.aoMatrix.set(new int[][][] { { aom("Top"), aom("TopSouth"), aom("TopSouthEast"), aom("SouthEast") },
-    //				{ aom("Bottom"), aom("BottomSouth"), aom("BottomSouthEast"), aom("SouthEast") },
-    //				{ aom("Bottom"), aom("BottomWest"), aom("BottomNorthWest"), aom("NorthWest") },
-    //				{ aom("Top"), aom("TopWest"), aom("TopNorthWest"), aom("NorthWest") } });
-    //		NorthEast.setParameters(rp);
+    // // NorthEast
+    // rp = new RenderParameters();
+    // rp.direction.set(EAST);
+    // rp.textureSide.set(EAST);
+    // rp.colorFactor.set(0.7F);
+    // rp.aoMatrix.set(new int[][][] { { aom("Top"), aom("TopSouth"), aom("TopSouthEast"), aom("SouthEast") },
+    // { aom("Bottom"), aom("BottomSouth"), aom("BottomSouthEast"), aom("SouthEast") },
+    // { aom("Bottom"), aom("BottomWest"), aom("BottomNorthWest"), aom("NorthWest") },
+    // { aom("Top"), aom("TopWest"), aom("TopNorthWest"), aom("NorthWest") } });
+    // NorthEast.setParameters(rp);
     //
-    //		// SouthWest
-    //		rp = new RenderParameters();
-    //		rp.direction.set(WEST);
-    //		rp.textureSide.set(WEST);
-    //		rp.colorFactor.set(0.7F);
-    //		rp.aoMatrix.set(new int[][][] { { aom("Top"), aom("TopNorth"), aom("TopNorthWest"), aom("NorthWest") },
-    //				{ aom("Bottom"), aom("BottomNorth"), aom("BottomNorthWest"), aom("NorthWest") },
-    //				{ aom("Bottom"), aom("BottomEast"), aom("BottomSouthEast"), aom("SouthEast") },
-    //				{ aom("Top"), aom("TopEast"), aom("TopSouthEast"), aom("SouthEast") } });
-    //		SouthWest.setParameters(rp);
+    // // SouthWest
+    // rp = new RenderParameters();
+    // rp.direction.set(WEST);
+    // rp.textureSide.set(WEST);
+    // rp.colorFactor.set(0.7F);
+    // rp.aoMatrix.set(new int[][][] { { aom("Top"), aom("TopNorth"), aom("TopNorthWest"), aom("NorthWest") },
+    // { aom("Bottom"), aom("BottomNorth"), aom("BottomNorthWest"), aom("NorthWest") },
+    // { aom("Bottom"), aom("BottomEast"), aom("BottomSouthEast"), aom("SouthEast") },
+    // { aom("Top"), aom("TopEast"), aom("TopSouthEast"), aom("SouthEast") } });
+    // SouthWest.setParameters(rp);
     //
-    //		// SouthEast
-    //		rp = new RenderParameters();
-    //		rp.direction.set(SOUTH);
-    //		rp.textureSide.set(SOUTH);
-    //		rp.colorFactor.set(0.7F);
-    //		rp.aoMatrix.set(new int[][][] { { aom("Top"), aom("TopWest"), aom("TopSouthWest"), aom("SouthWest") },
-    //				{ aom("Bottom"), aom("BottomWest"), aom("BottomSouthWest"), aom("SouthWest") },
-    //				{ aom("Bottom"), aom("BottomNorth"), aom("BottomNorthEast"), aom("NorthEast") },
-    //				{ aom("Top"), aom("TopNorth"), aom("TopNortEastWest"), aom("NorthEast") } });
-    //		SouthEast.setParameters(rp);
+    // // SouthEast
+    // rp = new RenderParameters();
+    // rp.direction.set(SOUTH);
+    // rp.textureSide.set(SOUTH);
+    // rp.colorFactor.set(0.7F);
+    // rp.aoMatrix.set(new int[][][] { { aom("Top"), aom("TopWest"), aom("TopSouthWest"), aom("SouthWest") },
+    // { aom("Bottom"), aom("BottomWest"), aom("BottomSouthWest"), aom("SouthWest") },
+    // { aom("Bottom"), aom("BottomNorth"), aom("BottomNorthEast"), aom("NorthEast") },
+    // { aom("Top"), aom("TopNorth"), aom("TopNortEastWest"), aom("NorthEast") } });
+    // SouthEast.setParameters(rp);
     //
-    //		/**
-    //		 * Top Slopes
-    //		 */
-    //		// TopNorth
-    //		rp = new RenderParameters();
-    //		rp.direction.set(UP);
-    //		rp.textureSide.set(UP);
-    //		rp.colorFactor.set(0.9F);
-    //		rp.aoMatrix.set(new int[][][] { { aom("TopSouth"), aom("TopSouthEast"), aom("TopEast"), aom("East") },
-    //				{ aom("East"), aom("NorthEast"), aom("BottomNorthEast"), aom("BottomNorth") },
-    //				{ aom("BottomNorth"), aom("BottomNorthWest"), aom("NorthWest"), aom("West") },
-    //				{ aom("West"), aom("TopWest"), aom("TopSouthWest"), aom("TopSouth") } });
-    //		TopNorth.setParameters(rp);
-    //		// TopEast
-    //		rp = new RenderParameters();
-    //		rp.direction.set(UP);
-    //		rp.textureSide.set(UP);
-    //		rp.colorFactor.set(0.8F);
-    //		rp.aoMatrix.set(new int[][][] { { aom("TopWest"), aom("TopSouthWest"), aom("TopSouth"), aom("South") },
-    //				{ aom("South"), aom("SouthEast"), aom("BottomSouthEast"), aom("BottomEast") },
-    //				{ aom("BottomEast"), aom("BottomNorthEast"), aom("NorthEast"), aom("East") },
-    //				{ aom("North"), aom("TopNorth"), aom("TopNorthWest"), aom("TopWest") } });
-    //		TopEast.setParameters(rp);
-    //		// TopSouth
-    //		rp = new RenderParameters();
-    //		rp.direction.set(UP);
-    //		rp.textureSide.set(UP);
-    //		rp.colorFactor.set(0.9F);
-    //		rp.aoMatrix.set(new int[][][] { { aom("TopNorth"), aom("TopNorthWest"), aom("TopWest"), aom("West") },
-    //				{ aom("West"), aom("SouthWest"), aom("BottomSouthWest"), aom("BottomSouth") },
-    //				{ aom("BottomSouth"), aom("BottomSouthEast"), aom("SouthEast"), aom("East") },
-    //				{ aom("East"), aom("TopEast"), aom("TopNorthEast"), aom("TopNorth") } });
-    //		TopSouth.setParameters(rp);
-    //		// TopWest
-    //		rp = new RenderParameters();
-    //		rp.direction.set(UP);
-    //		rp.textureSide.set(UP);
-    //		rp.colorFactor.set(0.8F);
-    //		rp.aoMatrix.set(new int[][][] { { aom("TopEast"), aom("TopNorthEast"), aom("TopNorth"), aom("North") },
-    //				{ aom("North"), aom("NorthWest"), aom("BottomNorthWest"), aom("BottomWest") },
-    //				{ aom("BottomWest"), aom("BottomSouthWest"), aom("SouthWest"), aom("South") },
-    //				{ aom("South"), aom("TopSouth"), aom("TopSouthEast"), aom("TopEast") } });
-    //		TopWest.setParameters(rp);
+    // /**
+    // * Top Slopes
+    // */
+    // // TopNorth
+    // rp = new RenderParameters();
+    // rp.direction.set(UP);
+    // rp.textureSide.set(UP);
+    // rp.colorFactor.set(0.9F);
+    // rp.aoMatrix.set(new int[][][] { { aom("TopSouth"), aom("TopSouthEast"), aom("TopEast"), aom("East") },
+    // { aom("East"), aom("NorthEast"), aom("BottomNorthEast"), aom("BottomNorth") },
+    // { aom("BottomNorth"), aom("BottomNorthWest"), aom("NorthWest"), aom("West") },
+    // { aom("West"), aom("TopWest"), aom("TopSouthWest"), aom("TopSouth") } });
+    // TopNorth.setParameters(rp);
+    // // TopEast
+    // rp = new RenderParameters();
+    // rp.direction.set(UP);
+    // rp.textureSide.set(UP);
+    // rp.colorFactor.set(0.8F);
+    // rp.aoMatrix.set(new int[][][] { { aom("TopWest"), aom("TopSouthWest"), aom("TopSouth"), aom("South") },
+    // { aom("South"), aom("SouthEast"), aom("BottomSouthEast"), aom("BottomEast") },
+    // { aom("BottomEast"), aom("BottomNorthEast"), aom("NorthEast"), aom("East") },
+    // { aom("North"), aom("TopNorth"), aom("TopNorthWest"), aom("TopWest") } });
+    // TopEast.setParameters(rp);
+    // // TopSouth
+    // rp = new RenderParameters();
+    // rp.direction.set(UP);
+    // rp.textureSide.set(UP);
+    // rp.colorFactor.set(0.9F);
+    // rp.aoMatrix.set(new int[][][] { { aom("TopNorth"), aom("TopNorthWest"), aom("TopWest"), aom("West") },
+    // { aom("West"), aom("SouthWest"), aom("BottomSouthWest"), aom("BottomSouth") },
+    // { aom("BottomSouth"), aom("BottomSouthEast"), aom("SouthEast"), aom("East") },
+    // { aom("East"), aom("TopEast"), aom("TopNorthEast"), aom("TopNorth") } });
+    // TopSouth.setParameters(rp);
+    // // TopWest
+    // rp = new RenderParameters();
+    // rp.direction.set(UP);
+    // rp.textureSide.set(UP);
+    // rp.colorFactor.set(0.8F);
+    // rp.aoMatrix.set(new int[][][] { { aom("TopEast"), aom("TopNorthEast"), aom("TopNorth"), aom("North") },
+    // { aom("North"), aom("NorthWest"), aom("BottomNorthWest"), aom("BottomWest") },
+    // { aom("BottomWest"), aom("BottomSouthWest"), aom("SouthWest"), aom("South") },
+    // { aom("South"), aom("TopSouth"), aom("TopSouthEast"), aom("TopEast") } });
+    // TopWest.setParameters(rp);
     //
-    //		/**
-    //		 * Corner slopes
-    //		 */
-    //		// TopSouthEast
-    //		rp = new RenderParameters();
-    //		rp.direction.set(UP);
-    //		rp.textureSide.set(UP);
-    //		rp.colorFactor.set(0.8F);
-    //		rp.aoMatrix.set(new int[][][] { { aom("TopNorthWest"), aom("TopNorth"), aom("TopWest") },
-    //				{ aom("West"), aom("SouthWest"), aom("Bottom"), aom("BottomSouth") },
-    //				{ aom("North"), aom("NorthEast"), aom("Bottom"), aom("BottomEast") },
-    //				{ aom("TopNorthWest"), aom("TopNorth"), aom("TopWest") } });
-    //		TopSouthEast.setParameters(rp);
+    // /**
+    // * Corner slopes
+    // */
+    // // TopSouthEast
+    // rp = new RenderParameters();
+    // rp.direction.set(UP);
+    // rp.textureSide.set(UP);
+    // rp.colorFactor.set(0.8F);
+    // rp.aoMatrix.set(new int[][][] { { aom("TopNorthWest"), aom("TopNorth"), aom("TopWest") },
+    // { aom("West"), aom("SouthWest"), aom("Bottom"), aom("BottomSouth") },
+    // { aom("North"), aom("NorthEast"), aom("Bottom"), aom("BottomEast") },
+    // { aom("TopNorthWest"), aom("TopNorth"), aom("TopWest") } });
+    // TopSouthEast.setParameters(rp);
     //
-    //		// TopSouthWest
-    //		rp = new RenderParameters();
-    //		rp.direction.set(UP);
-    //		rp.textureSide.set(UP);
-    //		rp.colorFactor.set(0.8F);
-    //		rp.aoMatrix.set(new int[][][] { { aom("TopNorthEast"), aom("TopNorth"), aom("TopEast") },
-    //				{ aom("North"), aom("NorthWest"), aom("Bottom"), aom("BottomWest") },
-    //				{ aom("East"), aom("SouthEast"), aom("Bottom"), aom("BottomSouth") },
-    //				{ aom("TopNorthEast"), aom("TopNorth"), aom("TopEast") } });
-    //		TopSouthWest.setParameters(rp);
+    // // TopSouthWest
+    // rp = new RenderParameters();
+    // rp.direction.set(UP);
+    // rp.textureSide.set(UP);
+    // rp.colorFactor.set(0.8F);
+    // rp.aoMatrix.set(new int[][][] { { aom("TopNorthEast"), aom("TopNorth"), aom("TopEast") },
+    // { aom("North"), aom("NorthWest"), aom("Bottom"), aom("BottomWest") },
+    // { aom("East"), aom("SouthEast"), aom("Bottom"), aom("BottomSouth") },
+    // { aom("TopNorthEast"), aom("TopNorth"), aom("TopEast") } });
+    // TopSouthWest.setParameters(rp);
     //
-    //		// TopNorthWest
-    //		rp = new RenderParameters();
-    //		rp.direction.set(UP);
-    //		rp.textureSide.set(UP);
-    //		rp.colorFactor.set(0.8F);
-    //		rp.aoMatrix.set(new int[][][] { { aom("TopSouthEast"), aom("TopSouth"), aom("TopEast") },
-    //				{ aom("West"), aom("NorthWest"), aom("Bottom"), aom("BottomNorth") },
-    //				{ aom("South"), aom("SouthWest"), aom("Bottom"), aom("BottomWest") },
-    //				{ aom("TopSouthEast"), aom("TopSouth"), aom("TopEast") } });
-    //		TopNorthWest.setParameters(rp);
+    // // TopNorthWest
+    // rp = new RenderParameters();
+    // rp.direction.set(UP);
+    // rp.textureSide.set(UP);
+    // rp.colorFactor.set(0.8F);
+    // rp.aoMatrix.set(new int[][][] { { aom("TopSouthEast"), aom("TopSouth"), aom("TopEast") },
+    // { aom("West"), aom("NorthWest"), aom("Bottom"), aom("BottomNorth") },
+    // { aom("South"), aom("SouthWest"), aom("Bottom"), aom("BottomWest") },
+    // { aom("TopSouthEast"), aom("TopSouth"), aom("TopEast") } });
+    // TopNorthWest.setParameters(rp);
     //
-    //		// TopNorthEast
-    //		rp = new RenderParameters();
-    //		rp.direction.set(UP);
-    //		rp.textureSide.set(UP);
-    //		rp.colorFactor.set(0.8F);
-    //		rp.aoMatrix.set(new int[][][] { { aom("TopSouthWest"), aom("TopSouth"), aom("TopWest") },
-    //				{ aom("South"), aom("SouthEast"), aom("Bottom"), aom("BottomEast") },
-    //				{ aom("West"), aom("NorthWest"), aom("Bottom"), aom("BottomNorth") },
-    //				{ aom("TopSouthWest"), aom("TopSouth"), aom("TopWest") } });
-    //		TopNorthEast.setParameters(rp);
+    // // TopNorthEast
+    // rp = new RenderParameters();
+    // rp.direction.set(UP);
+    // rp.textureSide.set(UP);
+    // rp.colorFactor.set(0.8F);
+    // rp.aoMatrix.set(new int[][][] { { aom("TopSouthWest"), aom("TopSouth"), aom("TopWest") },
+    // { aom("South"), aom("SouthEast"), aom("Bottom"), aom("BottomEast") },
+    // { aom("West"), aom("NorthWest"), aom("Bottom"), aom("BottomNorth") },
+    // { aom("TopSouthWest"), aom("TopSouth"), aom("TopWest") } });
+    // TopNorthEast.setParameters(rp);
     //
-    //		/**
-    //		 * Inverted Corner slopes
-    //		 */
-    //		// InvTopSouthEast
-    //		rp = new RenderParameters();
-    //		rp.direction.set(UP);
-    //		rp.textureSide.set(UP);
-    //		rp.colorFactor.set(0.8F);
-    //		rp.aoMatrix.set(new int[][][] { { aom("TopWest"), aom("TopSouthWest"), aom("TopSouth"), aom("South") },
-    //				{ aom("BottomSouth"), aom("SouthEast"), aom("BottomEast") }, { aom("BottomSouth"), aom("SouthEast"),
+    // /**
+    // * Inverted Corner slopes
+    // */
+    // // InvTopSouthEast
+    // rp = new RenderParameters();
+    // rp.direction.set(UP);
+    // rp.textureSide.set(UP);
+    // rp.colorFactor.set(0.8F);
+    // rp.aoMatrix.set(new int[][][] { { aom("TopWest"), aom("TopSouthWest"), aom("TopSouth"), aom("South") },
+    // { aom("BottomSouth"), aom("SouthEast"), aom("BottomEast") }, { aom("BottomSouth"), aom("SouthEast"),
     // aom("BottomEast") },
-    //				{ aom("TopNorth"), aom("TopNorthEast"), aom("TopEast"), aom("East") } });
-    //		InvTopSouthEast.setParameters(rp);
+    // { aom("TopNorth"), aom("TopNorthEast"), aom("TopEast"), aom("East") } });
+    // InvTopSouthEast.setParameters(rp);
     //
-    //		// InvTopSouthWest
-    //		rp = new RenderParameters();
-    //		rp.direction.set(UP);
-    //		rp.textureSide.set(UP);
-    //		rp.colorFactor.set(0.8F);
-    //		rp.aoMatrix.set(new int[][][] { { aom("TopNorth"), aom("TopNorthWest"), aom("TopWest"), aom("West") },
-    //				{ aom("BottomSouth"), aom("SouthWest"), aom("BottomWest") }, { aom("BottomSouth"), aom("SouthWest"),
+    // // InvTopSouthWest
+    // rp = new RenderParameters();
+    // rp.direction.set(UP);
+    // rp.textureSide.set(UP);
+    // rp.colorFactor.set(0.8F);
+    // rp.aoMatrix.set(new int[][][] { { aom("TopNorth"), aom("TopNorthWest"), aom("TopWest"), aom("West") },
+    // { aom("BottomSouth"), aom("SouthWest"), aom("BottomWest") }, { aom("BottomSouth"), aom("SouthWest"),
     // aom("BottomWest") },
-    //				{ aom("TopEast"), aom("TopSouthEast"), aom("TopSouth"), aom("South") } });
-    //		InvTopSouthWest.setParameters(rp);
+    // { aom("TopEast"), aom("TopSouthEast"), aom("TopSouth"), aom("South") } });
+    // InvTopSouthWest.setParameters(rp);
     //
-    //		// InvTopNorthWest
-    //		rp = new RenderParameters();
-    //		rp.direction.set(UP);
-    //		rp.textureSide.set(UP);
-    //		rp.colorFactor.set(0.8F);
-    //		rp.aoMatrix.set(new int[][][] { { aom("TopWest"), aom("TopNorthWest"), aom("East") },
-    //				{ aom("BottomNorth"), aom("NorthWest"), aom("BottomWest") }, { aom("BottomNorth"), aom("NorthWest"),
+    // // InvTopNorthWest
+    // rp = new RenderParameters();
+    // rp.direction.set(UP);
+    // rp.textureSide.set(UP);
+    // rp.colorFactor.set(0.8F);
+    // rp.aoMatrix.set(new int[][][] { { aom("TopWest"), aom("TopNorthWest"), aom("East") },
+    // { aom("BottomNorth"), aom("NorthWest"), aom("BottomWest") }, { aom("BottomNorth"), aom("NorthWest"),
     // aom("BottomWest") },
-    //				{ aom("TopSouth"), aom("TopSouthWest"), aom("West") } });
-    //		InvTopNorthWest.setParameters(rp);
+    // { aom("TopSouth"), aom("TopSouthWest"), aom("West") } });
+    // InvTopNorthWest.setParameters(rp);
     //
-    //		// InvTopNorthEast
-    //		rp = new RenderParameters();
-    //		rp.direction.set(UP);
-    //		rp.textureSide.set(UP);
-    //		rp.colorFactor.set(0.8F);
-    //		rp.aoMatrix.set(new int[][][] { { aom("TopSouth"), aom("TopSouthEast"), aom("East") },
-    //				{ aom("BottomWest"), aom("BottomNortWest"), aom("BottomNorth") },
-    //				{ aom("BottomWest"), aom("BottomNortWest"), aom("BottomNorth") }, { aom("TopWest"), aom("TopNorthWest"),
+    // // InvTopNorthEast
+    // rp = new RenderParameters();
+    // rp.direction.set(UP);
+    // rp.textureSide.set(UP);
+    // rp.colorFactor.set(0.8F);
+    // rp.aoMatrix.set(new int[][][] { { aom("TopSouth"), aom("TopSouthEast"), aom("East") },
+    // { aom("BottomWest"), aom("BottomNortWest"), aom("BottomNorth") },
+    // { aom("BottomWest"), aom("BottomNortWest"), aom("BottomNorth") }, { aom("TopWest"), aom("TopNorthWest"),
     // aom("North") } });
     //
-    //		InvTopNorthEast.setParameters(rp);
+    // InvTopNorthEast.setParameters(rp);
     //
-    //		/**
-    //		 * Side Triangles
-    //		 */
-    //		// TriangleWestTopSouth
-    //		rp = new RenderParameters();
-    //		rp.textureSide.set(UP);
-    //		rp.direction.set(WEST);
-    //		rp.colorFactor.set(0.6F);
-    //		rp.aoMatrix.set(calculateAoMatrix(South, rp.direction.get()));
-    //		TriangleWestTopSouth.setParameters(rp);
-    //		// TriangleEastTopSouth
-    //		rp = new RenderParameters();
-    //		rp.textureSide.set(UP);
-    //		rp.direction.set(EAST);
-    //		rp.colorFactor.set(0.6F);
-    //		rp.aoMatrix.set(calculateAoMatrix(South, rp.direction.get()));
-    //		TriangleEastTopSouth.setParameters(rp);
-    //		// TriangleWestTopNorth
-    //		rp = new RenderParameters();
-    //		rp.textureSide.set(UP);
-    //		rp.direction.set(WEST);
-    //		rp.colorFactor.set(0.6F);
-    //		rp.aoMatrix.set(calculateAoMatrix(South, rp.direction.get()));
-    //		TriangleWestTopNorth.setParameters(rp);
-    //		// TriangleEastTopNorth
-    //		rp = new RenderParameters();
-    //		rp.textureSide.set(UP);
-    //		rp.direction.set(EAST);
-    //		rp.colorFactor.set(0.6F);
-    //		rp.aoMatrix.set(calculateAoMatrix(South, rp.direction.get()));
-    //		TriangleEastTopNorth.setParameters(rp);
-    //		// TriangleNorthTopWest
-    //		rp = new RenderParameters();
-    //		rp.textureSide.set(UP);
-    //		rp.direction.set(NORTH);
-    //		rp.colorFactor.set(0.8F);
-    //		rp.aoMatrix.set(calculateAoMatrix(South, rp.direction.get()));
-    //		TriangleNorthTopWest.setParameters(rp);
-    //		// TriangleSouthTopWest
-    //		rp = new RenderParameters();
-    //		rp.textureSide.set(UP);
-    //		rp.direction.set(SOUTH);
-    //		rp.colorFactor.set(0.8F);
-    //		rp.aoMatrix.set(calculateAoMatrix(South, rp.direction.get()));
-    //		TriangleSouthTopWest.setParameters(rp);
-    //		// TriangleNorthTopEast
-    //		rp = new RenderParameters();
-    //		rp.textureSide.set(UP);
-    //		rp.direction.set(NORTH);
-    //		rp.colorFactor.set(0.8F);
-    //		rp.aoMatrix.set(calculateAoMatrix(South, rp.direction.get()));
-    //		TriangleNorthTopEast.setParameters(rp);
-    //		// TriangleSouthTopEast
-    //		rp = new RenderParameters();
-    //		rp.textureSide.set(UP);
-    //		rp.direction.set(SOUTH);
-    //		rp.colorFactor.set(0.8F);
-    //		rp.aoMatrix.set(calculateAoMatrix(South, rp.direction.get()));
-    //		TriangleSouthTopEast.setParameters(rp);
+    // /**
+    // * Side Triangles
+    // */
+    // // TriangleWestTopSouth
+    // rp = new RenderParameters();
+    // rp.textureSide.set(UP);
+    // rp.direction.set(WEST);
+    // rp.colorFactor.set(0.6F);
+    // rp.aoMatrix.set(calculateAoMatrix(South, rp.direction.get()));
+    // TriangleWestTopSouth.setParameters(rp);
+    // // TriangleEastTopSouth
+    // rp = new RenderParameters();
+    // rp.textureSide.set(UP);
+    // rp.direction.set(EAST);
+    // rp.colorFactor.set(0.6F);
+    // rp.aoMatrix.set(calculateAoMatrix(South, rp.direction.get()));
+    // TriangleEastTopSouth.setParameters(rp);
+    // // TriangleWestTopNorth
+    // rp = new RenderParameters();
+    // rp.textureSide.set(UP);
+    // rp.direction.set(WEST);
+    // rp.colorFactor.set(0.6F);
+    // rp.aoMatrix.set(calculateAoMatrix(South, rp.direction.get()));
+    // TriangleWestTopNorth.setParameters(rp);
+    // // TriangleEastTopNorth
+    // rp = new RenderParameters();
+    // rp.textureSide.set(UP);
+    // rp.direction.set(EAST);
+    // rp.colorFactor.set(0.6F);
+    // rp.aoMatrix.set(calculateAoMatrix(South, rp.direction.get()));
+    // TriangleEastTopNorth.setParameters(rp);
+    // // TriangleNorthTopWest
+    // rp = new RenderParameters();
+    // rp.textureSide.set(UP);
+    // rp.direction.set(NORTH);
+    // rp.colorFactor.set(0.8F);
+    // rp.aoMatrix.set(calculateAoMatrix(South, rp.direction.get()));
+    // TriangleNorthTopWest.setParameters(rp);
+    // // TriangleSouthTopWest
+    // rp = new RenderParameters();
+    // rp.textureSide.set(UP);
+    // rp.direction.set(SOUTH);
+    // rp.colorFactor.set(0.8F);
+    // rp.aoMatrix.set(calculateAoMatrix(South, rp.direction.get()));
+    // TriangleSouthTopWest.setParameters(rp);
+    // // TriangleNorthTopEast
+    // rp = new RenderParameters();
+    // rp.textureSide.set(UP);
+    // rp.direction.set(NORTH);
+    // rp.colorFactor.set(0.8F);
+    // rp.aoMatrix.set(calculateAoMatrix(South, rp.direction.get()));
+    // TriangleNorthTopEast.setParameters(rp);
+    // // TriangleSouthTopEast
+    // rp = new RenderParameters();
+    // rp.textureSide.set(UP);
+    // rp.direction.set(SOUTH);
+    // rp.colorFactor.set(0.8F);
+    // rp.aoMatrix.set(calculateAoMatrix(South, rp.direction.get()));
+    // TriangleSouthTopEast.setParameters(rp);
     //
-    //		/**
-    //		 * Top Triangles
-    //		 */
-    //		// TriangleTopSouthWest
-    //		rp = new RenderParameters();
-    //		rp.direction.set(UP);
-    //		rp.textureSide.set(UP);
-    //		rp.aoMatrix.set(calculateAoMatrix(TriangleTopSouthWest, rp.direction.get()));
-    //		TriangleTopSouthWest.setParameters(rp);
-    //		// TriangleTopSouthEast
-    //		rp = new RenderParameters();
-    //		rp.direction.set(UP);
-    //		rp.textureSide.set(UP);
-    //		rp.aoMatrix.set(calculateAoMatrix(TriangleTopSouthEast, rp.direction.get()));
-    //		TriangleTopSouthEast.setParameters(rp);
-    //		// TriangleTopSouthWest
-    //		rp = new RenderParameters();
-    //		rp.direction.set(UP);
-    //		rp.textureSide.set(UP);
-    //		rp.aoMatrix.set(calculateAoMatrix(TriangleTopNorthWest, rp.direction.get()));
-    //		TriangleTopNorthWest.setParameters(rp);
-    //		// TriangleTopNorthEast
-    //		rp = new RenderParameters();
-    //		rp.direction.set(UP);
-    //		rp.textureSide.set(UP);
-    //		rp.aoMatrix.set(calculateAoMatrix(TriangleTopNorthEast, rp.direction.get()));
-    //		TriangleTopNorthEast.setParameters(rp);
+    // /**
+    // * Top Triangles
+    // */
+    // // TriangleTopSouthWest
+    // rp = new RenderParameters();
+    // rp.direction.set(UP);
+    // rp.textureSide.set(UP);
+    // rp.aoMatrix.set(calculateAoMatrix(TriangleTopSouthWest, rp.direction.get()));
+    // TriangleTopSouthWest.setParameters(rp);
+    // // TriangleTopSouthEast
+    // rp = new RenderParameters();
+    // rp.direction.set(UP);
+    // rp.textureSide.set(UP);
+    // rp.aoMatrix.set(calculateAoMatrix(TriangleTopSouthEast, rp.direction.get()));
+    // TriangleTopSouthEast.setParameters(rp);
+    // // TriangleTopSouthWest
+    // rp = new RenderParameters();
+    // rp.direction.set(UP);
+    // rp.textureSide.set(UP);
+    // rp.aoMatrix.set(calculateAoMatrix(TriangleTopNorthWest, rp.direction.get()));
+    // TriangleTopNorthWest.setParameters(rp);
+    // // TriangleTopNorthEast
+    // rp = new RenderParameters();
+    // rp.direction.set(UP);
+    // rp.textureSide.set(UP);
+    // rp.aoMatrix.set(calculateAoMatrix(TriangleTopNorthEast, rp.direction.get()));
+    // TriangleTopNorthEast.setParameters(rp);
     //
-    //		/**
-    //		 * Bottom Triangles
-    //		 */
-    //		// TriangleBottomSouthEast
-    //		rp = new RenderParameters();
-    //		rp.direction.set(DOWN);
-    //		rp.textureSide.set(DOWN);
-    //		rp.colorFactor.set(0.5F);
-    //		rp.aoMatrix.set(calculateAoMatrix(TriangleBottomSouthEast, rp.direction.get()));
-    //		TriangleBottomSouthEast.setParameters(rp);
-    //		// TriangleBottomSouthWest
-    //		rp = new RenderParameters();
-    //		rp.direction.set(DOWN);
-    //		rp.textureSide.set(DOWN);
-    //		rp.colorFactor.set(0.5F);
-    //		rp.aoMatrix.set(calculateAoMatrix(TriangleBottomSouthWest, rp.direction.get()));
-    //		TriangleBottomSouthWest.setParameters(rp);
-    //		// TriangleBottomNorthWest
-    //		rp = new RenderParameters();
-    //		rp.direction.set(DOWN);
-    //		rp.textureSide.set(DOWN);
-    //		rp.colorFactor.set(0.5F);
-    //		rp.aoMatrix.set(calculateAoMatrix(TriangleBottomNorthWest, rp.direction.get()));
-    //		TriangleBottomNorthWest.setParameters(rp);
-    //		// TriangleBottomNorthEast
-    //		rp = new RenderParameters();
-    //		rp.direction.set(DOWN);
-    //		rp.textureSide.set(DOWN);
-    //		rp.colorFactor.set(0.5F);
-    //		rp.aoMatrix.set(calculateAoMatrix(TriangleBottomNorthEast, rp.direction.get()));
-    //		TriangleBottomNorthEast.setParameters(rp);
+    // /**
+    // * Bottom Triangles
+    // */
+    // // TriangleBottomSouthEast
+    // rp = new RenderParameters();
+    // rp.direction.set(DOWN);
+    // rp.textureSide.set(DOWN);
+    // rp.colorFactor.set(0.5F);
+    // rp.aoMatrix.set(calculateAoMatrix(TriangleBottomSouthEast, rp.direction.get()));
+    // TriangleBottomSouthEast.setParameters(rp);
+    // // TriangleBottomSouthWest
+    // rp = new RenderParameters();
+    // rp.direction.set(DOWN);
+    // rp.textureSide.set(DOWN);
+    // rp.colorFactor.set(0.5F);
+    // rp.aoMatrix.set(calculateAoMatrix(TriangleBottomSouthWest, rp.direction.get()));
+    // TriangleBottomSouthWest.setParameters(rp);
+    // // TriangleBottomNorthWest
+    // rp = new RenderParameters();
+    // rp.direction.set(DOWN);
+    // rp.textureSide.set(DOWN);
+    // rp.colorFactor.set(0.5F);
+    // rp.aoMatrix.set(calculateAoMatrix(TriangleBottomNorthWest, rp.direction.get()));
+    // TriangleBottomNorthWest.setParameters(rp);
+    // // TriangleBottomNorthEast
+    // rp = new RenderParameters();
+    // rp.direction.set(DOWN);
+    // rp.textureSide.set(DOWN);
+    // rp.colorFactor.set(0.5F);
+    // rp.aoMatrix.set(calculateAoMatrix(TriangleBottomNorthEast, rp.direction.get()));
+    // TriangleBottomNorthEast.setParameters(rp);
     //
-    //	}
+    // }
     //
-    //	/**
-    //	 * Shortcut to get the aom mapping for a named position
-    //	 *
-    //	 * @param s
-    //	 * @return
-    //	 */
-    //	public static int[] aom(String s)
-    //	{
-    //		int[] a = aom.get(s);
-    //		return a == null ? new int[] { 0, 0, 0 } : a;
-    //	}
+    // /**
+    // * Shortcut to get the aom mapping for a named position
+    // *
+    // * @param s
+    // * @return
+    // */
+    // public static int[] aom(String s)
+    // {
+    // int[] a = aom.get(s);
+    // return a == null ? new int[] { 0, 0, 0 } : a;
+    // }
     //
-    //	/**
-    //	 * Build a mapping between name and position (ie TopSouthWest => 0,1,1) for all 27 possibilities
-    //	 */
-    //	private static void buildDirectionMatrix()
-    //	{
-    //		int[] a = { -1, 0, 1 };
-    //		for (int x : a)
-    //			for (int y : a)
-    //				for (int z : a)
-    //					aom.put(dirToString(x, y, z), new int[] { x, y, z });
-    //	}
+    // /**
+    // * Build a mapping between name and position (ie TopSouthWest => 0,1,1) for all 27 possibilities
+    // */
+    // private static void buildDirectionMatrix()
+    // {
+    // int[] a = { -1, 0, 1 };
+    // for (int x : a)
+    // for (int y : a)
+    // for (int z : a)
+    // aom.put(dirToString(x, y, z), new int[] { x, y, z });
+    // }
     //
-    //	/**
-    //	 * Get a name for a specific position
-    //	 *
-    //	 * @param x
-    //	 * @param y
-    //	 * @param z
-    //	 * @return
-    //	 */
-    //	private static String dirToString(int x, int y, int z)
-    //	{
-    //		String s = "";
-    //		s += y == 0 ? "" : y == 1 ? "Top" : "Bottom";
-    //		s += z == 0 ? "" : z == 1 ? "South" : "North";
-    //		s += x == 0 ? "" : x == 1 ? "East" : "West";
-    //		return s != "" ? s : "Center";
-    //	}
+    // /**
+    // * Get a name for a specific position
+    // *
+    // * @param x
+    // * @param y
+    // * @param z
+    // * @return
+    // */
+    // private static String dirToString(int x, int y, int z)
+    // {
+    // String s = "";
+    // s += y == 0 ? "" : y == 1 ? "Top" : "Bottom";
+    // s += z == 0 ? "" : z == 1 ? "South" : "North";
+    // s += x == 0 ? "" : x == 1 ? "East" : "West";
+    // return s != "" ? s : "Center";
+    // }
     //
     //
 }

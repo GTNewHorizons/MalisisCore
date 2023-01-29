@@ -1,32 +1,21 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 PaleoCrafter, Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 PaleoCrafter, Ordinastie Permission is hereby granted, free of charge, to
+ * any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the
+ * Software without restriction, including without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished
+ * to do so, subject to the following conditions: The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
+ * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.client.gui.component.container;
 
-import com.google.common.eventbus.Subscribe;
 import java.util.LinkedHashSet;
 import java.util.Set;
+
 import net.malisis.core.client.gui.Anchor;
 import net.malisis.core.client.gui.ClipArea;
 import net.malisis.core.client.gui.GuiRenderer;
@@ -41,7 +30,10 @@ import net.malisis.core.client.gui.event.component.ContentUpdateEvent;
 import net.malisis.core.client.gui.event.component.SpaceChangeEvent;
 import net.malisis.core.client.gui.event.component.StateChangeEvent.VisibleStateChange;
 import net.minecraft.client.gui.GuiScreen;
+
 import org.apache.commons.lang3.StringUtils;
+
+import com.google.common.eventbus.Subscribe;
 
 /**
  * {@link UIContainer} are the base for components holding other components.<br>
@@ -53,6 +45,7 @@ import org.apache.commons.lang3.StringUtils;
  * @param <T> type of UIContainer
  */
 public class UIContainer<T extends UIContainer> extends UIComponent<T> implements IClipable, IScrollable, ICloseable {
+
     /** List of {@link UIComponent} inside this {@link UIContainer}. */
     protected final Set<UIComponent> components;
     /** Horizontal padding to apply to this {@link UIContainer}. */
@@ -88,7 +81,7 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
     /**
      * Instantiates a new {@link UIContainer}.
      *
-     * @param gui the gui
+     * @param gui   the gui
      * @param title the title
      */
     public UIContainer(MalisisGui gui, String title) {
@@ -99,8 +92,8 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
     /**
      * Instantiates a new {@link UIContainer}.
      *
-     * @param gui the gui
-     * @param width the width
+     * @param gui    the gui
+     * @param width  the width
      * @param height the height
      */
     public UIContainer(MalisisGui gui, int width, int height) {
@@ -111,9 +104,9 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
     /**
      * Instantiates a new {@link UIContainer}.
      *
-     * @param gui the gui
-     * @param title the title
-     * @param width the width
+     * @param gui    the gui
+     * @param title  the title
+     * @param width  the width
      * @param height the height
      */
     public UIContainer(MalisisGui gui, String title, int width, int height) {
@@ -165,7 +158,7 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
      * Set the padding for this {@link UIContainer}.
      *
      * @param horizontal the horizontal
-     * @param vertical the vertical
+     * @param vertical   the vertical
      */
     public void setPadding(int horizontal, int vertical) {
         this.horizontalPadding = horizontal;
@@ -267,10 +260,10 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
     }
 
     /**
-     * Gets the {@link UIComponent} matching the specified name. If recursive is true, looks for the {@code UIComponent} inside it child
-     * {@link UIContainer} too.
+     * Gets the {@link UIComponent} matching the specified name. If recursive is true, looks for the {@code UIComponent}
+     * inside it child {@link UIContainer} too.
      *
-     * @param name the name
+     * @param name      the name
      * @param recursive if true, look inside child {@code UIContainer}
      * @return the component
      */
@@ -299,7 +292,8 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
      *
      * @param x the x
      * @param y the y
-     * @return the child component in this {@link UIContainer}, this {@link UIContainer} if none, or null if outside its bounds.
+     * @return the child component in this {@link UIContainer}, this {@link UIContainer} if none, or null if outside its
+     *         bounds.
      */
     @Override
     public UIComponent getComponentAt(int x, int y) {
@@ -478,9 +472,9 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
     /**
      * Draws the background.
      *
-     * @param renderer the renderer
-     * @param mouseX the mouse x
-     * @param mouseY the mouse y
+     * @param renderer    the renderer
+     * @param mouseX      the mouse x
+     * @param mouseY      the mouse y
      * @param partialTick the partial tick
      */
     @Override
@@ -489,9 +483,9 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
     /**
      * Draws the foreground.
      *
-     * @param renderer the renderer
-     * @param mouseX the mouse x
-     * @param mouseY the mouse y
+     * @param renderer    the renderer
+     * @param mouseX      the mouse x
+     * @param mouseY      the mouse y
      * @param partialTick the partial tick
      */
     @Override

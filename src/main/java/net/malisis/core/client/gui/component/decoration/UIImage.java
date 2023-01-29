@@ -1,25 +1,14 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 PaleoCrafter, Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 PaleoCrafter, Ordinastie Permission is hereby granted, free of charge, to
+ * any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the
+ * Software without restriction, including without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished
+ * to do so, subject to the following conditions: The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
+ * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.client.gui.component.decoration;
@@ -41,6 +30,7 @@ import net.minecraft.util.ResourceLocation;
  * @author Ordinastie
  */
 public class UIImage extends UIComponent<UIImage> {
+
     /** {@link ResourceLocation} for Block textures. */
     public static final ResourceLocation BLOCKS_TEXTURE = TextureMap.locationBlocksTexture;
     /** {@link ResourceLocation} for Item textures. */
@@ -56,9 +46,9 @@ public class UIImage extends UIComponent<UIImage> {
     /**
      * Instantiates a new {@link UIImage}.
      *
-     * @param gui the gui
+     * @param gui     the gui
      * @param texture the texture
-     * @param icon the icon
+     * @param icon    the icon
      */
     public UIImage(MalisisGui gui, GuiTexture texture, IIcon icon) {
         super(gui);
@@ -71,7 +61,7 @@ public class UIImage extends UIComponent<UIImage> {
     /**
      * Instantiates a new {@link UIImage}.
      *
-     * @param gui the gui
+     * @param gui       the gui
      * @param itemStack the item stack
      */
     public UIImage(MalisisGui gui, ItemStack itemStack) {
@@ -98,7 +88,7 @@ public class UIImage extends UIComponent<UIImage> {
      * Sets the icon for this {@link UIImage} to be used with the specified {@link GuiTexture}.
      *
      * @param texture the texture
-     * @param icon the icon
+     * @param icon    the icon
      * @return this UIImage
      */
     public UIImage setIcon(GuiTexture texture, IIcon icon) {
@@ -153,7 +143,7 @@ public class UIImage extends UIComponent<UIImage> {
      * Sets the size for this {@link UIImage}.<br>
      * Has no effect if rendering an {@link ItemStack}.
      *
-     * @param width the width
+     * @param width  the width
      * @param height the height
      * @return the UI image
      */

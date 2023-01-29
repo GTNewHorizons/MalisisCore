@@ -1,25 +1,14 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 PaleoCrafter, Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 PaleoCrafter, Ordinastie Permission is hereby granted, free of charge, to
+ * any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the
+ * Software without restriction, including without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished
+ * to do so, subject to the following conditions: The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
+ * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.client.gui.component.interaction;
@@ -44,6 +33,7 @@ import net.malisis.core.util.MouseButton;
  * @author Ordinastie, PaleoCrafter
  */
 public class UIButton extends UIComponent<UIButton> implements IGuiText<UIButton> {
+
     protected GuiIcon iconHovered;
     protected GuiIcon iconDisabled;
     protected GuiIcon iconPressed;
@@ -84,14 +74,13 @@ public class UIButton extends UIComponent<UIButton> implements IGuiText<UIButton
         icon = gui.getGuiTexture().getXYResizableIcon(0, 20, 200, 20, 5);
         iconHovered = gui.getGuiTexture().getXYResizableIcon(0, 40, 200, 20, 5);
         iconDisabled = gui.getGuiTexture().getXYResizableIcon(0, 0, 200, 20, 5);
-        iconPressed = (GuiIcon)
-                gui.getGuiTexture().getXYResizableIcon(0, 40, 200, 20, 5).flip(true, true);
+        iconPressed = (GuiIcon) gui.getGuiTexture().getXYResizableIcon(0, 40, 200, 20, 5).flip(true, true);
     }
 
     /**
      * Instantiates a new {@link UIButton}.
      *
-     * @param gui the gui
+     * @param gui  the gui
      * @param text the text
      */
     public UIButton(MalisisGui gui, String text) {
@@ -102,7 +91,7 @@ public class UIButton extends UIComponent<UIButton> implements IGuiText<UIButton
     /**
      * Instantiates a new {@link UIButton}.
      *
-     * @param gui the gui
+     * @param gui   the gui
      * @param image the image
      */
     public UIButton(MalisisGui gui, UIImage image) {
@@ -187,7 +176,8 @@ public class UIButton extends UIComponent<UIButton> implements IGuiText<UIButton
     }
 
     /**
-     * Sets the {@link UIImage} for this {@link UIButton}. If a width of 0 was previously set, it will be recalculated for this image.
+     * Sets the {@link UIImage} for this {@link UIButton}. If a width of 0 was previously set, it will be recalculated
+     * for this image.
      *
      * @param image the image
      * @return this {@link UIButton}
@@ -213,7 +203,7 @@ public class UIButton extends UIComponent<UIButton> implements IGuiText<UIButton
     /**
      * Sets the size of this {@link UIButton}.
      *
-     * @param width the width
+     * @param width  the width
      * @param height the height
      * @return this {@link UIButton}
      */
@@ -387,6 +377,7 @@ public class UIButton extends UIComponent<UIButton> implements IGuiText<UIButton
      * Event fired when a {@link UIButton} is clicked.
      */
     public static class ClickEvent extends ComponentEvent<UIButton> {
+
         /** Position of the mouse when clicked . */
         private int x, y;
 
@@ -394,8 +385,8 @@ public class UIButton extends UIComponent<UIButton> implements IGuiText<UIButton
          * Instantiates a new {@link ClickEvent}.
          *
          * @param component the component
-         * @param x the x coordinate of the mouse
-         * @param y the y coordinate of the mouse
+         * @param x         the x coordinate of the mouse
+         * @param y         the y coordinate of the mouse
          */
         public ClickEvent(UIButton component, int x, int y) {
             super(component);

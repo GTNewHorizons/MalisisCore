@@ -1,34 +1,21 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 PaleoCrafter, Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 PaleoCrafter, Ordinastie Permission is hereby granted, free of charge, to
+ * any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the
+ * Software without restriction, including without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished
+ * to do so, subject to the following conditions: The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
+ * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.client.gui.component.interaction;
 
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-import com.google.common.eventbus.Subscribe;
 import java.util.LinkedList;
 import java.util.List;
+
 import net.malisis.core.client.gui.GuiRenderer;
 import net.malisis.core.client.gui.MalisisGui;
 import net.malisis.core.client.gui.component.IGuiText;
@@ -50,9 +37,14 @@ import net.malisis.core.renderer.font.MalisisFont;
 import net.malisis.core.util.MouseButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ChatAllowedCharacters;
+
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
+
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
+import com.google.common.eventbus.Subscribe;
 
 /**
  * UITextField.
@@ -60,6 +52,7 @@ import org.lwjgl.opengl.GL11;
  * @author Ordinastie
  */
 public class UITextField extends UIComponent<UITextField> implements IScrollable, IGuiText<UITextField> {
+
     /** The {@link MalisisFont} to use for this {@link UITooltip}. */
     protected MalisisFont font = MalisisFont.minecraftFont;
     /** The {@link FontRenderOptions} to use for this {@link UITooltip}. */
@@ -125,8 +118,8 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
     /**
      * Instantiates a new {@link UITextField}.
      *
-     * @param gui the gui
-     * @param text the text
+     * @param gui       the gui
+     * @param text      the text
      * @param multiLine whether the textfield handles multiple lines
      */
     public UITextField(MalisisGui gui, String text, boolean multiLine) {
@@ -153,7 +146,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
     /**
      * Instantiates a new single lined {@link UITextField}.
      *
-     * @param gui the gui
+     * @param gui  the gui
      * @param text the text
      */
     public UITextField(MalisisGui gui, String text) {
@@ -163,7 +156,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
     /**
      * Instantiates a new empty {@link UITextField}.
      *
-     * @param gui the gui
+     * @param gui       the gui
      * @param multiLine the multi line
      */
     public UITextField(MalisisGui gui, boolean multiLine) {
@@ -313,7 +306,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
     /**
      * Sets the options.
      *
-     * @param bgColor the bg color
+     * @param bgColor     the bg color
      * @param cursorColor the cursor color
      * @param selectColor the select color
      * @return the UI text field
@@ -330,7 +323,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
      * Sets the size of this {@link UITextField}.<br>
      * If {@link #multiLine} is <code>false</code>, <b>height</b> is forced to 12.
      *
-     * @param width the width
+     * @param width  the width
      * @param height the height
      * @return the UI text field
      */
@@ -511,7 +504,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
      * Sets the offset x.
      *
      * @param offsetX the offset x
-     * @param delta the delta
+     * @param delta   the delta
      */
     @Override
     public void setOffsetX(float offsetX, int delta) {}
@@ -530,7 +523,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
      * Sets the offset y.
      *
      * @param offsetY the offset y
-     * @param delta the delta
+     * @param delta   the delta
      */
     @Override
     public void setOffsetY(float offsetY, int delta) {
@@ -661,7 +654,8 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
     }
 
     /**
-     * Deletes the specified <b>amount</b> of characters. Negative numbers will delete characters left of the cursor.<br>
+     * Deletes the specified <b>amount</b> of characters. Negative numbers will delete characters left of the
+     * cursor.<br>
      * If text is already selected, delete that text instead.
      *
      * @param amount the amount of characters to delete
@@ -724,7 +718,8 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
             else if (text.length() != 0) {
                 // charOffset = 0;
                 while (font.getStringWidth(text.substring(charOffset, cursorPosition.textPosition), fro)
-                        >= getWidth() - 4) charOffset++;
+                        >= getWidth() - 4)
+                    charOffset++;
             }
         } else {
             if (cursorPosition.line < lineOffset) setLineOffset(cursorPosition.line);
@@ -751,8 +746,8 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
     /**
      * On button press.
      *
-     * @param x the x
-     * @param y the y
+     * @param x      the x
+     * @param y      the y
      * @param button the button
      * @return true, if successful
      */
@@ -776,8 +771,8 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
     /**
      * On button release.
      *
-     * @param x the x
-     * @param y the y
+     * @param x      the x
+     * @param y      the y
      * @param button the button
      * @return true, if successful
      */
@@ -797,10 +792,10 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
     /**
      * On drag.
      *
-     * @param lastX the last x
-     * @param lastY the last y
-     * @param x the x
-     * @param y the y
+     * @param lastX  the last x
+     * @param lastY  the last y
+     * @param x      the x
+     * @param y      the y
      * @param button the button
      * @return true, if successful
      */
@@ -824,8 +819,8 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
     /**
      * On double click.
      *
-     * @param x the x
-     * @param y the y
+     * @param x      the x
+     * @param y      the y
      * @param button the button
      * @return true, if successful
      */
@@ -968,9 +963,9 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
     /**
      * Draws the background.
      *
-     * @param renderer the renderer
-     * @param mouseX the mouse x
-     * @param mouseY the mouse y
+     * @param renderer    the renderer
+     * @param mouseX      the mouse x
+     * @param mouseY      the mouse y
      * @param partialTick the partial tick
      */
     @Override
@@ -985,9 +980,9 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
     /**
      * Draws the foreground.
      *
-     * @param renderer the renderer
-     * @param mouseX the mouse x
-     * @param mouseY the mouse y
+     * @param renderer    the renderer
+     * @param mouseX      the mouse x
+     * @param mouseY      the mouse y
      * @param partialTick the partial tick
      */
     @Override
@@ -1053,8 +1048,8 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         GL11.glEnable(GL11.GL_COLOR_LOGIC_OP);
         GL11.glLogicOp(GL11.GL_OR_REVERSE);
 
-        CursorPosition first =
-                cursorPosition.textPosition < selectionPosition.textPosition ? cursorPosition : selectionPosition;
+        CursorPosition first = cursorPosition.textPosition < selectionPosition.textPosition ? cursorPosition
+                : selectionPosition;
         CursorPosition last = cursorPosition == first ? selectionPosition : cursorPosition;
 
         for (int i = first.line; i <= last.line; i++) {
@@ -1104,6 +1099,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
      * This class determines a position inside the text divides in lines.
      */
     public class CursorPosition {
+
         /** The text position. */
         protected int textPosition;
         /** The character. */
@@ -1214,8 +1210,8 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         }
 
         /**
-         * Moves this {@link CursorPosition} one step to the left. If the cursor is at the beginning of the line, it is moved to the end of
-         * the previous line without changing the {@link #textPosition}.
+         * Moves this {@link CursorPosition} one step to the left. If the cursor is at the beginning of the line, it is
+         * moved to the end of the previous line without changing the {@link #textPosition}.
          */
         public void shiftLeft() {
             if (textPosition == 0) return;
@@ -1227,8 +1223,8 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         }
 
         /**
-         * Moves this {@link CursorPosition} one step to the right. If the cursor is at the end of the line, it is moved to the start of the
-         * next line whithout changing the {@link #textPosition}.
+         * Moves this {@link CursorPosition} one step to the right. If the cursor is at the end of the line, it is moved
+         * to the start of the next line whithout changing the {@link #textPosition}.
          */
         public void shiftRight() {
             if (textPosition == text.length()) return;
@@ -1281,7 +1277,8 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         }
 
         /**
-         * Sets this {@link CursorPosition} line and character position based on coordinates inside this {@link UITextField}.
+         * Sets this {@link CursorPosition} line and character position based on coordinates inside this
+         * {@link UITextField}.
          *
          * @param x the X coordinate
          * @param y the Y coordinate
@@ -1300,8 +1297,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
             textPosition = character;
             if (!multiLine) return;
 
-            for (int i = 0; i < line && i < lines.size(); i++)
-                textPosition += lines.get(i).length();
+            for (int i = 0; i < line && i < lines.size(); i++) textPosition += lines.get(i).length();
 
             onCursorUpdated();
         }
@@ -1355,7 +1351,14 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
 
         @Override
         public String toString() {
-            return "Pos : " + textPosition + " (l" + line + " / c" + character + ") at " + getXOffset() + ","
+            return "Pos : " + textPosition
+                    + " (l"
+                    + line
+                    + " / c"
+                    + character
+                    + ") at "
+                    + getXOffset()
+                    + ","
                     + getYOffset();
         }
     }

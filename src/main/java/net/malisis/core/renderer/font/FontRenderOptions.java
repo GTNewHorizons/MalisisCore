@@ -1,32 +1,23 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.renderer.font;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import net.minecraft.util.EnumChatFormatting;
+
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -34,6 +25,7 @@ import org.apache.commons.lang3.StringUtils;
  *
  */
 public class FontRenderOptions {
+
     /** Map of EnumChatFormatting **/
     private static Map<Character, EnumChatFormatting> charFormats = new HashMap<>();
     /** List of ECF colors **/
@@ -51,7 +43,7 @@ public class FontRenderOptions {
             int b = (i >> 0 & 1) * 170 + j;
 
             if (i == 6) // GOLD
-            r += 85;
+                r += 85;
 
             colors[i] = (r & 255) << 16 | (g & 255) << 8 | b & 255;
         }
@@ -124,7 +116,7 @@ public class FontRenderOptions {
      * Process styles applied at the specified position in the text with {@link EnumChatFormatting} values.<br>
      * Applies the styles to this {@link FontRenderOptions} and returns the number of characters read.
      *
-     * @param text the text
+     * @param text  the text
      * @param index the index
      * @return the int
      */
@@ -220,9 +212,9 @@ public class FontRenderOptions {
      */
     public int getShadowColor() {
         if (color == 0) // black
-        return 0x222222;
+            return 0x222222;
         if (color == 0xFFAA00) // gold
-        return 0x2A2A00;
+            return 0x2A2A00;
 
         int r = (color >> 16) & 255;
         int g = (color >> 8) & 255;
@@ -239,7 +231,7 @@ public class FontRenderOptions {
      * Gets the {@link EnumChatFormatting} at the specified position in the text.<br>
      * Returns null if none is found.
      *
-     * @param text the text
+     * @param text  the text
      * @param index the index
      * @return the formatting
      */
@@ -254,7 +246,7 @@ public class FontRenderOptions {
     /**
      * Checks if there is a {@link EnumChatFormatting} at the specified position in the text.
      *
-     * @param text the text
+     * @param text  the text
      * @param index the index
      * @return true, if ECF
      */

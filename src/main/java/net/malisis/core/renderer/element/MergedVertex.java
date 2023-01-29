@@ -1,25 +1,14 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.renderer.element;
@@ -29,27 +18,24 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+
 import net.malisis.core.renderer.animation.transformation.ITransformable;
+
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 
 /**
- * MergedVertex are holders of vertex that share the same position inside a shape. The position is determined by the vertexes base name when
- * the MergedVertex are enable for a shape.<br>
- * When enabling MergedVertex for a Shape, all the transformations are passed to the MergedVertex and further transformations for the Shape
- * will also be passed to the MergedVertex.
+ * MergedVertex are holders of vertex that share the same position inside a shape. The position is determined by the
+ * vertexes base name when the MergedVertex are enable for a shape.<br>
+ * When enabling MergedVertex for a Shape, all the transformations are passed to the MergedVertex and further
+ * transformations for the Shape will also be passed to the MergedVertex.
  *
  * @author Ordinastie
  *
  */
-public class MergedVertex
-        implements ITransformable.Translate,
-                ITransformable.Rotate,
-                ITransformable.Scale,
-                ITransformable.Alpha,
-                ITransformable.Color,
-                ITransformable.Brightness,
-                Iterable<Vertex> {
+public class MergedVertex implements ITransformable.Translate, ITransformable.Rotate, ITransformable.Scale,
+        ITransformable.Alpha, ITransformable.Color, ITransformable.Brightness, Iterable<Vertex> {
+
     /** Name of this {@link MergedVertex}. */
     protected String name;
 
@@ -160,7 +146,8 @@ public class MergedVertex
     }
 
     /**
-     * Adds a {@link Vertex} to this {@link MergedVertex}. The <code>Vertex</code> base name must match this <code>MergedVertex</code> name.
+     * Adds a {@link Vertex} to this {@link MergedVertex}. The <code>Vertex</code> base name must match this
+     * <code>MergedVertex</code> name.
      *
      * @param vertex the vertex
      */
@@ -221,10 +208,10 @@ public class MergedVertex
     /**
      * Rotates this {@link MergedVertex} around the given axis the specified angle. Offsets the origin for the rotation.
      *
-     * @param angle the angle
-     * @param x the x
-     * @param y the y
-     * @param z the z
+     * @param angle   the angle
+     * @param x       the x
+     * @param y       the y
+     * @param z       the z
      * @param offsetX the offset x
      * @param offsetY the offset y
      * @param offsetZ the offset z
@@ -239,9 +226,9 @@ public class MergedVertex
     /**
      * Scales this {@link MergedVertex}.
      *
-     * @param x the x
-     * @param y the y
-     * @param z the z
+     * @param x       the x
+     * @param y       the y
+     * @param z       the z
      * @param offsetX the offset x
      * @param offsetY the offset y
      * @param offsetZ the offset z

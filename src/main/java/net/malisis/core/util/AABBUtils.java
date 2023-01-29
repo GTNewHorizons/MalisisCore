@@ -1,25 +1,14 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.util;
@@ -38,14 +27,15 @@ import net.minecraftforge.common.util.ForgeDirection;
  *
  */
 public class AABBUtils {
+
     public static enum Axis {
         X,
         Y,
         Z
     };
 
-    private static int[] cos = {1, 0, -1, 0};
-    private static int[] sin = {0, 1, 0, -1};
+    private static int[] cos = { 1, 0, -1, 0 };
+    private static int[] sin = { 0, 1, 0, -1 };
 
     public static AxisAlignedBB identity() {
         return identity(0, 0, 0);
@@ -68,7 +58,7 @@ public class AABBUtils {
     }
 
     public static AxisAlignedBB[] identities(int x, int y, int z) {
-        return new AxisAlignedBB[] {identity(x, y, z)};
+        return new AxisAlignedBB[] { identity(x, y, z) };
     }
 
     private static int getAngle(ForgeDirection dir) {
@@ -91,7 +81,7 @@ public class AABBUtils {
      *
      *
      * @param aabb the aabb
-     * @param dir the dir
+     * @param dir  the dir
      * @return the axis aligned bb
      */
     public static AxisAlignedBB rotate(AxisAlignedBB aabb, ForgeDirection dir) {
@@ -222,9 +212,9 @@ public class AABBUtils {
     /**
      * Offsets the passed {@link AxisAlignedBB}s by the specified coordinates.
      *
-     * @param x the x
-     * @param y the y
-     * @param z the z
+     * @param x     the x
+     * @param y     the y
+     * @param z     the z
      * @param aabbs the aabbs
      */
     public static AxisAlignedBB[] offset(double x, double y, double z, AxisAlignedBB... aabbs) {
@@ -239,11 +229,11 @@ public class AABBUtils {
     }
 
     public static boolean isColliding(AxisAlignedBB aabb, AxisAlignedBB[] aabbs) {
-        return isColliding(new AxisAlignedBB[] {aabb}, aabbs);
+        return isColliding(new AxisAlignedBB[] { aabb }, aabbs);
     }
 
     public static boolean isColliding(AxisAlignedBB[] aabbs, AxisAlignedBB aabb) {
-        return isColliding(aabbs, new AxisAlignedBB[] {aabb});
+        return isColliding(aabbs, new AxisAlignedBB[] { aabb });
     }
 
     /**
@@ -268,9 +258,9 @@ public class AABBUtils {
      *
      * @param world the world
      * @param block the block
-     * @param x the x
-     * @param y the y
-     * @param z the z
+     * @param x     the x
+     * @param y     the y
+     * @param z     the z
      * @return the collision bounding boxes
      */
     public static AxisAlignedBB[] getCollisionBoundingBoxes(World world, Block block, int x, int y, int z) {
@@ -280,16 +270,16 @@ public class AABBUtils {
     /**
      * Gets the collision bounding boxes for the block.
      *
-     * @param world the world
-     * @param block the block
-     * @param x the x
-     * @param y the y
-     * @param z the z
+     * @param world  the world
+     * @param block  the block
+     * @param x      the x
+     * @param y      the y
+     * @param z      the z
      * @param offset if true, the boxes are offset by the coordinate
      * @return the collision bounding boxes
      */
-    public static AxisAlignedBB[] getCollisionBoundingBoxes(
-            World world, Block block, int x, int y, int z, boolean offset) {
+    public static AxisAlignedBB[] getCollisionBoundingBoxes(World world, Block block, int x, int y, int z,
+            boolean offset) {
         return getCollisionBoundingBoxes(world, new BlockState(x, y, z, block), offset);
     }
 
@@ -313,16 +303,14 @@ public class AABBUtils {
      */
     public static AxisAlignedBB[] getCollisionBoundingBoxes(World world, BlockState state, boolean offset) {
         AxisAlignedBB[] aabbs = new AxisAlignedBB[0];
-        if (state.getBlock() instanceof IChunkCollidable)
-            aabbs = ((IChunkCollidable) state.getBlock())
-                    .getBoundingBox(world, state.getX(), state.getY(), state.getZ(), BoundingBoxType.CHUNKCOLLISION);
-        else if (state.getBlock() instanceof MalisisBlock)
-            aabbs = ((MalisisBlock) state.getBlock())
-                    .getBoundingBox(world, state.getX(), state.getY(), state.getZ(), BoundingBoxType.CHUNKCOLLISION);
+        if (state.getBlock() instanceof IChunkCollidable) aabbs = ((IChunkCollidable) state.getBlock())
+                .getBoundingBox(world, state.getX(), state.getY(), state.getZ(), BoundingBoxType.CHUNKCOLLISION);
+        else if (state.getBlock() instanceof MalisisBlock) aabbs = ((MalisisBlock) state.getBlock())
+                .getBoundingBox(world, state.getX(), state.getY(), state.getZ(), BoundingBoxType.CHUNKCOLLISION);
         else {
-            AxisAlignedBB aabb =
-                    state.getBlock().getCollisionBoundingBoxFromPool(world, state.getX(), state.getY(), state.getZ());
-            if (aabb != null) aabbs = new AxisAlignedBB[] {aabb.offset(-state.getX(), -state.getY(), -state.getZ())};
+            AxisAlignedBB aabb = state.getBlock()
+                    .getCollisionBoundingBoxFromPool(world, state.getX(), state.getY(), state.getZ());
+            if (aabb != null) aabbs = new AxisAlignedBB[] { aabb.offset(-state.getX(), -state.getY(), -state.getZ()) };
         }
 
         if (offset) AABBUtils.offset(state.getX(), state.getY(), state.getZ(), aabbs);

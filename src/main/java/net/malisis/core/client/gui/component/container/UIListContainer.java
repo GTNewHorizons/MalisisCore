@@ -1,30 +1,20 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.client.gui.component.container;
 
 import java.util.Collection;
+
 import net.malisis.core.client.gui.ClipArea;
 import net.malisis.core.client.gui.GuiRenderer;
 import net.malisis.core.client.gui.MalisisGui;
@@ -42,6 +32,7 @@ import net.minecraft.client.gui.GuiScreen;
  */
 public abstract class UIListContainer<T extends UIListContainer, S> extends UIComponent<T>
         implements IScrollable, IClipable {
+
     protected int elementSpacing = 0;
     protected boolean unselect = true;
     protected Collection<S> elements;
@@ -257,17 +248,18 @@ public abstract class UIListContainer<T extends UIListContainer, S> extends UICo
 
     public abstract int getElementHeight(S element);
 
-    public abstract void drawElementBackground(
-            GuiRenderer renderer, int mouseX, int mouseY, float partialTick, S element, boolean isHovered);
+    public abstract void drawElementBackground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick,
+            S element, boolean isHovered);
 
-    public abstract void drawElementForeground(
-            GuiRenderer renderer, int mouseX, int mouseY, float partialTick, S element, boolean isHovered);
+    public abstract void drawElementForeground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick,
+            S element, boolean isHovered);
 
     /**
      * Event fired when a {@link UIListContainer} changes its selected element.<br>
      * Cancelling the event will prevent the element to be selected.
      */
     public static class SelectEvent<T> extends ValueChange<UIListContainer, T> {
+
         public SelectEvent(UIListContainer component, T selected) {
             super(component, (T) component.getSelected(), selected);
         }

@@ -3,6 +3,7 @@ package net.malisis.core.client.gui.component.interaction;
 import net.malisis.core.client.gui.MalisisGui;
 import net.malisis.core.client.gui.event.ComponentEvent;
 import net.minecraft.client.gui.GuiScreen;
+
 import org.lwjgl.input.Keyboard;
 
 // TODO: Auto-generated Javadoc
@@ -29,7 +30,7 @@ public class UIPasswordField extends UITextField {
     /**
      * Instantiates a new {@link UIPasswordField}
      *
-     * @param gui the gui
+     * @param gui          the gui
      * @param passwordChar the password char
      */
     public UIPasswordField(MalisisGui gui, char passwordChar) {
@@ -130,8 +131,7 @@ public class UIPasswordField extends UITextField {
      */
     @Override
     protected boolean handleCtrlKeyDown(int keyCode) {
-        return GuiScreen.isCtrlKeyDown()
-                && !(keyCode == Keyboard.KEY_C || keyCode == Keyboard.KEY_X)
+        return GuiScreen.isCtrlKeyDown() && !(keyCode == Keyboard.KEY_C || keyCode == Keyboard.KEY_X)
                 && super.handleCtrlKeyDown(keyCode);
     }
 }

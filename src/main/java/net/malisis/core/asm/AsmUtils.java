@@ -1,25 +1,14 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.asm;
@@ -32,7 +21,9 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Collections;
 import java.util.ListIterator;
+
 import net.malisis.core.MalisisCore;
+
 import org.objectweb.asm.tree.AbstractInsnNode;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.FieldInsnNode;
@@ -49,11 +40,13 @@ import org.objectweb.asm.util.Textifier;
 import org.objectweb.asm.util.TraceMethodVisitor;
 
 public class AsmUtils {
+
     /**
-     * find the method with the given name. If multiple methods with the same parameters exist, the first one will be returned
+     * find the method with the given name. If multiple methods with the same parameters exist, the first one will be
+     * returned
      *
      * @param clazz the class
-     * @param name the method name to search for
+     * @param name  the method name to search for
      * @return the first method with the given name or null if no such method is found
      */
     public static MethodNode findMethod(ClassNode clazz, String name) {
@@ -69,8 +62,8 @@ public class AsmUtils {
      * find the method with the given name and method descriptor.
      *
      * @param clazz the class
-     * @param name the method name to search for
-     * @param desc the method descriptor to search for
+     * @param name  the method name to search for
+     * @param desc  the method descriptor to search for
      * @return the method with the given name and descriptor or null if no such method is found
      * @see org.objectweb.asm.Type#getMethodDescriptor
      */
@@ -189,7 +182,7 @@ public class AsmUtils {
     /**
      * Changes the access level for the specified field for a class.
      *
-     * @param clazz the clazz
+     * @param clazz     the clazz
      * @param fieldName the field name
      * @return the field
      */
@@ -200,9 +193,9 @@ public class AsmUtils {
     /**
      * Changes the access level for the specified field for a class.
      *
-     * @param clazz the clazz
+     * @param clazz     the clazz
      * @param fieldName the field name
-     * @param srgName the srg name
+     * @param srgName   the srg name
      * @return the field
      */
     public static Field changeFieldAccess(Class clazz, String fieldName, String srgName) {
@@ -230,7 +223,7 @@ public class AsmUtils {
     /**
      * Changes the access level for the specified method for a class.
      *
-     * @param clazz the clazz
+     * @param clazz      the clazz
      * @param methodName the field name
      * @return the field
      */
@@ -241,9 +234,9 @@ public class AsmUtils {
     /**
      * Changes the access level for the specified method for a class.
      *
-     * @param clazz the clazz
+     * @param clazz      the clazz
      * @param methodName the field name
-     * @param srgName the srg name
+     * @param srgName    the srg name
      * @return the field
      */
     public static Method changeMethodAccess(Class clazz, String methodName, String srgName, Class<?>... params) {

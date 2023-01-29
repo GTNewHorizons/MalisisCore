@@ -1,31 +1,21 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.inventory;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import net.malisis.core.util.ItemUtils;
 import net.malisis.core.util.ItemUtils.ItemStackSplitter;
 import net.malisis.core.util.ItemUtils.ItemStacksMerger;
@@ -39,6 +29,7 @@ import net.minecraft.item.ItemStack;
  *
  */
 public class MalisisSlot {
+
     /** Inventory containing this {@link MalisisSlot}. */
     private MalisisInventory inventory;
     /** ItemStack held by this {@link MalisisSlot}. */
@@ -59,7 +50,7 @@ public class MalisisSlot {
      *
      * @param inventory the inventory
      * @param itemStack the item stack
-     * @param index the index
+     * @param index     the index
      */
     public MalisisSlot(MalisisInventory inventory, ItemStack itemStack, int index) {
         this.inventory = inventory;
@@ -71,7 +62,7 @@ public class MalisisSlot {
      * Instantiates a new {@link MalisisSlot}
      *
      * @param inventory the inventory
-     * @param index the index
+     * @param index     the index
      */
     public MalisisSlot(MalisisInventory inventory, int index) {
         this(inventory, null, index);
@@ -114,7 +105,8 @@ public class MalisisSlot {
     }
 
     /**
-     * Gets the id of the {@link MalisisInventory} of this {@link MalisisSlot} inside the {@link MalisisInventoryContainer}.
+     * Gets the id of the {@link MalisisInventory} of this {@link MalisisSlot} inside the
+     * {@link MalisisInventoryContainer}.
      *
      * @return the inventory id
      */
@@ -185,7 +177,8 @@ public class MalisisSlot {
     }
 
     /**
-     * Checks if this {@link MalisisSlot} can contain itemStack. Defers the test to this {@link MalisisInventory inventory}.
+     * Checks if this {@link MalisisSlot} can contain itemStack. Defers the test to this {@link MalisisInventory
+     * inventory}.
      *
      * @param itemStack the item stack
      * @return true if the itemStack can be container in this {@link MalisisSlot}
@@ -224,7 +217,7 @@ public class MalisisSlot {
     /**
      * Called when itemStack is picked up from this {@link MalisisSlot}.
      *
-     * @param player the player
+     * @param player    the player
      * @param itemStack the item stack
      */
     public void onPickupFromSlot(EntityPlayer player, ItemStack itemStack) {
@@ -296,11 +289,12 @@ public class MalisisSlot {
 
     /**
      * Inserts a specified <b>amount</b> of {@link ItemStack} into this {@link MalisisSlot}.<br>
-     * If <b>force</b> is <code>true</code>, the current <code>ItemStack</code> in the slot will be replaced if it cannot be merged.
+     * If <b>force</b> is <code>true</code>, the current <code>ItemStack</code> in the slot will be replaced if it
+     * cannot be merged.
      *
      * @param insert the itemStack to insert
      * @param amount the amount to insert
-     * @param force whether the itemStack should be forced in the slot
+     * @param force  whether the itemStack should be forced in the slot
      * @return the itemStack that couldn't fit into the slot
      */
     public ItemStack insert(ItemStack insert, int amount, boolean force) {

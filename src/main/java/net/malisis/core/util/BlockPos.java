@@ -1,30 +1,20 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.util;
 
 import java.util.Iterator;
+
 import net.minecraft.block.Block;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
@@ -37,6 +27,7 @@ import net.minecraftforge.common.util.ForgeDirection;
  *
  */
 public class BlockPos {
+
     // 1.8 BlockPos constants
     private static final int NUM_X_BITS = 26;
     private static final int NUM_Z_BITS = NUM_X_BITS;
@@ -206,16 +197,18 @@ public class BlockPos {
      * Offsets this BlockPos n blocks in the given direction
      *
      * @param facing The direction of the offset
-     * @param n The number of blocks to offset by
+     * @param n      The number of blocks to offset by
      */
     public BlockPos offset(ForgeDirection facing, int n) {
         return new BlockPos(
-                this.getX() + facing.offsetX * n, this.getY() + facing.offsetY * n, this.getZ() + facing.offsetZ * n);
+                this.getX() + facing.offsetX * n,
+                this.getY() + facing.offsetY * n,
+                this.getZ() + facing.offsetZ * n);
     }
 
     public BlockPos rotate(int rotation) {
-        int[] cos = {1, 0, -1, 0};
-        int[] sin = {0, 1, 0, -1};
+        int[] cos = { 1, 0, -1, 0 };
+        int[] sin = { 0, 1, 0, -1 };
 
         int a = rotation % 4;
         if (a < 0) a += 4;
@@ -282,12 +275,16 @@ public class BlockPos {
 
     public static BlockPos minOf(BlockPos p1, BlockPos p2) {
         return new BlockPos(
-                Math.min(p1.getX(), p2.getX()), Math.min(p1.getY(), p2.getY()), Math.min(p1.getZ(), p2.getZ()));
+                Math.min(p1.getX(), p2.getX()),
+                Math.min(p1.getY(), p2.getY()),
+                Math.min(p1.getZ(), p2.getZ()));
     }
 
     public static BlockPos maxOf(BlockPos p1, BlockPos p2) {
         return new BlockPos(
-                Math.max(p1.getX(), p2.getX()), Math.max(p1.getY(), p2.getY()), Math.max(p1.getZ(), p2.getZ()));
+                Math.max(p1.getX(), p2.getX()),
+                Math.max(p1.getY(), p2.getY()),
+                Math.max(p1.getZ(), p2.getZ()));
     }
 
     public static Iterable<BlockPos> getAllInBox(AxisAlignedBB aabb) {
@@ -301,7 +298,7 @@ public class BlockPos {
      * Create an {@link Iterable} that returns all positions in the box specified by the given corners.
      *
      * @param from the first corner
-     * @param to the second corner
+     * @param to   the second corner
      * @return the iterable
      */
     public static Iterable<BlockPos> getAllInBox(BlockPos from, BlockPos to) {
@@ -309,6 +306,7 @@ public class BlockPos {
     }
 
     public static class BlockIterator implements Iterator<BlockPos> {
+
         private BlockPos from;
         private BlockPos to;
 
@@ -352,6 +350,7 @@ public class BlockPos {
 
         public Iterable<BlockPos> asIterable() {
             return new Iterable<BlockPos>() {
+
                 @Override
                 public Iterator<BlockPos> iterator() {
                     return BlockIterator.this;

@@ -1,25 +1,14 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.util;
@@ -35,6 +24,7 @@ import net.minecraft.item.ItemStack;
  *
  */
 public class ItemUtils {
+
     /** Defines a full stack amount to process. */
     public static final int FULL_STACK = -1;
 
@@ -43,24 +33,28 @@ public class ItemUtils {
 
     /**
      * Utility class to help merge {@link ItemStack itemStacks}.<br>
-     * After calling {@link ItemStacksMerger#merge() merge()}, {@link ItemStacksMerger#merge merge} and {@link ItemStacksMerger#into into}
-     * will hold the results. An empty itemStack will automatically be converted to <code>null</code>.
+     * After calling {@link ItemStacksMerger#merge() merge()}, {@link ItemStacksMerger#merge merge} and
+     * {@link ItemStacksMerger#into into} will hold the results. An empty itemStack will automatically be converted to
+     * <code>null</code>.
      */
     public static class ItemStacksMerger {
+
         /** The {@link ItemStack} to merge. */
         public ItemStack merge;
 
         /** The targetted {@link ItemStack} receiving the merge. */
         public ItemStack into;
 
-        /** Amount of the {@link ItemStack} that was merged. -1 until {@link ItemStacksMerger#merge() merge()} is called. */
+        /**
+         * Amount of the {@link ItemStack} that was merged. -1 until {@link ItemStacksMerger#merge() merge()} is called.
+         */
         public int nbMerged = -1;
 
         /**
          * Instantiates the {@link ItemStacksMerger}.
          *
          * @param merge the merge
-         * @param into the into
+         * @param into  the into
          */
         public ItemStacksMerger(ItemStack merge, ItemStack into) {
             this.merge = merge;
@@ -78,8 +72,8 @@ public class ItemUtils {
 
         /**
          * Merges the specified amount for the {@link ItemStacksMerger#merge merge} {@link ItemStack}.<br>
-         * Amount will be capped to the {@link ItemStack#getMaxStackSize()} amount, or 64 if both {@link ItemStacksMerger#merge merge} and
-         * {@link ItemStacksMerger#into into} are <code>null</code>.
+         * Amount will be capped to the {@link ItemStack#getMaxStackSize()} amount, or 64 if both
+         * {@link ItemStacksMerger#merge merge} and {@link ItemStacksMerger#into into} are <code>null</code>.
          *
          * @param amount the amount to be merged
          * @return true, if stacks could be merged, false otherwise
@@ -95,7 +89,7 @@ public class ItemUtils {
          * Merges the specified amount for the {@link ItemStacksMerger#merge merge} {@link ItemStack}.<br>
          * Amount will be capped by <b>intoMaxStackSize</b> (used for inventory slots for example).
          *
-         * @param amount the amount to be merged
+         * @param amount           the amount to be merged
          * @param intoMaxStackSize max amount the into itemStack can hold
          * @return true, if successful
          */
@@ -140,6 +134,7 @@ public class ItemUtils {
      * An empty itemStack will automatically be converted to <code>null</code>.
      */
     public static class ItemStackSplitter {
+
         /** The {@link ItemStack} to be split. */
         public ItemStack source;
 
@@ -189,8 +184,7 @@ public class ItemUtils {
      * @return true, if the itemStack can be stacked, false otherwise
      */
     public static boolean areItemStacksStackable(ItemStack stack1, ItemStack stack2) {
-        return !(stack1 == null || stack2 == null)
-                && stack1.isStackable()
+        return !(stack1 == null || stack2 == null) && stack1.isStackable()
                 && stack1.getItem() == stack2.getItem()
                 && (!stack2.getHasSubtypes() || stack2.getItemDamage() == stack1.getItemDamage())
                 && ItemStack.areItemStackTagsEqual(stack2, stack1);

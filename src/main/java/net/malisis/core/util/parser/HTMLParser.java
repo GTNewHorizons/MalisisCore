@@ -1,45 +1,38 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.util.parser;
 
 import static net.malisis.core.util.parser.token.Token.*;
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
 import java.util.LinkedList;
+
 import net.malisis.core.util.parser.HTMLParser.HTMLNode;
 import net.malisis.core.util.parser.token.Token;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.mutable.Mutable;
 import org.apache.commons.lang3.mutable.MutableObject;
+
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 
 /**
  * @author Ordinastie
  *
  */
 public class HTMLParser extends Parser<HTMLNode> {
+
     private HTMLNode currentNode;
     private HTMLNode rootNode;
     private LinkedList<HTMLNode> openTags = new LinkedList<>();
@@ -53,8 +46,7 @@ public class HTMLParser extends Parser<HTMLNode> {
     @Override
     public Token readToken() {
         Token t;
-        while ((t = super.readToken()) == Space)
-            ;
+        while ((t = super.readToken()) == Space);
         return t;
     }
 
@@ -96,7 +88,7 @@ public class HTMLParser extends Parser<HTMLNode> {
     }
 
     public void openTag(String tag) {
-        //		self.Log('Opening : <b>' . tag . '</b><br />');
+        // self.Log('Opening : <b>' . tag . '</b><br />');
         if (this.currentNode == null) return;
 
         HTMLNode node = new HTMLNode(tag);
@@ -110,20 +102,20 @@ public class HTMLParser extends Parser<HTMLNode> {
     }
 
     public void addAttribute(String attr, String attr_val) {
-        //	self.Log('Found attr : <b>' . attr . '</b><br />');
+        // self.Log('Found attr : <b>' . attr . '</b><br />');
         if (this.currentNode != null) this.currentNode.AddAttribute(attr, attr_val);
     }
 
     public void addContent(String str) {
-        //	self.Log('Adding content : <b>' . htmlentities(str) . '</b><br />');
+        // self.Log('Adding content : <b>' . htmlentities(str) . '</b><br />');
         if (this.currentNode == null) return;
         this.currentNode.AddText(str);
     }
 
     public void closeTag() {
-        //	self.Log('Closing : <b>' . this.current_tag.name . '</b><br />');
+        // self.Log('Closing : <b>' . this.current_tag.name . '</b><br />');
         if (this.openTags.size() == 0) // prevent malformed html with closing non opened tags
-        return;
+            return;
 
         this.currentNode = this.openTags.removeLast();
     }
@@ -133,6 +125,7 @@ public class HTMLParser extends Parser<HTMLNode> {
     }
 
     public static class HTMLNode {
+
         public String name = null;
         public int level = 0;
         public HTMLNode parent = null;
@@ -168,8 +161,10 @@ public class HTMLParser extends Parser<HTMLNode> {
         public String prettyPrint() {
             int n = 4;
             if (text != null) return StringUtils.repeat(' ', level * n) + text + "\n";
-            String s = StringUtils.repeat(' ', level * n) + "<" + name
-                    + (attributes.size() != 0 ? " " + attributes.toString() : "") + ">\n";
+            String s = StringUtils.repeat(' ', level * n) + "<"
+                    + name
+                    + (attributes.size() != 0 ? " " + attributes.toString() : "")
+                    + ">\n";
             for (HTMLNode node : nodes) s += node.prettyPrint();
             if (nodes.size() != 0) s += StringUtils.repeat(' ', level * n) + "</" + name + ">\n";
 

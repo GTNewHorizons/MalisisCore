@@ -1,7 +1,5 @@
 package net.malisis.javacompat;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.FMLLaunchHandler;
 import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
@@ -11,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.lang.reflect.Method;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -23,11 +22,15 @@ import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
+
 import org.apache.commons.lang3.JavaVersion;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.FMLLaunchHandler;
 
 /**
  * <p>
@@ -37,8 +40,8 @@ import org.apache.logging.log4j.Logger;
  * @author diesieben07
  */
 public final class JavaCompatibility implements Runnable, HyperlinkListener {
-    private final boolean isWindowsClient =
-            SystemUtils.IS_OS_WINDOWS && FMLLaunchHandler.side().isClient();
+
+    private final boolean isWindowsClient = SystemUtils.IS_OS_WINDOWS && FMLLaunchHandler.side().isClient();
     private final Object mutex = new Object();
 
     public JavaCompatibility() {}
@@ -58,8 +61,9 @@ public final class JavaCompatibility implements Runnable, HyperlinkListener {
         logger.error("");
         logger.error(StringUtils.repeat('=', 80));
         logger.error("MalisisCore requires Java 7 to be installed.");
-        logger.error("Please install the latest Java 7 appropriate for your System from https://java.com/download/"
-                + (isWindowsClient ? " or use the latest launcher from https://minecraft.net/" : ""));
+        logger.error(
+                "Please install the latest Java 7 appropriate for your System from https://java.com/download/"
+                        + (isWindowsClient ? " or use the latest launcher from https://minecraft.net/" : ""));
         logger.error(
                 "If Java 7 is already installed, please make sure the right Java version is for the current profile in the Minecraft launcher.");
         logger.error("Thank you. The game will exit now.");
@@ -69,7 +73,7 @@ public final class JavaCompatibility implements Runnable, HyperlinkListener {
 
     private void displayWindow() {
         SwingUtilities.invokeLater(this);
-        //noinspection SynchronizationOnLocalVariableOrMethodParameter
+        // noinspection SynchronizationOnLocalVariableOrMethodParameter
         synchronized (mutex) {
             try {
                 mutex.wait();
@@ -83,8 +87,7 @@ public final class JavaCompatibility implements Runnable, HyperlinkListener {
     public void run() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception ignored) {
-        }
+        } catch (Exception ignored) {}
 
         JLabel label = new JLabel();
         Font font = label.getFont();
@@ -104,6 +107,7 @@ public final class JavaCompatibility implements Runnable, HyperlinkListener {
         final JFrame frame = new JFrame("Java 7 required");
         JButton button = new JButton("Exit");
         button.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
@@ -120,6 +124,7 @@ public final class JavaCompatibility implements Runnable, HyperlinkListener {
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         // frame.setResizable(false);
         frame.addWindowListener(new WindowAdapter() {
+
             @Override
             public void windowClosed(WindowEvent e) {
                 synchronized (mutex) {
@@ -136,16 +141,11 @@ public final class JavaCompatibility implements Runnable, HyperlinkListener {
 
     private String getHtml(Font font) {
         // create some css from the label's font
-        StringBuilder style = new StringBuilder("font-family:" + font.getFamily() + ";")
-                .append("font-weight:")
-                .append(font.isBold() ? "bold" : "normal")
-                .append(";")
-                .append("font-size:")
-                .append(font.getSize())
+        StringBuilder style = new StringBuilder("font-family:" + font.getFamily() + ";").append("font-weight:")
+                .append(font.isBold() ? "bold" : "normal").append(";").append("font-size:").append(font.getSize())
                 .append("pt;");
 
-        return "<html><body style=\""
-                + style
+        return "<html><body style=\"" + style
                 + "\">"
                 + "<strong>MalisisCore requires Java 7 to be used.</strong><br /><br />"
                 + "Please install the latest Java 7 appropriate for your system from <a href=\"https://java.com/download/\">java.com/download</a>"
@@ -154,7 +154,8 @@ public final class JavaCompatibility implements Runnable, HyperlinkListener {
                         : "")
                 + "<br /><br />"
                 + "If Java 7 is already installed, please make sure the right Java version is used for the current profile in the Minecraft launcher.<br /><br />"
-                + "The game will exit now." + "</body></html>";
+                + "The game will exit now."
+                + "</body></html>";
     }
 
     @Override
@@ -162,8 +163,7 @@ public final class JavaCompatibility implements Runnable, HyperlinkListener {
         if (e.getEventType().equals(HyperlinkEvent.EventType.ACTIVATED)) {
             try {
                 Desktop.getDesktop().browse(e.getURL().toURI());
-            } catch (Exception ignored) {
-            }
+            } catch (Exception ignored) {}
         }
     }
 

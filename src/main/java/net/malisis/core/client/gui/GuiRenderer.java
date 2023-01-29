@@ -1,25 +1,14 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 PaleoCrafter, Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 PaleoCrafter, Ordinastie Permission is hereby granted, free of charge, to
+ * any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the
+ * Software without restriction, including without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished
+ * to do so, subject to the following conditions: The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
+ * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.client.gui;
@@ -45,6 +34,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
@@ -55,6 +45,7 @@ import org.lwjgl.opengl.GL12;
  *
  */
 public class GuiRenderer extends MalisisRenderer {
+
     /** RenderItem used to draw itemStacks. */
     public static RenderItem itemRenderer = new RenderItem();
     /** Current component being drawn. */
@@ -139,8 +130,8 @@ public class GuiRenderer extends MalisisRenderer {
     /**
      * Sets the mouse position and the partial tick.
      *
-     * @param mouseX the mouse x
-     * @param mouseY the mouse y
+     * @param mouseX       the mouse x
+     * @param mouseY       the mouse y
      * @param partialTicks the partial ticks
      */
     public void set(int mouseX, int mouseY, float partialTicks) {
@@ -207,7 +198,7 @@ public class GuiRenderer extends MalisisRenderer {
     /**
      * Applies the texture the {@link Shape}.
      *
-     * @param shape the shape
+     * @param shape      the shape
      * @param parameters the parameters
      */
     @Override
@@ -225,9 +216,9 @@ public class GuiRenderer extends MalisisRenderer {
     /**
      * Draws the component to the screen.
      *
-     * @param container the container
-     * @param mouseX the mouse x
-     * @param mouseY the mouse y
+     * @param container   the container
+     * @param mouseX      the mouse x
+     * @param mouseY      the mouse y
      * @param partialTick the partial tick
      */
     public void drawScreen(UIContainer container, int mouseX, int mouseY, float partialTick) {
@@ -244,7 +235,7 @@ public class GuiRenderer extends MalisisRenderer {
     /**
      * Draws a {@link Shape} to the GUI with the specified {@link RenderParameters}.
      *
-     * @param s the s
+     * @param s      the s
      * @param params the params
      */
     public void drawShape(GuiShape s, RenderParameters params) {
@@ -266,8 +257,8 @@ public class GuiRenderer extends MalisisRenderer {
         drawRectangle(x, y, z, width, height, color, alpha, true);
     }
 
-    public void drawRectangle(
-            float x, float y, float z, float width, float height, int color, int alpha, boolean relative) {
+    public void drawRectangle(float x, float y, float z, float width, float height, int color, int alpha,
+            boolean relative) {
         if (relative && currentComponent != null) {
             x += currentComponent.screenX();
             y += currentComponent.screenY();
@@ -317,12 +308,13 @@ public class GuiRenderer extends MalisisRenderer {
     }
 
     /**
-     * Draws text with default {@link MalisisFont} and {@link FontRenderOptions} at the coordinates relative to {@link #currentComponent}.
+     * Draws text with default {@link MalisisFont} and {@link FontRenderOptions} at the coordinates relative to
+     * {@link #currentComponent}.
      *
      * @param text the text
-     * @param x the x
-     * @param y the y
-     * @param z the z
+     * @param x    the x
+     * @param y    the y
+     * @param z    the z
      */
     public void drawText(String text, float x, float y, float z) {
         drawText(null, text, x, y, z, null, true);
@@ -333,21 +325,22 @@ public class GuiRenderer extends MalisisRenderer {
      *
      * @param font the font
      * @param text the text
-     * @param fro the fro
+     * @param fro  the fro
      */
     public void drawText(MalisisFont font, String text, FontRenderOptions fro) {
         drawText(font, text, 0, 0, 0, fro, true);
     }
 
     /**
-     * Draws text with specified {@link MalisisFont} with {@link FontRenderOptions} at the coordinates relative to {@link #currentComponent}
+     * Draws text with specified {@link MalisisFont} with {@link FontRenderOptions} at the coordinates relative to
+     * {@link #currentComponent}
      *
      * @param font the font
      * @param text the text
-     * @param x the x
-     * @param y the y
-     * @param z the z
-     * @param fro the fro
+     * @param x    the x
+     * @param y    the y
+     * @param z    the z
+     * @param fro  the fro
      */
     @Override
     public void drawText(MalisisFont font, String text, float x, float y, float z, FontRenderOptions fro) {
@@ -357,16 +350,16 @@ public class GuiRenderer extends MalisisRenderer {
     /**
      * Draws text with specified {@link MalisisFont} with {@link FontRenderOptions} at the coordinatesp passed.
      *
-     * @param font the font
-     * @param text the text
-     * @param x the x
-     * @param y the y
-     * @param z the z
-     * @param fro the fro
+     * @param font     the font
+     * @param text     the text
+     * @param x        the x
+     * @param y        the y
+     * @param z        the z
+     * @param fro      the fro
      * @param relative true if the coordinates are relative to current component
      */
-    public void drawText(
-            MalisisFont font, String text, float x, float y, float z, FontRenderOptions fro, boolean relative) {
+    public void drawText(MalisisFont font, String text, float x, float y, float z, FontRenderOptions fro,
+            boolean relative) {
         if (relative && currentComponent != null) {
             x += currentComponent.screenX();
             y += currentComponent.screenY();
@@ -391,8 +384,8 @@ public class GuiRenderer extends MalisisRenderer {
      * Draws an itemStack to the GUI at the specified coordinates.
      *
      * @param itemStack the item stack
-     * @param x the x
-     * @param y the y
+     * @param x         the x
+     * @param y         the y
      */
     public void drawItemStack(ItemStack itemStack, int x, int y) {
         drawItemStack(itemStack, x, y, null, null, true);
@@ -402,9 +395,9 @@ public class GuiRenderer extends MalisisRenderer {
      * Draws an itemStack to the GUI at the specified coordinates with a custom format for the label.
      *
      * @param itemStack the item stack
-     * @param x the x
-     * @param y the y
-     * @param format the format
+     * @param x         the x
+     * @param y         the y
+     * @param format    the format
      */
     public void drawItemStack(ItemStack itemStack, int x, int y, EnumChatFormatting format) {
         drawItemStack(itemStack, x, y, null, format, true);
@@ -414,9 +407,9 @@ public class GuiRenderer extends MalisisRenderer {
      * Draws an itemStack to the GUI at the specified coordinates with a custom label.
      *
      * @param itemStack the item stack
-     * @param x the x
-     * @param y the y
-     * @param label the label
+     * @param x         the x
+     * @param y         the y
+     * @param label     the label
      */
     public void drawItemStack(ItemStack itemStack, int x, int y, String label) {
         drawItemStack(itemStack, x, y, label, null, true);
@@ -427,14 +420,14 @@ public class GuiRenderer extends MalisisRenderer {
      * Uses RenderItem.renderItemAndEffectIntoGUI() and RenderItem.renderItemOverlayIntoGUI()
      *
      * @param itemStack the item stack
-     * @param x the x
-     * @param y the y
-     * @param label the label to display, if null display the stack size
-     * @param format the format
-     * @param relative if true, coordinates are relative to current component
+     * @param x         the x
+     * @param y         the y
+     * @param label     the label to display, if null display the stack size
+     * @param format    the format
+     * @param relative  if true, coordinates are relative to current component
      */
-    public void drawItemStack(
-            ItemStack itemStack, int x, int y, String label, EnumChatFormatting format, boolean relative) {
+    public void drawItemStack(ItemStack itemStack, int x, int y, String label, EnumChatFormatting format,
+            boolean relative) {
         if (itemStack == null) return;
 
         if (relative && currentComponent != null) {
@@ -454,13 +447,22 @@ public class GuiRenderer extends MalisisRenderer {
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 
         itemRenderer.renderItemAndEffectIntoGUI(
-                fontRenderer, Minecraft.getMinecraft().getTextureManager(), itemStack, x, y);
+                fontRenderer,
+                Minecraft.getMinecraft().getTextureManager(),
+                itemStack,
+                x,
+                y);
         itemRenderer.renderItemOverlayIntoGUI(
-                fontRenderer, Minecraft.getMinecraft().getTextureManager(), itemStack, x, y, label);
+                fontRenderer,
+                Minecraft.getMinecraft().getTextureManager(),
+                itemStack,
+                x,
+                y,
+                label);
 
         RenderHelper.disableStandardItemLighting();
         GL11.glColor4f(1, 1, 1, 1);
-        //	GL11.glDisable(GL11.GL_ALPHA_TEST);
+        // GL11.glDisable(GL11.GL_ALPHA_TEST);
 
         currentTexture = null;
         bindDefaultTexture();
@@ -503,8 +505,7 @@ public class GuiRenderer extends MalisisRenderer {
         int x = area.x * f;
         int y = Minecraft.getMinecraft().displayHeight - (area.y + area.height()) * f;
         int w = area.width() * f;
-        int h = area.height() * f;
-        ;
+        int h = area.height() * f;;
         GL11.glScissor(x, y, w, h);
     }
 

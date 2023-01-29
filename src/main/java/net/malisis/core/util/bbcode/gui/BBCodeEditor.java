@@ -1,31 +1,20 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.util.bbcode.gui;
 
-import com.google.common.eventbus.Subscribe;
 import java.util.EnumSet;
+
 import net.malisis.core.client.gui.Anchor;
 import net.malisis.core.client.gui.ComponentPosition;
 import net.malisis.core.client.gui.MalisisGui;
@@ -39,14 +28,19 @@ import net.malisis.core.util.bbcode.node.BBNode;
 import net.malisis.core.util.bbcode.node.BBShadowNode;
 import net.malisis.core.util.bbcode.node.BBStyleNode;
 import net.minecraft.client.gui.GuiScreen;
+
 import org.lwjgl.input.Keyboard;
+
+import com.google.common.eventbus.Subscribe;
 
 /**
  * @author Ordinastie
  *
  */
 public class BBCodeEditor extends UIContainer<BBCodeEditor> {
+
     enum Tag {
+
         BOLD(new BBStyleNode("b")),
         ITALIC(new BBStyleNode("i")),
         UNDERLINE(new BBStyleNode("u")),
@@ -87,7 +81,7 @@ public class BBCodeEditor extends UIContainer<BBCodeEditor> {
 
     private int defaultColor = 0xFFFFFF;
 
-    //	private int activeColor = 0x006633;
+    // private int activeColor = 0x006633;
 
     public BBCodeEditor(MalisisGui gui) {
         super(gui);
@@ -133,8 +127,8 @@ public class BBCodeEditor extends UIContainer<BBCodeEditor> {
     public BBCodeEditor setWysiwyg(boolean w) {
         bbTexfield.setWysiwyg(w);
 
-        //		btnWysiwyg.setTextColor(w ? 0x66CC77 : defaultColor);
-        //		btnWysiwyg.setBgColor(w ? 0xBBFFCC : defaultColor);
+        // btnWysiwyg.setTextColor(w ? 0x66CC77 : defaultColor);
+        // btnWysiwyg.setBgColor(w ? 0xBBFFCC : defaultColor);
 
         return this;
     }
@@ -166,45 +160,18 @@ public class BBCodeEditor extends UIContainer<BBCodeEditor> {
 
     protected void createButtons(MalisisGui gui) {
         int s = 10;
-        btnBold = new UIButton(gui, "B")
-                .setAutoSize(false)
-                .setSize(s, s)
-                .setTooltip("Bold")
-                .register(this);
-        btnItalic = new UIButton(gui, "I")
-                .setAutoSize(false)
-                .setSize(s, s)
-                .setTooltip("Italic")
-                .register(this);
-        btnUnderline = new UIButton(gui, "U")
-                .setAutoSize(false)
-                .setSize(s, s)
-                .setTooltip("Underline")
-                .register(this);
-        btnStrikethrough = new UIButton(gui, "S")
-                .setAutoSize(false)
-                .setSize(s, s)
-                .setTooltip("Strikethrough")
+        btnBold = new UIButton(gui, "B").setAutoSize(false).setSize(s, s).setTooltip("Bold").register(this);
+        btnItalic = new UIButton(gui, "I").setAutoSize(false).setSize(s, s).setTooltip("Italic").register(this);
+        btnUnderline = new UIButton(gui, "U").setAutoSize(false).setSize(s, s).setTooltip("Underline").register(this);
+        btnStrikethrough = new UIButton(gui, "S").setAutoSize(false).setSize(s, s).setTooltip("Strikethrough")
                 .register(this);
 
-        btnColor = new UIButton(gui, "C")
-                .setAutoSize(false)
-                .setSize(s, s)
-                .setTooltip("Color")
+        btnColor = new UIButton(gui, "C").setAutoSize(false).setSize(s, s).setTooltip("Color").register(this);
+        btnBgColor = new UIButton(gui, "BC").setAutoSize(false).setSize(16, s).setTooltip("Background Color")
                 .register(this);
-        btnBgColor = new UIButton(gui, "BC")
-                .setAutoSize(false)
-                .setSize(16, s)
-                .setTooltip("Background Color")
-                .register(this);
-        btnItem = new UIButton(gui, "Item")
-                .setAutoSize(false)
-                .setSize(22, s)
-                .setTooltip("Item")
-                .register(this);
+        btnItem = new UIButton(gui, "Item").setAutoSize(false).setSize(22, s).setTooltip("Item").register(this);
 
-        btnWysiwyg =
-                new UIButton(gui, "WYSIWYG").setAutoSize(false).setSize(45, s).register(this);
+        btnWysiwyg = new UIButton(gui, "WYSIWYG").setAutoSize(false).setSize(45, s).register(this);
 
         menu.add(btnBold);
         menu.add(btnItalic);
@@ -301,7 +268,7 @@ public class BBCodeEditor extends UIContainer<BBCodeEditor> {
     @Subscribe
     public void onClick(UIButton.ClickEvent event) {
         UIButton button = event.getComponent();
-        //		boolean active = false;
+        // boolean active = false;
         if (button == btnBold) bbTexfield.addTag(Tag.BOLD);
         else if (button == btnItalic) bbTexfield.addTag(Tag.ITALIC);
         else if (button == btnUnderline) bbTexfield.addTag(Tag.UNDERLINE);
@@ -354,6 +321,7 @@ public class BBCodeEditor extends UIContainer<BBCodeEditor> {
     }
 
     public static class BBCodeChangeEvent extends ComponentEvent<BBCodeEditor> {
+
         public BBCodeChangeEvent(BBCodeEditor component) {
             super(component);
         }

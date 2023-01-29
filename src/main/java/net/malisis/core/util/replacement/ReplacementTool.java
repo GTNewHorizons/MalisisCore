@@ -1,39 +1,23 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.util.replacement;
 
-import com.gtnewhorizon.gtnhlib.reflect.Fields;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.registry.FMLControlledNamespacedRegistry;
-import cpw.mods.fml.relauncher.ReflectionHelper;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
+
 import net.malisis.core.MalisisCore;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -45,23 +29,37 @@ import net.minecraft.stats.StatList;
 import net.minecraft.util.RegistryNamespaced;
 import net.minecraftforge.client.event.TextureStitchEvent;
 
+import com.gtnewhorizon.gtnhlib.reflect.Fields;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.registry.FMLControlledNamespacedRegistry;
+import cpw.mods.fml.relauncher.ReflectionHelper;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 /**
  * @author Ordinastie
  *
  */
 public class ReplacementTool {
+
     private static ReplacementTool instance = new ReplacementTool();
 
-    /** List of original {@link Block} being replaced. The key is the replacement, the value is the Vanilla {@code Block}. */
+    /**
+     * List of original {@link Block} being replaced. The key is the replacement, the value is the Vanilla
+     * {@code Block}.
+     */
     private HashMap<Block, Block> originalBlocks = new HashMap<>();
-    /** List of original {@link Item} being replaced. The key is the replacement, the value is the Vanilla {@code Item}. */
+    /**
+     * List of original {@link Item} being replaced. The key is the replacement, the value is the Vanilla {@code Item}.
+     */
     private HashMap<Item, Item> originalItems = new HashMap<>();
 
-    private Class[] types = {Integer.TYPE, String.class, Object.class};
+    private Class[] types = { Integer.TYPE, String.class, Object.class };
     private Method method = ReflectionHelper.findMethod(
             FMLControlledNamespacedRegistry.class,
             (FMLControlledNamespacedRegistry) null,
-            new String[] {"addObjectRaw"},
+            new String[] { "addObjectRaw" },
             types);
 
     private ReplacementTool() {
@@ -74,8 +72,8 @@ public class ReplacementTool {
 
     /**
      * Texture stitch event.<br>
-     * Used to register the icons of the replaced vanilla blocks since they're not in the registry anymore and won't be called to register
-     * their icons.
+     * Used to register the icons of the replaced vanilla blocks since they're not in the registry anymore and won't be
+     * called to register their icons.
      *
      * @param event the event
      */
@@ -106,13 +104,13 @@ public class ReplacementTool {
      * Changes the instance inside stats<br>
      * For blocks, changes the instance inside the corresponding ItemBlock if any.
      *
-     * @param id the id
-     * @param name the name
+     * @param id           the id
+     * @param name         the name
      * @param srgFieldName the srg field name
-     * @param replacement the replacement
-     * @param vanilla the vanilla
+     * @param replacement  the replacement
+     * @param vanilla      the vanilla
      */
-    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     private void replaceVanilla(int id, String name, String srgFieldName, Object replacement, Object vanilla) {
         boolean block = replacement instanceof Block;
         RegistryNamespaced registry = block ? Block.blockRegistry : Item.itemRegistry;
@@ -142,12 +140,11 @@ public class ReplacementTool {
         for (Object object : list) {
             ReplacementHandler rh = ReplacementHandler.getHandler(object);
             if (rh != null) {
-                if (rh.replace(object, vanilla, replacement))
-                    MalisisCore.log.info(
-                            "Replaced {} by {} in {}",
-                            vanilla.getClass().getSimpleName(),
-                            replacement.getClass().getSimpleName(),
-                            object.getClass().getSimpleName());
+                if (rh.replace(object, vanilla, replacement)) MalisisCore.log.info(
+                        "Replaced {} by {} in {}",
+                        vanilla.getClass().getSimpleName(),
+                        replacement.getClass().getSimpleName(),
+                        object.getClass().getSimpleName());
             }
         }
     }
@@ -156,11 +153,11 @@ public class ReplacementTool {
      * Replaces vanilla block with another one.<br>
      * Changes the registry by removing the vanilla block and adding the replacement.
      *
-     * @param id the id
-     * @param name the name
+     * @param id           the id
+     * @param name         the name
      * @param srgFieldName the srg field name
-     * @param replacement the block
-     * @param vanilla the vanilla
+     * @param replacement  the block
+     * @param vanilla      the vanilla
      */
     public static void replaceVanillaBlock(int id, String name, String srgFieldName, Block replacement, Block vanilla) {
         instance().replaceVanilla(id, name, srgFieldName, replacement, vanilla);
@@ -169,11 +166,11 @@ public class ReplacementTool {
     /**
      * Replace vanilla item.
      *
-     * @param id the id
-     * @param name the name
+     * @param id           the id
+     * @param name         the name
      * @param srgFieldName the srg field name
-     * @param replacement the replacement
-     * @param vanilla the vanilla
+     * @param replacement  the replacement
+     * @param vanilla      the vanilla
      */
     public static void replaceVanillaItem(int id, String name, String srgFieldName, Item replacement, Item vanilla) {
         instance().replaceVanilla(id, name, srgFieldName, replacement, vanilla);

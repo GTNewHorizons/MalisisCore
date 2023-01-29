@@ -1,31 +1,20 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.client.gui.component;
 
-import com.google.common.eventbus.Subscribe;
 import java.util.List;
+
 import net.malisis.core.client.gui.GuiRenderer;
 import net.malisis.core.client.gui.MalisisGui;
 import net.malisis.core.client.gui.component.decoration.UITooltip;
@@ -43,10 +32,14 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
+import com.google.common.eventbus.Subscribe;
+
 public class UISlot extends UIComponent<UISlot> {
+
     /** Icon to use for the background of this {@link UISlot} */
     protected GuiIcon icon;
     /** Icon for Mojang fix */
@@ -64,7 +57,7 @@ public class UISlot extends UIComponent<UISlot> {
     /**
      * Instantiates a new {@link UISlot}.
      *
-     * @param gui the gui
+     * @param gui  the gui
      * @param slot the slot
      */
     public UISlot(MalisisGui gui, MalisisSlot slot) {
@@ -107,9 +100,9 @@ public class UISlot extends UIComponent<UISlot> {
             return;
         }
 
-        List<String> lines = slot.getItemStack()
-                .getTooltip(
-                        Minecraft.getMinecraft().thePlayer, Minecraft.getMinecraft().gameSettings.advancedItemTooltips);
+        List<String> lines = slot.getItemStack().getTooltip(
+                Minecraft.getMinecraft().thePlayer,
+                Minecraft.getMinecraft().gameSettings.advancedItemTooltips);
 
         lines.set(0, slot.getItemStack().getRarity().rarityColor + lines.get(0));
         for (int i = 1; i < lines.size(); i++) lines.set(i, EnumChatFormatting.GRAY + lines.get(i));
@@ -199,8 +192,7 @@ public class UISlot extends UIComponent<UISlot> {
 
         if (container.getPickedItemStack() != null) return super.onButtonPress(x, y, button);
 
-        if (button.getCode()
-                == Minecraft.getMinecraft().gameSettings.keyBindPickBlock.getKeyCode() + 100)
+        if (button.getCode() == Minecraft.getMinecraft().gameSettings.keyBindPickBlock.getKeyCode() + 100)
             action = ActionType.PICKBLOCK;
 
         if (button == MouseButton.LEFT)
@@ -254,8 +246,8 @@ public class UISlot extends UIComponent<UISlot> {
     public boolean onDoubleClick(int x, int y, MouseButton button) {
         if (button != MouseButton.LEFT) return super.onDoubleClick(x, y, button);
 
-        ActionType action =
-                GuiScreen.isShiftKeyDown() ? ActionType.DOUBLE_SHIFT_LEFT_CLICK : ActionType.DOUBLE_LEFT_CLICK;
+        ActionType action = GuiScreen.isShiftKeyDown() ? ActionType.DOUBLE_SHIFT_LEFT_CLICK
+                : ActionType.DOUBLE_LEFT_CLICK;
         MalisisGui.sendAction(action, slot, button.getCode());
         buttonRelased = false;
         return true;

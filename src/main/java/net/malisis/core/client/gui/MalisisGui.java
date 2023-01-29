@@ -1,32 +1,18 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 PaleoCrafter, Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 PaleoCrafter, Ordinastie Permission is hereby granted, free of charge, to
+ * any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the
+ * Software without restriction, including without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished
+ * to do so, subject to the following conditions: The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
+ * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.client.gui;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.InputEvent;
 import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
@@ -36,6 +22,7 @@ import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.Callable;
+
 import net.malisis.core.MalisisCore;
 import net.malisis.core.client.gui.component.IKeyListener;
 import net.malisis.core.client.gui.component.UIComponent;
@@ -59,11 +46,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
+
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.InputEvent;
 
 /**
  * GuiScreenProxy
@@ -71,6 +63,7 @@ import org.lwjgl.opengl.GL11;
  * @author Ordinastie
  */
 public abstract class MalisisGui extends GuiScreen {
+
     public static GuiTexture BLOCK_TEXTURE = new GuiTexture(TextureMap.locationBlocksTexture);
     public static GuiTexture ITEM_TEXTURE = new GuiTexture(TextureMap.locationItemsTexture);
 
@@ -231,6 +224,7 @@ public abstract class MalisisGui extends GuiScreen {
             call = (Callable<String>) objects[0];
         } else if (objects.length > 1 && objects[0] instanceof String) {
             call = new Callable<String>() {
+
                 @Override
                 public String call() {
                     return String.format((String) objects[0], Arrays.copyOfRange(objects, 1, objects.length));
@@ -238,6 +232,7 @@ public abstract class MalisisGui extends GuiScreen {
             };
         } else {
             call = new Callable<String>() {
+
                 @Override
                 public String call() {
                     return StringUtils.join(objects, ',');
@@ -427,13 +422,13 @@ public abstract class MalisisGui extends GuiScreen {
 
             if (ret) return;
 
-            if (focusedComponent != null
-                    && !keyListeners.contains(focusedComponent)
-                    && focusedComponent.onKeyTyped(keyChar, keyCode)) return;
+            if (focusedComponent != null && !keyListeners.contains(focusedComponent)
+                    && focusedComponent.onKeyTyped(keyChar, keyCode))
+                return;
 
-            if (hoveredComponent != null
-                    && !keyListeners.contains(hoveredComponent)
-                    && hoveredComponent.onKeyTyped(keyChar, keyCode)) return;
+            if (hoveredComponent != null && !keyListeners.contains(hoveredComponent)
+                    && hoveredComponent.onKeyTyped(keyChar, keyCode))
+                return;
 
             if (isGuiCloseKey(keyCode) && !isOverlay) close();
 
@@ -446,8 +441,10 @@ public abstract class MalisisGui extends GuiScreen {
                 if (keyCode == Keyboard.KEY_D) debug = !debug;
             }
         } catch (Exception e) {
-            MalisisCore.message("A problem occured while handling key typed for "
-                    + e.getClass().getSimpleName() + ": " + e.getMessage());
+            MalisisCore.message(
+                    "A problem occured while handling key typed for " + e.getClass().getSimpleName()
+                            + ": "
+                            + e.getMessage());
             e.printStackTrace(new PrintStream(new FileOutputStream(FileDescriptor.out)));
         }
     }
@@ -498,9 +495,9 @@ public abstract class MalisisGui extends GuiScreen {
         if (inventoryContainer != null) {
             ItemStack itemStack = inventoryContainer.getPickedItemStack();
             if (itemStack != null) renderer.renderPickedItemStack(itemStack);
-            else if (hoveredComponent != null
-                    && hoveredComponent.isHovered()) // do not draw the tooltip if an itemStack is picked up
-            renderer.drawTooltip(hoveredComponent.getTooltip());
+            else if (hoveredComponent != null && hoveredComponent.isHovered()) // do not draw the tooltip if an
+                                                                               // itemStack is picked up
+                renderer.drawTooltip(hoveredComponent.getTooltip());
         } else if (hoveredComponent != null && hoveredComponent.isHovered())
             renderer.drawTooltip(hoveredComponent.getTooltip());
 
@@ -511,14 +508,15 @@ public abstract class MalisisGui extends GuiScreen {
     /**
      * Called every frame.
      *
-     * @param mouseX the mouse x
-     * @param mouseY the mouse y
+     * @param mouseX      the mouse x
+     * @param mouseY      the mouse y
      * @param partialTick the partial tick
      */
     public void update(int mouseX, int mouseY, float partialTick) {}
 
     /**
-     * Called from TE when TE is updated. Override this method when you want to change displayed informations when the TileEntity changes.
+     * Called from TE when TE is updated. Override this method when you want to change displayed informations when the
+     * TileEntity changes.
      */
     public void updateGui() {}
 
@@ -546,7 +544,8 @@ public abstract class MalisisGui extends GuiScreen {
     /**
      * Display this {@link MalisisGui}.
      *
-     * @param cancelClose the wether or not to cancel the next Gui close event (used for when the GUI is opened from command)
+     * @param cancelClose the wether or not to cancel the next Gui close event (used for when the GUI is opened from
+     *                    command)
      */
     public void display(boolean cancelClose) {
         if (!doConstruct()) return;
@@ -620,7 +619,7 @@ public abstract class MalisisGui extends GuiScreen {
      * Gets the current {@link MalisisGui} of the specified type displayed.<br>
      * If the current gu is not of <i>type</i>, null is returned.
      *
-     * @param <T> the generic type
+     * @param <T>  the generic type
      * @param type the type
      * @return the t
      */
@@ -638,8 +637,8 @@ public abstract class MalisisGui extends GuiScreen {
      * Sends a GUI action to the server.
      *
      * @param action the action
-     * @param slot the slot
-     * @param code the keyboard code
+     * @param slot   the slot
+     * @param code   the keyboard code
      */
     public static void sendAction(ActionType action, MalisisSlot slot, int code) {
         if (action == null || currentGui() == null || currentGui().inventoryContainer == null) return;
@@ -659,10 +658,11 @@ public abstract class MalisisGui extends GuiScreen {
     }
 
     /**
-     * Sets the hovered state for a {@link UIComponent}. If a <code>UIComponent</code> is currently hovered, it will be "unhovered" first.
+     * Sets the hovered state for a {@link UIComponent}. If a <code>UIComponent</code> is currently hovered, it will be
+     * "unhovered" first.
      *
      * @param component the component that gets his state changed
-     * @param hovered the hovered state
+     * @param hovered   the hovered state
      * @return true, if the state was changed
      */
     public static boolean setHoveredComponent(UIComponent component, boolean hovered) {
@@ -720,16 +720,13 @@ public abstract class MalisisGui extends GuiScreen {
     }
 
     public static void playSound(String name, float level) {
-        Minecraft.getMinecraft()
-                .getSoundHandler()
+        Minecraft.getMinecraft().getSoundHandler()
                 .playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation(name), level));
     }
 
     public static boolean isGuiCloseKey(int keyCode) {
         MalisisGui gui = currentGui();
-        return keyCode == Keyboard.KEY_ESCAPE
-                || (gui != null
-                        && gui.inventoryContainer != null
-                        && keyCode == gui.mc.gameSettings.keyBindInventory.getKeyCode());
+        return keyCode == Keyboard.KEY_ESCAPE || (gui != null && gui.inventoryContainer != null
+                && keyCode == gui.mc.gameSettings.keyBindInventory.getKeyCode());
     }
 }

@@ -1,38 +1,24 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.inventory;
 
-import com.google.common.eventbus.EventBus;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.WeakHashMap;
+
 import net.malisis.core.MalisisCore;
 import net.malisis.core.client.gui.MalisisGui;
 import net.malisis.core.inventory.message.OpenInventoryMessage;
@@ -49,15 +35,22 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
 
+import com.google.common.eventbus.EventBus;
+
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 /**
  *
  * @author Ordinastie
  *
  */
 public class MalisisInventory implements IInventory {
+
     /** List of {@link MalisisInventory} that is currently containing this {@link MalisisInventory}. */
-    protected Set<MalisisInventoryContainer> containers =
-            Collections.newSetFromMap(new WeakHashMap<MalisisInventoryContainer, Boolean>());
+    protected Set<MalisisInventoryContainer> containers = Collections
+            .newSetFromMap(new WeakHashMap<MalisisInventoryContainer, Boolean>());
     /** The inventory id inside the container. */
     protected int inventoryId;
     /** Object containing this {@link MalisisInventory}. */
@@ -81,7 +74,7 @@ public class MalisisInventory implements IInventory {
      * Instantiates a new {@link MalisisInventory}.
      *
      * @param provider the provider
-     * @param size the size
+     * @param size     the size
      */
     public MalisisInventory(IInventoryProvider provider, int size) {
         this.inventoryProvider = provider;
@@ -95,7 +88,7 @@ public class MalisisInventory implements IInventory {
      * Instantiates a new {@link MalisisInventory}.
      *
      * @param provider the provider
-     * @param slots the slots
+     * @param slots    the slots
      */
     public MalisisInventory(IInventoryProvider provider, MalisisSlot[] slots) {
         this.inventoryProvider = provider;
@@ -125,7 +118,7 @@ public class MalisisInventory implements IInventory {
     /**
      * Overrides a specific slot with a new one.
      *
-     * @param slot the slot
+     * @param slot       the slot
      * @param slotNumber the slot number
      */
     public void overrideSlot(MalisisSlot slot, int slotNumber) {
@@ -236,7 +229,7 @@ public class MalisisInventory implements IInventory {
      * Sets the itemStack for the slot at position slotNumber.
      *
      * @param slotNumber the slot number
-     * @param itemStack the item stack
+     * @param itemStack  the item stack
      */
     public void setItemStack(int slotNumber, ItemStack itemStack) {
         MalisisSlot slot = getSlot(slotNumber);
@@ -268,7 +261,7 @@ public class MalisisInventory implements IInventory {
     /**
      * Checks whether itemStack can be contained by slot.
      *
-     * @param slot the slot
+     * @param slot      the slot
      * @param itemStack the item stack
      * @return true, if successful
      */
@@ -280,7 +273,7 @@ public class MalisisInventory implements IInventory {
      * Checks whether itemStack can be contained by the slot at position slotNumber.
      *
      * @param slotNumber the slot number
-     * @param itemStack the item stack
+     * @param itemStack  the item stack
      * @return true, if is item valid for slot
      */
     @Override
@@ -326,13 +319,15 @@ public class MalisisInventory implements IInventory {
      * @param itemStack the new item stack provider
      */
     public void setItemStackProvider(ItemStack itemStack) {
-        if (!(inventoryProvider instanceof Item))
-            throw new IllegalArgumentException("setItemStack not allowed with "
-                    + inventoryProvider.getClass().getSimpleName() + " provider.");
+        if (!(inventoryProvider instanceof Item)) throw new IllegalArgumentException(
+                "setItemStack not allowed with " + inventoryProvider.getClass().getSimpleName() + " provider.");
 
         if (itemStack.getItem() != inventoryProvider) {
-            MalisisCore.log.error("[MalisisInventory] Tried to set itemStack with an different item ("
-                    + itemStack.getItem() + ") than the provider (" + inventoryProvider + ")");
+            MalisisCore.log.error(
+                    "[MalisisInventory] Tried to set itemStack with an different item (" + itemStack.getItem()
+                            + ") than the provider ("
+                            + inventoryProvider
+                            + ")");
             return;
         }
 
@@ -448,7 +443,7 @@ public class MalisisInventory implements IInventory {
      * Transfers itemStack inside this {@link MalisisInventory}.
      *
      * @param itemStack the item stack
-     * @param reversed if true, start filling slots from the last slot
+     * @param reversed  if true, start filling slots from the last slot
      * @return the itemStack that could not fit inside this inventory
      */
     public ItemStack transferInto(ItemStack itemStack, boolean reversed) {
@@ -462,13 +457,13 @@ public class MalisisInventory implements IInventory {
     }
 
     /**
-     * Transfer itemStack inside this {@link MalisisInventory} into slots at position from start to end. If <b>start</b> &gt; <b>end</b>,
-     * the slots will be filled backwards.
+     * Transfer itemStack inside this {@link MalisisInventory} into slots at position from start to end. If <b>start</b>
+     * &gt; <b>end</b>, the slots will be filled backwards.
      *
      * @param itemStack the item stack
      * @param emptySlot whether to fill empty slots only
-     * @param start the start
-     * @param end the end
+     * @param start     the start
+     * @param end       the end
      * @return the itemStack that could not fit inside this inventory
      */
     protected ItemStack transferInto(ItemStack itemStack, boolean emptySlot, int start, int end) {
@@ -484,13 +479,13 @@ public class MalisisInventory implements IInventory {
             slot = getSlot(current);
             if (slot.isItemValid(itemStack) && !slot.isOutputSlot() && (emptySlot || slot.getItemStack() != null)) {
                 itemStack = slot.insert(itemStack);
-                //				ItemUtils.ItemStacksMerger ism = new ItemUtils.ItemStacksMerger(itemStack, slot.getItemStack());
-                //				if (ism.merge(ItemUtils.FULL_STACK, slot.getSlotStackLimit()))
-                //				{
-                //					itemStack = ism.merge;
-                //					slot.setItemStack(ism.into);
-                //					slot.onSlotChanged();
-                //				}
+                // ItemUtils.ItemStacksMerger ism = new ItemUtils.ItemStacksMerger(itemStack, slot.getItemStack());
+                // if (ism.merge(ItemUtils.FULL_STACK, slot.getSlotStackLimit()))
+                // {
+                // itemStack = ism.merge;
+                // slot.setItemStack(ism.into);
+                // slot.onSlotChanged();
+                // }
             }
             current += step;
         }
@@ -502,9 +497,9 @@ public class MalisisInventory implements IInventory {
      * Spills out all the itemStack contained inside this {@link MalisisInventory}.
      *
      * @param world the world
-     * @param x the x
-     * @param y the y
-     * @param z the z
+     * @param x     the x
+     * @param y     the y
+     * @param z     the z
      */
     public void breakInventory(World world, int x, int y, int z) {
         for (ItemStack itemStack : getItemStackList()) EntityUtils.spawnEjectedItem(world, x, y, z, itemStack);
@@ -568,24 +563,23 @@ public class MalisisInventory implements IInventory {
     /**
      * Opens this {@link MalisisInventory}. Called server-side only
      *
-     * @param player the player
+     * @param player            the player
      * @param inventoryProvider the inventory provider
-     * @param data the data
+     * @param data              the data
      * @return the malisis inventory container
      */
-    public static MalisisInventoryContainer open(
-            EntityPlayerMP player, IInventoryProvider inventoryProvider, Object... data) {
+    public static MalisisInventoryContainer open(EntityPlayerMP player, IInventoryProvider inventoryProvider,
+            Object... data) {
         if (inventoryProvider == null) return null;
 
         MalisisInventoryContainer c = new MalisisInventoryContainer(player, 0);
 
         MalisisInventory[] inventories = inventoryProvider.getInventories(data);
-        if (inventories != null)
-            for (MalisisInventory inv : inventories) {
-                c.addInventory(inv);
-                inv.openInventory();
-                inv.bus.post(new InventoryEvent.Open(c, inv));
-            }
+        if (inventories != null) for (MalisisInventory inv : inventories) {
+            c.addInventory(inv);
+            inv.openInventory();
+            inv.bus.post(new InventoryEvent.Open(c, inv));
+        }
 
         OpenInventoryMessage.send(inventoryProvider, player, c.windowId);
         c.sendInventoryContent();
@@ -596,25 +590,24 @@ public class MalisisInventory implements IInventory {
     /**
      * Opens this {@link MalisisInventory}. Called client-side only.
      *
-     * @param player the player
+     * @param player            the player
      * @param inventoryProvider the inventory provider
-     * @param windowId the window id
-     * @param data the data
+     * @param windowId          the window id
+     * @param data              the data
      * @return the malisis inventory container
      */
     @SideOnly(Side.CLIENT)
-    public static MalisisInventoryContainer open(
-            EntityClientPlayerMP player, IInventoryProvider inventoryProvider, int windowId, Object... data) {
+    public static MalisisInventoryContainer open(EntityClientPlayerMP player, IInventoryProvider inventoryProvider,
+            int windowId, Object... data) {
         if (inventoryProvider == null) return null;
 
         MalisisInventoryContainer c = new MalisisInventoryContainer(player, windowId);
         MalisisInventory[] inventories = inventoryProvider.getInventories(data);
-        if (inventories != null)
-            for (MalisisInventory inv : inventories) {
-                c.addInventory(inv);
-                inv.openInventory();
-                inv.bus.post(new InventoryEvent.Open(c, inv));
-            }
+        if (inventories != null) for (MalisisInventory inv : inventories) {
+            c.addInventory(inv);
+            inv.openInventory();
+            inv.bus.post(new InventoryEvent.Open(c, inv));
+        }
 
         if (FMLCommonHandler.instance().getSide().isClient()) {
             MalisisGui gui = inventoryProvider.getGui(c);
@@ -652,7 +645,7 @@ public class MalisisInventory implements IInventory {
     /**
      * Unused : always returns null.
      *
-     * @param slot the slot
+     * @param slot  the slot
      * @param count the count
      * @return the item stack
      */
@@ -688,7 +681,7 @@ public class MalisisInventory implements IInventory {
      * Use MalisisInventory.setItemStack(int slotNumber, ItemStack itemStack)
      *
      * @param slotNumber the slot number
-     * @param itemStack the item stack
+     * @param itemStack  the item stack
      */
     @Override
     @Deprecated

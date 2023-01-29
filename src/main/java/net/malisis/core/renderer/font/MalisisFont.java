@@ -1,30 +1,18 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.renderer.font;
 
-import com.google.common.io.Files;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.font.FontRenderContext;
@@ -41,7 +29,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import javax.imageio.ImageIO;
+
 import net.malisis.core.MalisisCore;
 import net.malisis.core.client.gui.GuiRenderer;
 import net.malisis.core.renderer.MalisisRenderer;
@@ -55,14 +45,18 @@ import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.opengl.GL11;
+
+import com.google.common.io.Files;
 
 /**
  * @author Ordinastie
  *
  */
 public class MalisisFont {
+
     public static MalisisFont minecraftFont = new MinecraftFont();
 
     private static Pattern pattern = Pattern.compile("\\{(.*?)}");
@@ -163,10 +157,8 @@ public class MalisisFont {
     protected void clean(MalisisRenderer renderer, boolean isDrawing) {
         if (isDrawing) renderer.next();
         else renderer.draw();
-        if (renderer instanceof GuiRenderer)
-            Minecraft.getMinecraft()
-                    .getTextureManager()
-                    .bindTexture(((GuiRenderer) renderer).getDefaultTexture().getResourceLocation());
+        if (renderer instanceof GuiRenderer) Minecraft.getMinecraft().getTextureManager()
+                .bindTexture(((GuiRenderer) renderer).getDefaultTexture().getResourceLocation());
         GL11.glPopMatrix();
     }
 
@@ -308,7 +300,7 @@ public class MalisisFont {
      */
     public String processString(String str, FontRenderOptions fro) {
         str = translate(str);
-        // str = str.replaceAll("\r?\n", "").replaceAll("\t", "    ");
+        // str = str.replaceAll("\r?\n", "").replaceAll("\t", " ");
         return str;
     }
 
@@ -325,8 +317,7 @@ public class MalisisFont {
     }
 
     private boolean hasLines(String text, FontRenderOptions fro) {
-        return fro.underline
-                || fro.strikethrough
+        return fro.underline || fro.strikethrough
                 || text.contains(EnumChatFormatting.UNDERLINE.toString())
                 || text.contains(EnumChatFormatting.STRIKETHROUGH.toString());
     }
@@ -334,7 +325,7 @@ public class MalisisFont {
     /**
      * Clips a string to fit in the specified width. The string is translated before clipping.
      *
-     * @param str the str
+     * @param str   the str
      * @param width the width
      * @return the string
      */
@@ -345,9 +336,9 @@ public class MalisisFont {
     /**
      * Clips a string to fit in the specified width. The string is translated before clipping.
      *
-     * @param str the str
+     * @param str   the str
      * @param width the width
-     * @param fro the fro
+     * @param fro   the fro
      * @return the string
      */
     public String clipString(String str, int width, FontRenderOptions fro) {
@@ -357,9 +348,9 @@ public class MalisisFont {
     /**
      * Clips a string to fit in the specified width. The string is translated before clipping.
      *
-     * @param str the str
-     * @param width the width
-     * @param fro the fro
+     * @param str           the str
+     * @param width         the width
+     * @param fro           the fro
      * @param appendPeriods the append periods
      * @return the string
      */
@@ -384,10 +375,10 @@ public class MalisisFont {
     /**
      * Gets rendering width of a string according to fontScale.
      *
-     * @param str the str
-     * @param fro the fro
+     * @param str   the str
+     * @param fro   the fro
      * @param start the start
-     * @param end the end
+     * @param end   the end
      * @return the string width
      */
     public float getStringWidth(String str, FontRenderOptions fro, int start, int end) {
@@ -398,8 +389,7 @@ public class MalisisFont {
         if (StringUtils.isEmpty(str)) return 0;
 
         str = processString(str, fro);
-        return (float) font.getStringBounds(str, frc).getWidth()
-                / options.fontSize
+        return (float) font.getStringBounds(str, frc).getWidth() / options.fontSize
                 * (fro != null ? fro.fontScale : 1)
                 * 9;
     }
@@ -442,7 +432,7 @@ public class MalisisFont {
      * Gets max rendering width of an array of string.
      *
      * @param strings the strings
-     * @param fro the fro
+     * @param fro     the fro
      * @return the max string width
      */
     public float getMaxStringWidth(List<String> strings, FontRenderOptions fro) {
@@ -464,7 +454,7 @@ public class MalisisFont {
     /**
      * Gets the rendering width of a char with the specified fontScale.
      *
-     * @param c the c
+     * @param c   the c
      * @param fro the fro
      * @return the char width
      */
@@ -478,9 +468,9 @@ public class MalisisFont {
     /**
      * Determines the character for a given X coordinate.
      *
-     * @param str the str
-     * @param fro the fro
-     * @param position the position
+     * @param str        the str
+     * @param fro        the fro
+     * @param position   the position
      * @param charOffset the char offset
      * @return position
      */
@@ -499,7 +489,7 @@ public class MalisisFont {
     /**
      * Splits the string in multiple lines to fit in the specified maxWidth.
      *
-     * @param text the text
+     * @param text     the text
      * @param maxWidth the max width
      * @return list of lines that won't exceed maxWidth limit
      */
@@ -510,9 +500,9 @@ public class MalisisFont {
     /**
      * Splits the string in multiple lines to fit in the specified maxWidth using the specified fontScale.
      *
-     * @param str the str
+     * @param str      the str
      * @param maxWidth the max width
-     * @param fro the fro
+     * @param fro      the fro
      * @return list of lines that won't exceed maxWidth limit
      */
     public List<String> wrapText(String str, int maxWidth, FontRenderOptions fro) {
@@ -662,12 +652,7 @@ public class MalisisFont {
     // #region Font load
     public static Font load(ResourceLocation rl, FontGeneratorOptions options) {
         try {
-            return load(
-                    Minecraft.getMinecraft()
-                            .getResourceManager()
-                            .getResource(rl)
-                            .getInputStream(),
-                    options);
+            return load(Minecraft.getMinecraft().getResourceManager().getResource(rl).getInputStream(), options);
         } catch (IOException e) {
             MalisisCore.log.error("[MalisiFont] Couldn't load font from ResourceLocation.", e);
             return null;

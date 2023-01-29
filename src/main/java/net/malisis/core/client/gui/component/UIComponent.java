@@ -1,32 +1,21 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 PaleoCrafter, Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 PaleoCrafter, Ordinastie Permission is hereby granted, free of charge, to
+ * any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the
+ * Software without restriction, including without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished
+ * to do so, subject to the following conditions: The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
+ * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.client.gui.component;
 
-import com.google.common.eventbus.EventBus;
 import java.util.LinkedHashSet;
 import java.util.Set;
+
 import net.malisis.core.client.gui.Anchor;
 import net.malisis.core.client.gui.ClipArea;
 import net.malisis.core.client.gui.GuiRenderer;
@@ -50,8 +39,11 @@ import net.malisis.core.client.gui.icon.GuiIcon;
 import net.malisis.core.renderer.RenderParameters;
 import net.malisis.core.renderer.animation.transformation.ITransformable;
 import net.malisis.core.util.MouseButton;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL14;
+
+import com.google.common.eventbus.EventBus;
 
 /**
  * {@link UIComponent} is the base of everything drawn onto a GUI.<br>
@@ -63,6 +55,7 @@ import org.lwjgl.opengl.GL14;
  */
 public abstract class UIComponent<T extends UIComponent>
         implements ITransformable.Position<T>, ITransformable.Size<T>, ITransformable.Alpha, IKeyListener {
+
     /** The Exception handler for all Component events. */
     private static final ComponentExceptionHandler exceptionHandler = new ComponentExceptionHandler();
 
@@ -93,7 +86,10 @@ public abstract class UIComponent<T extends UIComponent>
     protected UITooltip tooltip;
     /** Determines whether this {@link UIComponent} is visible. */
     protected boolean visible = true;
-    /** Determines whether this {@link UIComponent} is enabled. If set to false, will cancel any {@link GuiEvent events} received. */
+    /**
+     * Determines whether this {@link UIComponent} is enabled. If set to false, will cancel any {@link GuiEvent events}
+     * received.
+     */
     protected boolean disabled = false;
     /** Hover state of this {@link UIComponent}. */
     protected boolean hovered = false;
@@ -159,8 +155,8 @@ public abstract class UIComponent<T extends UIComponent>
     /**
      * Sets the position of this {@link UIComponent} relative to an anchor.
      *
-     * @param x the x
-     * @param y the y
+     * @param x      the x
+     * @param y      the y
      * @param anchor the anchor
      * @return this {@link UIComponent}
      */
@@ -253,7 +249,7 @@ public abstract class UIComponent<T extends UIComponent>
     /**
      * Sets the size of this {@link UIComponent}.
      *
-     * @param width the width
+     * @param width  the width
      * @param height the height
      * @return this {@link UIComponent}
      */
@@ -592,8 +588,8 @@ public abstract class UIComponent<T extends UIComponent>
      *
      * @param lastX the last x
      * @param lastY the last y
-     * @param x the x
-     * @param y the y
+     * @param x     the x
+     * @param y     the y
      * @return true, if successful
      */
     public boolean onMouseMove(int lastX, int lastY, int x, int y) {
@@ -605,8 +601,8 @@ public abstract class UIComponent<T extends UIComponent>
     /**
      * On button press.
      *
-     * @param x the x
-     * @param y the y
+     * @param x      the x
+     * @param y      the y
      * @param button the button
      * @return true, if successful
      */
@@ -619,8 +615,8 @@ public abstract class UIComponent<T extends UIComponent>
     /**
      * On button release.
      *
-     * @param x the x
-     * @param y the y
+     * @param x      the x
+     * @param y      the y
      * @param button the button
      * @return true, if successful
      */
@@ -659,8 +655,8 @@ public abstract class UIComponent<T extends UIComponent>
     /**
      * On double click.
      *
-     * @param x the x
-     * @param y the y
+     * @param x      the x
+     * @param y      the y
      * @param button the button
      * @return true, if successful
      */
@@ -673,10 +669,10 @@ public abstract class UIComponent<T extends UIComponent>
     /**
      * On drag.
      *
-     * @param lastX the last x
-     * @param lastY the last y
-     * @param x the x
-     * @param y the y
+     * @param lastX  the last x
+     * @param lastY  the last y
+     * @param x      the x
+     * @param y      the y
      * @param button the button
      * @return true, if successful
      */
@@ -689,8 +685,8 @@ public abstract class UIComponent<T extends UIComponent>
     /**
      * On scroll wheel.
      *
-     * @param x the x
-     * @param y the y
+     * @param x     the x
+     * @param y     the y
      * @param delta the delta
      * @return true, if successful
      */
@@ -874,12 +870,12 @@ public abstract class UIComponent<T extends UIComponent>
     /**
      * Draws this {@link UIComponent} Called by {@link #parent} component.<br>
      * Will set the size of {@link #shape} according to the size of this <code>UIComponent</code><br>
-     * Rendering is surrounded by glPushAttrib(GL_ALL_ATTRIB_BITS) so no state should bleed between components. Also, a draw() is triggered
-     * between background and foreground.
+     * Rendering is surrounded by glPushAttrib(GL_ALL_ATTRIB_BITS) so no state should bleed between components. Also, a
+     * draw() is triggered between background and foreground.
      *
-     * @param renderer the renderer
-     * @param mouseX the mouse x
-     * @param mouseY the mouse y
+     * @param renderer    the renderer
+     * @param mouseX      the mouse x
+     * @param mouseY      the mouse y
      * @param partialTick the partial tick
      */
     public void draw(GuiRenderer renderer, int mouseX, int mouseY, float partialTick) {
@@ -927,8 +923,23 @@ public abstract class UIComponent<T extends UIComponent>
      * @return the property string
      */
     public String getPropertyString() {
-        return "P=" + (parent != null ? parent.getClass().getSimpleName() : "null") + " | " + width + "x" + height + "@"
-                + x + "," + y + " | C=" + parentX() + "," + parentY() + " | S=" + screenX() + "," + screenY();
+        return "P=" + (parent != null ? parent.getClass().getSimpleName() : "null")
+                + " | "
+                + width
+                + "x"
+                + height
+                + "@"
+                + x
+                + ","
+                + y
+                + " | C="
+                + parentX()
+                + ","
+                + parentY()
+                + " | S="
+                + screenX()
+                + ","
+                + screenY();
     }
 
     /**
@@ -944,9 +955,9 @@ public abstract class UIComponent<T extends UIComponent>
     /**
      * Called first when drawing this {@link UIComponent}.
      *
-     * @param renderer the renderer
-     * @param mouseX the mouse x
-     * @param mouseY the mouse y
+     * @param renderer    the renderer
+     * @param mouseX      the mouse x
+     * @param mouseY      the mouse y
      * @param partialTick the partial tick
      */
     public abstract void drawBackground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick);
@@ -954,9 +965,9 @@ public abstract class UIComponent<T extends UIComponent>
     /**
      * Called last when drawing this {@link UIComponent}.
      *
-     * @param renderer the renderer
-     * @param mouseX the mouse x
-     * @param mouseY the mouse y
+     * @param renderer    the renderer
+     * @param mouseX      the mouse x
+     * @param mouseY      the mouse y
      * @param partialTick the partial tick
      */
     public abstract void drawForeground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick);

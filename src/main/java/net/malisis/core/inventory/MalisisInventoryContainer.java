@@ -1,25 +1,14 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 Ordinastie
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * The MIT License (MIT) Copyright (c) 2014 Ordinastie Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package net.malisis.core.inventory;
@@ -32,6 +21,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+
 import net.malisis.core.MalisisCore;
 import net.malisis.core.inventory.message.CloseInventoryMessage;
 import net.malisis.core.inventory.message.UpdateInventorySlotsMessage;
@@ -51,6 +41,7 @@ import net.minecraft.item.ItemStack;
  *
  */
 public class MalisisInventoryContainer extends Container {
+
     // @formatter:off
     public enum ActionType {
         LEFT_CLICK,
@@ -109,7 +100,10 @@ public class MalisisInventoryContainer extends Container {
     protected int draggedAmount = 0;
     /** The dragged slots. */
     protected Set<MalisisSlot> draggedSlots = new HashSet<>();
-    /** Type drag action. Can be DRAG_TYPE_SPREAD, DRAG_TYPE_ONE or DRAG_TYPE_PICKUP. Set to -1 if not currently dragging. */
+    /**
+     * Type drag action. Can be DRAG_TYPE_SPREAD, DRAG_TYPE_ONE or DRAG_TYPE_PICKUP. Set to -1 if not currently
+     * dragging.
+     */
     protected int dragType = -1;
     /** Stores the last itemStack that was shift clicked. Used for shift double click. */
     protected ItemStack lastShiftClicked;
@@ -117,7 +111,7 @@ public class MalisisInventoryContainer extends Container {
     /**
      * Instantiates a new {@link MalisisInventoryContainer}.
      *
-     * @param player the player
+     * @param player   the player
      * @param windowId the window id
      */
     public MalisisInventoryContainer(EntityPlayer player, int windowId) {
@@ -266,8 +260,8 @@ public class MalisisInventoryContainer extends Container {
         for (MalisisInventory inventory : inventories.values()) {
             if (inventory.getInventoryId() != 0) {
                 ArrayList<MalisisSlot> slots = new ArrayList<>(Arrays.asList(inventory.getSlots()));
-                UpdateInventorySlotsMessage.updateSlots(
-                        inventory.getInventoryId(), slots, (EntityPlayerMP) owner, windowId);
+                UpdateInventorySlotsMessage
+                        .updateSlots(inventory.getInventoryId(), slots, (EntityPlayerMP) owner, windowId);
             }
         }
     }
@@ -301,9 +295,8 @@ public class MalisisInventoryContainer extends Container {
             }
         }
 
-        if (changedSlots.size() > 0)
-            UpdateInventorySlotsMessage.updateSlots(
-                    inventory.getInventoryId(), changedSlots, (EntityPlayerMP) owner, windowId);
+        if (changedSlots.size() > 0) UpdateInventorySlotsMessage
+                .updateSlots(inventory.getInventoryId(), changedSlots, (EntityPlayerMP) owner, windowId);
     }
 
     /**
@@ -346,31 +339,32 @@ public class MalisisInventoryContainer extends Container {
     /**
      * Handles the action for this {@link MalisisInventoryContainer}. See {@link ActionType} for possible actions.
      *
-     * @param action the action
+     * @param action      the action
      * @param inventoryId the inventory id
-     * @param slotNumber the slot number
-     * @param code the code
+     * @param slotNumber  the slot number
+     * @param code        the code
      * @return itemStack resulting of the actions. Should be used to check client/server coherence.
      */
     public ItemStack handleAction(ActionType action, int inventoryId, int slotNumber, int code) {
         MalisisInventory inv = inventories.get(inventoryId);
         if (inv == null) {
-            MalisisCore.log.error("[MalisisInventoryContainer] Tried to handle an action for a wrong inventory ("
-                    + inventoryId + ").");
+            MalisisCore.log.error(
+                    "[MalisisInventoryContainer] Tried to handle an action for a wrong inventory (" + inventoryId
+                            + ").");
             return null;
         }
         MalisisSlot slot = inv.getSlot(slotNumber);
         if (slot == null) {
-            MalisisCore.log.error("[MalisisInventoryContainer] Tried to handle an action for a wrong slotNumber ("
-                    + slotNumber + ").");
+            MalisisCore.log.error(
+                    "[MalisisInventoryContainer] Tried to handle an action for a wrong slotNumber (" + slotNumber
+                            + ").");
             return null;
         }
 
         if (slot.isState(FROZEN)) return pickedItemStack;
 
         // first check if current slot is current providing inventory (for Items providing inventory)
-        if (slot.getItemStack() != null
-                && slot.getItemStack().getItem() instanceof IInventoryProvider
+        if (slot.getItemStack() != null && slot.getItemStack().getItem() instanceof IInventoryProvider
                 && slot.getItemStack().getTagCompound() != null) {
             if (slot.getItemStack().getTagCompound().getInteger("inventoryId") == 1) {
                 owner.closeScreen();
@@ -436,7 +430,7 @@ public class MalisisInventoryContainer extends Container {
     /**
      * Handles the normal left or right click.
      *
-     * @param slot the slot
+     * @param slot      the slot
      * @param fullStack the full stack
      * @return the item stack
      */
@@ -461,7 +455,7 @@ public class MalisisInventoryContainer extends Container {
      * Handles shift clicking a slot.
      *
      * @param inventoryId the inventory id
-     * @param slot the slot
+     * @param slot        the slot
      * @return the item stack
      */
     private ItemStack handleShiftClick(int inventoryId, MalisisSlot slot) {
@@ -504,7 +498,7 @@ public class MalisisInventoryContainer extends Container {
      * Handles player pressing 1-9 key while hovering a slot.
      *
      * @param slot the slot
-     * @param num the num
+     * @param num  the num
      * @return the item stack
      */
     private ItemStack handleHotbar(MalisisSlot slot, int num) {
@@ -541,7 +535,7 @@ public class MalisisInventoryContainer extends Container {
     /**
      * Drops itemStack from hovering slot.
      *
-     * @param slot the slot
+     * @param slot      the slot
      * @param fullStack the full stack
      * @return the item stack
      */
@@ -567,8 +561,8 @@ public class MalisisInventoryContainer extends Container {
      * Handle double clicking on a slot.
      *
      * @param inventoryId the inventory id
-     * @param slot the slot
-     * @param shiftClick the shift click
+     * @param slot        the slot
+     * @param shiftClick  the shift click
      * @return the item stack
      */
     private ItemStack handleDoubleClick(int inventoryId, MalisisSlot slot, boolean shiftClick) {
@@ -581,8 +575,7 @@ public class MalisisInventoryContainer extends Container {
             while (pickedItemStack.stackSize < pickedItemStack.getMaxStackSize() && i < inventory.size) {
                 if (slot.isState(PLAYER_EXTRACT)) {
                     MalisisSlot s = inventory.getSlot(i);
-                    if (s.getItemStack() != null
-                            && s.getItemStack().stackSize != s.getItemStack().getMaxStackSize()) {
+                    if (s.getItemStack() != null && s.getItemStack().stackSize != s.getItemStack().getMaxStackSize()) {
                         ItemUtils.ItemStacksMerger ism = new ItemStacksMerger(s.getItemStack(), pickedItemStack);
                         ism.merge();
                         s.setItemStack(ism.merge);
@@ -647,9 +640,9 @@ public class MalisisInventoryContainer extends Container {
     /**
      * Handles all drag actions.
      *
-     * @param action the action
+     * @param action      the action
      * @param inventoryId the inventory id
-     * @param slot the slot
+     * @param slot        the slot
      * @return the item stack
      */
     private ItemStack handleDrag(ActionType action, int inventoryId, MalisisSlot slot) {
@@ -733,7 +726,7 @@ public class MalisisInventoryContainer extends Container {
 
         // action == DRAG_ADD_SLOT
         if (draggedSlots.size() <= 1) // do not start spreading before it's dragged at least over two slots
-        return pickedItemStack;
+            return pickedItemStack;
         int amountPerSlot = dragType == DRAG_TYPE_SPREAD ? Math.max(draggedAmount / draggedSlots.size(), 1) : 1;
         int amountTotal = 0;
 
@@ -744,7 +737,7 @@ public class MalisisInventoryContainer extends Container {
                 itemStack.stackSize = draggedAmount;
                 ItemStack slotStack = s.getItemStack();
                 if (slotStack != null) // work on a copy because we don't want to alter the slot itemStack
-                slotStack = slotStack.copy();
+                    slotStack = slotStack.copy();
 
                 ItemUtils.ItemStacksMerger ism = new ItemStacksMerger(itemStack, slotStack);
                 ism.merge(amountPerSlot, s.getSlotStackLimit());
