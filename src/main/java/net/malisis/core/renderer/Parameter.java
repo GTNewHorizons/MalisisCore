@@ -104,6 +104,16 @@ public class Parameter<T> {
         if (parameter.getValue() != null) value = parameter.getValue();
     }
 
+    public T merged(Parameter<T> other) {
+        if (other.value != null) {
+            return other.value;
+        } else if (value != null) {
+            return value;
+        } else {
+            return defaultValue;
+        }
+    }
+
     @Override
     public String toString() {
         return value + " [" + defaultValue + "]";

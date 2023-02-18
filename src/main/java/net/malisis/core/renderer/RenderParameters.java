@@ -13,9 +13,6 @@
 
 package net.malisis.core.renderer;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import net.malisis.core.renderer.animation.transformation.ITransformable;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
@@ -25,9 +22,10 @@ import net.minecraftforge.common.util.ForgeDirection;
  * @author Ordinastie
  *
  */
+@SuppressWarnings("rawtypes")
 public class RenderParameters implements ITransformable.Color, ITransformable.Alpha, ITransformable.Brightness {
 
-    protected List<Parameter> listParams = new LinkedList<>();
+    protected Parameter[] listParams;
     /**
      * Defines whether to render all faces even if shoudSideBeRendered is false
      */
@@ -149,32 +147,11 @@ public class RenderParameters implements ITransformable.Color, ITransformable.Al
     public Parameter<Boolean> flipV = new Parameter<>(false);
 
     public RenderParameters() {
-        listParams.add(renderAllFaces);
-        listParams.add(useBlockBounds);
-        listParams.add(renderBounds);
-        listParams.add(vertexPositionRelativeToRenderBounds);
-        listParams.add(useCustomTexture);
-        listParams.add(applyTexture);
-        listParams.add(icon);
-        listParams.add(useWorldSensitiveIcon);
-        listParams.add(useTexture);
-        listParams.add(interpolateUV);
-        listParams.add(calculateAOColor);
-        listParams.add(calculateBrightness);
-        listParams.add(usePerVertexColor);
-        listParams.add(usePerVertexAlpha);
-        listParams.add(usePerVertexBrightness);
-        listParams.add(useEnvironmentBrightness);
-        listParams.add(useNormals);
-        listParams.add(colorMultiplier);
-        listParams.add(colorFactor);
-        listParams.add(brightness);
-        listParams.add(alpha);
-        listParams.add(direction);
-        listParams.add(textureSide);
-        listParams.add(aoMatrix);
-        listParams.add(flipU);
-        listParams.add(flipV);
+        listParams = new Parameter<?>[] { renderAllFaces, useBlockBounds, renderBounds,
+                vertexPositionRelativeToRenderBounds, useCustomTexture, applyTexture, icon, useWorldSensitiveIcon,
+                useTexture, interpolateUV, calculateAOColor, calculateBrightness, usePerVertexColor, usePerVertexAlpha,
+                usePerVertexBrightness, useEnvironmentBrightness, useNormals, colorMultiplier, colorFactor, brightness,
+                alpha, direction, textureSide, aoMatrix, flipU, flipV, };
     }
 
     public RenderParameters(RenderParameters params) {
@@ -182,19 +159,23 @@ public class RenderParameters implements ITransformable.Color, ITransformable.Al
         merge(params);
     }
 
-    private Parameter getParameter(int index) {
-        if (index < 0 || index >= listParams.size()) return null;
-        return listParams.get(index);
+    private Parameter<?> getParameter(int index) {
+        if (index < 0 || index >= listParams.length) return null;
+        return listParams[index];
     }
 
     public void reset() {
-        for (Parameter param : listParams) param.reset();
+        for (Parameter param : listParams) {
+            param.reset();
+        }
     }
 
     public void merge(RenderParameters params) {
         if (params == null) return;
 
-        for (int i = 0; i < listParams.size(); i++) getParameter(i).merge(params.getParameter(i));
+        for (int i = 0; i < listParams.length; i++) {
+            listParams[i].merge(params.listParams[i]);
+        }
     }
 
     @Override
