@@ -825,6 +825,35 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
+     * Gets the IIcon corresponding to the specified {@link RenderParameters}. Version with less allocations than
+     * getIcon for faster rendering.
+     *
+     * @param faceParams      Face parameters
+     * @param globalOverrides Overrides to merge into faceParams
+     * @return the icon
+     */
+    protected IIcon getIconFast(RenderParameters faceParams, RenderParameters globalOverrides) {
+        IIcon icon = faceParams.icon.merged(globalOverrides.icon);
+        if (faceParams.useCustomTexture.merged(globalOverrides.useCustomTexture)) icon = new MalisisIcon(); // use a
+                                                                                                            // generic
+                                                                                                            // icon
+                                                                                                            // where UVs
+                                                                                                            // go from 0
+                                                                                                            // to 1
+        else if (overrideTexture != null) icon = overrideTexture;
+        else if (block != null && icon == null) {
+            int side = 0;
+            if (faceParams.textureSide.merged(globalOverrides.textureSide) != null)
+                side = faceParams.textureSide.merged(globalOverrides.textureSide).ordinal();
+            if (world != null && faceParams.useWorldSensitiveIcon.merged(globalOverrides.useWorldSensitiveIcon))
+                icon = block.getIcon(world, x, y, z, side);
+            else icon = block.getIcon(side, blockMetadata);
+        }
+
+        return icon;
+    }
+
+    /**
      * Checks if a {@link Face} should be rendered. {@link RenderParameters#direction} needs to be defined for the
      * <b>face</b>.
      *
@@ -870,16 +899,16 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         // shape.applyMatrix();
         for (Face f : shape.getFaces()) {
             face = f;
-            RenderParameters params = new RenderParameters();
-            params.merge(f.getParameters());
-            params.merge(parameters);
 
-            IIcon icon = getIcon(params);
+            final RenderParameters faceParams = f.getParameters();
+            IIcon icon = getIconFast(faceParams, parameters);
             if (icon != null) {
-                boolean flipU = params.flipU.get();
-                if (params.direction.get() == ForgeDirection.NORTH || params.direction.get() == ForgeDirection.EAST)
-                    flipU = !flipU;
-                f.setTexture(icon, flipU, params.flipV.get(), params.interpolateUV.get());
+                boolean flipU = faceParams.flipU.merged(parameters.flipU);
+                final boolean flipV = faceParams.flipV.merged(parameters.flipV);
+                final boolean interpolateUV = faceParams.interpolateUV.merged(parameters.interpolateUV);
+                final ForgeDirection direction = faceParams.direction.merged(parameters.direction);
+                if (direction == ForgeDirection.NORTH || direction == ForgeDirection.EAST) flipU = !flipU;
+                f.setTexture(icon, flipU, flipV, interpolateUV);
             }
         }
     }
