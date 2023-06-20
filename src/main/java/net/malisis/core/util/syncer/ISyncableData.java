@@ -21,7 +21,7 @@ import io.netty.buffer.ByteBuf;
  */
 public interface ISyncableData {
 
-    public void fromBytes(ByteBuf buf);
+    void fromBytes(ByteBuf buf);
 
-    public void toBytes(ByteBuf buf);
+    void toBytes(ByteBuf buf);
 }

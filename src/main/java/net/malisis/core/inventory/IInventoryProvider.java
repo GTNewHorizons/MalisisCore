@@ -27,7 +27,7 @@ public interface IInventoryProvider {
      * @param data null for TileEntity, ItemStack for Item
      * @return the inventories
      */
-    public MalisisInventory[] getInventories(Object... data);
+    MalisisInventory[] getInventories(Object... data);
 
     /**
      * Gets the {@link MalisisInventory} for a specific side for this {@link IInventoryProvider}.
@@ -36,7 +36,7 @@ public interface IInventoryProvider {
      * @param data null for TileEntity, ItemStack for Item
      * @return the inventories
      */
-    public MalisisInventory[] getInventories(ForgeDirection side, Object... data);
+    MalisisInventory[] getInventories(ForgeDirection side, Object... data);
 
     /**
      * Gets the {@link MalisisGui} associated with the {@link MalisisInventory}.
@@ -45,5 +45,5 @@ public interface IInventoryProvider {
      * @return the GUI to open
      */
     @SideOnly(Side.CLIENT)
-    public MalisisGui getGui(MalisisInventoryContainer container);
+    MalisisGui getGui(MalisisInventoryContainer container);
 }

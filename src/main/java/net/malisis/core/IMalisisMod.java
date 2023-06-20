@@ -28,26 +28,26 @@ public interface IMalisisMod {
      *
      * @return the mod id
      */
-    public String getModId();
+    String getModId();
 
     /**
      * Gets the mod name.
      *
      * @return the mod name
      */
-    public String getName();
+    String getName();
 
     /**
      * Gets the mod version.
      *
      * @return the version
      */
-    public String getVersion();
+    String getVersion();
 
     /**
      * Gets the configuration settings.
      *
      * @return the configuration settings
      */
-    public Settings getSettings();
+    Settings getSettings();
 }

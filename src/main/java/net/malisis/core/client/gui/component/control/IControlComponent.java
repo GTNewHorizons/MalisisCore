@@ -29,14 +29,14 @@ public interface IControlComponent {
      *
      * @param component the parent
      */
-    public void setParent(UIComponent component);
+    void setParent(UIComponent component);
 
     /**
      * Gets the {@link UIComponent} controlled by this {@link IControlComponent}.
      *
      * @return the parent
      */
-    public UIComponent getParent();
+    UIComponent getParent();
 
     /**
      * Gets the component at the specified coordinates. See {@link UIComponent#getComponentAt(int, int)}.
@@ -45,7 +45,7 @@ public interface IControlComponent {
      * @param y the y
      * @return the component at
      */
-    public UIComponent getComponentAt(int x, int y);
+    UIComponent getComponentAt(int x, int y);
 
     /**
      * Called when a key is pressed when this {@link IControlComponent} or its parent is focused or hovered.<br>
@@ -55,7 +55,7 @@ public interface IControlComponent {
      * @param keyCode the key code
      * @return true, if successful
      */
-    public boolean onKeyTyped(char keyChar, int keyCode);
+    boolean onKeyTyped(char keyChar, int keyCode);
 
     /**
      * Called when the scrollwheel is used when this {@link IControlComponent} or its parent is focused or hovered.<br>
@@ -66,7 +66,7 @@ public interface IControlComponent {
      * @param delta the delta
      * @return true, if successful
      */
-    public boolean onScrollWheel(int x, int y, int delta);
+    boolean onScrollWheel(int x, int y, int delta);
 
     /**
      * Draws this {@link IControlComponent}. See {@link UIComponent#draw(GuiRenderer, int, int, float)}.
@@ -76,5 +76,5 @@ public interface IControlComponent {
      * @param mouseY      the mouse y
      * @param partialTick the partial tick
      */
-    public void draw(GuiRenderer renderer, int mouseX, int mouseY, float partialTick);
+    void draw(GuiRenderer renderer, int mouseX, int mouseY, float partialTick);
 }

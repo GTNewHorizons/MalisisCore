@@ -421,18 +421,18 @@ public class MultiBlock {
         return null;
     }
 
-    public static interface IProvider {
+    public interface IProvider {
 
         /**
          * Sets the {@link MultiBlock} instance for this {@link IProvider}.
          *
          * @param multiBlock the MultiBlock
          */
-        public void setMultiBlock(MultiBlock multiBlock);
+        void setMultiBlock(MultiBlock multiBlock);
 
         /**
          * @return the {@link MultiBlock} instance of the provider.
          */
-        public MultiBlock getMultiBlock();
+        MultiBlock getMultiBlock();
     }
 }

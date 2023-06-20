@@ -28,7 +28,7 @@ public interface IRenderWorldLast {
      *
      * @return true, if the renderer should set the translations
      */
-    public boolean shouldSetViewportPosition();
+    boolean shouldSetViewportPosition();
 
     /**
      * Whether the renderer should render.
@@ -37,7 +37,7 @@ public interface IRenderWorldLast {
      * @param world the world
      * @return true, if rendering should be done
      */
-    public boolean shouldRender(RenderWorldLastEvent event, IBlockAccess world);
+    boolean shouldRender(RenderWorldLastEvent event, IBlockAccess world);
 
     /**
      * Renders when {@link RenderWorldLastEvent} is called.
@@ -45,5 +45,5 @@ public interface IRenderWorldLast {
      * @param event the event
      * @param world the world
      */
-    public void renderWorldLastEvent(RenderWorldLastEvent event, IBlockAccess world);
+    void renderWorldLastEvent(RenderWorldLastEvent event, IBlockAccess world);
 }
