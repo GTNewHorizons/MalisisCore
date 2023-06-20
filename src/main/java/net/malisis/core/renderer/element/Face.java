@@ -200,11 +200,9 @@ public class Face implements ITransformable.Translate, ITransformable.Rotate {
 
         switch (params.direction.get()) {
             case EAST:
-                return vertex.getZ();
             case WEST:
                 return vertex.getZ();
             case NORTH:
-                return vertex.getX();
             case SOUTH:
             case UP:
             case DOWN:
