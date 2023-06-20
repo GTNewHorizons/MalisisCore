@@ -139,13 +139,8 @@ public class MalisisNetwork extends SimpleNetworkWrapper {
      * @param asmDataTable the asm data table
      */
     public static void createMessages(ASMDataTable asmDataTable) {
-        List<ASMData> classes = Ordering.natural().onResultOf(new Function<ASMData, String>() {
-
-            @Override
-            public String apply(ASMData data) {
-                return data.getClassName();
-            }
-        }).sortedCopy(asmDataTable.getAll(MalisisMessage.class.getName()));
+        List<ASMData> classes = Ordering.natural().onResultOf((Function<ASMData, String>) ASMData::getClassName)
+                .sortedCopy(asmDataTable.getAll(MalisisMessage.class.getName()));
 
         for (ASMData data : classes) {
             try {

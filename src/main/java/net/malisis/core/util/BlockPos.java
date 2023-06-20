@@ -349,13 +349,7 @@ public class BlockPos {
         }
 
         public Iterable<BlockPos> asIterable() {
-            return new Iterable<BlockPos>() {
-
-                @Override
-                public Iterator<BlockPos> iterator() {
-                    return BlockIterator.this;
-                }
-            };
+            return () -> BlockIterator.this;
         }
     }
 }

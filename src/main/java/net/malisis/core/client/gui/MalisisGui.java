@@ -223,21 +223,9 @@ public abstract class MalisisGui extends GuiScreen {
         if (objects.length == 1 && objects[0] instanceof Callable) {
             call = (Callable<String>) objects[0];
         } else if (objects.length > 1 && objects[0] instanceof String) {
-            call = new Callable<String>() {
-
-                @Override
-                public String call() {
-                    return String.format((String) objects[0], Arrays.copyOfRange(objects, 1, objects.length));
-                }
-            };
+            call = () -> String.format((String) objects[0], Arrays.copyOfRange(objects, 1, objects.length));
         } else {
-            call = new Callable<String>() {
-
-                @Override
-                public String call() {
-                    return StringUtils.join(objects, ',');
-                }
-            };
+            call = () -> StringUtils.join(objects, ',');
         }
 
         debugMap.put(name, call);

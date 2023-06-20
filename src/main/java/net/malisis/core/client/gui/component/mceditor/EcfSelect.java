@@ -19,8 +19,6 @@ import net.malisis.core.client.gui.MalisisGui;
 import net.malisis.core.client.gui.component.interaction.UISelect;
 import net.minecraft.util.EnumChatFormatting;
 
-import com.google.common.base.Function;
-
 /**
  * @author Ordinastie
  *
@@ -33,13 +31,7 @@ public class EcfSelect extends UISelect<EnumChatFormatting> {
         super(gui, 80);
         this.editor = editor;
 
-        labelFunction = new Function<EnumChatFormatting, String>() {
-
-            @Override
-            public String apply(EnumChatFormatting input) {
-                return input.toString() + input.getFriendlyName();
-            }
-        };
+        labelFunction = input -> input.toString() + input.getFriendlyName();
 
         setOptions(Arrays.asList(EnumChatFormatting.values()));
     }

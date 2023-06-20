@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import com.google.common.base.Function;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.HashBiMap;
@@ -94,12 +93,6 @@ public class DoubleKeyMap<K, V> {
     }
 
     public Collection<V> values() {
-        return Collections2.transform(data, new Function<DoubleKeyEntry<K, V>, V>() {
-
-            @Override
-            public V apply(DoubleKeyEntry<K, V> entry) {
-                return entry.getValue();
-            }
-        });
+        return Collections2.transform(data, DoubleKeyEntry::getValue);
     }
 }
