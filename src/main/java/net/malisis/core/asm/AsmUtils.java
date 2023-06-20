@@ -239,7 +239,7 @@ public class AsmUtils {
      * @param srgName    the srg name
      * @return the field
      */
-    public static Method changeMethodAccess(Class clazz, String methodName, String srgName, Class<?>... params) {
+    public static Method changeMethodAccess(Class<?> clazz, String methodName, String srgName, Class<?>... params) {
         try {
             // modify reference in Blocks class
             Method m = clazz.getDeclaredMethod(MalisisCore.isObfEnv ? srgName : methodName, params);

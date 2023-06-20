@@ -50,9 +50,9 @@ public class ChunkBlockHandler implements IChunkBlockHandler {
 
     private static final ChunkBlockHandler instance = new ChunkBlockHandler();
 
-    private final Map<Chunk, TLongHashSet> serverChunks = new WeakHashMap();
-    private final Map<Chunk, TLongHashSet> clientChunks = new WeakHashMap();
-    private final List<IChunkBlockHandler> handlers = new ArrayList();
+    private final Map<Chunk, TLongHashSet> serverChunks = new WeakHashMap<>();
+    private final Map<Chunk, TLongHashSet> clientChunks = new WeakHashMap<>();
+    private final List<IChunkBlockHandler> handlers = new ArrayList<>();
 
     public ChunkBlockHandler() {
         handlers.add(new ChunkListener());

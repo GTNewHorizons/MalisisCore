@@ -29,7 +29,7 @@ import net.minecraft.item.crafting.IRecipe;
  */
 public abstract class ReplacementHandler<T> {
 
-    private static final HashMap<Class<?>, ReplacementHandler> handlers = new HashMap();
+    private static final HashMap<Class<?>, ReplacementHandler> handlers = new HashMap<>();
 
     public ReplacementHandler(Class<T> clazz) {
         handlers.put(clazz, this);
