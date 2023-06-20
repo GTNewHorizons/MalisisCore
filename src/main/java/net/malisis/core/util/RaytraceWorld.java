@@ -32,7 +32,7 @@ import net.minecraft.world.World;
 public class RaytraceWorld {
 
     /** Number of blocks before we consider ray trace failed. */
-    private static int MAX_BLOCKS = 200;
+    private static final int MAX_BLOCKS = 200;
     /** World object (needed for ray tracing inside each block). */
     private World world;
     /** Source of the ray trace. */

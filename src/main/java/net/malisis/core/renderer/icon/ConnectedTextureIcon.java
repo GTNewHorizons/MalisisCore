@@ -32,12 +32,12 @@ import net.minecraftforge.common.util.ForgeDirection;
  */
 public class ConnectedTextureIcon extends MalisisIcon {
 
-    private static int NONE = 0;
-    private static int LEFT = 1;
-    private static int TOP = 1 << 1;
-    private static int RIGHT = 1 << 2;
-    private static int BOTTOM = 1 << 3;
-    private static int FULL = LEFT | TOP | RIGHT | BOTTOM;
+    private static final int NONE = 0;
+    private static final int LEFT = 1;
+    private static final int TOP = 1 << 1;
+    private static final int RIGHT = 1 << 2;
+    private static final int BOTTOM = 1 << 3;
+    private static final int FULL = LEFT | TOP | RIGHT | BOTTOM;
 
     // @formatter:off
     public static ForgeDirection[][] sides = {

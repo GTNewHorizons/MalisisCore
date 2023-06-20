@@ -79,7 +79,7 @@ public class BBCodeEditor extends UIContainer<BBCodeEditor> {
 
     protected boolean isWysiwyg = false;
 
-    private int defaultColor = 0xFFFFFF;
+    private static final int DEFAULT_COLOR = 0xFFFFFF;
 
     public BBCodeEditor(MalisisGui gui) {
         super(gui);
@@ -306,7 +306,7 @@ public class BBCodeEditor extends UIContainer<BBCodeEditor> {
         }
 
         if (button != null) {
-            button.setBgColor(active ? 0xBBFFCC : defaultColor);
+            button.setBgColor(active ? 0xBBFFCC : DEFAULT_COLOR);
         }
 
         return true;
