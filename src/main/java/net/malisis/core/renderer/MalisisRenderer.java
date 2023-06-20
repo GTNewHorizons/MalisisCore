@@ -14,7 +14,6 @@
 package net.malisis.core.renderer;
 
 import java.lang.reflect.Field;
-import java.util.Iterator;
 import java.util.Map;
 
 import net.malisis.core.MalisisCore;
@@ -1149,9 +1148,8 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         Map damagedBlocks = getDamagedBlocks();
         if (damagedBlocks == null || damagedBlocks.isEmpty()) return null;
 
-        Iterator iterator = damagedBlocks.values().iterator();
-        while (iterator.hasNext()) {
-            DestroyBlockProgress dbp = (DestroyBlockProgress) iterator.next();
+        for (Object o : damagedBlocks.values()) {
+            DestroyBlockProgress dbp = (DestroyBlockProgress) o;
             if (isCurrentBlockDestroyProgress(dbp)) return dbp;
         }
         return null;
