@@ -182,7 +182,7 @@ public class AsmUtils {
     /**
      * Changes the access level for the specified field for a class.
      *
-     * @param clazz     the clazz
+     * @param clazz     the class
      * @param fieldName the field name
      * @return the field
      */

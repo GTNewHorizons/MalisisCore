@@ -46,7 +46,7 @@ public class MCEditor extends UIContainer<MCEditor> implements IGuiText<MCEditor
 
         sel = new EcfSelect(gui, this);
 
-        cb = new UICheckBox(gui, "Use litteral formatting");
+        cb = new UICheckBox(gui, "Use literal formatting");
         cb.setPosition(85, 0).register(this);
 
         add(tf, sel, cb);
