@@ -110,7 +110,7 @@ public class ConfigurationGui extends MalisisGui {
 
     @Subscribe
     public void onMouseOver(HoveredStateChange event) {
-        if (event.getState() == true) {
+        if (event.getState()) {
             Setting setting = componentSettings.get(event.getComponent());
             if (setting != null) {
                 String str = StringUtils.join(setting.getComments(), "\r");
