@@ -45,7 +45,7 @@ public class BBCodeParser extends Parser<BBNode> {
     /** Map of EnumChatFormatting **/
     public static Map<Character, EnumChatFormatting> charFormats = new HashMap<>();
 
-    {
+    static {
         for (EnumChatFormatting ecf : EnumChatFormatting.values()) charFormats.put(ecf.getFormattingCode(), ecf);
     }
 
