@@ -15,6 +15,7 @@ package net.malisis.core.util.bbcode.node;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Objects;
 
 import net.malisis.core.util.bbcode.render.BBRenderElement;
 
@@ -84,7 +85,7 @@ public abstract class BBNode implements Iterable<BBNode> {
     }
 
     public String getAttribute() {
-        if (attribute != "") return "=" + attribute;
+        if (!Objects.equals(attribute, "")) return "=" + attribute;
         return "";
     }
 

@@ -193,7 +193,7 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
      * @return the UI container
      */
     public UIContainer setTitle(String title) {
-        if (title == null || title == "") {
+        if (title == null || title.equals("")) {
             remove(titleLabel);
             return this;
         }

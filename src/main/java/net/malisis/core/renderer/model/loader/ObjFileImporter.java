@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -325,7 +326,7 @@ public class ObjFileImporter implements IModelLoader {
             faces.clear();
         }
 
-        if (data != "" && data.indexOf('_') != -1) currentShape = data.substring(0, data.indexOf('_'));
+        if (!Objects.equals(data, "") && data.indexOf('_') != -1) currentShape = data.substring(0, data.indexOf('_'));
     }
 
     /**
