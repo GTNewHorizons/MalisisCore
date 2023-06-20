@@ -52,7 +52,7 @@ public class BBCodeEditor extends UIContainer<BBCodeEditor> {
 
         public final BBNode node;
 
-        private Tag(BBNode node) {
+        Tag(BBNode node) {
             this.node = node;
         }
     };

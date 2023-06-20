@@ -26,7 +26,7 @@ public enum ComponentPosition {
 
     private final boolean horizontal;
 
-    private ComponentPosition(boolean horizontal) {
+    ComponentPosition(boolean horizontal) {
         this.horizontal = horizontal;
     }
 

@@ -29,7 +29,7 @@ public enum MouseButton {
 
     private final int code;
 
-    private MouseButton(int code) {
+    MouseButton(int code) {
         this.code = code;
     }
 
