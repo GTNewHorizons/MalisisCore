@@ -239,7 +239,7 @@ public class FontRenderOptions {
         if (StringUtils.isEmpty(text) || index < 0 || index > text.length() - 2) return null;
 
         char c = text.charAt(index);
-        if (c != '\u00a7') return null;
+        if (c != '§') return null;
         return charFormats.get(text.charAt(index + 1));
     }
 
