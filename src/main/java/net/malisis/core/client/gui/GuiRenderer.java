@@ -369,8 +369,6 @@ public class GuiRenderer extends MalisisRenderer {
         super.drawText(font, text, x, y, z, fro);
     }
 
-    // #end drawText()
-
     /**
      * Draws an itemStack to the GUI.
      *
