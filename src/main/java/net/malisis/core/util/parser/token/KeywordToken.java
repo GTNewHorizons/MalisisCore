@@ -28,7 +28,7 @@ public class KeywordToken extends Token<String> {
         if (value == null) return false;
         int e = index + value.length();
         if (e > s.length()) return false;
-        return s.substring(index, index + value.length()).toLowerCase().equals(value.toLowerCase());
+        return s.substring(index, index + value.length()).equalsIgnoreCase(value);
     }
 
     @Override
