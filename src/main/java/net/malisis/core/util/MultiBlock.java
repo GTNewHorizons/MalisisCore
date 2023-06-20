@@ -199,7 +199,7 @@ public class MultiBlock {
     /**
      * Gets a list of {@link ChunkPosition} for this {@link MultiBlock}. Does not include original block position.
      *
-     * @return the list of positions
+     * @return the array of positions
      */
     protected ChunkPosition[] getListPositions() {
         AxisAlignedBB aabb = getBounds();

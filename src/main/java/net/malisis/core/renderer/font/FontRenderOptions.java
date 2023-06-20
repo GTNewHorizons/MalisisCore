@@ -106,7 +106,7 @@ public class FontRenderOptions {
      * Applies the styles to this {@link FontRenderOptions} and returns the number of characters read.
      *
      * @param text the text
-     * @return the string with ECF
+     * @return the number of characters read
      */
     public int processStyles(String text) {
         return processStyles(text, 0);
