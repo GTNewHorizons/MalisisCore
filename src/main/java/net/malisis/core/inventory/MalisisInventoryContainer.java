@@ -469,8 +469,6 @@ public class MalisisInventoryContainer extends Container {
 
             slot.setItemStack(itemStack);
             slot.onSlotChanged();
-
-            return itemStack;
         }
         // comes from PlayerInventory
         else {
@@ -486,8 +484,8 @@ public class MalisisInventoryContainer extends Container {
                     slot.onSlotChanged();
                 }
             }
-            return itemStack;
         }
+        return itemStack;
     }
 
     /**
