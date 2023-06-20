@@ -40,7 +40,6 @@ import cpw.mods.fml.relauncher.Side;
  * <br>
  * Example : {@link OpenInventoryMessage}.
  *
- *
  * @author Ordinastie
  */
 public class MalisisNetwork extends SimpleNetworkWrapper {
