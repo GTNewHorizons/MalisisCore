@@ -67,7 +67,7 @@ public abstract class MalisisGui extends GuiScreen {
     public static GuiTexture BLOCK_TEXTURE = new GuiTexture(TextureMap.locationBlocksTexture);
     public static GuiTexture ITEM_TEXTURE = new GuiTexture(TextureMap.locationItemsTexture);
 
-    /** Whether or not to cancel the next gui close event. */
+    /** Whether to cancel the next gui close event. */
     public static boolean cancelClose = false;
 
     /** Renderer drawing the components. */
@@ -506,7 +506,7 @@ public abstract class MalisisGui extends GuiScreen {
     public void update(int mouseX, int mouseY, float partialTick) {}
 
     /**
-     * Called from TE when TE is updated. Override this method when you want to change displayed informations when the
+     * Called from TE when TE is updated. Override this method when you want to change displayed information when the
      * TileEntity changes.
      */
     public void updateGui() {}

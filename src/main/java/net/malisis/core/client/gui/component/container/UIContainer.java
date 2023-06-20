@@ -261,7 +261,7 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
 
     /**
      * Gets the {@link UIComponent} matching the specified name. If recursive is true, looks for the {@code UIComponent}
-     * inside it child {@link UIContainer} too.
+     * inside its child {@link UIContainer} too.
      *
      * @param name      the name
      * @param recursive if true, look inside child {@code UIContainer}
@@ -372,7 +372,7 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
     /**
      * Checks whether this {@link UIContainer} should clip its contents
      *
-     * @return true, if should clip contents
+     * @return true if it should clip contents
      */
     @Override
     public boolean shouldClipContent() {

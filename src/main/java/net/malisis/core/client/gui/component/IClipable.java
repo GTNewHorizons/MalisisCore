@@ -41,7 +41,7 @@ public interface IClipable {
     /**
      * Checks whether this {@link IClipable} should clip or not.
      *
-     * @return true, if should clip
+     * @return true if it should clip
      */
     boolean shouldClipContent();
 

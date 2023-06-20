@@ -86,7 +86,7 @@ public class MalisisInventoryContainer extends Container {
 
     /** Player that opened this {@link MalisisInventoryContainer}. */
     protected EntityPlayer owner;
-    /** Id to use for the next inventory added. */
+    /** ID to use for the next inventory added. */
     private int nexInventoryId = 0;
     /** List of inventories handled by this container. */
     protected HashMap<Integer, MalisisInventory> inventories = new HashMap<>();
@@ -387,7 +387,7 @@ public class MalisisInventoryContainer extends Container {
         // player clicked outside the GUI with an item picked up
         if (action == DROP_ONE || action == DROP_STACK) return handleDropPickedStack(action == DROP_STACK);
 
-        // player middle click on a slot
+        // player middle-click on a slot
         if (action == PICKBLOCK && owner.capabilities.isCreativeMode) return handlePickBlock(slot);
 
         // normal left/right click
@@ -395,8 +395,7 @@ public class MalisisInventoryContainer extends Container {
 
         if (action == SHIFT_LEFT_CLICK) {
             // we need to store last shift clicked item for double click because at the time of the second click, slot
-            // may be empty and we
-            // wouldn't know what itemStack to move
+            // may be empty, and we wouldn't know what itemStack to move
             lastShiftClicked = slot.getItemStack();
             ItemStack itemStack = handleShiftClick(inventoryId, slot);
             if (itemStack != null) lastShiftClicked = null;
@@ -551,7 +550,7 @@ public class MalisisInventoryContainer extends Container {
     }
 
     /**
-     * Handle double clicking on a slot.
+     * Handle double-clicking on a slot.
      *
      * @param inventoryId the inventory id
      * @param slot        the slot

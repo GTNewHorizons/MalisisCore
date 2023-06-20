@@ -77,7 +77,7 @@ public class AABBUtils {
 
     /**
      * Rotate the {@link AxisAlignedBB} based on the specified direction.<br>
-     * Assumes {@link ForgeDirection#NORTH} to be the default non rotated direction.<br>
+     * Assumes {@link ForgeDirection#NORTH} to be the default non-rotated direction.<br>
      *
      *
      * @param aabb the aabb
@@ -241,7 +241,7 @@ public class AABBUtils {
      *
      * @param aabbs1 the aabbs1
      * @param aabbs2 the aabbs2
-     * @return true, if is colliding
+     * @return true if it is colliding
      */
     public static boolean isColliding(AxisAlignedBB[] aabbs1, AxisAlignedBB[] aabbs2) {
         for (AxisAlignedBB aabb1 : aabbs1) {

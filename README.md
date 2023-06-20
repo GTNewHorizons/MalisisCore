@@ -39,7 +39,7 @@ __For [IntelliJ]__
   3. Click File > Import Module and select the **build.gradle** file for MalisisCore.
 
 ## Running
-__Note:__ The following is aimed to help you setup run configurations for Eclipse and IntelliJ, if you do not want to be able to run MalisisCore  directly from your IDE then you can skip this.
+__Note:__ The following is aimed to help you set up run configurations for Eclipse and IntelliJ, if you do not want to be able to run MalisisCore  directly from your IDE then you can skip this.
 
 __For [Eclipse]__
   1. Go to **Run > Run Configurations**.
@@ -47,7 +47,7 @@ __For [Eclipse]__
   3. Set the current project.
   4. Set the name as `MalisisCore (Client)` and apply the information for Client below.
   5. Repeat step 1 through 4, then set the name as `MalisisCore (Server)` and apply the information for Server below.
-  6. When launching the server for the first time, it will shutdown by itself. You will need to modify the server.properties to set onlinemode=false and modify the eula.txt to set eula=true (this means you agree to the Mojang EULA, if you do not wish to do this then you cannot run the server).
+  6. When launching the server for the first time, it will shut down by itself. You will need to modify the server.properties to set onlinemode=false and modify the eula.txt to set eula=true (this means you agree to the Mojang EULA, if you do not wish to do this then you cannot run the server).
 
 
 __For [IntelliJ]__
@@ -55,7 +55,7 @@ __For [IntelliJ]__
   2. Click the green + button and select **Application**.
   3. Set the name as `MalisisCore (Client)` and apply the information for Client below.
   4. Repeat step 2 and set the name as `MalisisCore (Server)` and apply the information for Server below.
-  5. When launching the server for the first time, it will shutdown by itself. You will need to modify the server.properties to set onlinemode=false and modify the eula.txt to set eula=true (this means you agree to the Mojang EULA, if you do not wish to do this then you cannot run the server).
+  5. When launching the server for the first time, it will shut down by itself. You will need to modify the server.properties to set onlinemode=false and modify the eula.txt to set eula=true (this means you agree to the Mojang EULA, if you do not wish to do this then you cannot run the server).
 
 __Client__
 
@@ -102,7 +102,7 @@ __Why do I get `javac: source release 1.7 requires target release 1.7` in Intell
 >Sometimes another project can mess with the settings in IntelliJ. Fixing this is relatively easy.
 
 >1. Go to 'File > Settings'.
->2. Click the drop down for 'Compiler' on the left-hand side and select 'Java Compiler'.
+>2. Click the drop-down for 'Compiler' on the left-hand side and select 'Java Compiler'.
 >3. Select MalisisCore and set the 'Target bytecode version' as '1.7'.
 >4. Click Apply and OK and try running it again.
 
@@ -113,7 +113,7 @@ __A dependency was added, but my IDE is missing it! How do I add it?__
 >If a new dependency was added, you can just restart your IDE and the Gradle plugin for that IDE should pull in the new dependencies.
 
 __Help! Things are not working!__
->Some issues can be resolved by deleting the '.gradle' folder in your user directory and running through the setup steps again, or even running `gradle cleanCache` and running through the setup again. Otherwise if you are having trouble with something that the README does not cover, feel free to join our IRC channel and ask for assistance.
+>Some issues can be resolved by deleting the '.gradle' folder in your user directory and running through the setup steps again, or even running `gradle cleanCache` and running through the setup again. Otherwise, if you are having trouble with something that the README does not cover, feel free to join our IRC channel and ask for assistance.
 
 [Eclipse]: http://www.eclipse.org/
 [Gradle]: http://www.gradle.org/

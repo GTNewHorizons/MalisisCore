@@ -75,7 +75,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     private static Field isDrawingField;
     /** Whether this {@link MalisisRenderer} initialized. (initialize() already called) */
     private boolean initialized = false;
-    /** Id of this {@link MalisisRenderer}. */
+    /** ID of this {@link MalisisRenderer}. */
     protected int renderId = -1;
     /** Tessellator reference. */
     protected Tessellator t = Tessellator.instance;
@@ -161,7 +161,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Sets informations for this {@link MalisisRenderer}.
+     * Sets information for this {@link MalisisRenderer}.
      *
      * @param world    the world
      * @param block    the block
@@ -180,7 +180,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Sets informations for this {@link MalisisRenderer}.
+     * Sets information for this {@link MalisisRenderer}.
      *
      * @param world the world
      */
@@ -189,7 +189,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Sets informations for this {@link MalisisRenderer}.
+     * Sets information for this {@link MalisisRenderer}.
      *
      * @param block the block
      */
@@ -198,7 +198,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Sets informations for this {@link MalisisRenderer}.
+     * Sets information for this {@link MalisisRenderer}.
      *
      * @param blockMetadata the block metadata
      */
@@ -207,7 +207,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Sets informations for this {@link MalisisRenderer}.
+     * Sets information for this {@link MalisisRenderer}.
      *
      * @param block         the block
      * @param blockMetadata the block metadata
@@ -217,7 +217,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Sets informations for this {@link MalisisRenderer}.
+     * Sets information for this {@link MalisisRenderer}.
      *
      * @param x the x
      * @param y the y
@@ -228,7 +228,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Sets informations for this {@link MalisisRenderer}.
+     * Sets information for this {@link MalisisRenderer}.
      *
      * @param te          the te
      * @param partialTick the partial tick
@@ -240,7 +240,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Sets informations for this {@link MalisisRenderer}.
+     * Sets information for this {@link MalisisRenderer}.
      *
      * @param type      the type
      * @param itemStack the item stack
@@ -493,7 +493,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     /**
      * Checks if the {@link Tessellator} is currently drawing.
      *
-     * @return true, if is drawing
+     * @return true if it is drawing
      */
     public boolean isDrawing() {
         if (isDrawingField == null)
@@ -656,7 +656,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Renders the destroy progress manually for TESR. Called if {@link MalisisRenderer#destroyBlockProgress} is not
+     * Renders the destroyed progress manually for TESR. Called if {@link MalisisRenderer#destroyBlockProgress} is not
      * <code>null</code>.
      */
     public void renderDestroyProgress() {
@@ -823,7 +823,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Gets the IIcon corresponding to the specified {@link RenderParameters}. Version with less allocations than
+     * Gets the IIcon corresponding to the specified {@link RenderParameters}. Version with fewer allocations than
      * getIcon for faster rendering.
      *
      * @param faceParams      Face parameters
@@ -1139,7 +1139,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Gets the destroy block progress for this rendering. Only used for TESR.
+     * Gets the destroyed block progress for this rendering. Only used for TESR.
      *
      * @return the block destroy progress
      */

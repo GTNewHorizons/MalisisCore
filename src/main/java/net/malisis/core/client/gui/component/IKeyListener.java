@@ -16,7 +16,7 @@ package net.malisis.core.client.gui.component;
 import net.malisis.core.client.gui.MalisisGui;
 
 /**
- * That interfaces allows implementing classes to handle key strokes within a {@link MalisisGui}.<br>
+ * This interface allows implementing classes to handle keystrokes within a {@link MalisisGui}.<br>
  * {@link IKeyListener} can be registered with {@link MalisisGui#registerKeyListener(IKeyListener)} so they will always
  * receive key typed.
  *

@@ -350,7 +350,7 @@ public class MalisisFont {
      * @param str           the str
      * @param width         the width
      * @param fro           the fro
-     * @param appendPeriods the append periods
+     * @param appendPeriods the appended periods
      * @return the string
      */
     public String clipString(String str, int width, FontRenderOptions fro, boolean appendPeriods) {

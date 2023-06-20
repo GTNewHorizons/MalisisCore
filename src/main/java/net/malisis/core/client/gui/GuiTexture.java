@@ -148,7 +148,7 @@ public class GuiTexture {
      * Gets a {@link GuiIcon} that is resizable from both X and Y axis.<br>
      * The {@code GuiIcon} will hold 9 icons that will behave when resized :<br>
      * - the top and bottom row will not change in height when resized<br>
-     * - left left and right row will not change in width when resized<br>
+     * - left and right row will not change in width when resized<br>
      *
      * @param x      the x
      * @param y      the y
@@ -181,7 +181,7 @@ public class GuiTexture {
     /**
      * Gets a {@link GuiIcon} that is resizable only on the X axis.<br>
      * The {@code GuiIcon} will hold 3 icons that will behave when resized :<br>
-     * - left left and right icon will not change in width when resized<br>
+     * - left and right icon will not change in width when resized<br>
      *
      * @param x      the x
      * @param y      the y

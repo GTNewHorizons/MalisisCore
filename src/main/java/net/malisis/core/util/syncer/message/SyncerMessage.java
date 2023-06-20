@@ -52,7 +52,7 @@ public class SyncerMessage implements IMessageHandler<SyncerMessage.Packet, IMes
      *
      * @param message the message
      * @param ctx     the ctx
-     * @return the i message
+     * @return the message
      */
     @Override
     public IMessage onMessage(Packet message, MessageContext ctx) {

@@ -194,7 +194,7 @@ public class UIScrollBar extends UIComponent<UIScrollBar> implements IControlCom
     }
 
     /**
-     * Gets the length of this {@link UIScrollBar} (width if {@link Type#HORIZONTAL}, height if {@link Type#VERTICAL}.
+     * Gets the length of this {@link UIScrollBar}. Width if {@link Type#HORIZONTAL}, height if {@link Type#VERTICAL}.
      *
      * @return the length
      */

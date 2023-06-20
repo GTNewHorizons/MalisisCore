@@ -43,7 +43,7 @@ public class RenderParameters implements ITransformable.Color, ITransformable.Al
      */
     public Parameter<Boolean> vertexPositionRelativeToRenderBounds = new Parameter<>(true);
     /**
-     * Define whether a custom texture for drawing. It disable default icon behavior. A ResourceLocation need to be
+     * Define whether a custom texture for drawing. It disables default icon behavior. A ResourceLocation need to be
      * bound.
      */
     public Parameter<Boolean> useCustomTexture = new Parameter<>(false);

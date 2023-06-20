@@ -303,7 +303,7 @@ public class MultiBlock {
     }
 
     /**
-     * Write this {@link MultiBlock} informations into the provided NBTTagCompound.
+     * Write this {@link MultiBlock} information into the provided NBTTagCompound.
      *
      * @param tag the tag
      */

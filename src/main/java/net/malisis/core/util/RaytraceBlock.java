@@ -38,11 +38,11 @@ public class RaytraceBlock {
 
     /** World reference **/
     private final WeakReference<World> world;
-    /** X coordinate of the block being ray traced. */
+    /** X coordinate of the block being ray-traced. */
     private final int x;
-    /** Y coordinate of the block being ray traced. */
+    /** Y coordinate of the block being ray-traced. */
     private final int y;
-    /** Z coordinate of the block being ray traced. */
+    /** Z coordinate of the block being ray-traced. */
     private final int z;
     /** Block being ray traced. */
     private final Block block;

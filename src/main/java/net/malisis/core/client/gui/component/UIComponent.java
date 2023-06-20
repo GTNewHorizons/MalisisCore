@@ -385,7 +385,7 @@ public abstract class UIComponent<T extends UIComponent>
     /**
      * Gets the <code>focused</code> state of this {@link UIComponent}.
      *
-     * @return true, if this component if focused
+     * @return true if this component is focused
      */
     public boolean isFocused() {
         return this.focused;
@@ -653,7 +653,7 @@ public abstract class UIComponent<T extends UIComponent>
     }
 
     /**
-     * On double click.
+     * Gets called on double-click.
      *
      * @param x      the x
      * @param y      the y
@@ -810,7 +810,7 @@ public abstract class UIComponent<T extends UIComponent>
     /**
      * Gets the X coordinate of this {@link UIComponent} relative to the screen.
      *
-     * @return the the coordinate
+     * @return the coordinate
      */
     public int screenX() {
         int x = parentX();

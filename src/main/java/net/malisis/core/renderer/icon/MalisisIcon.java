@@ -83,7 +83,7 @@ public class MalisisIcon extends TextureAtlasSprite {
     }
 
     /**
-     * Adds a {@link MalisisIcon} to be dependant on this one. Will call
+     * Adds a {@link MalisisIcon} to be dependent on this one. Will call
      * {@link #initIcon(MalisisIcon, int, int, int, int, boolean)} when stiched to the sheet.
      *
      * @param icon the icon

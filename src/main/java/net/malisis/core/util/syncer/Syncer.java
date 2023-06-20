@@ -73,7 +73,7 @@ public class Syncer {
     }
 
     /**
-     * Gets a {@link ISyncHandler} from it's ID
+     * Gets a {@link ISyncHandler} from its ID
      *
      * @param id the id
      * @return the handler from id
@@ -101,7 +101,7 @@ public class Syncer {
 
     /**
      * Discovers all the classes with {@link Syncable} annotation and fields with {@link Sync} annotation.<br>
-     * Fields are added the the corresponding {@link ISyncHandler}.
+     * Fields are added the corresponding {@link ISyncHandler}.
      *
      * @param asmDataTable the asm data table
      */

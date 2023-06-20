@@ -117,7 +117,7 @@ public abstract class UIListContainer<T extends UIListContainer, S> extends UICo
     /**
      * Checks whether this {@link UIContainer} should clip its contents
      *
-     * @return true, if should clip contents
+     * @return true if it should clip contents
      */
     @Override
     public boolean shouldClipContent() {

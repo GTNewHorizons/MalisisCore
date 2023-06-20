@@ -126,7 +126,7 @@ public class MalisisCore implements IMalisisMod {
     }
 
     /**
-     * Gets the a registered {@link IMalisisMod} by his id.
+     * Gets the registered {@link IMalisisMod} by his id.
      *
      * @param id the id of the mod
      * @return the mod registered, null if no mod with the specified id is found
@@ -195,7 +195,7 @@ public class MalisisCore implements IMalisisMod {
      * Open the configuration GUI for the {@link IMalisisMod}.
      *
      * @param mod the mod to open the GUI for
-     * @return true, if a the mod had {@link Settings} and the GUI was opened, false otherwise
+     * @return true, if the mod had {@link Settings} and the GUI was opened, false otherwise
      */
     @SideOnly(Side.CLIENT)
     public static boolean openConfigurationGui(IMalisisMod mod) {

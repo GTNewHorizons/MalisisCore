@@ -148,7 +148,7 @@ public class ChunkCollision {
      * @param x     the x
      * @param y     the y
      * @param z     the z
-     * @return true, if can be placed
+     * @return true if it can be placed
      */
     public boolean canPlaceBlockAt(ItemStack itemStack, EntityPlayer player, World world, Block block, int x, int y,
             int z, int side) {

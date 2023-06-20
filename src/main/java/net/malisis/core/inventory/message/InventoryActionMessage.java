@@ -46,7 +46,7 @@ public class InventoryActionMessage implements IMessageHandler<InventoryActionMe
      *
      * @param message the message
      * @param ctx     the ctx
-     * @return the i message
+     * @return the message
      */
     @Override
     public IMessage onMessage(Packet message, MessageContext ctx) {

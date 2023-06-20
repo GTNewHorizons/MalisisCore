@@ -31,7 +31,7 @@ public class TileEntityUtils {
     @SideOnly(Side.CLIENT)
     private static TileEntity currentTileEntity;
 
-    /** Reference the to currently opened {@link MalisisGui}. */
+    /** Reference to the currently opened {@link MalisisGui}. */
     @SideOnly(Side.CLIENT)
     private static MalisisGui currenGui;
 

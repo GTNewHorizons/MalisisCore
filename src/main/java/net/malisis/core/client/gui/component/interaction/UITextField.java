@@ -815,7 +815,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
     }
 
     /**
-     * On double click.
+     * Gets called on double-click.
      *
      * @param x      the x
      * @param y      the y
@@ -1105,7 +1105,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         protected int lastOffset;
 
         /**
-         * Sets this {@link CursorPosition} at the same position than <b>position</b>.
+         * Sets this {@link CursorPosition} at the specified position.
          *
          * @param position the new position
          */

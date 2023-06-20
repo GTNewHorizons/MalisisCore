@@ -56,7 +56,7 @@ public class OpenInventoryMessage implements IMessageHandler<OpenInventoryMessag
      *
      * @param message the message
      * @param ctx     the ctx
-     * @return the i message
+     * @return the message
      */
     @Override
     public IMessage onMessage(Packet message, MessageContext ctx) {
@@ -65,7 +65,7 @@ public class OpenInventoryMessage implements IMessageHandler<OpenInventoryMessag
     }
 
     /**
-     * Open a the GUI for the {@link MalisisInventoryContainer}.
+     * Opens the GUI for the {@link MalisisInventoryContainer}.
      *
      * @param type     the type
      * @param x        the x

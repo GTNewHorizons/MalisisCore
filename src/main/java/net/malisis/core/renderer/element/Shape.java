@@ -328,7 +328,7 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
 
     /**
      * Set {@link RenderParameters} for {@link Face faces} matching the specified <b>name</b>. If <b>merge</b> is true,
-     * the parameters will be merge with the <code>face</code> parameters instead of completely overriding them.
+     * the parameters will be merged with the <code>face</code> parameters instead of completely overriding them.
      *
      * @param name   the name
      * @param params the params
