@@ -240,7 +240,7 @@ public class BBCodeEditor extends UIContainer<BBCodeEditor> {
         if (Anchor.vertical(a) == Anchor.BOTTOM) y *= -1;
         if (Anchor.horizontal(a) == Anchor.RIGHT) x *= -1;
 
-        btnBold.setPosition(0 * x, 0 * y, a);
+        btnBold.setPosition(0, 0, a);
         btnItalic.setPosition(11 * x, 11 * y, a);
         btnUnderline.setPosition(22 * x, 22 * y, a);
         btnStrikethrough.setPosition(33 * x, 33 * y, a);
