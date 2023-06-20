@@ -41,7 +41,9 @@ public class FiniteLiquidRenderer extends MalisisRenderer {
                 int oY = aom[i][1] - 1;
                 int oZ = aom[i][2];
                 BlockState state = new BlockState(world, x + oX, y + oY, z + oZ);
-                if (state.getBlock() == Blocks.air && i != 1) {} else if (state.getBlock() == block) {
+
+                final boolean isRelevant = state.getBlock() != Blocks.air || i == 1;
+                if (state.getBlock() == block && isRelevant) {
                     height += (float) state.getMetadata() / 16;
                     count++;
                 }
