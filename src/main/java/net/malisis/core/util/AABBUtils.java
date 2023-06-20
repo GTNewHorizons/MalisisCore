@@ -28,7 +28,7 @@ import net.minecraftforge.common.util.ForgeDirection;
  */
 public class AABBUtils {
 
-    public static enum Axis {
+    public enum Axis {
         X,
         Y,
         Z
