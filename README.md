@@ -4,7 +4,7 @@ This is a fork of [Ordinastie/MalisisCore](https://github.com/Ordinastie/Malisis
 
 MalisisCore is a framework dedicated to simplifying many processes required during mod development. It is licensed under the [MIT License].
 
-* IRC: #malisis on irc.esper.net 
+* IRC: #malisis on irc.esper.net
 
 ## Features
 * ASM Manipulation
@@ -26,54 +26,54 @@ To clone MalisisCore, simply run `git clone git@github.com:Ordinastie/MalisisCor
 ## Setup
 __Note:__ If you do not have [Gradle] installed then use ./gradlew for Unix systems or Git Bash and gradlew.bat for Windows systems in place of any 'gradle' command.
 
-__For [Eclipse]__  
-  1. Run `gradle setupDecompWorkspace --refresh-dependencies`  
-  2. Make sure you have the Gradle plugin installed (Help > Eclipse Marketplace > Gradle Integration Plugin)  
+__For [Eclipse]__
+  1. Run `gradle setupDecompWorkspace --refresh-dependencies`
+  2. Make sure you have the Gradle plugin installed (Help > Eclipse Marketplace > Gradle Integration Plugin)
   3. Import MalisisCore as a Gradle project (File > Import)
   4. Select the root folder for MalisisCore  and click **Build Model**
   5. Check MalisisCore when it finishes building and click **Finish**
 
-__For [IntelliJ]__  
-  1. Run `gradle setupDecompWorkspace --refresh-dependencies`  
-  2. Make sure you have the Gradle plugin enabled (File > Settings > Plugins).  
+__For [IntelliJ]__
+  1. Run `gradle setupDecompWorkspace --refresh-dependencies`
+  2. Make sure you have the Gradle plugin enabled (File > Settings > Plugins).
   3. Click File > Import Module and select the **build.gradle** file for MalisisCore.
 
 ## Running
 __Note:__ The following is aimed to help you setup run configurations for Eclipse and IntelliJ, if you do not want to be able to run MalisisCore  directly from your IDE then you can skip this.
 
-__For [Eclipse]__  
-  1. Go to **Run > Run Configurations**.  
-  2. Right-click **Java Application** and select **New**.  
-  3. Set the current project.  
+__For [Eclipse]__
+  1. Go to **Run > Run Configurations**.
+  2. Right-click **Java Application** and select **New**.
+  3. Set the current project.
   4. Set the name as `MalisisCore (Client)` and apply the information for Client below.
-  5. Repeat step 1 through 4, then set the name as `MalisisCore (Server)` and apply the information for Server below.  
+  5. Repeat step 1 through 4, then set the name as `MalisisCore (Server)` and apply the information for Server below.
   6. When launching the server for the first time, it will shutdown by itself. You will need to modify the server.properties to set onlinemode=false and modify the eula.txt to set eula=true (this means you agree to the Mojang EULA, if you do not wish to do this then you cannot run the server).
 
 
-__For [IntelliJ]__  
-  1. Go to **Run > Edit Configurations**.  
-  2. Click the green + button and select **Application**.  
-  3. Set the name as `MalisisCore (Client)` and apply the information for Client below.  
-  4. Repeat step 2 and set the name as `MalisisCore (Server)` and apply the information for Server below.  
+__For [IntelliJ]__
+  1. Go to **Run > Edit Configurations**.
+  2. Click the green + button and select **Application**.
+  3. Set the name as `MalisisCore (Client)` and apply the information for Client below.
+  4. Repeat step 2 and set the name as `MalisisCore (Server)` and apply the information for Server below.
   5. When launching the server for the first time, it will shutdown by itself. You will need to modify the server.properties to set onlinemode=false and modify the eula.txt to set eula=true (this means you agree to the Mojang EULA, if you do not wish to do this then you cannot run the server).
 
 __Client__
 
-|     Property      | Value                       |
-|:-----------------:|:----------------------------|
-|    Main class     | GradleStart                 |
+|     Property      | Value                                                      |
+|:-----------------:|:-----------------------------------------------------------|
+|    Main class     | GradleStart                                                |
 |    VM options     | -Dfml.coreMods.load=net.malisis.core.asm.MalisisCorePlugin |
-| Working directory | ./run (Included in project) |
-| Module classpath  | MalisisCore (IntelliJ Only) |
+| Working directory | ./run (Included in project)                                |
+| Module classpath  | MalisisCore (IntelliJ Only)                                |
 
 __Server__
 
-|     Property      | Value                       |
-|:-----------------:|:----------------------------|
-|    Main class     | GradleStartServer           |
+|     Property      | Value                                                      |
+|:-----------------:|:-----------------------------------------------------------|
+|    Main class     | GradleStartServer                                          |
 |    VM options     | -Dfml.coreMods.load=net.malisis.core.asm.MalisisCorePlugin |
-| Working directory | ./run (Included in project) |
-| Module classpath  | MalisisCore (IntelliJ Only) |
+| Working directory | ./run (Included in project)                                |
+| Module classpath  | MalisisCore (IntelliJ Only)                                |
 
 
 ## Building
