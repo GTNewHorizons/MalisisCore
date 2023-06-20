@@ -87,7 +87,7 @@ public class AsmUtils {
             if (insnEqual(node, match)) {
                 AbstractInsnNode m = match.getNext();
                 AbstractInsnNode n = node.getNext();
-                while (m != null && n != null && insnEqual(m, n)) {
+                while (n != null && insnEqual(m, n)) {
                     m = m.getNext();
                     n = n.getNext();
                 }
