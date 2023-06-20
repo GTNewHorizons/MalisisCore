@@ -82,7 +82,7 @@ public class ShaderSystem {
         return varLocations.get(var);
     }
 
-    private static int createShader(String source, int shaderType) throws Exception {
+    private static int createShader(String source, int shaderType) {
         int shader = 0;
         try {
             shader = glCreateShader(shaderType);

@@ -136,7 +136,7 @@ public class ReplacementTool {
         }
     }
 
-    public void replaceIn(List<?> list, Object vanilla, Object replacement) throws ReflectiveOperationException {
+    public void replaceIn(List<?> list, Object vanilla, Object replacement) {
         for (Object object : list) {
             ReplacementHandler rh = ReplacementHandler.getHandler(object);
             if (rh != null) {
