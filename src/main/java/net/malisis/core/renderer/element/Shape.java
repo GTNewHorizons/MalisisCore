@@ -132,7 +132,7 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
      */
     public List<Face> getFaces(String name) {
         List<Face> list = new ArrayList<>();
-        for (Face f : faces) if (f.name().toLowerCase().equals(name.toLowerCase())) list.add(f);
+        for (Face f : faces) if (f.name().equalsIgnoreCase(name)) list.add(f);
         return list;
     }
 
