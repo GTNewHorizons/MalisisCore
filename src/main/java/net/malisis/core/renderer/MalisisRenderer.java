@@ -947,8 +947,8 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
                     y + params.direction.get().offsetY,
                     z + params.direction.get().offsetZ);
 
-            for (int i = 0; i < aoMatrix.length; i++)
-                factor += getBlockAmbientOcclusion(world, x + aoMatrix[i][0], y + aoMatrix[i][1], z + aoMatrix[i][2]);
+            for (int[] matrix : aoMatrix)
+                factor += getBlockAmbientOcclusion(world, x + matrix[0], y + matrix[1], z + matrix[2]);
 
             factor /= (aoMatrix.length + 1);
         }
