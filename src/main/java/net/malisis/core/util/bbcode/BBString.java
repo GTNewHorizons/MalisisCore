@@ -109,7 +109,7 @@ public class BBString {
 
     public void addText(String txt, int position) {
         if (textNodes.size() == 0) {
-            getRoot().insert(new BBTextNode(txt));;
+            getRoot().insert(new BBTextNode(txt));
             buildTextNodeList(getRoot());
             return;
         }

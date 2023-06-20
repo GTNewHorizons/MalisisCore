@@ -38,7 +38,7 @@ public class CloseInventoryMessage implements IMessageHandler<CloseInventoryMess
 
     public enum ContainerType {
         TYPE_TILEENTITY,
-        TYPE_ITEM;
+        TYPE_ITEM
     }
 
     public CloseInventoryMessage() {

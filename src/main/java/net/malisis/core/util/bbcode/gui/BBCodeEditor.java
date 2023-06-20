@@ -55,7 +55,7 @@ public class BBCodeEditor extends UIContainer<BBCodeEditor> {
         Tag(BBNode node) {
             this.node = node;
         }
-    };
+    }
 
     protected UIContainer menu;
 

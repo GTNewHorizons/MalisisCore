@@ -32,7 +32,7 @@ public class AABBUtils {
         X,
         Y,
         Z
-    };
+    }
 
     private static final int[] cos = { 1, 0, -1, 0 };
     private static final int[] sin = { 0, 1, 0, -1 };

@@ -44,7 +44,7 @@ public class OpenInventoryMessage implements IMessageHandler<OpenInventoryMessag
 
     public enum ContainerType {
         TYPE_TILEENTITY,
-        TYPE_ITEM;
+        TYPE_ITEM
     }
 
     public OpenInventoryMessage() {

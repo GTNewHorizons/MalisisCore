@@ -505,7 +505,7 @@ public class GuiRenderer extends MalisisRenderer {
         int x = area.x * f;
         int y = Minecraft.getMinecraft().displayHeight - (area.y + area.height()) * f;
         int w = area.width() * f;
-        int h = area.height() * f;;
+        int h = area.height() * f;
         GL11.glScissor(x, y, w, h);
     }
 
