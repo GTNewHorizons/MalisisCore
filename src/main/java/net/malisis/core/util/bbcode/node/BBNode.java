@@ -134,17 +134,17 @@ public abstract class BBNode implements Iterable<BBNode> {
     }
 
     public String toBBString() {
-        StringBuilder str = new StringBuilder();
+        StringBuilder str = new StringBuilder("[" + tag + getAttribute() + "]");
 
-        str.append("[" + tag);
-        str.append(getAttribute());
-        str.append("]");
+        if (standAlone) {
+            return str.toString();
+        }
 
-        if (standAlone) return str.toString();
+        for (BBNode n : this) {
+            str.append(n.toBBString());
+        }
 
-        for (BBNode n : this) str.append(n.toBBString());
-
-        str.append("[/" + tag + "]");
+        str.append("[/").append(tag).append("]");
 
         return str.toString();
     }
