@@ -47,9 +47,6 @@ public class AnimationRenderer {
 
     public void setStartTick(long start) {
         setStartTime(System.currentTimeMillis() - (getWorldTime() - start) * 1000 / 20);
-        // MalisisCore.message("%s - %s = %s > %s / %s", getWorldTime(), start, getWorldTime() - start,
-        // getElapsedTime() / 1000000000,
-        // getElapsedTicks());
     }
 
     public long getWorldTime() {

@@ -479,13 +479,6 @@ public class MalisisInventory implements IInventory {
             slot = getSlot(current);
             if (slot.isItemValid(itemStack) && !slot.isOutputSlot() && (emptySlot || slot.getItemStack() != null)) {
                 itemStack = slot.insert(itemStack);
-                // ItemUtils.ItemStacksMerger ism = new ItemUtils.ItemStacksMerger(itemStack, slot.getItemStack());
-                // if (ism.merge(ItemUtils.FULL_STACK, slot.getSlotStackLimit()))
-                // {
-                // itemStack = ism.merge;
-                // slot.setItemStack(ism.into);
-                // slot.onSlotChanged();
-                // }
             }
             current += step;
         }

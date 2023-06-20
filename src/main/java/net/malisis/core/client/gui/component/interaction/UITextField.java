@@ -1089,10 +1089,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
     }
 
     @Subscribe
-    public void onSizeUpdate(SizeChangeEvent<UIComponent> event) {
-        // if (event.getComponent() != this)
-        // buildLines();
-    }
+    public void onSizeUpdate(SizeChangeEvent<UIComponent> event) {}
 
     // #region CursorPosition
     /**

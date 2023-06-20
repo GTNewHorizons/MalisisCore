@@ -128,8 +128,6 @@ public abstract class FiniteLiquid extends BlockDynamicLiquid {
 
     private void spreadLiquid(World world, int x, int y, int z) {
         BlockState state = new BlockState(world, x, y, z);
-        // if (getAmount(state) <= 1)
-        // return;
 
         FloodFill ff = new FloodFill(this, world, state);
         ff.parse();

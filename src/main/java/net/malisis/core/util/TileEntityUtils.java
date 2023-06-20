@@ -72,9 +72,6 @@ public class TileEntityUtils {
         try {
             return clazz.cast(te);
         } catch (ClassCastException e) {
-            // MalisisCore.log.error("Tried to get {} at {},{},{}, but found {} instead.", clazz.getSimpleName(), x,
-            // y, z, te.getClass()
-            // .getSimpleName());
             return null;
         }
     }
