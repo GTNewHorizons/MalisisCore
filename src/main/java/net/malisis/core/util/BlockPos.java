@@ -250,7 +250,7 @@ public class BlockPos {
         if (!(obj instanceof BlockPos)) return false;
 
         BlockPos pos = (BlockPos) obj;
-        return this.getX() != pos.getX() ? false : (this.getY() != pos.getY() ? false : this.getZ() == pos.getZ());
+        return this.getX() == pos.getX() && this.getY() == pos.getY() && this.getZ() == pos.getZ();
     }
 
     @Override

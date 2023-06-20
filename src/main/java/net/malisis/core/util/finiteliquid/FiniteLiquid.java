@@ -161,9 +161,10 @@ public abstract class FiniteLiquid extends BlockDynamicLiquid {
     @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess worldIn, int x, int y, int z, int side) {
-        Material material = worldIn.getBlock(x, y, z).getMaterial();
-        return material == this.blockMaterial ? false
-                : (side == 1 ? true : super.shouldSideBeRendered(worldIn, x, y, z, side));
+        final Material material = worldIn.getBlock(x, y, z).getMaterial();
+        final boolean isBlockMaterial = material == this.blockMaterial;
+        final boolean shouldBeRendered = super.shouldSideBeRendered(worldIn, x, y, z, side);
+        return !isBlockMaterial && (side == 1 || shouldBeRendered);
     }
 
     @Override

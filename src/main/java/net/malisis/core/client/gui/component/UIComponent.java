@@ -595,7 +595,7 @@ public abstract class UIComponent<T extends UIComponent>
     public boolean onMouseMove(int lastX, int lastY, int x, int y) {
         if (isDisabled()) return false;
 
-        return parent != null ? parent.onMouseMove(lastX, lastY, x, y) : false;
+        return parent != null && parent.onMouseMove(lastX, lastY, x, y);
     }
 
     /**
@@ -609,7 +609,7 @@ public abstract class UIComponent<T extends UIComponent>
     public boolean onButtonPress(int x, int y, MouseButton button) {
         if (isDisabled()) return false;
 
-        return parent != null ? parent.onButtonPress(x, y, button) : false;
+        return parent != null && parent.onButtonPress(x, y, button);
     }
 
     /**
@@ -623,7 +623,7 @@ public abstract class UIComponent<T extends UIComponent>
     public boolean onButtonRelease(int x, int y, MouseButton button) {
         if (isDisabled()) return false;
 
-        return parent != null ? parent.onButtonRelease(x, y, button) : false;
+        return parent != null && parent.onButtonRelease(x, y, button);
     }
 
     /**
@@ -636,7 +636,7 @@ public abstract class UIComponent<T extends UIComponent>
     public boolean onClick(int x, int y) {
         if (isDisabled()) return false;
 
-        return parent != null ? parent.onClick(x, y) : false;
+        return parent != null && parent.onClick(x, y);
     }
 
     /**
@@ -649,7 +649,7 @@ public abstract class UIComponent<T extends UIComponent>
     public boolean onRightClick(int x, int y) {
         if (isDisabled()) return false;
 
-        return parent != null ? parent.onRightClick(x, y) : false;
+        return parent != null && parent.onRightClick(x, y);
     }
 
     /**
@@ -663,7 +663,7 @@ public abstract class UIComponent<T extends UIComponent>
     public boolean onDoubleClick(int x, int y, MouseButton button) {
         if (isDisabled()) return false;
 
-        return parent != null ? parent.onDoubleClick(x, y, button) : false;
+        return parent != null && parent.onDoubleClick(x, y, button);
     }
 
     /**
@@ -679,7 +679,7 @@ public abstract class UIComponent<T extends UIComponent>
     public boolean onDrag(int lastX, int lastY, int x, int y, MouseButton button) {
         if (isDisabled()) return false;
 
-        return parent != null ? parent.onDrag(lastX, lastY, x, y, button) : false;
+        return parent != null && parent.onDrag(lastX, lastY, x, y, button);
     }
 
     /**
@@ -695,7 +695,7 @@ public abstract class UIComponent<T extends UIComponent>
 
         for (IControlComponent c : controlComponents) if (c.onScrollWheel(x, y, delta)) return true;
 
-        return parent != null && !(this instanceof IControlComponent) ? parent.onScrollWheel(x, y, delta) : false;
+        return parent != null && !(this instanceof IControlComponent) && parent.onScrollWheel(x, y, delta);
     }
 
     @Override
@@ -704,7 +704,7 @@ public abstract class UIComponent<T extends UIComponent>
 
         for (IControlComponent c : controlComponents) if (c.onKeyTyped(keyChar, keyCode)) return true;
 
-        return parent != null && !(this instanceof IControlComponent) ? parent.onKeyTyped(keyChar, keyCode) : false;
+        return parent != null && !(this instanceof IControlComponent) && parent.onKeyTyped(keyChar, keyCode);
     }
 
     // endregion Inputs
