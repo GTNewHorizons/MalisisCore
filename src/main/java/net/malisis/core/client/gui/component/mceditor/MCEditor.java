@@ -64,7 +64,7 @@ public class MCEditor extends UIContainer<MCEditor> implements IGuiText<MCEditor
         return sel;
     }
 
-    // #region IGuiText
+    // region IGuiText
     @Override
     public MalisisFont getFont() {
         return font;
@@ -87,7 +87,7 @@ public class MCEditor extends UIContainer<MCEditor> implements IGuiText<MCEditor
         return this;
     }
 
-    // #end IGuiText
+    // endregion IGuiText
 
     @Subscribe
     public void onChecked(UICheckBox.CheckEvent event) {

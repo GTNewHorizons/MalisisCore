@@ -54,7 +54,7 @@ public class Bezier {
         this(Arrays.asList(controlPoints), precision);
     }
 
-    // #region Getters/Setters
+    // region Getters/Setters
     /**
      * Sets the control points for this {@link Bezier}.
      *
@@ -113,7 +113,7 @@ public class Bezier {
         return precision;
     }
 
-    // #end Getters/Setters
+    // endregion Getters/Setters
 
     /**
      * Notify this {@link Bezier} that the {@link Vertex vertexes} will need to be recalculated.

@@ -95,7 +95,7 @@ public abstract class UIListContainer<T extends UIListContainer, S> extends UICo
         return element;
     }
 
-    // #region IClipable
+    // region IClipable
     /**
      * Gets the {@link ClipArea}.
      *
@@ -124,9 +124,9 @@ public abstract class UIListContainer<T extends UIListContainer, S> extends UICo
         return true;
     }
 
-    // #end IClipable
+    // endregion IClipable
 
-    // #region IScrollable
+    // region IScrollable
     @Override
     public int getContentWidth() {
         return getWidth();
@@ -185,7 +185,7 @@ public abstract class UIListContainer<T extends UIListContainer, S> extends UICo
         return 0;
     }
 
-    // #end IScrollable
+    // endregion IScrollable
 
     public S getElementAt(int x, int y) {
         if (!isHovered()) return null;

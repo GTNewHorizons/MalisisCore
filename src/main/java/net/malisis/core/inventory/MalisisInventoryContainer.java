@@ -158,7 +158,7 @@ public class MalisisInventoryContainer extends Container {
         inventories.remove(inventory.getInventoryId());
     }
 
-    // #region getters/setters
+    // region getters/setters
     /**
      * Gets the {@link MalisisInventory} of this {@link MalisisInventoryContainer} with the specified id.
      *
@@ -245,9 +245,9 @@ public class MalisisInventoryContainer extends Container {
         return dragType;
     }
 
-    // #end getters/setters
+    // endregion getters/setters
 
-    // #region network
+    // region network
     /**
      * Sends the all the inventory slots to the client.
      */
@@ -314,7 +314,7 @@ public class MalisisInventoryContainer extends Container {
         pickedItemStackCache = pickedItemStack != null ? pickedItemStack.copy() : null;
     }
 
-    // #end network
+    // endregion network
 
     /**
      * Closes this {@link MalisisInventoryContainer}, sends a message to force close the client GUI.

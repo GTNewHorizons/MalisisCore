@@ -163,7 +163,7 @@ public class MalisisInventory implements IInventory {
         return inventoryId;
     }
 
-    // #region getters/setters
+    // region getters/setters
     /**
      * Sets the name.
      *
@@ -384,7 +384,7 @@ public class MalisisInventory implements IInventory {
         return true;
     }
 
-    // #end getters/setters
+    // endregion getters/setters
 
     /**
      * Called when itemStack change in slot.
@@ -610,7 +610,7 @@ public class MalisisInventory implements IInventory {
         return c;
     }
 
-    // #region Unused
+    // region Unused
 
     /**
      * Unused.
@@ -682,5 +682,5 @@ public class MalisisInventory implements IInventory {
         setItemStack(slotNumber, itemStack);
     }
 
-    // #end Unused
+    // endregion Unused
 }

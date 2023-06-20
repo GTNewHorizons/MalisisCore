@@ -93,7 +93,7 @@ public class MalisisCore implements IMalisisMod {
         isObfEnv = !(boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
     }
 
-    // #region IMalisisMod
+    // region IMalisisMod
     @Override
     public String getModId() {
         return modid;
@@ -114,7 +114,7 @@ public class MalisisCore implements IMalisisMod {
         return null;
     }
 
-    // #end IMalisisMod
+    // endregion IMalisisMod
 
     /**
      * Registers a {@link IMalisisMod} mod.

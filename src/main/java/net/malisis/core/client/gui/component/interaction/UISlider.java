@@ -81,7 +81,7 @@ public class UISlider extends UIComponent<UISlider> implements IGuiText<UISlider
         this(gui, width, min, max, null);
     }
 
-    // #region Getters/Setters
+    // region Getters/Setters
     @Override
     public MalisisFont getFont() {
         return font;
@@ -104,7 +104,7 @@ public class UISlider extends UIComponent<UISlider> implements IGuiText<UISlider
         return this;
     }
 
-    // #end Getters/Setters
+    // endregion Getters/Setters
 
     @Override
     public boolean onClick(int x, int y) {

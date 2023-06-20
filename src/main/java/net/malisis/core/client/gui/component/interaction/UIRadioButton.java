@@ -75,7 +75,7 @@ public class UIRadioButton extends UIComponent<UIRadioButton> implements IGuiTex
         this(gui, name, null);
     }
 
-    // #region Getters/Setters
+    // region Getters/Setters
     @Override
     public MalisisFont getFont() {
         return font;
@@ -143,7 +143,7 @@ public class UIRadioButton extends UIComponent<UIRadioButton> implements IGuiTex
         return this;
     }
 
-    // #end Getters/Setters
+    // endregion Getters/Setters
     /**
      * Calculates the size for this {@link UIRadioButton}.
      */

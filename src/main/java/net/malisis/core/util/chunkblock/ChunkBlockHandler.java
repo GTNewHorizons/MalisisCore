@@ -84,7 +84,7 @@ public class ChunkBlockHandler implements IChunkBlockHandler {
         handlers.add(handler);
     }
 
-    // #region updateCoordinates
+    // region updateCoordinates
     /**
      * Update chunk coordinates.<br>
      * Called via ASM from {@link Chunk#setBlockIDWithMetadata(int, int, int, Block, int)} Notifies all
@@ -162,9 +162,9 @@ public class ChunkBlockHandler implements IChunkBlockHandler {
             MalisisCore.log.error("Failed to remove : {} ({})", pos, pos.toLong());
     }
 
-    // #end updateCoordinates
+    // endregion updateCoordinates
 
-    // #region Events
+    // region Events
     /**
      * On data load.
      *
@@ -247,7 +247,7 @@ public class ChunkBlockHandler implements IChunkBlockHandler {
         chunks.put(chunk, new TLongHashSet(coords));
     }
 
-    // #end Events
+    // endregion Events
 
     /**
      * Gets the chunks inside distance from coordinates.

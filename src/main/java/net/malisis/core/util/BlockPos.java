@@ -100,7 +100,7 @@ public class BlockPos {
         return add(-pos.getX(), -pos.getY(), -pos.getZ());
     }
 
-    // #region Moves
+    // region Moves
 
     /**
      * Offset this BlockPos 1 block up
@@ -219,7 +219,7 @@ public class BlockPos {
         return new BlockPos(newX, y, newZ);
     }
 
-    // #end Moves
+    // endregion Moves
 
     public boolean isInRange(BlockPos pos, int range) {
         double x = pos.x - this.x;

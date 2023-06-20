@@ -48,7 +48,7 @@ public class ChunkCollision {
     private Point src;
     private Point dest;
 
-    // #region getCollisionBoundinBoxes
+    // region getCollisionBoundinBoxes
     /**
      * Gets the collision bounding boxes for the intersecting chunks.<br>
      * Called via ASM from {@link World#getCollidingBoundingBoxes(Entity, AxisAlignedBB)}
@@ -65,9 +65,9 @@ public class ChunkCollision {
             ChunkBlockHandler.get().callProcedure(chunk, procedure);
     }
 
-    // #end getCollisionBoundinBoxes
+    // endregion getCollisionBoundinBoxes
 
-    // #region getRayTraceResult
+    // region getRayTraceResult
     /**
      * Sets the ray trace infos.<br>
      * Called via ASM at the beginning of {@link World#rayTraceBlocks(Vec3, Vec3, boolean, boolean, boolean)}
@@ -132,9 +132,9 @@ public class ChunkCollision {
         return mop1;
     }
 
-    // #end getRayTraceResult
+    // endregion getRayTraceResult
 
-    // #region canPlaceBlockAt
+    // region canPlaceBlockAt
     /**
      * Checks whether the block can be placed at the position.<br>
      * Called via ASM from
@@ -182,7 +182,7 @@ public class ChunkCollision {
         return !procedure.collide;
     }
 
-    // #end canPlaceBlockAt
+    // endregion canPlaceBlockAt
 
     public void replaceBlocks(World world, BlockState state) {
         AxisAlignedBB[] aabbs = AABBUtils.getCollisionBoundingBoxes(world, state, true);

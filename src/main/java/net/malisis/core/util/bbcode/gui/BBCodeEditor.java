@@ -101,7 +101,7 @@ public class BBCodeEditor extends UIContainer<BBCodeEditor> {
         setSize(width, height);
     }
 
-    // #region Getters/Setters
+    // region Getters/Setters
     public ComponentPosition getMenuPosition() {
         return menuPosition;
     }
@@ -142,7 +142,7 @@ public class BBCodeEditor extends UIContainer<BBCodeEditor> {
         return this;
     }
 
-    // #end Getters/Setters
+    // endregion Getters/Setters
 
     protected void createMenu(MalisisGui gui) {
         menu = new UIContainer(gui);

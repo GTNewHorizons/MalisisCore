@@ -115,7 +115,7 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
         setSize(width, height);
     }
 
-    // #region getters/setters
+    // region getters/setters
     /**
      * Sets the visible.
      *
@@ -212,7 +212,7 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
         return titleLabel != null ? titleLabel.getText() : null;
     }
 
-    // #end getters/setters
+    // endregion getters/setters
 
     /**
      * Gets the relative position of the specified {@link UIComponent} inside this {@link UIContainer}.
@@ -348,7 +348,7 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
         this.contentWidth = contentWidth + 2 * getHorizontalPadding();
     }
 
-    // #region IClipable
+    // region IClipable
     /**
      * Gets the {@link ClipArea}.
      *
@@ -379,9 +379,9 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
         return clipContent;
     }
 
-    // #end IClipable
+    // endregion IClipable
 
-    // #region IScrollable
+    // region IScrollable
     @Override
     public int getContentWidth() {
         return contentWidth;
@@ -417,7 +417,7 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
         return (GuiScreen.isCtrlKeyDown() ? 0.125F : 0.025F);
     }
 
-    // #end IScrollable
+    // endregion IScrollable
 
     /**
      * Adds components to this {@link UIContainer}.

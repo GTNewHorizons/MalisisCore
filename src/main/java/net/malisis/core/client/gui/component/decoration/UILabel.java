@@ -129,7 +129,7 @@ public class UILabel extends UIComponent<UILabel> implements IScrollable, IGuiTe
         this(gui, (String) null, false);
     }
 
-    // #region getters/setters
+    // region getters/setters
     /**
      * Gets the text of this {@link UILabel}.
      *
@@ -208,9 +208,9 @@ public class UILabel extends UIComponent<UILabel> implements IScrollable, IGuiTe
         return fro.fontScale;
     }
 
-    // #end getters/setters
+    // endregion getters/setters
 
-    // #region IScrollable
+    // region IScrollable
     @Override
     public int getContentWidth() {
         return getWidth();
@@ -256,9 +256,9 @@ public class UILabel extends UIComponent<UILabel> implements IScrollable, IGuiTe
         return 0;
     }
 
-    // #end IScrollable
+    // endregion IScrollable
 
-    // #region IBBStringRenderer
+    // region IBBStringRenderer
 
     /**
      * Gets the BB text of this {@link UILabel}.
@@ -296,7 +296,7 @@ public class UILabel extends UIComponent<UILabel> implements IScrollable, IGuiTe
         return (int) (font.getStringHeight(fro) + lineSpacing);
     }
 
-    // #end IBBStringRenderer
+    // endregion IBBStringRenderer
 
     /**
      * Gets the component at.

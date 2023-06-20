@@ -142,7 +142,7 @@ public class MalisisFont {
         return new Shape(faces).storeState();
     }
 
-    // #region Prepare/Clean
+    // region Prepare/Clean
     protected void prepare(MalisisRenderer renderer, float x, float y, float z, FontRenderOptions fro) {
         boolean isGui = renderer instanceof GuiRenderer;
         renderer.next(GL11.GL_QUADS);
@@ -188,7 +188,7 @@ public class MalisisFont {
         renderer.enableTextures();
     }
 
-    // #end Prepare/Clean
+    // endregion Prepare/Clean
 
     public void render(MalisisRenderer renderer, String text, float x, float y, float z, FontRenderOptions fro) {
         if (StringUtils.isEmpty(text)) return;
@@ -290,7 +290,7 @@ public class MalisisFont {
         t.addVertex(offsetX + w, offsetY, 0);
     }
 
-    // #region String processing
+    // region String processing
     /**
      * Processes the passed string by translating it and replacing spacing characters and new lines.<br>
      * Keeps the formatting if passed at the beginning of the translation key.
@@ -556,9 +556,9 @@ public class MalisisFont {
         return lines;
     }
 
-    // #end String processing
+    // endregion String processing
 
-    // #region Load font
+    // region Load font
     protected void loadCharacterData() {
         frc = new FontRenderContext(null, true, true);
 
@@ -642,9 +642,9 @@ public class MalisisFont {
         }
     }
 
-    // #end Load font
+    // endregion Load font
 
-    // #region Font load
+    // region Font load
     public static Font load(ResourceLocation rl, FontGeneratorOptions options) {
         try {
             return load(Minecraft.getMinecraft().getResourceManager().getResource(rl).getInputStream(), options);
@@ -673,5 +673,5 @@ public class MalisisFont {
         }
     }
 
-    // #end Font load
+    // endregion Font load
 }

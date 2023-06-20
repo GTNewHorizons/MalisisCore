@@ -121,7 +121,7 @@ public abstract class UIComponent<T extends UIComponent>
         shape = new SimpleGuiShape();
     }
 
-    // #region getters/setters
+    // region getters/setters
     /**
      * Gets the {@link MalisisGui} this {@link UIComponent} was added to.
      *
@@ -546,7 +546,7 @@ public abstract class UIComponent<T extends UIComponent>
         return this.data;
     }
 
-    // #end getters/setters
+    // endregion getters/setters
 
     /**
      * Registers an <code>object</code> to handle events received by this {@link UIComponent}.
@@ -581,7 +581,7 @@ public abstract class UIComponent<T extends UIComponent>
         return !event.isCancelled();
     }
 
-    // #region Inputs
+    // region Inputs
 
     /**
      * On mouse move.
@@ -707,7 +707,7 @@ public abstract class UIComponent<T extends UIComponent>
         return parent != null && !(this instanceof IControlComponent) ? parent.onKeyTyped(keyChar, keyCode) : false;
     }
 
-    // #end Inputs
+    // endregion Inputs
 
     /**
      * Checks if supplied coordinates are inside this {@link UIComponent} bounds.

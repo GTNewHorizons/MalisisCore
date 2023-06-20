@@ -39,7 +39,7 @@ public class CharData {
         this.height = height;
     }
 
-    // #region Getters/Setters
+    // region Getters/Setters
 
     public char getChar() {
         return c;
@@ -81,7 +81,7 @@ public class CharData {
         return height + options.my + options.py;
     }
 
-    // #end Getters/Setters
+    // endregion Getters/Setters
 
     public void setUVs(float u, float v, float U, float V) {
         this.u = u;

@@ -93,7 +93,7 @@ public class UITab extends UIComponent<UITab> implements IGuiText<UITab> {
         shape = new XYResizableGuiShape();
     }
 
-    // #region Getters/Setters
+    // region Getters/Setters
     @Override
     public MalisisFont getFont() {
         return font;
@@ -291,7 +291,7 @@ public class UITab extends UIComponent<UITab> implements IGuiText<UITab> {
         return this;
     }
 
-    // #end Getters/Setters
+    // endregion Getters/Setters
 
     public boolean isActive() {
         return active;

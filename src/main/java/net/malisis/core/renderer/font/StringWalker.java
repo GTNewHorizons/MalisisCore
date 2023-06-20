@@ -48,7 +48,7 @@ public class StringWalker {
         litteral = fro != null && fro.disableECF;
     }
 
-    // #region Getters/Setters
+    // region Getters/Setters
 
     public void setLitteral(boolean litteral) {
         this.litteral = litteral;
@@ -119,7 +119,7 @@ public class StringWalker {
         fro.underline = prevUnderline;
     }
 
-    // #end Getters/Setters
+    // endregion Getters/Setters
 
     private void checkEcf() {
         ecf = FontRenderOptions.getFormatting(str, index);

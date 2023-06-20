@@ -175,7 +175,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         buildLines();
     }
 
-    // #region Getters/Setters
+    // region Getters/Setters
     @Override
     public MalisisFont getFont() {
         return font;
@@ -465,9 +465,9 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         return this;
     }
 
-    // #end Getters/Setters
+    // endregion Getters/Setters
 
-    // #region IScrollable
+    // region IScrollable
 
     /**
      * Gets the content width.
@@ -561,7 +561,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         return 1;
     }
 
-    // #end IScrollable
+    // endregion IScrollable
 
     /**
      * Gets the number of visible lines inside this {@link UITextField}.
@@ -581,7 +581,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         return (int) (font.getStringHeight(fro) + lineSpacing);
     }
 
-    // #end IBBSRenderer
+    // endregion IBBSRenderer
 
     /**
      * Builds the lines for this {@link UITextField}.
@@ -739,7 +739,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         } else selectingText = false;
     }
 
-    // #region Input
+    // region Input
 
     /**
      * On button press.
@@ -956,7 +956,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         }
     }
 
-    // #end Input
+    // endregion Input
 
     /**
      * Draws the background.
@@ -1089,7 +1089,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
     @Subscribe
     public void onSizeUpdate(SizeChangeEvent<UIComponent> event) {}
 
-    // #region CursorPosition
+    // region CursorPosition
     /**
      * This class determines a position inside the text divides in lines.
      */
@@ -1357,6 +1357,6 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         }
     }
 
-    // #end CursorPosition
+    // endregion CursorPosition
 
 }

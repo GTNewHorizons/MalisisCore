@@ -168,7 +168,7 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
         this(gui, width, null);
     }
 
-    // #region Getters/Setters
+    // region Getters/Setters
     @Override
     public int getHeight() {
         return expanded ? optionsHeight : super.getHeight();
@@ -300,7 +300,7 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
         return this;
     }
 
-    // #end Getters/Setters
+    // endregion Getters/Setters
 
     @Override
     public void setFocused(boolean focused) {
@@ -556,7 +556,7 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
         return super.getZIndex() + (expanded ? 300 : 0);
     }
 
-    // #region IClipable
+    // region IClipable
     @Override
     public ClipArea getClipArea() {
         return new ClipArea(
@@ -576,9 +576,9 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
         return expanded;
     }
 
-    // #end IClipable
+    // endregion IClipable
 
-    // #region IScrollable
+    // region IScrollable
     @Override
     public int getContentHeight() {
         if (!expanded || maxDisplayedOptions > options.size()) return getHeight();
@@ -625,7 +625,7 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
         return 1;
     }
 
-    // #end IScrollable
+    // endregion IScrollable
 
     @Override
     public void drawBackground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick) {

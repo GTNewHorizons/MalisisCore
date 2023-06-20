@@ -87,7 +87,7 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
         copyMatrix(s);
     }
 
-    // #region FACES
+    // region FACES
     /**
      * Adds {@link Face faces} to this {@link Shape}.
      *
@@ -166,9 +166,9 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
         return this;
     }
 
-    // #end FACES
+    // endregion FACES
 
-    // #region VERTEXES
+    // region VERTEXES
     /**
      * Enables the {@link MergedVertex} for this {@link Shape}. Will transfer the current transformation matrix to the
      * {@link MergedVertex}
@@ -269,7 +269,7 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
         return getMergedVertexes(Face.nameFromDirection(direction));
     }
 
-    // #end VERTEXES
+    // endregion VERTEXES
 
     private void resetMatrix() {
         transformMatrix.setIdentity();

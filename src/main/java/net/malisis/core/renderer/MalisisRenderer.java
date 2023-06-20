@@ -144,7 +144,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         return partialTick;
     }
 
-    // #region set()
+    // region set()
     /**
      * Resets data so this {@link MalisisRenderer} can be reused.
      */
@@ -252,9 +252,9 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         this.itemRenderType = type;
     }
 
-    // #end
+    // endregion
 
-    // #region ISBRH
+    // region ISBRH
     /**
      * Renders inventory block.
      *
@@ -310,9 +310,9 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         return true;
     }
 
-    // #end ISBRH
+    // endregion ISBRH
 
-    // #region IItemRenderer
+    // region IItemRenderer
     /**
      * Checks whether to use this {@link MalisisRenderer} for the specified
      * {@link net.minecraftforge.client.IItemRenderer.ItemRenderType}.
@@ -354,9 +354,9 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         clean();
     }
 
-    // #end IItemRenderer
+    // endregion IItemRenderer
 
-    // #region TESR
+    // region TESR
     /**
      * Renders a {@link TileEntitySpecialRenderer}.
      *
@@ -390,9 +390,9 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         clean();
     }
 
-    // #end TESR
+    // endregion TESR
 
-    // #region IRenderWorldLast
+    // region IRenderWorldLast
     @Override
     public boolean shouldSetViewportPosition() {
         return true;
@@ -423,9 +423,9 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         clean();
     }
 
-    // #end IRenderWorldLast
+    // endregion IRenderWorldLast
 
-    // #region prepare()
+    // region prepare()
     /**
      * Prepares the {@link Tessellator} and the GL states for the <b>renderType</b>. <b>data</b> is only used for TESR
      * and IRWL.<br>
@@ -608,7 +608,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         Minecraft.getMinecraft().getTextureManager().bindTexture(resourceLocaltion);
     }
 
-    // #end prepare()
+    // endregion prepare()
 
     /**
      * _initialize.

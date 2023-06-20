@@ -68,7 +68,7 @@ public class UICheckBox extends UIComponent<UICheckBox> implements IGuiText<UICh
         this(gui, null);
     }
 
-    // #region Getters/Setters
+    // region Getters/Setters
     @Override
     public MalisisFont getFont() {
         return font;
@@ -113,7 +113,7 @@ public class UICheckBox extends UIComponent<UICheckBox> implements IGuiText<UICh
         return text;
     }
 
-    // #end Getters/Setters
+    // endregion Getters/Setters
 
     /**
      * Calculates the size for this {@link UICheckBox}.

@@ -99,7 +99,7 @@ public class UIButton extends UIComponent<UIButton> implements IGuiText<UIButton
         setImage(image);
     }
 
-    // #region Getters/Setters
+    // region Getters/Setters
     @Override
     public MalisisFont getFont() {
         return font;
@@ -301,7 +301,7 @@ public class UIButton extends UIComponent<UIButton> implements IGuiText<UIButton
         return this;
     }
 
-    // #end Getters/Setters
+    // endregion Getters/Setters
 
     @Override
     public boolean onClick(int x, int y) {
