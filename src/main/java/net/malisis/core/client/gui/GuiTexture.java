@@ -194,11 +194,8 @@ public class GuiTexture {
         int w = width - side * 2;
         int h = height;
 
-        // @formatter:off
-        MalisisIcon[] icons = new MalisisIcon[] {
-            createIcon(x, y, side, h), createIcon(x + side, y, w, h), createIcon(x + side + w, y, side, h),
-        };
-        // @formatter:on
+        MalisisIcon[] icons = new MalisisIcon[] { createIcon(x, y, side, h), createIcon(x + side, y, w, h),
+                createIcon(x + side + w, y, side, h), };
 
         return new GuiIcon(icons);
     }

@@ -24,55 +24,61 @@ public class Vertex {
 
     public static final int BRIGHTNESS_MAX = 15728880;
 
-    // @formatter:off
     public static class TopNorthWest extends Vertex {
+
         public TopNorthWest() {
             super(0, 1, 0);
         }
     }
 
     public static class TopNorthEast extends Vertex {
+
         public TopNorthEast() {
             super(1, 1, 0);
         }
     }
 
     public static class TopSouthWest extends Vertex {
+
         public TopSouthWest() {
             super(0, 1, 1);
         }
     }
 
     public static class TopSouthEast extends Vertex {
+
         public TopSouthEast() {
             super(1, 1, 1);
         }
     }
 
     public static class BottomNorthWest extends Vertex {
+
         public BottomNorthWest() {
             super(0, 0, 0);
         }
     }
 
     public static class BottomNorthEast extends Vertex {
+
         public BottomNorthEast() {
             super(1, 0, 0);
         }
     }
 
     public static class BottomSouthWest extends Vertex {
+
         public BottomSouthWest() {
             super(0, 0, 1);
         }
     }
 
     public static class BottomSouthEast extends Vertex {
+
         public BottomSouthEast() {
             super(1, 0, 1);
         }
     }
-    // @formatter:on
 
     private String baseName;
     private double x = 0;

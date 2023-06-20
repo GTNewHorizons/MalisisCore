@@ -42,8 +42,8 @@ import net.minecraft.item.ItemStack;
  */
 public class MalisisInventoryContainer extends Container {
 
-    // @formatter:off
     public enum ActionType {
+
         LEFT_CLICK,
         RIGHT_CLICK,
         PICKBLOCK,
@@ -69,15 +69,13 @@ public class MalisisInventoryContainer extends Container {
          * @return true, if is a drag action
          */
         public boolean isDragAction() {
-            return this == DRAG_START_LEFT_CLICK
-                    || this == DRAG_START_RIGHT_CLICK
+            return this == DRAG_START_LEFT_CLICK || this == DRAG_START_RIGHT_CLICK
                     || this == DRAG_START_PICKUP
                     || this == DRAG_ADD_SLOT
                     || this == DRAG_END
                     || this == DRAG_RESET;
         }
     }
-    // @formatter:on
 
     /** Dragging the itemStack to be spread evenly among all crossed slots. */
     public static final int DRAG_TYPE_SPREAD = 0;
