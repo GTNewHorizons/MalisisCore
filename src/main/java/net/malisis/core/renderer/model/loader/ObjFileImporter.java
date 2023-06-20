@@ -37,7 +37,7 @@ import net.minecraft.client.resources.IResource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.ForgeDirection;
 
-// TODO: Auto-generated Javadoc
+// TODO: Some javadocs below are auto-generated. Check them for correctness.
 /**
  * Model loader for OBJ files (Wavefront).
  *

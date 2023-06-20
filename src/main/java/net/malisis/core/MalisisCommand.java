@@ -25,7 +25,7 @@ import net.minecraft.command.WrongUsageException;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 
-// TODO: Auto-generated Javadoc
+// TODO: Some javadocs below are auto-generated. Check them for correctness.
 /**
  * Commands handler for {@link MalisisCore} mod.
  *
