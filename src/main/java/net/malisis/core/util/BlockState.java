@@ -192,7 +192,7 @@ public class BlockState {
     public static NBTTagCompound toNBT(NBTTagCompound nbt, BlockState state, String blockName, String metadataName) {
         if (state == null) return nbt;
 
-        nbt.setString(blockName, Block.blockRegistry.getNameForObject(state.getBlock()).toString());
+        nbt.setString(blockName, Block.blockRegistry.getNameForObject(state.getBlock()));
         nbt.setInteger(metadataName, state.getMetadata());
         return nbt;
     }
