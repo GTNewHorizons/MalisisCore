@@ -74,9 +74,9 @@ public class MalisisCommand extends CommandBase {
      */
     @Override
     public void processCommand(ICommandSender sender, String[] params) {
-        if (params.length == 0) throw new WrongUsageException("malisiscore.commands.usage", new Object[0]);
+        if (params.length == 0) throw new WrongUsageException("malisiscore.commands.usage");
 
-        if (!parameters.contains(params[0])) throw new WrongUsageException("malisiscore.commands.usage", new Object[0]);
+        if (!parameters.contains(params[0])) throw new WrongUsageException("malisiscore.commands.usage");
 
         switch (params[0]) {
             case "config":
