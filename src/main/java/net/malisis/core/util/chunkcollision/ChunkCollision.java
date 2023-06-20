@@ -304,8 +304,7 @@ public class ChunkCollision {
             AABBUtils.offset(state.getX(), state.getY(), state.getZ(), blockBounds);
 
             collide = AABBUtils.isColliding(aabbs, blockBounds);
-            if (collide) return false;
-            return true;
+            return !collide;
         }
 
         @Override
