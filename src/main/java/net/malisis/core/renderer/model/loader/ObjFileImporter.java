@@ -331,7 +331,7 @@ public class ObjFileImporter implements IModelLoader {
     /**
      * UV holder class
      */
-    private class UV {
+    private static class UV {
 
         /** U coordinate. */
         float u;
