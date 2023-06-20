@@ -44,7 +44,7 @@ public class Link implements GuiYesNoCallback {
             textIndex = 1;
         } else {
             url = str.substring(0, i);
-            text = str.substring(i + 1, str.length());
+            text = str.substring(i + 1);
             textIndex = i + 1;
         }
 
