@@ -16,8 +16,6 @@ package net.malisis.core.util.bbcode;
 import java.util.LinkedList;
 import java.util.List;
 
-import joptsimple.internal.Strings;
-
 import net.malisis.core.client.gui.GuiRenderer;
 import net.malisis.core.util.bbcode.node.BBNode;
 import net.malisis.core.util.bbcode.node.BBRootNode;
@@ -26,6 +24,8 @@ import net.malisis.core.util.bbcode.render.BBCodeRenderer;
 import net.malisis.core.util.bbcode.render.IBBCodeRenderer;
 
 import org.apache.commons.lang3.StringUtils;
+
+import joptsimple.internal.Strings;
 
 /**
  * @author Ordinastie
