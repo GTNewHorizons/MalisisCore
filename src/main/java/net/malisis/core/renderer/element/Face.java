@@ -398,9 +398,16 @@ public class Face implements ITransformable.Translate, ITransformable.Rotate {
 
     @Override
     public String toString() {
-        String s = name() + " {";
-        for (Vertex v : vertexes) s += v.name() + ", ";
-        return s + "}";
+        StringBuilder s = new StringBuilder(name());
+        s.append(" {");
+
+        for (Vertex v : vertexes) {
+            s.append(v.name()).append(", ");
+        }
+
+        s.append("}");
+
+        return s.toString();
     }
 
     /**

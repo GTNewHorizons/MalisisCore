@@ -155,15 +155,26 @@ public class HTMLParser extends Parser<HTMLNode> {
 
         public String prettyPrint() {
             int n = 4;
-            if (text != null) return StringUtils.repeat(' ', level * n) + text + "\n";
-            String s = StringUtils.repeat(' ', level * n) + "<"
-                    + name
-                    + (attributes.size() != 0 ? " " + attributes.toString() : "")
-                    + ">\n";
-            for (HTMLNode node : nodes) s += node.prettyPrint();
-            if (nodes.size() != 0) s += StringUtils.repeat(' ', level * n) + "</" + name + ">\n";
 
-            return s;
+            if (text != null) {
+                return StringUtils.repeat(' ', level * n) + text + "\n";
+            }
+
+            StringBuilder s = new StringBuilder(
+                    StringUtils.repeat(' ', level * n) + "<"
+                            + name
+                            + (attributes.size() != 0 ? " " + attributes.toString() : "")
+                            + ">\n");
+
+            for (HTMLNode node : nodes) {
+                s.append(node.prettyPrint());
+            }
+
+            if (nodes.size() != 0) {
+                s.append(StringUtils.repeat(' ', level * n)).append("</").append(name).append(">\n");
+            }
+
+            return s.toString();
         }
 
         @Override
