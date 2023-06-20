@@ -381,11 +381,7 @@ public class UIScrollBar extends UIComponent<UIScrollBar> implements IControlCom
      * @param scrollbar the scrollbar
      */
     private static void addScrollbar(UIComponent component, UIScrollBar scrollbar) {
-        Map<Type, UIScrollBar> bars = scrollbars.get(component);
-        if (bars == null) {
-            bars = new HashMap<>();
-            scrollbars.put(component, bars);
-        }
+        Map<Type, UIScrollBar> bars = scrollbars.computeIfAbsent(component, k -> new HashMap<>());
 
         bars.put(scrollbar.type, scrollbar);
     }
