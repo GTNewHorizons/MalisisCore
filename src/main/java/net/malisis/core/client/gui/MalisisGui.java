@@ -616,7 +616,7 @@ public abstract class MalisisGui extends GuiScreen {
      */
     public static <T extends MalisisGui> T currentGui(Class<T> type) {
         GuiScreen gui = Minecraft.getMinecraft().currentScreen;
-        if (gui == null || !(gui instanceof MalisisGui)) return null;
+        if (!(gui instanceof MalisisGui)) return null;
         try {
             return type.cast(gui);
         } catch (ClassCastException e) {

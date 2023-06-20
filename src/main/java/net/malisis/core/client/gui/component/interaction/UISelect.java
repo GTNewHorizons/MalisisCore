@@ -867,7 +867,7 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
 
         @Override
         public boolean equals(Object obj) {
-            return obj != null && obj instanceof Option && key.equals(((Option) obj).key);
+            return obj instanceof Option && key.equals(((Option) obj).key);
         }
     }
 
