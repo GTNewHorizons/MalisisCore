@@ -149,8 +149,8 @@ public class MalisisNetwork extends SimpleNetworkWrapper {
 
         for (ASMData data : classes) {
             try {
-                Class clazz = Class.forName(data.getClassName());
-                if (IMessageHandler.class.isAssignableFrom(clazz)) clazz.newInstance();
+                Class<?> clazz = Class.forName(data.getClassName());
+                if (IMessageHandler.class.isAssignableFrom(clazz)) clazz.getDeclaredConstructor().newInstance();
                 else MalisisCore.log.error(
                         "@MalisisMessage found on {} that does not implement IMessageHandler",
                         data.getClassName());
