@@ -40,7 +40,7 @@ public class FontRenderOptions {
             int j = (i >> 3 & 1) * 85;
             int r = (i >> 2 & 1) * 170 + j;
             int g = (i >> 1 & 1) * 170 + j;
-            int b = (i >> 0 & 1) * 170 + j;
+            int b = (i & 1) * 170 + j;
 
             if (i == 6) // GOLD
                 r += 85;

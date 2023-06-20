@@ -240,7 +240,7 @@ public class BlockPos {
      * Serialize this BlockPos into a long value
      */
     public long toLong() {
-        return (this.getX() & X_MASK) << X_SHIFT | (this.getY() & Y_MASK) << Y_SHIFT | (this.getZ() & Z_MASK) << 0;
+        return (this.getX() & X_MASK) << X_SHIFT | (this.getY() & Y_MASK) << Y_SHIFT | (this.getZ() & Z_MASK);
     }
 
     @Override
