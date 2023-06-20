@@ -151,7 +151,7 @@ public class Face implements ITransformable.Translate, ITransformable.Rotate {
 
         double factorU, factorV;
 
-        float uvs[][] = new float[vertexes.length][2];
+        float[][] uvs = new float[vertexes.length][2];
         for (int i = 0; i < vertexes.length; i++) {
             Vertex vertex = vertexes[i];
 
@@ -177,7 +177,7 @@ public class Face implements ITransformable.Translate, ITransformable.Rotate {
 
         double factorU, factorV;
 
-        float uvs[][] = new float[vertexes.length][2];
+        float[][] uvs = new float[vertexes.length][2];
         for (int i = 0; i < vertexes.length; i++) {
             Vertex vertex = vertexes[i];
 

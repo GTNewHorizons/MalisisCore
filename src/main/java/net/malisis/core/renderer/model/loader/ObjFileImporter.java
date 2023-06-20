@@ -182,7 +182,7 @@ public class ObjFileImporter implements IModelLoader {
      * @param data the data
      */
     private void addVertex(String data) {
-        String coords[] = data.split("\\s+");
+        String[] coords = data.split("\\s+");
         float x = 0;
         float y = 0;
         float z = 0;
@@ -207,7 +207,7 @@ public class ObjFileImporter implements IModelLoader {
      * @param data the data
      */
     private void addUV(String data) {
-        String coords[] = data.split("\\s+");
+        String[] coords = data.split("\\s+");
         float u = 0;
         float v = 0;
         if (coords.length != 2) {
@@ -230,7 +230,7 @@ public class ObjFileImporter implements IModelLoader {
      * @param data the data
      */
     private void addNormal(String data) {
-        String coords[] = data.split("\\s+");
+        String[] coords = data.split("\\s+");
         float x = 0;
         float y = 0;
         float z = 0;
