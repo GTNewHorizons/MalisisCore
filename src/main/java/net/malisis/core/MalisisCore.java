@@ -154,7 +154,6 @@ public class MalisisCore implements IMalisisMod {
         MinecraftForge.EVENT_BUS.register(instance);
         MinecraftForge.EVENT_BUS.register(ReplacementTool.instance());
         MinecraftForge.EVENT_BUS.register(ChunkBlockHandler.get());
-        // MinecraftForge.EVENT_BUS.register(ChunkCollision.client);
 
         log = event.getModLog();
 

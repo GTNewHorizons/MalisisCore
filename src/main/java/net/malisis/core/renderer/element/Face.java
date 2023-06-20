@@ -386,17 +386,11 @@ public class Face implements ITransformable.Translate, ITransformable.Rotate {
             else if (normal.x == -1) dir = ForgeDirection.WEST;
         }
 
-        // if (dir != ForgeDirection.UNKNOWN)
         {
             params.direction.set(dir);
             params.textureSide.set(dir);
             params.aoMatrix.set(calculateAoMatrix(dir));
         }
-
-        // double fx = Math.asin(Math.abs(normal.x)) / Math.PI * 2 * 0.6F;
-        // double fy = Math.asin(Math.abs(normal.y)) / Math.PI * 2 * (normal.y >= 0 ? 1 : 0.5F);
-        // double fz = Math.asin(Math.abs(normal.z)) / Math.PI * 2 * 0.8F;
-        // float f = (float) (fx + fy + fz);
 
         // fry's patent
         float f = (float) ((normal.x * normal.x * 0.6 + normal.y * (normal.y * 3 + 1) / 4 + normal.z * normal.z * 0.8));

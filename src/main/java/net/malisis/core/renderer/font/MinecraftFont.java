@@ -152,7 +152,7 @@ public class MinecraftFont extends MalisisFont {
         walker.endIndex(end);
         while (walker.walk()) width += walker.getWidth();
 
-        return width; // * (fro != null ? fro.fontScale : 1);
+        return width;
     }
 
     @Override
@@ -214,12 +214,12 @@ public class MinecraftFont extends MalisisFont {
 
         @Override
         public float getFullWidth(FontGeneratorOptions options) {
-            return (getCharWidth() - 1.01F) /* * options.fontSize */;
+            return (getCharWidth() - 1.01F);
         }
 
         @Override
         public float getFullHeight(FontGeneratorOptions options) {
-            return (getCharHeight() - 1.01F) /* * options.fontSize */;
+            return (getCharHeight() - 1.01F);
         }
     }
 
@@ -289,7 +289,7 @@ public class MinecraftFont extends MalisisFont {
 
         @Override
         public float getFullHeight(FontGeneratorOptions options) {
-            return (getCharHeight() - 1.01F) /* * options.fontSize */;
+            return (getCharHeight() - 1.01F);
         }
     }
 }

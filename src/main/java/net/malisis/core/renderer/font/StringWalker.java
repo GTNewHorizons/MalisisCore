@@ -108,7 +108,6 @@ public class StringWalker {
 
         prevColor = fro.color;
         prevUnderline = fro.underline;
-        // fro.saveDefault();
         fro.color = 0x6666FF;
         fro.underline = true;
     }
@@ -167,7 +166,6 @@ public class StringWalker {
         if (index >= endIndex) return false;
 
         checkEcf();
-        // checkLink();
 
         if (index >= endIndex) return false;
 

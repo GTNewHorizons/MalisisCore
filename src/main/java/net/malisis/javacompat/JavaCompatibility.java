@@ -73,7 +73,6 @@ public final class JavaCompatibility implements Runnable, HyperlinkListener {
 
     private void displayWindow() {
         SwingUtilities.invokeLater(this);
-        // noinspection SynchronizationOnLocalVariableOrMethodParameter
         synchronized (mutex) {
             try {
                 mutex.wait();
@@ -122,7 +121,6 @@ public final class JavaCompatibility implements Runnable, HyperlinkListener {
 
         frame.setContentPane(panel);
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        // frame.setResizable(false);
         frame.addWindowListener(new WindowAdapter() {
 
             @Override

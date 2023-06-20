@@ -93,9 +93,6 @@ public class MalisisCommand extends CommandBase {
                 if (mod != null)
                     MalisisCore.message("malisiscore.commands.modversion", mod.getName(), mod.getVersion());
                 break;
-            case "gui":
-                // Minecraft.getMinecraft().displayGuiScreen(new UIWindow(100, 100).createScreenProxy());
-                break;
 
             default:
                 MalisisCore.message("Not yet implemented");

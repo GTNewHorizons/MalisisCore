@@ -136,7 +136,6 @@ public class ChunkBlockHandler implements IChunkBlockHandler {
      * @param pos   the pos
      */
     private void addCoord(Chunk chunk, BlockPos pos) {
-        // MalisisCore.message("Added " + pos + " to " + chunk.xPosition + ", " + chunk.zPosition);
         getCoords(chunk).add(pos.toLong());
     }
 

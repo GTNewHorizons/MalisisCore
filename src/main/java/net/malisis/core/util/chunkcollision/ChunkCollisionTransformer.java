@@ -90,7 +90,6 @@ public class ChunkCollisionTransformer extends MalisisClassTransformer {
         // DSTORE 9/13 <= depends on NEI installed
         InsnList match = new InsnList();
         match.add(new LdcInsnNode(0.25));
-        // match.add(new VarInsnNode(DSTORE, 13));
 
         ah.jumpTo(match).jump(-1).insert(insert);
 

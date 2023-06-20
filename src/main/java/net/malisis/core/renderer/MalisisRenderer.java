@@ -662,7 +662,6 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
      */
     public void renderDestroyProgress() {
         if (destroyBlockProgress != null) overrideTexture = damagedIcons[destroyBlockProgress.getPartialBlockDamage()];
-        // enableBlending();
         render();
     }
 
@@ -1085,7 +1084,6 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
      * @return the mixed brightness for block
      */
     protected int getMixedBrightnessForBlock(IBlockAccess world, int x, int y, int z) {
-        // return world.getLightBrightnessForSkyBlocks(x, y, z, 0);
         return world.getBlock(x, y, z).getMixedBrightnessForBlock(world, x, y, z);
     }
 

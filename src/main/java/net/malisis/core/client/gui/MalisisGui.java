@@ -477,7 +477,7 @@ public abstract class MalisisGui extends GuiScreen {
             FontRenderOptions fro = new FontRenderOptions();
             fro.color = 0xFFFFFF;
             fro.shadow = true;
-            // fro.fontScale = 1 / renderer.getScaleFactor() * 2;
+
             renderer.drawText(null, "Mouse : " + mouseX + "," + mouseY, 5, dy++ * 10 + oy, 0, fro, false);
             renderer.drawText(null, "Focus : " + focusedComponent, 5, dy++ * 10 + oy, 0, fro, false);
             renderer.drawText(null, "Hover : " + hoveredComponent, 5, dy++ * 10 + oy, 0, fro, false);

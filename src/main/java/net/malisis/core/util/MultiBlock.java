@@ -285,8 +285,6 @@ public class MultiBlock {
             te.setMultiBlock(this);
         }
 
-        // world.setBlockMetadataWithNotify(x, y, z, direction.ordinal(), 2);
-
         return true;
     }
 

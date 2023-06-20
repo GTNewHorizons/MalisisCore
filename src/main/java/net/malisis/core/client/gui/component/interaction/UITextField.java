@@ -246,7 +246,6 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         charOffset = 0;
         lineOffset = 0;
         if (focused) cursorPosition.jumpToEnd();
-        // fireEvent(new TextChanged(this));
     }
 
     /**
@@ -716,7 +715,6 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         if (!multiLine) {
             if (cursorPosition.character < charOffset) charOffset = cursorPosition.character;
             else if (text.length() != 0) {
-                // charOffset = 0;
                 while (font.getStringWidth(text.substring(charOffset, cursorPosition.textPosition), fro)
                         >= getWidth() - 4)
                     charOffset++;
@@ -1257,7 +1255,6 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
 
             if (backwards) line = Math.max(0, line - 1);
             else line = Math.min(line + 1, lines.size() - 1);
-            // character = Math.min(character, currentLineText().length());
             character = Math.round(font.getCharPosition(currentLineText(), fro, lastOffset, charOffset));
             updateTextPosition();
         }

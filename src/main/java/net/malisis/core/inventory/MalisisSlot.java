@@ -261,7 +261,6 @@ public class MalisisSlot {
         ItemStackSplitter iss = new ItemUtils.ItemStackSplitter(getItemStack());
         iss.split(amount);
         setItemStack(iss.source);
-        // if (hasChanged())
         onSlotChanged();
         return iss.split;
     }
@@ -317,7 +316,6 @@ public class MalisisSlot {
         ism.merge(amount, getSlotStackLimit());
         setItemStack(ism.into);
 
-        // if (hasChanged())
         onSlotChanged();
 
         return ism.merge;

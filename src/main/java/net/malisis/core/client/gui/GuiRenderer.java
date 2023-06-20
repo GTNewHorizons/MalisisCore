@@ -462,7 +462,6 @@ public class GuiRenderer extends MalisisRenderer {
 
         RenderHelper.disableStandardItemLighting();
         GL11.glColor4f(1, 1, 1, 1);
-        // GL11.glDisable(GL11.GL_ALPHA_TEST);
 
         currentTexture = null;
         bindDefaultTexture();

@@ -87,7 +87,6 @@ public class TileEntityUtils {
     public static void linkTileEntityToGui(TileEntity te, MalisisGui gui) {
         currentTileEntity = te;
         currenGui = gui;
-        // currenGui.updateGui();
     }
 
     /**

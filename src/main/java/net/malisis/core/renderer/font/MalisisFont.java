@@ -300,7 +300,6 @@ public class MalisisFont {
      */
     public String processString(String str, FontRenderOptions fro) {
         str = translate(str);
-        // str = str.replaceAll("\r?\n", "").replaceAll("\t", " ");
         return str;
     }
 
@@ -478,7 +477,6 @@ public class MalisisFont {
         if (StringUtils.isEmpty(str)) return 0;
 
         str = processString(str, fro);
-        // float fx = position / (fro != null ? fro.fontScale : 1); //factor the position instead of the char widths
 
         StringWalker walker = new StringWalker(str, this, fro);
         walker.startIndex(charOffset);
@@ -515,10 +513,8 @@ public class MalisisFont {
 
         StringBuilder line = new StringBuilder();
         StringBuilder word = new StringBuilder();
-        // FontRenderOptions fro = new FontRenderOptions();
 
         maxWidth -= 4;
-        // maxWidth /= (fro != null ? fro.fontScale : 1); //factor the position instead of the char widths
         float lineWidth = 0;
         float wordWidth = 0;
 
@@ -579,7 +575,6 @@ public class MalisisFont {
         int split = 1;
         while (totalWidth / split > options.fontSize * split) split++;
 
-        // size = (int) Math.max(totalWidth / (split - 1), options.fontSize * (split - 1));
         size = roundUp((int) totalWidth / (split - 1));
     }
 

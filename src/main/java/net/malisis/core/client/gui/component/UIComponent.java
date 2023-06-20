@@ -904,8 +904,6 @@ public abstract class UIComponent<T extends UIComponent>
         ClipArea area = this instanceof IClipable ? ((IClipable) this).getClipArea() : null;
         if (area != null) renderer.startClipping(area);
 
-        // GL11.glColor4f(1, 1, 1, 0.5F);
-
         drawForeground(renderer, mouseX, mouseY, partialTick);
 
         if (area != null) renderer.endClipping(area);

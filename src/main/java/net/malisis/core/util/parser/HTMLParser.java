@@ -72,7 +72,6 @@ public class HTMLParser extends Parser<HTMLNode> {
                         if (!match(Token.Equal)) addAttribute(identifier.getValue());
                         else if (match(Token.StringToken, identifier)) {
                             addAttribute(attr, identifier.getValue());
-                            // readToken();
                         }
                     }
                     if (match(Token.Div)) closeTag();
@@ -88,7 +87,6 @@ public class HTMLParser extends Parser<HTMLNode> {
     }
 
     public void openTag(String tag) {
-        // self.Log('Opening : <b>' . tag . '</b><br />');
         if (this.currentNode == null) return;
 
         HTMLNode node = new HTMLNode(tag);
@@ -102,19 +100,16 @@ public class HTMLParser extends Parser<HTMLNode> {
     }
 
     public void addAttribute(String attr, String attr_val) {
-        // self.Log('Found attr : <b>' . attr . '</b><br />');
         if (this.currentNode != null) this.currentNode.AddAttribute(attr, attr_val);
     }
 
     public void addContent(String str) {
-        // self.Log('Adding content : <b>' . htmlentities(str) . '</b><br />');
         if (this.currentNode == null) return;
         this.currentNode.AddText(str);
     }
 
     public void closeTag() {
-        // self.Log('Closing : <b>' . this.current_tag.name . '</b><br />');
-        if (this.openTags.size() == 0) // prevent malformed html with closing non opened tags
+        if (this.openTags.size() == 0) // prevent malformed html with closing non-opened tags
             return;
 
         this.currentNode = this.openTags.removeLast();

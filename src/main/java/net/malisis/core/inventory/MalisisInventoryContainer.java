@@ -470,7 +470,6 @@ public class MalisisInventoryContainer extends Container {
             itemStack = inventories.get(0).transferInto(itemStack);
 
             slot.setItemStack(itemStack);
-            // if (slot.hasChanged())
             slot.onSlotChanged();
 
             return itemStack;
@@ -486,7 +485,6 @@ public class MalisisInventoryContainer extends Container {
                     itemStack = targetInventory.transferInto(itemStack);
 
                     slot.setItemStack(itemStack);
-                    // if (slot.hasChanged())
                     slot.onSlotChanged();
                 }
             }
@@ -548,7 +546,6 @@ public class MalisisInventoryContainer extends Container {
         iss.split(fullStack ? ItemUtils.FULL_STACK : 1);
 
         slot.setItemStack(iss.source);
-        // if (slot.hasChanged())
         slot.onSlotChanged();
         owner.dropPlayerItemWithRandomChoice(iss.split, true);
 
@@ -579,7 +576,6 @@ public class MalisisInventoryContainer extends Container {
                         ItemUtils.ItemStacksMerger ism = new ItemStacksMerger(s.getItemStack(), pickedItemStack);
                         ism.merge();
                         s.setItemStack(ism.merge);
-                        // if (s.hasChanged())
                         s.onSlotChanged();
                         pickedItemStack = ism.into;
                     }
@@ -598,7 +594,6 @@ public class MalisisInventoryContainer extends Container {
                     if (inventoryId != 0) {
                         itemStack = inventories.get(0).transferInto(itemStack);
                         s.setItemStack(itemStack);
-                        // if (s.hasChanged())
                         s.onSlotChanged();
                     } else {
                         int i = 1;
@@ -606,7 +601,6 @@ public class MalisisInventoryContainer extends Container {
                             if (targetInventory.state.is(PLAYER_INSERT)) {
                                 itemStack = targetInventory.transferInto(itemStack);
                                 s.setItemStack(itemStack);
-                                // if (s.hasChanged())
                                 s.onSlotChanged();
                             }
                         }
@@ -704,7 +698,6 @@ public class MalisisInventoryContainer extends Container {
 
             setPickedItemStack(ism.into);
             slot.setItemStack(ism.merge);
-            // if (slot.hasChanged())
             slot.onSlotChanged();
 
             return pickedItemStack;
@@ -769,9 +762,7 @@ public class MalisisInventoryContainer extends Container {
         dragType = -1;
     }
 
-    /*
-     * COMPATIBILITY
-     */
+    // region Compatibility
 
     /**
      * Can interact with.
@@ -783,4 +774,6 @@ public class MalisisInventoryContainer extends Container {
     public boolean canInteractWith(EntityPlayer var1) {
         return true;
     }
+
+    // endregion Compatibility
 }

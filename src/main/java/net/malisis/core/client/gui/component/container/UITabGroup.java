@@ -277,7 +277,6 @@ public class UITabGroup extends UIContainer<UITabGroup> {
             cw = container.getRawWidth() - getWidth() + 1;
         }
 
-        // tab.setSize(w, h);
         container.setSize(cw, ch);
         container.setPosition(cx, cy);
 

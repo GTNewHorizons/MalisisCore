@@ -166,7 +166,6 @@ public class UISlider extends UIComponent<UISlider> implements IGuiText<UISlider
         renderer.drawShape(sliderShape, rp);
 
         renderer.next();
-        // zIndex = 1;
 
         if (!StringUtils.isEmpty(text)) {
             String str = String.format(text, value);
