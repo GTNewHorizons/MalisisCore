@@ -131,9 +131,14 @@ public final class JavaCompatibility implements Runnable, HyperlinkListener {
 
     private String getHtml(Font font) {
         // create some css from the label's font
-        StringBuilder style = new StringBuilder("font-family:" + font.getFamily() + ";").append("font-weight:")
-                .append(font.isBold() ? "bold" : "normal").append(";").append("font-size:").append(font.getSize())
-                .append("pt;");
+        String style = "font-family:" + font.getFamily()
+                + ";"
+                + "font-weight:"
+                + (font.isBold() ? "bold" : "normal")
+                + ";"
+                + "font-size:"
+                + font.getSize()
+                + "pt;";
 
         return "<html><body style=\"" + style
                 + "\">"
