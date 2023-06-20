@@ -120,6 +120,6 @@ public class BBTextNode extends BBNode {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + " : (" + index + ") " + text.toString();
+        return getClass().getSimpleName() + " : (" + index + ") " + text;
     }
 }
