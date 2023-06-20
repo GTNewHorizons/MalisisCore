@@ -25,7 +25,7 @@ import java.util.List;
 public class Bezier {
 
     /** Generated vertexes. */
-    private List<Vertex> vertexes = new ArrayList<>();
+    private final List<Vertex> vertexes = new ArrayList<>();
     /** Control points. */
     private List<Vertex> controlPoints = new ArrayList<>();
     /** Precision (amount of vertexes for the path). */

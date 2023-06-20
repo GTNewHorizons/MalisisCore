@@ -59,7 +59,7 @@ public class MalisisFont {
 
     public static MalisisFont minecraftFont = new MinecraftFont();
 
-    private static Pattern pattern = Pattern.compile("\\{(.*?)}");
+    private static final Pattern pattern = Pattern.compile("\\{(.*?)}");
 
     /** AWT font used **/
     protected Font font;

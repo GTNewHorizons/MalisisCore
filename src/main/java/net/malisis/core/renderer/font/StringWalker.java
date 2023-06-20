@@ -21,9 +21,9 @@ import net.minecraft.util.EnumChatFormatting;
  */
 public class StringWalker {
 
-    private MalisisFont font;
-    private FontRenderOptions fro;
-    private String str;
+    private final MalisisFont font;
+    private final FontRenderOptions fro;
+    private final String str;
     private boolean litteral;
     private boolean skipChars = true;
     private boolean applyStyles;

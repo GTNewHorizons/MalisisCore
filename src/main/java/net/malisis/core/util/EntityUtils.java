@@ -44,7 +44,7 @@ import net.minecraftforge.common.util.ForgeDirection;
  */
 public class EntityUtils {
 
-    private static ForgeDirection[] facings = new ForgeDirection[] { ForgeDirection.NORTH, ForgeDirection.EAST,
+    private static final ForgeDirection[] facings = new ForgeDirection[] { ForgeDirection.NORTH, ForgeDirection.EAST,
             ForgeDirection.SOUTH, ForgeDirection.WEST, ForgeDirection.UP, ForgeDirection.DOWN, ForgeDirection.UNKNOWN };
 
     private static Method getPlayerInstance;

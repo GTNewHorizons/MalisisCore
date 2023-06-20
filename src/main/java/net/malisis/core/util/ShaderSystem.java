@@ -26,9 +26,10 @@ import java.util.HashMap;
  */
 public class ShaderSystem {
 
-    private HashMap<String, Integer> varLocations;
+    private final HashMap<String, Integer> varLocations;
 
-    private int program, lastProgram = 0;
+    private final int program;
+    private int lastProgram = 0;
     private boolean initialized, active;
 
     public ShaderSystem() {

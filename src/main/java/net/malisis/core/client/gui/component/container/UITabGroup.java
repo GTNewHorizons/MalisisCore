@@ -335,7 +335,7 @@ public class UITabGroup extends UIContainer<UITabGroup> {
      */
     public static class TabChangeEvent extends ComponentEvent<UITabGroup> {
 
-        private UITab newTab;
+        private final UITab newTab;
 
         public TabChangeEvent(UITabGroup component, UITab newTab) {
             super(component);

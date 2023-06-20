@@ -37,7 +37,7 @@ import org.lwjgl.opengl.GL11;
  */
 public class UIRadioButton extends UIComponent<UIRadioButton> implements IGuiText<UIRadioButton> {
 
-    private static HashMap<String, List<UIRadioButton>> radioButtons = new HashMap<>();
+    private static final HashMap<String, List<UIRadioButton>> radioButtons = new HashMap<>();
 
     protected GuiIcon bgIcon;
     protected GuiIcon bgIconDisabled;
@@ -50,7 +50,7 @@ public class UIRadioButton extends UIComponent<UIRadioButton> implements IGuiTex
     /** The {@link FontRenderOptions} to use for this {@link UIRadioButton}. */
     protected FontRenderOptions fro = new FontRenderOptions();
 
-    private String name;
+    private final String name;
     private String text;
     private boolean selected;
 

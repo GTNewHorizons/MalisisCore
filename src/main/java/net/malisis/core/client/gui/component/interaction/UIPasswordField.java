@@ -16,7 +16,7 @@ public class UIPasswordField extends UITextField {
     private char passwordChar = '*';
 
     /** Actual stored password *. */
-    private StringBuilder password = new StringBuilder();
+    private final StringBuilder password = new StringBuilder();
 
     /**
      * Instantiates a new {@link UIPasswordField}.

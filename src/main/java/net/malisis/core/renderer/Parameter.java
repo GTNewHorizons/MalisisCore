@@ -21,7 +21,7 @@ package net.malisis.core.renderer;
 public class Parameter<T> {
 
     /** Default value. */
-    private T defaultValue;
+    private final T defaultValue;
 
     /** Current alue. */
     private T value;

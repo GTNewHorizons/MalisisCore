@@ -39,9 +39,9 @@ public class MinecraftFont extends MalisisFont {
     private byte[] glyphWidth;
     private ResourceLocation[] unicodePages;
     private ResourceLocation lastFontTexture;
-    private FontRenderer fontRenderer;
-    private MCCharData mcCharData = new MCCharData();
-    private UnicodeCharData unicodeCharData = new UnicodeCharData();
+    private final FontRenderer fontRenderer;
+    private final MCCharData mcCharData = new MCCharData();
+    private final UnicodeCharData unicodeCharData = new UnicodeCharData();
     private MalisisRenderer renderer;
 
     public MinecraftFont() {

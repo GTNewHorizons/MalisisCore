@@ -77,7 +77,7 @@ public abstract class UIComponent<T extends UIComponent>
     /** Size of this {@link UIComponent}. */
     protected int width = INHERITED, height = INHERITED;
     /** Event bus on which event listeners are registered. */
-    private EventBus bus;
+    private final EventBus bus;
     /** The parent {@link UIComponent} of this <code>UIComponent</code>. */
     protected UIComponent parent;
     /** The name of this {@link UIComponent}. Can be used to retrieve this back from a container. */

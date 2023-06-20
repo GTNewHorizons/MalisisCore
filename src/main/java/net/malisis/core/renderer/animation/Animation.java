@@ -23,8 +23,8 @@ import net.malisis.core.util.Timer;
  */
 public class Animation {
 
-    private ITransformable transformable;
-    private Transformation transform;
+    private final ITransformable transformable;
+    private final Transformation transform;
     private int delay;
     private boolean started = false;
     private boolean finished = false;

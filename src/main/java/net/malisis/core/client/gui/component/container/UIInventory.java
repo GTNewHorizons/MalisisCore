@@ -20,8 +20,8 @@ import net.malisis.core.inventory.MalisisSlot;
 
 public class UIInventory extends UIContainer<UIInventory> {
 
-    private int numCols;
-    private boolean hasTitle;
+    private final int numCols;
+    private final boolean hasTitle;
 
     public UIInventory(MalisisGui gui, String title, MalisisInventory inventory, int numCols) {
         super(gui, title != null ? title : inventory.getInventoryName(), 0, 0);

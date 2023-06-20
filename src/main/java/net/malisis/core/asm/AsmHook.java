@@ -30,16 +30,16 @@ public class AsmHook {
         JUMP,
     }
 
-    private static int END = Short.MIN_VALUE;
+    private static final int END = Short.MIN_VALUE;
 
     private String transformer;
-    private McpMethodMapping mapping;
+    private final McpMethodMapping mapping;
     private boolean debug = false;
 
-    private ArrayList<InsnList> inserts = new ArrayList<>();
-    private ArrayList<InsnList> matches = new ArrayList<>();
-    private ArrayList<Integer> jumps = new ArrayList<>();
-    private ArrayList<HookStep> steps = new ArrayList<>();
+    private final ArrayList<InsnList> inserts = new ArrayList<>();
+    private final ArrayList<InsnList> matches = new ArrayList<>();
+    private final ArrayList<Integer> jumps = new ArrayList<>();
+    private final ArrayList<HookStep> steps = new ArrayList<>();
 
     public AsmHook(McpMethodMapping mapping) {
         this.mapping = mapping;

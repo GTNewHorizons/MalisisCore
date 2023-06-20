@@ -87,7 +87,7 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
     /** Predicate for option disability */
     protected Predicate<T> disablePredicate = Predicates.alwaysFalse();
     /** Default function to build options **/
-    private Function<T, Option<T>> toOption = new Function<T, Option<T>>() {
+    private final Function<T, Option<T>> toOption = new Function<T, Option<T>>() {
 
         @Override
         public Option<T> apply(T input) {
@@ -751,7 +751,7 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
     public static class Option<T> {
 
         /** The key. */
-        private T key;
+        private final T key;
         /** The label. */
         private String label;
         /** Whether this option is disabled */

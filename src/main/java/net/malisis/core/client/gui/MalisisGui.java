@@ -81,7 +81,7 @@ public abstract class MalisisGui extends GuiScreen {
     /** The resolution for the GUI **/
     protected ScaledResolution resolution;
     /** Top level container which hold the user components. Spans across the whole screen. */
-    private UIContainer screen;
+    private final UIContainer screen;
     /** Determines if the screen should be darkened when the GUI is opened. */
     protected boolean guiscreenBackground = true;
     /** Last known position of the mouse. */
@@ -96,7 +96,7 @@ public abstract class MalisisGui extends GuiScreen {
     protected boolean isOverlay = false;
 
     /** {@link AnimationRenderer} */
-    private AnimationRenderer ar;
+    private final AnimationRenderer ar;
     /** Currently hovered child component. */
     protected UIComponent hoveredComponent;
     /** Currently focused child component. */
@@ -108,7 +108,7 @@ public abstract class MalisisGui extends GuiScreen {
     /** Debug **/
     private boolean debug = false;
 
-    private HashMap<String, Callable<String>> debugMap = new HashMap<>();
+    private final HashMap<String, Callable<String>> debugMap = new HashMap<>();
 
     protected MalisisGui() {
         this.renderer = new GuiRenderer();

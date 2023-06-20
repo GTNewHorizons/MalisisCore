@@ -26,8 +26,8 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
  */
 public class ShapelessOreRecipeHandler extends ReplacementHandler<ShapelessOreRecipe> {
 
-    private Field inputField;
-    private Field outputField;
+    private final Field inputField;
+    private final Field outputField;
 
     public ShapelessOreRecipeHandler() {
         super(ShapelessOreRecipe.class);

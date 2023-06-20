@@ -88,7 +88,7 @@ public class MethodDescriptor {
 
     private static class TypeToken extends Token<Class<?>> {
 
-        private static TypeToken token = (TypeToken) new TypeToken().name("TypeToken");
+        private static final TypeToken token = (TypeToken) new TypeToken().name("TypeToken");
 
         private int size;
 

@@ -66,7 +66,7 @@ public class MalisisInventory implements IInventory {
     /** Maximum stack size for the slots. */
     protected int slotMaxStackSize = 64;
     /** Event bus on which inventory events will be fired. */
-    private EventBus bus = new EventBus();
+    private final EventBus bus = new EventBus();
     /** Current inventory state. */
     public InventoryState state = new InventoryState();
 

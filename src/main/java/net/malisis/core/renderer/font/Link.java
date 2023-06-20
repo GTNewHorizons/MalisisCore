@@ -31,8 +31,8 @@ public class Link implements GuiYesNoCallback {
 
     private int index = 0;
     private int textIndex = 0;
-    private String url;
-    private String text;
+    private final String url;
+    private final String text;
     private boolean isValid;
 
     public Link(int index, String str) {

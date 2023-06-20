@@ -45,7 +45,7 @@ public class UIScrollBar extends UIComponent<UIScrollBar> implements IControlCom
         VERTICAL
     }
 
-    private static Map<UIComponent, Map<Type, UIScrollBar>> scrollbars = new WeakHashMap();
+    private static final Map<UIComponent, Map<Type, UIScrollBar>> scrollbars = new WeakHashMap();
 
     /** The scroll thickness (Width for vertical, height for horizontal). */
     protected int scrollThickness = 10;

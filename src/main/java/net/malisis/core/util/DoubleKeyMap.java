@@ -30,9 +30,9 @@ public class DoubleKeyMap<K, V> {
 
     public static class DoubleKeyEntry<K, V> {
 
-        private int index;
-        private K key;
-        private V value;
+        private final int index;
+        private final K key;
+        private final V value;
 
         public DoubleKeyEntry(int index, K key, V value) {
             this.index = index;
@@ -53,8 +53,8 @@ public class DoubleKeyMap<K, V> {
         }
     }
 
-    private List<DoubleKeyEntry<K, V>> data = new ArrayList<>();
-    private BiMap<K, Integer> keys = HashBiMap.create();
+    private final List<DoubleKeyEntry<K, V>> data = new ArrayList<>();
+    private final BiMap<K, Integer> keys = HashBiMap.create();
 
     public int put(K key, V value) {
         if (keys.get(key) != null) throw new IllegalArgumentException("Key already in map : " + key);

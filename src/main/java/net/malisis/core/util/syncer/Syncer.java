@@ -40,11 +40,11 @@ import cpw.mods.fml.common.discovery.ASMDataTable.ASMData;
 public class Syncer {
 
     /** Map of the {@link ISyncHandler} registered. */
-    private DoubleKeyMap<String, ISyncHandler<?, ? extends ISyncableData>> handlers = new DoubleKeyMap<>();
+    private final DoubleKeyMap<String, ISyncHandler<?, ? extends ISyncableData>> handlers = new DoubleKeyMap<>();
     /** Map of {@link ISyncHandler} registered, accessible by the classes annotated by {@link Syncable} */
-    private Map<Class<?>, ISyncHandler<?, ? extends ISyncableData>> classToHandler = new HashMap<>();
+    private final Map<Class<?>, ISyncHandler<?, ? extends ISyncableData>> classToHandler = new HashMap<>();
 
-    private Map<Object, HashMap<String, Object>> syncCache = new HashMap<>();
+    private final Map<Object, HashMap<String, Object>> syncCache = new HashMap<>();
 
     /** Syncer instance **/
     private static Syncer instance;

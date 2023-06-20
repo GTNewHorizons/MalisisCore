@@ -27,7 +27,7 @@ import net.malisis.core.util.syncer.ISyncableData;
  */
 public abstract class DefaultSyncHandler<T, S extends ISyncableData> implements ISyncHandler<T, S> {
 
-    private DoubleKeyMap<String, Field> fields = new DoubleKeyMap<>();
+    private final DoubleKeyMap<String, Field> fields = new DoubleKeyMap<>();
 
     @Override
     public void addFieldData(FieldData fieldData) {

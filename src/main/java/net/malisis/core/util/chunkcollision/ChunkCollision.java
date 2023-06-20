@@ -43,7 +43,7 @@ import net.minecraft.world.chunk.Chunk;
  */
 public class ChunkCollision {
 
-    private static ChunkCollision instance = new ChunkCollision();
+    private static final ChunkCollision instance = new ChunkCollision();
 
     private Point src;
     private Point dest;

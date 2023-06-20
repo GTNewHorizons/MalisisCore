@@ -32,8 +32,8 @@ import com.google.common.eventbus.Subscribe;
  */
 public class MCEditor extends UIContainer<MCEditor> implements IGuiText<MCEditor> {
 
-    private UITextField tf;
-    private EcfSelect sel;
+    private final UITextField tf;
+    private final EcfSelect sel;
 
     private MalisisFont font = MalisisFont.minecraftFont;
     private FontRenderOptions fro = new FontRenderOptions();

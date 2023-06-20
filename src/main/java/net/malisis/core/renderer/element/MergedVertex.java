@@ -46,7 +46,7 @@ public class MergedVertex implements ITransformable.Translate, ITransformable.Ro
     protected Matrix4f transformMatrix = new Matrix4f();
 
     /** List of {@link Vertex vertexes} that share the same position. */
-    private Set<Vertex> vertexes = new HashSet<>();
+    private final Set<Vertex> vertexes = new HashSet<>();
 
     /**
      * Instantiates a new {@link MergedVertex}.

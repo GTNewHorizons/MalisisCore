@@ -35,8 +35,8 @@ import com.google.common.collect.FluentIterable;
  */
 public class BlockState {
 
-    private static BlockStateFunction toBlockState = new BlockStateFunction();
-    private static BlockPredicate blockFilter = new BlockPredicate();
+    private static final BlockStateFunction toBlockState = new BlockStateFunction();
+    private static final BlockPredicate blockFilter = new BlockPredicate();
 
     protected BlockPos pos;
     protected Block block;

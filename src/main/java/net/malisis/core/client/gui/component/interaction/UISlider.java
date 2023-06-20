@@ -46,13 +46,13 @@ public class UISlider extends UIComponent<UISlider> implements IGuiText<UISlider
     /** The {@link FontRenderOptions} to use for this {@link UISlider} when hovered. */
     protected FontRenderOptions hoveredFro = new FontRenderOptions();
 
-    private String text;
-    private float minValue;
-    private float maxValue;
+    private final String text;
+    private final float minValue;
+    private final float maxValue;
     private float value;
     private float offset;
 
-    private GuiShape sliderShape;
+    private final GuiShape sliderShape;
 
     public UISlider(MalisisGui gui, int width, float min, float max, String text) {
         super(gui);

@@ -29,9 +29,9 @@ public class AnimationRenderer {
 
     private long startTime = -1;
     private boolean clearFinished = false;
-    private LinkedList<Animation> animations = new LinkedList<>();
-    private List<ITransformable> tranformables = new ArrayList<>();
-    private List<Animation> toClear = new ArrayList<>();
+    private final LinkedList<Animation> animations = new LinkedList<>();
+    private final List<ITransformable> tranformables = new ArrayList<>();
+    private final List<Animation> toClear = new ArrayList<>();
 
     public AnimationRenderer() {
         setStartTime();

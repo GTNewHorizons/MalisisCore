@@ -34,8 +34,8 @@ public class AABBUtils {
         Z
     };
 
-    private static int[] cos = { 1, 0, -1, 0 };
-    private static int[] sin = { 0, 1, 0, -1 };
+    private static final int[] cos = { 1, 0, -1, 0 };
+    private static final int[] sin = { 0, 1, 0, -1 };
 
     public static AxisAlignedBB identity() {
         return identity(0, 0, 0);

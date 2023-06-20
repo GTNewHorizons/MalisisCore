@@ -35,11 +35,11 @@ public class MalisisSlot {
     /** ItemStack held by this {@link MalisisSlot}. */
     private ItemStack itemStack;
     /** ItemStack cached to detect changes. */
-    private Map<EntityPlayer, ItemStack> cachedItemStacks = new HashMap<>();
+    private final Map<EntityPlayer, ItemStack> cachedItemStacks = new HashMap<>();
     /** ItemStack currently dragged into the slot. */
     private ItemStack draggedItemStack;
     /** ItemStack cached to detect changes. */
-    private Map<EntityPlayer, ItemStack> cachedDraggedItemStacks = new HashMap<>();
+    private final Map<EntityPlayer, ItemStack> cachedDraggedItemStacks = new HashMap<>();
     /** Slot position within its {@link MalisisInventory}. */
     public int slotNumber;
     /** {@link InventoryState} of this slot. */

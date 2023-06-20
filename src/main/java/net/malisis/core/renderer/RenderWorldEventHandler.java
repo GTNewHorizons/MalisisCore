@@ -28,9 +28,9 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
  */
 public class RenderWorldEventHandler {
 
-    private static RenderWorldEventHandler instance = new RenderWorldEventHandler();
+    private static final RenderWorldEventHandler instance = new RenderWorldEventHandler();
 
-    private List<IRenderWorldLast> renderers = new ArrayList<>();
+    private final List<IRenderWorldLast> renderers = new ArrayList<>();
 
     private void _register(IRenderWorldLast renderer) {
         if (renderers.size() == 0) MinecraftForge.EVENT_BUS.register(this);

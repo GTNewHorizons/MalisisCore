@@ -15,7 +15,7 @@ package net.malisis.core.inventory;
 
 public abstract class InventoryEvent {
 
-    private MalisisInventory inventory;
+    private final MalisisInventory inventory;
 
     public InventoryEvent(MalisisInventory inventory) {
         this.inventory = inventory;
@@ -30,7 +30,7 @@ public abstract class InventoryEvent {
      */
     public static class SlotChanged extends InventoryEvent {
 
-        private MalisisSlot slot;
+        private final MalisisSlot slot;
 
         public SlotChanged(MalisisInventory inventory, MalisisSlot slot) {
             super(inventory);
@@ -47,7 +47,7 @@ public abstract class InventoryEvent {
      */
     public static class Open extends InventoryEvent {
 
-        private MalisisInventoryContainer container;
+        private final MalisisInventoryContainer container;
 
         public Open(MalisisInventoryContainer container, MalisisInventory inventory) {
             super(inventory);

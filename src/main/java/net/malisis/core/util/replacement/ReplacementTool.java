@@ -43,20 +43,20 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public class ReplacementTool {
 
-    private static ReplacementTool instance = new ReplacementTool();
+    private static final ReplacementTool instance = new ReplacementTool();
 
     /**
      * List of original {@link Block} being replaced. The key is the replacement, the value is the Vanilla
      * {@code Block}.
      */
-    private HashMap<Block, Block> originalBlocks = new HashMap<>();
+    private final HashMap<Block, Block> originalBlocks = new HashMap<>();
     /**
      * List of original {@link Item} being replaced. The key is the replacement, the value is the Vanilla {@code Item}.
      */
-    private HashMap<Item, Item> originalItems = new HashMap<>();
+    private final HashMap<Item, Item> originalItems = new HashMap<>();
 
-    private Class[] types = { Integer.TYPE, String.class, Object.class };
-    private Method method = ReflectionHelper.findMethod(
+    private final Class[] types = { Integer.TYPE, String.class, Object.class };
+    private final Method method = ReflectionHelper.findMethod(
             FMLControlledNamespacedRegistry.class,
             (FMLControlledNamespacedRegistry) null,
             new String[] { "addObjectRaw" },

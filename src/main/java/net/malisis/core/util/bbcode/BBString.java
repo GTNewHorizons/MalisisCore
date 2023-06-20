@@ -34,8 +34,8 @@ import joptsimple.internal.Strings;
 public class BBString {
 
     private String text;
-    private BBNode rootNode = new BBRootNode();
-    private List<BBTextNode> textNodes = new LinkedList<>();
+    private final BBNode rootNode = new BBRootNode();
+    private final List<BBTextNode> textNodes = new LinkedList<>();
     private BBCodeRenderer renderer;
 
     public BBString() {

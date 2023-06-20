@@ -54,7 +54,7 @@ public abstract class FiniteLiquid extends BlockDynamicLiquid {
     public static int renderId = -1;
     protected String name;
 
-    private static ForgeDirection[] dirs = new ForgeDirection[] { NORTH, SOUTH, EAST, WEST };
+    private static final ForgeDirection[] dirs = new ForgeDirection[] { NORTH, SOUTH, EAST, WEST };
     private int delay = 5;
 
     public FiniteLiquid(Material material) {

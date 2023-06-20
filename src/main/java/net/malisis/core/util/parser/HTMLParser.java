@@ -35,7 +35,7 @@ public class HTMLParser extends Parser<HTMLNode> {
 
     private HTMLNode currentNode;
     private HTMLNode rootNode;
-    private LinkedList<HTMLNode> openTags = new LinkedList<>();
+    private final LinkedList<HTMLNode> openTags = new LinkedList<>();
 
     public HTMLParser(String text) {
         super(text);

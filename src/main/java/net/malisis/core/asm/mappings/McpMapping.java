@@ -23,7 +23,7 @@ public abstract class McpMapping<T extends AbstractInsnNode> {
     protected String mcpName;
     protected String owner;
     protected String descriptor;
-    private boolean isObfEnv = !(boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
+    private final boolean isObfEnv = !(boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
 
     public McpMapping(String mcp, String srg, String owner, String descriptor) {
         this.mcpName = mcp;

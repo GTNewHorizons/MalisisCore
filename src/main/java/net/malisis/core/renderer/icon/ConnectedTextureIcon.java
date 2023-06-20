@@ -50,7 +50,7 @@ public class ConnectedTextureIcon extends MalisisIcon {
     };
     // @formatter:on
 
-    private MalisisIcon[] icons = new MalisisIcon[16];
+    private final MalisisIcon[] icons = new MalisisIcon[16];
 
     public ConnectedTextureIcon(String name, MalisisIcon part1, MalisisIcon part2) {
         super(name);

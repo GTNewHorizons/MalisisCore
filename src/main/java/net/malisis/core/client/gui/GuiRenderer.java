@@ -63,7 +63,7 @@ public class GuiRenderer extends MalisisRenderer {
     /** Currently used {@link GuiTexture}. */
     private GuiTexture currentTexture;
 
-    private static GuiShape rectangle = new SimpleGuiShape();
+    private static final GuiShape rectangle = new SimpleGuiShape();
 
     /**
      * Instantiates a new {@link GuiRenderer}.

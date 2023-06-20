@@ -37,21 +37,21 @@ import org.apache.commons.lang3.tuple.Pair;
 public class RaytraceBlock {
 
     /** World reference **/
-    private WeakReference<World> world;
+    private final WeakReference<World> world;
     /** X coordinate of the block being ray traced. */
-    private int x;
+    private final int x;
     /** Y coordinate of the block being ray traced. */
-    private int y;
+    private final int y;
     /** Z coordinate of the block being ray traced. */
-    private int z;
+    private final int z;
     /** Block being ray traced. */
-    private Block block;
+    private final Block block;
     /** Source of the ray trace. */
-    private Point src;
+    private final Point src;
     /** Destination of the ray trace. */
     private Point dest;
     /** Ray describing the ray trace. */
-    private Ray ray;
+    private final Ray ray;
 
     /**
      * Instantiates a new {@link RaytraceBlock}.

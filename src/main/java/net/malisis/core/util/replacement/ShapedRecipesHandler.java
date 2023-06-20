@@ -25,7 +25,7 @@ import net.minecraft.item.crafting.ShapedRecipes;
  */
 public class ShapedRecipesHandler extends ReplacementHandler<ShapedRecipes> {
 
-    private Field outputField;
+    private final Field outputField;
 
     public ShapedRecipesHandler() {
         super(ShapedRecipes.class);

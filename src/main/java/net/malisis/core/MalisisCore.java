@@ -79,7 +79,7 @@ public class MalisisCore implements IMalisisMod {
     public static MalisisNetwork network;
 
     /** List of {@link IMalisisMod} registered. */
-    private HashMap<String, IMalisisMod> registeredMods = new HashMap<>();
+    private final HashMap<String, IMalisisMod> registeredMods = new HashMap<>();
 
     /** Whether the mod is currently running in obfuscated environment or not. */
     public static boolean isObfEnv = false;

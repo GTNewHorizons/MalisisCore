@@ -30,8 +30,8 @@ import net.minecraftforge.common.config.Configuration;
  */
 public class Settings {
 
-    private Configuration config;
-    private HashMap<String, ArrayList<Setting>> categorySettings = new HashMap<>();
+    private final Configuration config;
+    private final HashMap<String, ArrayList<Setting>> categorySettings = new HashMap<>();
 
     public Settings(File file) {
         this(new Configuration(file));

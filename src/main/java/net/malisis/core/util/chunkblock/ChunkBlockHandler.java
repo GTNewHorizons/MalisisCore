@@ -48,11 +48,11 @@ import io.netty.buffer.Unpooled;
  */
 public class ChunkBlockHandler implements IChunkBlockHandler {
 
-    private static ChunkBlockHandler instance = new ChunkBlockHandler();
+    private static final ChunkBlockHandler instance = new ChunkBlockHandler();
 
-    private Map<Chunk, TLongHashSet> serverChunks = new WeakHashMap();
-    private Map<Chunk, TLongHashSet> clientChunks = new WeakHashMap();
-    private List<IChunkBlockHandler> handlers = new ArrayList();
+    private final Map<Chunk, TLongHashSet> serverChunks = new WeakHashMap();
+    private final Map<Chunk, TLongHashSet> clientChunks = new WeakHashMap();
+    private final List<IChunkBlockHandler> handlers = new ArrayList();
 
     public ChunkBlockHandler() {
         handlers.add(new ChunkListener());

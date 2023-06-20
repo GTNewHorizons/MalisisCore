@@ -32,7 +32,7 @@ public class UIMoveHandle extends UIComponent<UIMoveHandle> implements IControlC
         VERTICAL
     }
 
-    private Type type;
+    private final Type type;
 
     public UIMoveHandle(MalisisGui gui, UIComponent parent, Type type) {
         super(gui);

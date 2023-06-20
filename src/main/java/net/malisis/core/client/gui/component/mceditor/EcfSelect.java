@@ -27,7 +27,7 @@ import com.google.common.base.Function;
  */
 public class EcfSelect extends UISelect<EnumChatFormatting> {
 
-    private MCEditor editor;
+    private final MCEditor editor;
 
     public EcfSelect(MalisisGui gui, MCEditor editor) {
         super(gui, 80);

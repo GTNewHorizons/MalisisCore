@@ -307,8 +307,8 @@ public class BlockPos {
 
     public static class BlockIterator implements Iterator<BlockPos> {
 
-        private BlockPos from;
-        private BlockPos to;
+        private final BlockPos from;
+        private final BlockPos to;
 
         private int x;
         private int y;

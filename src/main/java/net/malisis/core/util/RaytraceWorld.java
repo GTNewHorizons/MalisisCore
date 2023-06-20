@@ -34,17 +34,17 @@ public class RaytraceWorld {
     /** Number of blocks before we consider ray trace failed. */
     private static final int MAX_BLOCKS = 200;
     /** World object (needed for ray tracing inside each block). */
-    private World world;
+    private final World world;
     /** Source of the ray trace. */
-    private Point src;
+    private final Point src;
     /** Destination of the ray trace. */
     private Point dest;
     /** Ray describing the ray trace. */
-    private Ray ray;
+    private final Ray ray;
     /** Vector describing the direction of steps to take when reaching limits of a block. */
-    private Vector step;
+    private final Vector step;
     /** The block coordinates of the source. */
-    private ChunkPosition blockSrc;
+    private final ChunkPosition blockSrc;
     /** The block coordinates of the destination. */
     private ChunkPosition blockDest;
 

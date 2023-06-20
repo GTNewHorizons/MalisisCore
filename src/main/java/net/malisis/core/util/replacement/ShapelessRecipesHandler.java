@@ -26,7 +26,7 @@ import net.minecraft.item.crafting.ShapelessRecipes;
  */
 public class ShapelessRecipesHandler extends ReplacementHandler<ShapelessRecipes> {
 
-    private Field outputField;
+    private final Field outputField;
 
     public ShapelessRecipesHandler() {
         super(ShapelessRecipes.class);
