@@ -65,7 +65,7 @@ public class BBItemNode extends BBNode {
 
         String[] split = name.split("@");
         String name = split[0];
-        int metadata = split.length > 1 ? Integer.valueOf(split[1]) : 0;
+        int metadata = split.length > 1 ? Integer.parseInt(split[1]) : 0;
 
         Block b = Block.getBlockFromName(name);
         if (b != null) itemStack = new ItemStack(b, 0, metadata);
