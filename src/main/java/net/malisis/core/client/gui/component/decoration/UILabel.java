@@ -15,6 +15,7 @@ package net.malisis.core.client.gui.component.decoration;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 import net.malisis.core.client.gui.GuiRenderer;
 import net.malisis.core.client.gui.MalisisGui;
@@ -148,7 +149,7 @@ public class UILabel extends UIComponent<UILabel> implements IScrollable, IGuiTe
      * @return this {@link UILabel}
      */
     public UILabel setText(String text) {
-        if (text == this.text || (text != null && text.equals(this.text))) return this;
+        if (Objects.equals(text, this.text)) return this;
 
         this.text = text;
         this.bbText = null;
