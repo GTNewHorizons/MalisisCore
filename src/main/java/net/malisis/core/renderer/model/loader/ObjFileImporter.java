@@ -172,7 +172,7 @@ public class ObjFileImporter implements IModelLoader {
 
             addShape("");
         } catch (Exception e) {
-            MalisisCore.log.error("[ObjFileImporter] An error happened while reading the file : {}", e);
+            MalisisCore.log.error("[ObjFileImporter] An error happened while reading the file : {0}", e);
         }
     }
 
