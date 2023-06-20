@@ -183,7 +183,7 @@ public class Syncer {
     }
 
     private void registerAutoSync(Object caller) {
-        if (syncCache.get(caller) != null) return;
+        syncCache.get(caller);
     }
 
     /**

@@ -555,7 +555,6 @@ public abstract class MalisisGui extends GuiScreen {
         if (this.mc.thePlayer != null) this.mc.thePlayer.closeScreen();
         this.mc.displayGuiScreen(null);
         this.mc.setIngameFocus();
-        return;
     }
 
     public void displayOverlay() {

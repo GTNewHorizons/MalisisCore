@@ -337,8 +337,6 @@ public class MultiBlock {
         aabb = AxisAlignedBB.getBoundingBox(0, 0, 0, 1, 1, 1);
         aabb = AABBUtils.readFromNBT(tag, aabb);
         if (tag.hasKey("direction")) direction = ForgeDirection.getOrientation(tag.getInteger("direction"));
-
-        return;
     }
 
     /**

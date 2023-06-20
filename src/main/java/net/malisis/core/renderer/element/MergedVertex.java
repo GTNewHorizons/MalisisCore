@@ -189,8 +189,6 @@ public class MergedVertex implements ITransformable.Translate, ITransformable.Ro
         for (Vertex v : vertexes) v.applyMatrix(transformMatrix);
 
         resetMatrix();
-
-        return;
     }
 
     /**
