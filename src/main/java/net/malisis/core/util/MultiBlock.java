@@ -213,7 +213,7 @@ public class MultiBlock {
         int eZ = z + (int) aabb.maxZ;
 
         int size = (eX - sX) * (eY - sY) * (eZ - sZ) - 1;
-        ChunkPosition[] pos = new ChunkPosition[size >= 0 ? size : 0];
+        ChunkPosition[] pos = new ChunkPosition[Math.max(size, 0)];
 
         int n = 0;
         for (int i = sX; i < eX; i++)

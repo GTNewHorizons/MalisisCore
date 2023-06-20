@@ -368,8 +368,7 @@ public class Vertex {
 
     public static double clamp(double value, double min, double max) {
         if (value < min) return min;
-        if (value > max) return max;
-        return value;
+        return Math.min(value, max);
     }
 
     public void applyMatrix(Matrix4f transformMatrix) {
