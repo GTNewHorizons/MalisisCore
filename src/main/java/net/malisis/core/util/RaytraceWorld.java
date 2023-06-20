@@ -79,7 +79,7 @@ public class RaytraceWorld {
 
         step = new Vector(stepX, stepY, stepZ);
 
-        if (hasOption(Options.LOG_BLOCK_PASSED)) blockPassed = new HashMap<ChunkPosition, MovingObjectPosition>();
+        if (hasOption(Options.LOG_BLOCK_PASSED)) blockPassed = new HashMap<>();
     }
 
     /**

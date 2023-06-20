@@ -89,7 +89,7 @@ public abstract class UIListContainer<T extends UIListContainer, S> extends UICo
     }
 
     public S select(S element) {
-        if (!fireEvent(new SelectEvent<S>(this, element))) return getSelected();
+        if (!fireEvent(new SelectEvent<>(this, element))) return getSelected();
 
         setSelected(element);
         return element;

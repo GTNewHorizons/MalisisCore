@@ -133,7 +133,7 @@ public class AsmHook {
 
     public void register(HashMap<String, ArrayList<AsmHook>> listHooks) {
         ArrayList<AsmHook> hooks = listHooks.get(mapping.getTargetClass());
-        if (hooks == null) hooks = new ArrayList<AsmHook>();
+        if (hooks == null) hooks = new ArrayList<>();
         hooks.add(this);
         listHooks.put(mapping.getTargetClass(), hooks);
     }

@@ -63,7 +63,7 @@ public class RaytraceBlock {
      * @param z     the z
      */
     private RaytraceBlock(World world, Ray ray, int x, int y, int z) {
-        this.world = new WeakReference<World>(world);
+        this.world = new WeakReference<>(world);
         this.src = ray.origin;
         this.ray = ray;
         this.x = x;

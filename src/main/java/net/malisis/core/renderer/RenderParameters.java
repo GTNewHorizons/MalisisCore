@@ -59,7 +59,7 @@ public class RenderParameters implements ITransformable.Color, ITransformable.Al
      * Defines whether to use block.getIcon(world, x, y, z, side) instead of block.getIcon(side, metadata) to get the
      * IIcon
      */
-    public Parameter<Boolean> useWorldSensitiveIcon = new Parameter<Boolean>(true);
+    public Parameter<Boolean> useWorldSensitiveIcon = new Parameter<>(true);
     /**
      * Defines whether to use a texture (will call addVertexWithUV instead of addVertex)
      */

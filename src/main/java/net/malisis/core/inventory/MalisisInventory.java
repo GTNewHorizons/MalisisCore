@@ -49,8 +49,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class MalisisInventory implements IInventory {
 
     /** List of {@link MalisisInventory} that is currently containing this {@link MalisisInventory}. */
-    protected Set<MalisisInventoryContainer> containers = Collections
-            .newSetFromMap(new WeakHashMap<MalisisInventoryContainer, Boolean>());
+    protected Set<MalisisInventoryContainer> containers = Collections.newSetFromMap(new WeakHashMap<>());
     /** The inventory id inside the container. */
     protected int inventoryId;
     /** Object containing this {@link MalisisInventory}. */

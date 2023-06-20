@@ -435,7 +435,7 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
         T value = option != null ? option.getKey() : null;
         if (option.equals(selectedOption)) return value;
 
-        if (fireEvent(new SelectEvent<T>(this, value))) setSelectedOption(option);
+        if (fireEvent(new SelectEvent<>(this, value))) setSelectedOption(option);
 
         if (expanded && maxDisplayedOptions < options.size()) {
             int i = getSelectedIndex();

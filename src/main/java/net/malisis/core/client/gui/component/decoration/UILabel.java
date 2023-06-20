@@ -320,7 +320,7 @@ public class UILabel extends UIComponent<UILabel> implements IScrollable, IGuiTe
 
         if (!StringUtils.isEmpty(text)) lines = font.wrapText(text, getWidth(), fro);
 
-        fireEvent(new ContentUpdateEvent<UILabel>(this));
+        fireEvent(new ContentUpdateEvent<>(this));
     }
 
     /**

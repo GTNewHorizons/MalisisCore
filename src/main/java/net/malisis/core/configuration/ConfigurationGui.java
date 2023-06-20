@@ -91,8 +91,7 @@ public class ConfigurationGui extends MalisisGui {
 
     private UIContainer createSettingContainer(String category) {
         List<Setting> categorySettings = settings.getSettings(category);
-        UIContainer container = new UIContainer<UIContainer>(this, windowWidth - 105, windowHeight - 35)
-                .setPosition(5, 12);
+        UIContainer container = new UIContainer<>(this, windowWidth - 105, windowHeight - 35).setPosition(5, 12);
 
         int y = 0;
         for (Setting setting : categorySettings) {

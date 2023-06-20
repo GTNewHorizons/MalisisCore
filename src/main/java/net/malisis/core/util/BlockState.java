@@ -202,7 +202,7 @@ public class BlockState {
         public WeakReference<IBlockAccess> world;
 
         public BlockStateFunction set(IBlockAccess world) {
-            this.world = new WeakReference<IBlockAccess>(world);
+            this.world = new WeakReference<>(world);
             return this;
         }
 

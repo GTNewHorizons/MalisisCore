@@ -576,7 +576,7 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
         if (face == null) return this;
         enableMergedVertexes();
 
-        HashMap<String, Vertex> vertexNames = new HashMap<String, Vertex>();
+        HashMap<String, Vertex> vertexNames = new HashMap<>();
         double x = 0, y = 0, z = 0;
         for (Vertex v : face.getVertexes()) {
             vertexNames.put(v.name(), v);

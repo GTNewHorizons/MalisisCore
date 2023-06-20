@@ -597,7 +597,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
             }
         }
 
-        fireEvent(new ContentUpdateEvent<UITextField>(this));
+        fireEvent(new ContentUpdateEvent<>(this));
     }
 
     /**
