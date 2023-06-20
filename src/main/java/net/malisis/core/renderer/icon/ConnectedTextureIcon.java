@@ -25,10 +25,10 @@ import net.minecraftforge.common.util.ForgeDirection;
  * Implementation that handles automatically connected textures. Two texture files are required, that will be stiched to
  * the texture sheet. The {@link ConnectedTextureIcon} will then clip different parts for different connection
  * cases.<br>
- * The textures need to have a specific pattern (http://puu.sh/bIWaX.png).
+ * The textures need to have a specific pattern (<a href="http://puu.sh/bIWaX.png">link</a>,
+ * <a href="https://files.catbox.moe/l5r9ro.png">mirror</a>).
  *
  * @author Ordinastie
- *
  */
 public class ConnectedTextureIcon extends MalisisIcon {
 
