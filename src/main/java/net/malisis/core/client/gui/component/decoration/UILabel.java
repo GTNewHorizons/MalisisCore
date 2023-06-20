@@ -118,7 +118,7 @@ public class UILabel extends UIComponent<UILabel> implements IScrollable, IGuiTe
      * @param multiLine the multi line
      */
     public UILabel(MalisisGui gui, boolean multiLine) {
-        this(gui, (String) null, multiLine);
+        this(gui, null, multiLine);
     }
 
     /**
@@ -127,7 +127,7 @@ public class UILabel extends UIComponent<UILabel> implements IScrollable, IGuiTe
      * @param gui the gui
      */
     public UILabel(MalisisGui gui) {
-        this(gui, (String) null, false);
+        this(gui, null, false);
     }
 
     // region getters/setters

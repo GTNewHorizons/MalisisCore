@@ -56,11 +56,8 @@ public class ReplacementTool {
     private final HashMap<Item, Item> originalItems = new HashMap<>();
 
     private final Class[] types = { Integer.TYPE, String.class, Object.class };
-    private final Method method = ReflectionHelper.findMethod(
-            FMLControlledNamespacedRegistry.class,
-            (FMLControlledNamespacedRegistry) null,
-            new String[] { "addObjectRaw" },
-            types);
+    private final Method method = ReflectionHelper
+            .findMethod(FMLControlledNamespacedRegistry.class, null, new String[] { "addObjectRaw" }, types);
 
     private ReplacementTool() {
         new ShapedOreRecipeHandler();

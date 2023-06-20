@@ -109,7 +109,7 @@ public class Syncer {
         for (ASMData data : asmDataTable.getAll(Syncable.class.getName())) {
             try {
                 Class<?> clazz = Class.forName(data.getClassName());
-                Syncable anno = (Syncable) clazz.getAnnotation(Syncable.class);
+                Syncable anno = clazz.getAnnotation(Syncable.class);
                 ISyncHandler<?, ? extends ISyncableData> handler = handlers.get(anno.value());
                 classToHandler.put(clazz, handler);
 

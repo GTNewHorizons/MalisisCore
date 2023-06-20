@@ -553,7 +553,7 @@ public abstract class MalisisGui extends GuiScreen {
         setHoveredComponent(null, true);
         Keyboard.enableRepeatEvents(false);
         if (this.mc.thePlayer != null) this.mc.thePlayer.closeScreen();
-        this.mc.displayGuiScreen((GuiScreen) null);
+        this.mc.displayGuiScreen(null);
         this.mc.setIngameFocus();
         return;
     }
