@@ -44,7 +44,6 @@ import org.lwjgl.opengl.GL11;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-import com.google.common.eventbus.Subscribe;
 
 /**
  * UITextField.
@@ -1086,7 +1085,8 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         return text + " | " + super.getPropertyString();
     }
 
-    @Subscribe
+    // Uncomment the Subscribe tag if there's any code in the function.
+    // @Subscribe
     public void onSizeUpdate(SizeChangeEvent<UIComponent> event) {}
 
     // region CursorPosition
