@@ -1085,9 +1085,6 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         return text + " | " + super.getPropertyString();
     }
 
-    // TODO: The @Subscribe system is deprecated in Java 8 because of lambdas. Feel free to migrate from it.
-    // For more info, see https://github.com/google/guava/wiki/EventBusExplained
-
     // Uncomment the Subscribe tag if there's any code in the function.
     // @Subscribe
     public void onSizeUpdate(SizeChangeEvent<UIComponent> event) {}
