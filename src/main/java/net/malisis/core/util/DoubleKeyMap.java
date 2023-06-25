@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import com.google.common.base.Function;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.HashBiMap;
@@ -30,9 +29,9 @@ public class DoubleKeyMap<K, V> {
 
     public static class DoubleKeyEntry<K, V> {
 
-        private int index;
-        private K key;
-        private V value;
+        private final int index;
+        private final K key;
+        private final V value;
 
         public DoubleKeyEntry(int index, K key, V value) {
             this.index = index;
@@ -53,15 +52,15 @@ public class DoubleKeyMap<K, V> {
         }
     }
 
-    private List<DoubleKeyEntry<K, V>> data = new ArrayList<>();
-    private BiMap<K, Integer> keys = HashBiMap.create();
+    private final List<DoubleKeyEntry<K, V>> data = new ArrayList<>();
+    private final BiMap<K, Integer> keys = HashBiMap.create();
 
     public int put(K key, V value) {
         if (keys.get(key) != null) throw new IllegalArgumentException("Key already in map : " + key);
 
         int i = data.size();
         keys.put(key, i);
-        data.add(new DoubleKeyEntry<K, V>(i, key, value));
+        data.add(new DoubleKeyEntry<>(i, key, value));
         return i;
     }
 
@@ -94,12 +93,6 @@ public class DoubleKeyMap<K, V> {
     }
 
     public Collection<V> values() {
-        return Collections2.transform(data, new Function<DoubleKeyEntry<K, V>, V>() {
-
-            @Override
-            public V apply(DoubleKeyEntry<K, V> entry) {
-                return entry.getValue();
-            }
-        });
+        return Collections2.transform(data, DoubleKeyEntry::getValue);
     }
 }

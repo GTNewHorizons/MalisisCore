@@ -26,5 +26,5 @@ public interface IChunkBlock {
      *
      * @return the int
      */
-    public int blockRange();
+    int blockRange();
 }

@@ -30,7 +30,7 @@ public interface IGuiText<T> {
      *
      * @return the font
      */
-    public MalisisFont getFont();
+    MalisisFont getFont();
 
     /**
      * Sets the {@link MalisisFont}.
@@ -38,14 +38,14 @@ public interface IGuiText<T> {
      * @param font the new font
      * @return the t
      */
-    public T setFont(MalisisFont font);
+    T setFont(MalisisFont font);
 
     /**
      * Gets the {@link FontRenderOptions}.
      *
      * @return the font renderer options
      */
-    public FontRenderOptions getFontRenderOptions();
+    FontRenderOptions getFontRenderOptions();
 
     /**
      * Sets the {@link FontRenderOptions}.
@@ -53,5 +53,5 @@ public interface IGuiText<T> {
      * @param fro the fro
      * @return the t
      */
-    public T setFontRenderOptions(FontRenderOptions fro);
+    T setFontRenderOptions(FontRenderOptions fro);
 }

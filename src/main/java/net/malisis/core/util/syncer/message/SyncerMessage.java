@@ -13,6 +13,7 @@
 
 package net.malisis.core.util.syncer.message;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -51,7 +52,7 @@ public class SyncerMessage implements IMessageHandler<SyncerMessage.Packet, IMes
      *
      * @param message the message
      * @param ctx     the ctx
-     * @return the i message
+     * @return the message
      */
     @Override
     public IMessage onMessage(Packet message, MessageContext ctx) {
@@ -108,9 +109,10 @@ public class SyncerMessage implements IMessageHandler<SyncerMessage.Packet, IMes
                     if (ISyncableData.class.isAssignableFrom(clazz)) {
                         if (buf.readBoolean()) {
                             try {
-                                data = clazz.newInstance();
+                                data = clazz.getDeclaredConstructor().newInstance();
                                 ((ISyncableData) data).fromBytes(buf);
-                            } catch (InstantiationException | IllegalAccessException e) {
+                            } catch (InvocationTargetException | InstantiationException | IllegalAccessException
+                                    | NoSuchMethodException e) {
                                 e.printStackTrace();
                             }
                         }

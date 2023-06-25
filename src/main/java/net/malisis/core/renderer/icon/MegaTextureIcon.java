@@ -28,7 +28,7 @@ import net.minecraftforge.common.util.ForgeDirection;
  */
 public class MegaTextureIcon extends MalisisIcon {
 
-    private static HashMap<ForgeDirection, ForgeDirection[]> searchDirs = new HashMap<>();
+    private static final HashMap<ForgeDirection, ForgeDirection[]> searchDirs = new HashMap<>();
 
     static {
         searchDirs.put(NORTH, new ForgeDirection[] { DOWN, EAST });

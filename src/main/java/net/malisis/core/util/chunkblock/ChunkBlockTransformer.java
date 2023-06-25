@@ -74,9 +74,6 @@ public class ChunkBlockTransformer extends MalisisClassTransformer {
         match.add(new VarInsnNode(ALOAD, 4));
         match.add(setExtBlockID.getInsnNode(INVOKEVIRTUAL));
 
-        // if (!ChunkBlockHandler.get().updateCoordinates(chunk, x, y, z, old, block))
-        // return false;
-
         LabelNode falseLabel = new LabelNode();
         InsnList insert = new InsnList();
         insert.add(

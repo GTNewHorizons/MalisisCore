@@ -35,8 +35,8 @@ import com.google.common.collect.FluentIterable;
  */
 public class BlockState {
 
-    private static BlockStateFunction toBlockState = new BlockStateFunction();
-    private static BlockPredicate blockFilter = new BlockPredicate();
+    private static final BlockStateFunction toBlockState = new BlockStateFunction();
+    private static final BlockPredicate blockFilter = new BlockPredicate();
 
     protected BlockPos pos;
     protected Block block;
@@ -192,7 +192,7 @@ public class BlockState {
     public static NBTTagCompound toNBT(NBTTagCompound nbt, BlockState state, String blockName, String metadataName) {
         if (state == null) return nbt;
 
-        nbt.setString(blockName, Block.blockRegistry.getNameForObject(state.getBlock()).toString());
+        nbt.setString(blockName, Block.blockRegistry.getNameForObject(state.getBlock()));
         nbt.setInteger(metadataName, state.getMetadata());
         return nbt;
     }
@@ -202,7 +202,7 @@ public class BlockState {
         public WeakReference<IBlockAccess> world;
 
         public BlockStateFunction set(IBlockAccess world) {
-            this.world = new WeakReference<IBlockAccess>(world);
+            this.world = new WeakReference<>(world);
             return this;
         }
 

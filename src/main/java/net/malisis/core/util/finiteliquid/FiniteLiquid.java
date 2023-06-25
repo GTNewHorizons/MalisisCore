@@ -54,7 +54,7 @@ public abstract class FiniteLiquid extends BlockDynamicLiquid {
     public static int renderId = -1;
     protected String name;
 
-    private static ForgeDirection[] dirs = new ForgeDirection[] { NORTH, SOUTH, EAST, WEST };
+    private static final ForgeDirection[] dirs = new ForgeDirection[] { NORTH, SOUTH, EAST, WEST };
     private int delay = 5;
 
     public FiniteLiquid(Material material) {
@@ -128,8 +128,6 @@ public abstract class FiniteLiquid extends BlockDynamicLiquid {
 
     private void spreadLiquid(World world, int x, int y, int z) {
         BlockState state = new BlockState(world, x, y, z);
-        // if (getAmount(state) <= 1)
-        // return;
 
         FloodFill ff = new FloodFill(this, world, state);
         ff.parse();
@@ -163,9 +161,10 @@ public abstract class FiniteLiquid extends BlockDynamicLiquid {
     @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess worldIn, int x, int y, int z, int side) {
-        Material material = worldIn.getBlock(x, y, z).getMaterial();
-        return material == this.blockMaterial ? false
-                : (side == 1 ? true : super.shouldSideBeRendered(worldIn, x, y, z, side));
+        final Material material = worldIn.getBlock(x, y, z).getMaterial();
+        final boolean isBlockMaterial = material == this.blockMaterial;
+        final boolean shouldBeRendered = super.shouldSideBeRendered(worldIn, x, y, z, side);
+        return !isBlockMaterial && (side == 1 || shouldBeRendered);
     }
 
     @Override

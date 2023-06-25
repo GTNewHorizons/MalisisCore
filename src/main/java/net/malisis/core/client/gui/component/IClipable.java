@@ -29,54 +29,54 @@ public interface IClipable {
      *
      * @return the clip area.
      */
-    public ClipArea getClipArea();
+    ClipArea getClipArea();
 
     /**
      * Sets whether this {@link IClipable} should clip or not.
      *
      * @param clip the new clip content
      */
-    public void setClipContent(boolean clip);
+    void setClipContent(boolean clip);
 
     /**
      * Checks whether this {@link IClipable} should clip or not.
      *
-     * @return true, if should clip
+     * @return true if it should clip
      */
-    public boolean shouldClipContent();
+    boolean shouldClipContent();
 
     /**
      * Gets the X position on the screen. See {@link UIComponent#screenX()}.
      *
      * @return the coordinate
      */
-    public int screenX();
+    int screenX();
 
     /**
      * Gets the Y position on the screen. See {@link UIComponent#screenY()}.
      *
      * @return the coordinate
      */
-    public int screenY();
+    int screenY();
 
     /**
      * Gets the with of this {@link IClipable}. See {@link UIComponent#getWidth()}.
      *
      * @return the width
      */
-    public int getWidth();
+    int getWidth();
 
     /**
      * Gets the with of this {@link IClipable}. See {@link UIComponent#getHeight()}.
      *
      * @return the height
      */
-    public int getHeight();
+    int getHeight();
 
     /**
      * Gets the parent {@link UIComponent} of this {@link IClipable}.
      *
      * @return the parent
      */
-    public UIComponent getParent();
+    UIComponent getParent();
 }

@@ -44,7 +44,6 @@ import org.lwjgl.opengl.GL11;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-import com.google.common.eventbus.Subscribe;
 
 /**
  * UITextField.
@@ -175,7 +174,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         buildLines();
     }
 
-    // #region Getters/Setters
+    // region Getters/Setters
     @Override
     public MalisisFont getFont() {
         return font;
@@ -246,7 +245,6 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         charOffset = 0;
         lineOffset = 0;
         if (focused) cursorPosition.jumpToEnd();
-        // fireEvent(new TextChanged(this));
     }
 
     /**
@@ -466,9 +464,9 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         return this;
     }
 
-    // #end Getters/Setters
+    // endregion Getters/Setters
 
-    // #region IScrollable
+    // region IScrollable
 
     /**
      * Gets the content width.
@@ -562,7 +560,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         return 1;
     }
 
-    // #end IScrollable
+    // endregion IScrollable
 
     /**
      * Gets the number of visible lines inside this {@link UITextField}.
@@ -582,7 +580,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         return (int) (font.getStringHeight(fro) + lineSpacing);
     }
 
-    // #end IBBSRenderer
+    // endregion IBBSRenderer
 
     /**
      * Builds the lines for this {@link UITextField}.
@@ -598,7 +596,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
             }
         }
 
-        fireEvent(new ContentUpdateEvent<UITextField>(this));
+        fireEvent(new ContentUpdateEvent<>(this));
     }
 
     /**
@@ -716,7 +714,6 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         if (!multiLine) {
             if (cursorPosition.character < charOffset) charOffset = cursorPosition.character;
             else if (text.length() != 0) {
-                // charOffset = 0;
                 while (font.getStringWidth(text.substring(charOffset, cursorPosition.textPosition), fro)
                         >= getWidth() - 4)
                     charOffset++;
@@ -741,7 +738,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         } else selectingText = false;
     }
 
-    // #region Input
+    // region Input
 
     /**
      * On button press.
@@ -817,7 +814,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
     }
 
     /**
-     * On double click.
+     * Gets called on double-click.
      *
      * @param x      the x
      * @param y      the y
@@ -898,7 +895,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
                 if (isEditable()) addText("\t");
                 break;
             default:
-                if ((ChatAllowedCharacters.isAllowedCharacter(keyChar) || keyChar == '\u00a7') && isEditable()) {
+                if ((ChatAllowedCharacters.isAllowedCharacter(keyChar) || keyChar == '§') && isEditable()) {
                     this.addText(Character.toString(keyChar));
                     break;
                 } else return super.onKeyTyped(keyChar, keyCode);
@@ -958,7 +955,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         }
     }
 
-    // #end Input
+    // endregion Input
 
     /**
      * Draws the background.
@@ -1088,13 +1085,11 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         return text + " | " + super.getPropertyString();
     }
 
-    @Subscribe
-    public void onSizeUpdate(SizeChangeEvent<UIComponent> event) {
-        // if (event.getComponent() != this)
-        // buildLines();
-    }
+    // Uncomment the Subscribe tag if there's any code in the function.
+    // @Subscribe
+    public void onSizeUpdate(SizeChangeEvent<UIComponent> event) {}
 
-    // #region CursorPosition
+    // region CursorPosition
     /**
      * This class determines a position inside the text divides in lines.
      */
@@ -1110,7 +1105,7 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         protected int lastOffset;
 
         /**
-         * Sets this {@link CursorPosition} at the same position than <b>position</b>.
+         * Sets this {@link CursorPosition} at the specified position.
          *
          * @param position the new position
          */
@@ -1260,7 +1255,6 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
 
             if (backwards) line = Math.max(0, line - 1);
             else line = Math.min(line + 1, lines.size() - 1);
-            // character = Math.min(character, currentLineText().length());
             character = Math.round(font.getCharPosition(currentLineText(), fro, lastOffset, charOffset));
             updateTextPosition();
         }
@@ -1363,6 +1357,6 @@ public class UITextField extends UIComponent<UITextField> implements IScrollable
         }
     }
 
-    // #end CursorPosition
+    // endregion CursorPosition
 
 }

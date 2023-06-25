@@ -43,12 +43,12 @@ import net.minecraft.world.chunk.Chunk;
  */
 public class ChunkCollision {
 
-    private static ChunkCollision instance = new ChunkCollision();
+    private static final ChunkCollision instance = new ChunkCollision();
 
     private Point src;
     private Point dest;
 
-    // #region getCollisionBoundinBoxes
+    // region getCollisionBoundinBoxes
     /**
      * Gets the collision bounding boxes for the intersecting chunks.<br>
      * Called via ASM from {@link World#getCollidingBoundingBoxes(Entity, AxisAlignedBB)}
@@ -65,9 +65,9 @@ public class ChunkCollision {
             ChunkBlockHandler.get().callProcedure(chunk, procedure);
     }
 
-    // #end getCollisionBoundinBoxes
+    // endregion getCollisionBoundinBoxes
 
-    // #region getRayTraceResult
+    // region getRayTraceResult
     /**
      * Sets the ray trace infos.<br>
      * Called via ASM at the beginning of {@link World#rayTraceBlocks(Vec3, Vec3, boolean, boolean, boolean)}
@@ -132,9 +132,9 @@ public class ChunkCollision {
         return mop1;
     }
 
-    // #end getRayTraceResult
+    // endregion getRayTraceResult
 
-    // #region canPlaceBlockAt
+    // region canPlaceBlockAt
     /**
      * Checks whether the block can be placed at the position.<br>
      * Called via ASM from
@@ -148,7 +148,7 @@ public class ChunkCollision {
      * @param x     the x
      * @param y     the y
      * @param z     the z
-     * @return true, if can be placed
+     * @return true if it can be placed
      */
     public boolean canPlaceBlockAt(ItemStack itemStack, EntityPlayer player, World world, Block block, int x, int y,
             int z, int side) {
@@ -182,7 +182,7 @@ public class ChunkCollision {
         return !procedure.collide;
     }
 
-    // #end canPlaceBlockAt
+    // endregion canPlaceBlockAt
 
     public void replaceBlocks(World world, BlockState state) {
         AxisAlignedBB[] aabbs = AABBUtils.getCollisionBoundingBoxes(world, state, true);
@@ -304,8 +304,7 @@ public class ChunkCollision {
             AABBUtils.offset(state.getX(), state.getY(), state.getZ(), blockBounds);
 
             collide = AABBUtils.isColliding(aabbs, blockBounds);
-            if (collide) return false;
-            return true;
+            return !collide;
         }
 
         @Override

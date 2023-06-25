@@ -42,8 +42,8 @@ import net.minecraft.item.ItemStack;
  */
 public class MalisisInventoryContainer extends Container {
 
-    // @formatter:off
     public enum ActionType {
+
         LEFT_CLICK,
         RIGHT_CLICK,
         PICKBLOCK,
@@ -69,15 +69,13 @@ public class MalisisInventoryContainer extends Container {
          * @return true, if is a drag action
          */
         public boolean isDragAction() {
-            return this == DRAG_START_LEFT_CLICK
-                    || this == DRAG_START_RIGHT_CLICK
+            return this == DRAG_START_LEFT_CLICK || this == DRAG_START_RIGHT_CLICK
                     || this == DRAG_START_PICKUP
                     || this == DRAG_ADD_SLOT
                     || this == DRAG_END
                     || this == DRAG_RESET;
         }
     }
-    // @formatter:on
 
     /** Dragging the itemStack to be spread evenly among all crossed slots. */
     public static final int DRAG_TYPE_SPREAD = 0;
@@ -88,7 +86,7 @@ public class MalisisInventoryContainer extends Container {
 
     /** Player that opened this {@link MalisisInventoryContainer}. */
     protected EntityPlayer owner;
-    /** Id to use for the next inventory added. */
+    /** ID to use for the next inventory added. */
     private int nexInventoryId = 0;
     /** List of inventories handled by this container. */
     protected HashMap<Integer, MalisisInventory> inventories = new HashMap<>();
@@ -158,7 +156,7 @@ public class MalisisInventoryContainer extends Container {
         inventories.remove(inventory.getInventoryId());
     }
 
-    // #region getters/setters
+    // region getters/setters
     /**
      * Gets the {@link MalisisInventory} of this {@link MalisisInventoryContainer} with the specified id.
      *
@@ -245,9 +243,9 @@ public class MalisisInventoryContainer extends Container {
         return dragType;
     }
 
-    // #end getters/setters
+    // endregion getters/setters
 
-    // #region network
+    // region network
     /**
      * Sends the all the inventory slots to the client.
      */
@@ -314,7 +312,7 @@ public class MalisisInventoryContainer extends Container {
         pickedItemStackCache = pickedItemStack != null ? pickedItemStack.copy() : null;
     }
 
-    // #end network
+    // endregion network
 
     /**
      * Closes this {@link MalisisInventoryContainer}, sends a message to force close the client GUI.
@@ -389,7 +387,7 @@ public class MalisisInventoryContainer extends Container {
         // player clicked outside the GUI with an item picked up
         if (action == DROP_ONE || action == DROP_STACK) return handleDropPickedStack(action == DROP_STACK);
 
-        // player middle click on a slot
+        // player middle-click on a slot
         if (action == PICKBLOCK && owner.capabilities.isCreativeMode) return handlePickBlock(slot);
 
         // normal left/right click
@@ -397,8 +395,7 @@ public class MalisisInventoryContainer extends Container {
 
         if (action == SHIFT_LEFT_CLICK) {
             // we need to store last shift clicked item for double click because at the time of the second click, slot
-            // may be empty and we
-            // wouldn't know what itemStack to move
+            // may be empty, and we wouldn't know what itemStack to move
             lastShiftClicked = slot.getItemStack();
             ItemStack itemStack = handleShiftClick(inventoryId, slot);
             if (itemStack != null) lastShiftClicked = null;
@@ -470,10 +467,7 @@ public class MalisisInventoryContainer extends Container {
             itemStack = inventories.get(0).transferInto(itemStack);
 
             slot.setItemStack(itemStack);
-            // if (slot.hasChanged())
             slot.onSlotChanged();
-
-            return itemStack;
         }
         // comes from PlayerInventory
         else {
@@ -486,12 +480,11 @@ public class MalisisInventoryContainer extends Container {
                     itemStack = targetInventory.transferInto(itemStack);
 
                     slot.setItemStack(itemStack);
-                    // if (slot.hasChanged())
                     slot.onSlotChanged();
                 }
             }
-            return itemStack;
         }
+        return itemStack;
     }
 
     /**
@@ -548,7 +541,6 @@ public class MalisisInventoryContainer extends Container {
         iss.split(fullStack ? ItemUtils.FULL_STACK : 1);
 
         slot.setItemStack(iss.source);
-        // if (slot.hasChanged())
         slot.onSlotChanged();
         owner.dropPlayerItemWithRandomChoice(iss.split, true);
 
@@ -558,7 +550,7 @@ public class MalisisInventoryContainer extends Container {
     }
 
     /**
-     * Handle double clicking on a slot.
+     * Handle double-clicking on a slot.
      *
      * @param inventoryId the inventory id
      * @param slot        the slot
@@ -579,7 +571,6 @@ public class MalisisInventoryContainer extends Container {
                         ItemUtils.ItemStacksMerger ism = new ItemStacksMerger(s.getItemStack(), pickedItemStack);
                         ism.merge();
                         s.setItemStack(ism.merge);
-                        // if (s.hasChanged())
                         s.onSlotChanged();
                         pickedItemStack = ism.into;
                     }
@@ -598,7 +589,6 @@ public class MalisisInventoryContainer extends Container {
                     if (inventoryId != 0) {
                         itemStack = inventories.get(0).transferInto(itemStack);
                         s.setItemStack(itemStack);
-                        // if (s.hasChanged())
                         s.onSlotChanged();
                     } else {
                         int i = 1;
@@ -606,7 +596,6 @@ public class MalisisInventoryContainer extends Container {
                             if (targetInventory.state.is(PLAYER_INSERT)) {
                                 itemStack = targetInventory.transferInto(itemStack);
                                 s.setItemStack(itemStack);
-                                // if (s.hasChanged())
                                 s.onSlotChanged();
                             }
                         }
@@ -704,7 +693,6 @@ public class MalisisInventoryContainer extends Container {
 
             setPickedItemStack(ism.into);
             slot.setItemStack(ism.merge);
-            // if (slot.hasChanged())
             slot.onSlotChanged();
 
             return pickedItemStack;
@@ -769,9 +757,7 @@ public class MalisisInventoryContainer extends Container {
         dragType = -1;
     }
 
-    /*
-     * COMPATIBILITY
-     */
+    // region Compatibility
 
     /**
      * Can interact with.
@@ -783,4 +769,6 @@ public class MalisisInventoryContainer extends Container {
     public boolean canInteractWith(EntityPlayer var1) {
         return true;
     }
+
+    // endregion Compatibility
 }

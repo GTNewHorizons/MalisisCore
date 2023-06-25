@@ -35,11 +35,11 @@ public class MalisisSlot {
     /** ItemStack held by this {@link MalisisSlot}. */
     private ItemStack itemStack;
     /** ItemStack cached to detect changes. */
-    private Map<EntityPlayer, ItemStack> cachedItemStacks = new HashMap<>();
+    private final Map<EntityPlayer, ItemStack> cachedItemStacks = new HashMap<>();
     /** ItemStack currently dragged into the slot. */
     private ItemStack draggedItemStack;
     /** ItemStack cached to detect changes. */
-    private Map<EntityPlayer, ItemStack> cachedDraggedItemStacks = new HashMap<>();
+    private final Map<EntityPlayer, ItemStack> cachedDraggedItemStacks = new HashMap<>();
     /** Slot position within its {@link MalisisInventory}. */
     public int slotNumber;
     /** {@link InventoryState} of this slot. */
@@ -261,7 +261,6 @@ public class MalisisSlot {
         ItemStackSplitter iss = new ItemUtils.ItemStackSplitter(getItemStack());
         iss.split(amount);
         setItemStack(iss.source);
-        // if (hasChanged())
         onSlotChanged();
         return iss.split;
     }
@@ -317,7 +316,6 @@ public class MalisisSlot {
         ism.merge(amount, getSlotStackLimit());
         setItemStack(ism.into);
 
-        // if (hasChanged())
         onSlotChanged();
 
         return ism.merge;

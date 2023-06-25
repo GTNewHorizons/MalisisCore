@@ -21,9 +21,9 @@ import net.minecraft.util.EnumChatFormatting;
  */
 public class StringWalker {
 
-    private MalisisFont font;
-    private FontRenderOptions fro;
-    private String str;
+    private final MalisisFont font;
+    private final FontRenderOptions fro;
+    private final String str;
     private boolean litteral;
     private boolean skipChars = true;
     private boolean applyStyles;
@@ -48,7 +48,7 @@ public class StringWalker {
         litteral = fro != null && fro.disableECF;
     }
 
-    // #region Getters/Setters
+    // region Getters/Setters
 
     public void setLitteral(boolean litteral) {
         this.litteral = litteral;
@@ -108,7 +108,6 @@ public class StringWalker {
 
         prevColor = fro.color;
         prevUnderline = fro.underline;
-        // fro.saveDefault();
         fro.color = 0x6666FF;
         fro.underline = true;
     }
@@ -120,7 +119,7 @@ public class StringWalker {
         fro.underline = prevUnderline;
     }
 
-    // #end Getters/Setters
+    // endregion Getters/Setters
 
     private void checkEcf() {
         ecf = FontRenderOptions.getFormatting(str, index);
@@ -167,7 +166,6 @@ public class StringWalker {
         if (index >= endIndex) return false;
 
         checkEcf();
-        // checkLink();
 
         if (index >= endIndex) return false;
 

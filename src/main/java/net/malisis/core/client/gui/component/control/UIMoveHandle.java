@@ -32,7 +32,7 @@ public class UIMoveHandle extends UIComponent<UIMoveHandle> implements IControlC
         VERTICAL
     }
 
-    private Type type;
+    private final Type type;
 
     public UIMoveHandle(MalisisGui gui, UIComponent parent, Type type) {
         super(gui);
@@ -66,11 +66,9 @@ public class UIMoveHandle extends UIComponent<UIMoveHandle> implements IControlC
         if (parentCont == null) return super.onDrag(lastX, lastY, x, y, button);
 
         int px = parent.getX();
-        if (type == Type.BOTH || type == Type.HORIZONTAL)
-            px = parentCont.relativeX(x /*- parentCont.getHorizontalPadding()*/);
+        if (type == Type.BOTH || type == Type.HORIZONTAL) px = parentCont.relativeX(x);
         int py = parent.getY();
-        if (type == Type.BOTH || type == Type.VERTICAL)
-            py = parentCont.relativeY(y /*- parentCont.getVerticalPadding()*/);
+        if (type == Type.BOTH || type == Type.VERTICAL) py = parentCont.relativeY(y);
         if (px < 0) px = 0;
         if (py < 0) py = 0;
 

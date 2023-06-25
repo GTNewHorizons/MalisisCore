@@ -27,9 +27,9 @@ import org.apache.commons.lang3.StringUtils;
 public class FontRenderOptions {
 
     /** Map of EnumChatFormatting **/
-    private static Map<Character, EnumChatFormatting> charFormats = new HashMap<>();
+    private static final Map<Character, EnumChatFormatting> charFormats = new HashMap<>();
     /** List of ECF colors **/
-    private static int[] colors = new int[32];
+    private static final int[] colors = new int[32];
 
     static {
         // could reflect to get EnumChatFormatting.formattingCodeMapping instead
@@ -40,7 +40,7 @@ public class FontRenderOptions {
             int j = (i >> 3 & 1) * 85;
             int r = (i >> 2 & 1) * 170 + j;
             int g = (i >> 1 & 1) * 170 + j;
-            int b = (i >> 0 & 1) * 170 + j;
+            int b = (i & 1) * 170 + j;
 
             if (i == 6) // GOLD
                 r += 85;
@@ -106,7 +106,7 @@ public class FontRenderOptions {
      * Applies the styles to this {@link FontRenderOptions} and returns the number of characters read.
      *
      * @param text the text
-     * @return the string with ECF
+     * @return the number of characters read
      */
     public int processStyles(String text) {
         return processStyles(text, 0);
@@ -239,7 +239,7 @@ public class FontRenderOptions {
         if (StringUtils.isEmpty(text) || index < 0 || index > text.length() - 2) return null;
 
         char c = text.charAt(index);
-        if (c != '\u00a7') return null;
+        if (c != '§') return null;
         return charFormats.get(text.charAt(index + 1));
     }
 

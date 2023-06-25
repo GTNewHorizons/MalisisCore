@@ -29,5 +29,5 @@ public interface IModelLoader {
      *
      * @return the shapes
      */
-    public Map<String, Shape> getShapes();
+    Map<String, Shape> getShapes();
 }

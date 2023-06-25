@@ -45,7 +45,7 @@ public class UIScrollBar extends UIComponent<UIScrollBar> implements IControlCom
         VERTICAL
     }
 
-    private static Map<UIComponent, Map<Type, UIScrollBar>> scrollbars = new WeakHashMap();
+    private static final Map<UIComponent, Map<Type, UIScrollBar>> scrollbars = new WeakHashMap<>();
 
     /** The scroll thickness (Width for vertical, height for horizontal). */
     protected int scrollThickness = 10;
@@ -194,7 +194,7 @@ public class UIScrollBar extends UIComponent<UIScrollBar> implements IControlCom
     }
 
     /**
-     * Gets the length of this {@link UIScrollBar} (width if {@link Type#HORIZONTAL}, height if {@link Type#VERTICAL}.
+     * Gets the length of this {@link UIScrollBar}. Width if {@link Type#HORIZONTAL}, height if {@link Type#VERTICAL}.
      *
      * @return the length
      */
@@ -381,11 +381,7 @@ public class UIScrollBar extends UIComponent<UIScrollBar> implements IControlCom
      * @param scrollbar the scrollbar
      */
     private static void addScrollbar(UIComponent component, UIScrollBar scrollbar) {
-        Map<Type, UIScrollBar> bars = scrollbars.get(component);
-        if (bars == null) {
-            bars = new HashMap<>();
-            scrollbars.put(component, bars);
-        }
+        Map<Type, UIScrollBar> bars = scrollbars.computeIfAbsent(component, k -> new HashMap<>());
 
         bars.put(scrollbar.type, scrollbar);
     }

@@ -21,7 +21,7 @@ import net.malisis.core.util.bbcode.render.BBRenderElement;
  */
 public class BBTextNode extends BBNode {
 
-    private StringBuilder text = new StringBuilder();
+    private final StringBuilder text = new StringBuilder();
     private int index;
 
     public BBTextNode(String txt) {
@@ -120,6 +120,6 @@ public class BBTextNode extends BBNode {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + " : (" + index + ") " + text.toString();
+        return getClass().getSimpleName() + " : (" + index + ") " + text;
     }
 }

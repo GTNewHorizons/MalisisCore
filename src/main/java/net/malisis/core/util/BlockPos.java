@@ -32,7 +32,7 @@ public class BlockPos {
     private static final int NUM_X_BITS = 26;
     private static final int NUM_Z_BITS = NUM_X_BITS;
     private static final int NUM_Y_BITS = 64 - NUM_X_BITS - NUM_Z_BITS;
-    private static final int Y_SHIFT = 0 + NUM_Z_BITS;
+    private static final int Y_SHIFT = NUM_Z_BITS;
     private static final int X_SHIFT = Y_SHIFT + NUM_Y_BITS;
     private static final long X_MASK = (1L << NUM_X_BITS) - 1L;
     private static final long Y_MASK = (1L << NUM_Y_BITS) - 1L;
@@ -100,7 +100,7 @@ public class BlockPos {
         return add(-pos.getX(), -pos.getY(), -pos.getZ());
     }
 
-    // #region Moves
+    // region Moves
 
     /**
      * Offset this BlockPos 1 block up
@@ -219,7 +219,7 @@ public class BlockPos {
         return new BlockPos(newX, y, newZ);
     }
 
-    // #end Moves
+    // endregion Moves
 
     public boolean isInRange(BlockPos pos, int range) {
         double x = pos.x - this.x;
@@ -240,7 +240,7 @@ public class BlockPos {
      * Serialize this BlockPos into a long value
      */
     public long toLong() {
-        return (this.getX() & X_MASK) << X_SHIFT | (this.getY() & Y_MASK) << Y_SHIFT | (this.getZ() & Z_MASK) << 0;
+        return (this.getX() & X_MASK) << X_SHIFT | (this.getY() & Y_MASK) << Y_SHIFT | (this.getZ() & Z_MASK);
     }
 
     @Override
@@ -250,7 +250,7 @@ public class BlockPos {
         if (!(obj instanceof BlockPos)) return false;
 
         BlockPos pos = (BlockPos) obj;
-        return this.getX() != pos.getX() ? false : (this.getY() != pos.getY() ? false : this.getZ() == pos.getZ());
+        return this.getX() == pos.getX() && this.getY() == pos.getY() && this.getZ() == pos.getZ();
     }
 
     @Override
@@ -307,8 +307,8 @@ public class BlockPos {
 
     public static class BlockIterator implements Iterator<BlockPos> {
 
-        private BlockPos from;
-        private BlockPos to;
+        private final BlockPos from;
+        private final BlockPos to;
 
         private int x;
         private int y;
@@ -349,13 +349,7 @@ public class BlockPos {
         }
 
         public Iterable<BlockPos> asIterable() {
-            return new Iterable<BlockPos>() {
-
-                @Override
-                public Iterator<BlockPos> iterator() {
-                    return BlockIterator.this;
-                }
-            };
+            return () -> BlockIterator.this;
         }
     }
 }

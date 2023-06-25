@@ -15,6 +15,7 @@ package net.malisis.core.client.gui.component.decoration;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 import net.malisis.core.client.gui.GuiRenderer;
 import net.malisis.core.client.gui.MalisisGui;
@@ -117,7 +118,7 @@ public class UILabel extends UIComponent<UILabel> implements IScrollable, IGuiTe
      * @param multiLine the multi line
      */
     public UILabel(MalisisGui gui, boolean multiLine) {
-        this(gui, (String) null, multiLine);
+        this(gui, null, multiLine);
     }
 
     /**
@@ -126,10 +127,10 @@ public class UILabel extends UIComponent<UILabel> implements IScrollable, IGuiTe
      * @param gui the gui
      */
     public UILabel(MalisisGui gui) {
-        this(gui, (String) null, false);
+        this(gui, null, false);
     }
 
-    // #region getters/setters
+    // region getters/setters
     /**
      * Gets the text of this {@link UILabel}.
      *
@@ -148,7 +149,7 @@ public class UILabel extends UIComponent<UILabel> implements IScrollable, IGuiTe
      * @return this {@link UILabel}
      */
     public UILabel setText(String text) {
-        if (text == this.text || (text != null && text.equals(this.text))) return this;
+        if (Objects.equals(text, this.text)) return this;
 
         this.text = text;
         this.bbText = null;
@@ -208,9 +209,9 @@ public class UILabel extends UIComponent<UILabel> implements IScrollable, IGuiTe
         return fro.fontScale;
     }
 
-    // #end getters/setters
+    // endregion getters/setters
 
-    // #region IScrollable
+    // region IScrollable
     @Override
     public int getContentWidth() {
         return getWidth();
@@ -256,9 +257,9 @@ public class UILabel extends UIComponent<UILabel> implements IScrollable, IGuiTe
         return 0;
     }
 
-    // #end IScrollable
+    // endregion IScrollable
 
-    // #region IBBStringRenderer
+    // region IBBStringRenderer
 
     /**
      * Gets the BB text of this {@link UILabel}.
@@ -296,7 +297,7 @@ public class UILabel extends UIComponent<UILabel> implements IScrollable, IGuiTe
         return (int) (font.getStringHeight(fro) + lineSpacing);
     }
 
-    // #end IBBStringRenderer
+    // endregion IBBStringRenderer
 
     /**
      * Gets the component at.
@@ -319,7 +320,7 @@ public class UILabel extends UIComponent<UILabel> implements IScrollable, IGuiTe
 
         if (!StringUtils.isEmpty(text)) lines = font.wrapText(text, getWidth(), fro);
 
-        fireEvent(new ContentUpdateEvent<UILabel>(this));
+        fireEvent(new ContentUpdateEvent<>(this));
     }
 
     /**

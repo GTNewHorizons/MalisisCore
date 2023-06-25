@@ -26,9 +26,9 @@ import net.malisis.core.util.bbcode.node.BBNode;
  */
 public class BBCodeRenderer {
 
-    private BBString bbText;
+    private final BBString bbText;
 
-    private LinkedList<BBRenderElement> renderElements = new LinkedList<>();
+    private final LinkedList<BBRenderElement> renderElements = new LinkedList<>();
 
     public BBCodeRenderer(BBString bbText) {
         this.bbText = bbText;

@@ -31,8 +31,8 @@ public class Link implements GuiYesNoCallback {
 
     private int index = 0;
     private int textIndex = 0;
-    private String url;
-    private String text;
+    private final String url;
+    private final String text;
     private boolean isValid;
 
     public Link(int index, String str) {
@@ -44,7 +44,7 @@ public class Link implements GuiYesNoCallback {
             textIndex = 1;
         } else {
             url = str.substring(0, i);
-            text = str.substring(i + 1, str.length());
+            text = str.substring(i + 1);
             textIndex = i + 1;
         }
 

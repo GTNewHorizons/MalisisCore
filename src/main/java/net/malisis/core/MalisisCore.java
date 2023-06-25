@@ -79,7 +79,7 @@ public class MalisisCore implements IMalisisMod {
     public static MalisisNetwork network;
 
     /** List of {@link IMalisisMod} registered. */
-    private HashMap<String, IMalisisMod> registeredMods = new HashMap<>();
+    private final HashMap<String, IMalisisMod> registeredMods = new HashMap<>();
 
     /** Whether the mod is currently running in obfuscated environment or not. */
     public static boolean isObfEnv = false;
@@ -93,7 +93,7 @@ public class MalisisCore implements IMalisisMod {
         isObfEnv = !(boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
     }
 
-    // #region IMalisisMod
+    // region IMalisisMod
     @Override
     public String getModId() {
         return modid;
@@ -114,7 +114,7 @@ public class MalisisCore implements IMalisisMod {
         return null;
     }
 
-    // #end IMalisisMod
+    // endregion IMalisisMod
 
     /**
      * Registers a {@link IMalisisMod} mod.
@@ -126,7 +126,7 @@ public class MalisisCore implements IMalisisMod {
     }
 
     /**
-     * Gets the a registered {@link IMalisisMod} by his id.
+     * Gets the registered {@link IMalisisMod} by his id.
      *
      * @param id the id of the mod
      * @return the mod registered, null if no mod with the specified id is found
@@ -154,7 +154,6 @@ public class MalisisCore implements IMalisisMod {
         MinecraftForge.EVENT_BUS.register(instance);
         MinecraftForge.EVENT_BUS.register(ReplacementTool.instance());
         MinecraftForge.EVENT_BUS.register(ChunkBlockHandler.get());
-        // MinecraftForge.EVENT_BUS.register(ChunkCollision.client);
 
         log = event.getModLog();
 
@@ -196,7 +195,7 @@ public class MalisisCore implements IMalisisMod {
      * Open the configuration GUI for the {@link IMalisisMod}.
      *
      * @param mod the mod to open the GUI for
-     * @return true, if a the mod had {@link Settings} and the GUI was opened, false otherwise
+     * @return true, if the mod had {@link Settings} and the GUI was opened, false otherwise
      */
     @SideOnly(Side.CLIENT)
     public static boolean openConfigurationGui(IMalisisMod mod) {

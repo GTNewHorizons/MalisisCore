@@ -83,7 +83,7 @@ public class MalisisIcon extends TextureAtlasSprite {
     }
 
     /**
-     * Adds a {@link MalisisIcon} to be dependant on this one. Will call
+     * Adds a {@link MalisisIcon} to be dependent on this one. Will call
      * {@link #initIcon(MalisisIcon, int, int, int, int, boolean)} when stiched to the sheet.
      *
      * @param icon the icon
@@ -92,7 +92,7 @@ public class MalisisIcon extends TextureAtlasSprite {
         dependants.add(icon);
     }
 
-    // #region getters/setters
+    // region getters/setters
     /**
      * Sets the size in pixel of this {@link MalisisIcon}.
      *
@@ -181,7 +181,7 @@ public class MalisisIcon extends TextureAtlasSprite {
         return rotation;
     }
 
-    // #end getters/setters
+    // endregion getters/setters
 
     /**
      * Initializes this {@link MalisisIcon}. Called from the icon this one depends on, copying the <b>baseIcon</b>

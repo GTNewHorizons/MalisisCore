@@ -32,27 +32,21 @@ import net.minecraft.world.World;
 public class RaytraceWorld {
 
     /** Number of blocks before we consider ray trace failed. */
-    private static int MAX_BLOCKS = 200;
+    private static final int MAX_BLOCKS = 200;
     /** World object (needed for ray tracing inside each block). */
-    private World world;
+    private final World world;
     /** Source of the ray trace. */
-    private Point src;
+    private final Point src;
     /** Destination of the ray trace. */
     private Point dest;
     /** Ray describing the ray trace. */
-    private Ray ray;
+    private final Ray ray;
     /** Vector describing the direction of steps to take when reaching limits of a block. */
-    private Vector step;
+    private final Vector step;
     /** The block coordinates of the source. */
-    private ChunkPosition blockSrc;
+    private final ChunkPosition blockSrc;
     /** The block coordinates of the destination. */
     private ChunkPosition blockDest;
-    /** Current X coordinate of the block being ray traced. */
-    private int currentX;
-    /** Current Y coordinate of the block being ray traced. */
-    private int currentY;
-    /** Current Z coordinate of the block being ray traced. */
-    private int currentZ;
 
     /**
      * The first block to be hit. If ray trace reaches <code>dest</code> without any hit, <code>firstHit</code> will
@@ -85,7 +79,7 @@ public class RaytraceWorld {
 
         step = new Vector(stepX, stepY, stepZ);
 
-        if (hasOption(Options.LOG_BLOCK_PASSED)) blockPassed = new HashMap<ChunkPosition, MovingObjectPosition>();
+        if (hasOption(Options.LOG_BLOCK_PASSED)) blockPassed = new HashMap<>();
     }
 
     /**
@@ -212,9 +206,9 @@ public class RaytraceWorld {
         boolean ret = false;
 
         firstHit = null;
-        currentX = blockSrc.chunkPosX;
-        currentY = blockSrc.chunkPosY;
-        currentZ = blockSrc.chunkPosZ;
+        int currentX = blockSrc.chunkPosX;
+        int currentY = blockSrc.chunkPosY;
+        int currentZ = blockSrc.chunkPosZ;
 
         while (!ret && count++ <= MAX_BLOCKS) {
             tX = ray.intersectX(currentX + (ray.direction.x > 0 ? 1 : 0));

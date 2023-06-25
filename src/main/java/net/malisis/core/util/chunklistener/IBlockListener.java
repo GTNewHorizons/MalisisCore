@@ -24,7 +24,7 @@ import net.minecraft.world.World;
  */
 public interface IBlockListener extends IChunkBlock {
 
-    public boolean onBlockSet(World world, BlockPos pos, BlockState blockSet);
+    boolean onBlockSet(World world, BlockPos pos, BlockState blockSet);
 
-    public boolean onBlockRemoved(World world, BlockPos pos, BlockPos blockRemoved);
+    boolean onBlockRemoved(World world, BlockPos pos, BlockPos blockRemoved);
 }

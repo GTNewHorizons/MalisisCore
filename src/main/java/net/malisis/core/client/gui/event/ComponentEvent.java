@@ -55,8 +55,7 @@ public abstract class ComponentEvent<T extends UIComponent> extends GuiEvent {
     }
 
     /**
-     * Fired when a {@link UIComponent} gets it's value changed.
-     *
+     * Fired when a {@link UIComponent} gets its value changed.
      *
      * @param <T> the type of <code>UIComponent</code> that fired this event.
      * @param <S> the type of the value being changed.

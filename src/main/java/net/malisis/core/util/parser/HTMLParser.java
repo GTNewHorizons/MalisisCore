@@ -35,7 +35,7 @@ public class HTMLParser extends Parser<HTMLNode> {
 
     private HTMLNode currentNode;
     private HTMLNode rootNode;
-    private LinkedList<HTMLNode> openTags = new LinkedList<>();
+    private final LinkedList<HTMLNode> openTags = new LinkedList<>();
 
     public HTMLParser(String text) {
         super(text);
@@ -72,7 +72,6 @@ public class HTMLParser extends Parser<HTMLNode> {
                         if (!match(Token.Equal)) addAttribute(identifier.getValue());
                         else if (match(Token.StringToken, identifier)) {
                             addAttribute(attr, identifier.getValue());
-                            // readToken();
                         }
                     }
                     if (match(Token.Div)) closeTag();
@@ -88,7 +87,6 @@ public class HTMLParser extends Parser<HTMLNode> {
     }
 
     public void openTag(String tag) {
-        // self.Log('Opening : <b>' . tag . '</b><br />');
         if (this.currentNode == null) return;
 
         HTMLNode node = new HTMLNode(tag);
@@ -102,19 +100,16 @@ public class HTMLParser extends Parser<HTMLNode> {
     }
 
     public void addAttribute(String attr, String attr_val) {
-        // self.Log('Found attr : <b>' . attr . '</b><br />');
         if (this.currentNode != null) this.currentNode.AddAttribute(attr, attr_val);
     }
 
     public void addContent(String str) {
-        // self.Log('Adding content : <b>' . htmlentities(str) . '</b><br />');
         if (this.currentNode == null) return;
         this.currentNode.AddText(str);
     }
 
     public void closeTag() {
-        // self.Log('Closing : <b>' . this.current_tag.name . '</b><br />');
-        if (this.openTags.size() == 0) // prevent malformed html with closing non opened tags
+        if (this.openTags.size() == 0) // prevent malformed html with closing non-opened tags
             return;
 
         this.currentNode = this.openTags.removeLast();
@@ -160,15 +155,26 @@ public class HTMLParser extends Parser<HTMLNode> {
 
         public String prettyPrint() {
             int n = 4;
-            if (text != null) return StringUtils.repeat(' ', level * n) + text + "\n";
-            String s = StringUtils.repeat(' ', level * n) + "<"
-                    + name
-                    + (attributes.size() != 0 ? " " + attributes.toString() : "")
-                    + ">\n";
-            for (HTMLNode node : nodes) s += node.prettyPrint();
-            if (nodes.size() != 0) s += StringUtils.repeat(' ', level * n) + "</" + name + ">\n";
 
-            return s;
+            if (text != null) {
+                return StringUtils.repeat(' ', level * n) + text + "\n";
+            }
+
+            StringBuilder s = new StringBuilder(
+                    StringUtils.repeat(' ', level * n) + "<"
+                            + name
+                            + (attributes.size() != 0 ? " " + attributes.toString() : "")
+                            + ">\n");
+
+            for (HTMLNode node : nodes) {
+                s.append(node.prettyPrint());
+            }
+
+            if (nodes.size() != 0) {
+                s.append(StringUtils.repeat(' ', level * n)).append("</").append(name).append(">\n");
+            }
+
+            return s.toString();
         }
 
         @Override

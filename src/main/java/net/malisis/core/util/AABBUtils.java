@@ -28,14 +28,14 @@ import net.minecraftforge.common.util.ForgeDirection;
  */
 public class AABBUtils {
 
-    public static enum Axis {
+    public enum Axis {
         X,
         Y,
         Z
-    };
+    }
 
-    private static int[] cos = { 1, 0, -1, 0 };
-    private static int[] sin = { 0, 1, 0, -1 };
+    private static final int[] cos = { 1, 0, -1, 0 };
+    private static final int[] sin = { 0, 1, 0, -1 };
 
     public static AxisAlignedBB identity() {
         return identity(0, 0, 0);
@@ -77,7 +77,7 @@ public class AABBUtils {
 
     /**
      * Rotate the {@link AxisAlignedBB} based on the specified direction.<br>
-     * Assumes {@link ForgeDirection#NORTH} to be the default non rotated direction.<br>
+     * Assumes {@link ForgeDirection#NORTH} to be the default non-rotated direction.<br>
      *
      *
      * @param aabb the aabb
@@ -241,7 +241,7 @@ public class AABBUtils {
      *
      * @param aabbs1 the aabbs1
      * @param aabbs2 the aabbs2
-     * @return true, if is colliding
+     * @return true if it is colliding
      */
     public static boolean isColliding(AxisAlignedBB[] aabbs1, AxisAlignedBB[] aabbs2) {
         for (AxisAlignedBB aabb1 : aabbs1) {

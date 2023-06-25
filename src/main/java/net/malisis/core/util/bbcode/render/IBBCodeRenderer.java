@@ -21,19 +21,19 @@ import net.malisis.core.util.bbcode.BBString;
  */
 public interface IBBCodeRenderer<T> {
 
-    public T setText(BBString text);
+    T setText(BBString text);
 
-    public BBString getBBText();
+    BBString getBBText();
 
-    public int getWidth();
+    int getWidth();
 
-    public int getHeight();
+    int getHeight();
 
-    public int getStartLine();
+    int getStartLine();
 
-    public int getVisibleLines();
+    int getVisibleLines();
 
-    public float getFontScale();
+    float getFontScale();
 
-    public int getLineHeight();
+    int getLineHeight();
 }

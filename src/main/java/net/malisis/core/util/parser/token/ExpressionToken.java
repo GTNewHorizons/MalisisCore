@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
  */
 public class ExpressionToken extends Token<String> {
 
-    private Pattern pattern;
+    private final Pattern pattern;
 
     public ExpressionToken(String regex) {
         this.pattern = Pattern.compile(regex);

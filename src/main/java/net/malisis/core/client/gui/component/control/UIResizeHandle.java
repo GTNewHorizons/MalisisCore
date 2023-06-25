@@ -32,7 +32,7 @@ public class UIResizeHandle extends UIComponent<UIResizeHandle> implements ICont
         VERTICAL
     }
 
-    private Type type;
+    private final Type type;
 
     public UIResizeHandle(MalisisGui gui, UIComponent parent, Type type) {
         super(gui);

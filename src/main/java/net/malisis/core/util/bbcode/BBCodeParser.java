@@ -36,7 +36,7 @@ import org.apache.commons.lang3.mutable.MutableObject;
  */
 public class BBCodeParser extends Parser<BBNode> {
 
-    private BBString bbText;
+    private final BBString bbText;
     private BBNode currentNode;
     private BBNode node = null;
     private BBTextNode textNode = new BBTextNode("");
@@ -45,7 +45,7 @@ public class BBCodeParser extends Parser<BBNode> {
     /** Map of EnumChatFormatting **/
     public static Map<Character, EnumChatFormatting> charFormats = new HashMap<>();
 
-    {
+    static {
         for (EnumChatFormatting ecf : EnumChatFormatting.values()) charFormats.put(ecf.getFormattingCode(), ecf);
     }
 

@@ -46,13 +46,13 @@ public class UISlider extends UIComponent<UISlider> implements IGuiText<UISlider
     /** The {@link FontRenderOptions} to use for this {@link UISlider} when hovered. */
     protected FontRenderOptions hoveredFro = new FontRenderOptions();
 
-    private String text;
-    private float minValue;
-    private float maxValue;
+    private final String text;
+    private final float minValue;
+    private final float maxValue;
     private float value;
     private float offset;
 
-    private GuiShape sliderShape;
+    private final GuiShape sliderShape;
 
     public UISlider(MalisisGui gui, int width, float min, float max, String text) {
         super(gui);
@@ -81,7 +81,7 @@ public class UISlider extends UIComponent<UISlider> implements IGuiText<UISlider
         this(gui, width, min, max, null);
     }
 
-    // #region Getters/Setters
+    // region Getters/Setters
     @Override
     public MalisisFont getFont() {
         return font;
@@ -104,7 +104,7 @@ public class UISlider extends UIComponent<UISlider> implements IGuiText<UISlider
         return this;
     }
 
-    // #end Getters/Setters
+    // endregion Getters/Setters
 
     @Override
     public boolean onClick(int x, int y) {
@@ -166,7 +166,6 @@ public class UISlider extends UIComponent<UISlider> implements IGuiText<UISlider
         renderer.drawShape(sliderShape, rp);
 
         renderer.next();
-        // zIndex = 1;
 
         if (!StringUtils.isEmpty(text)) {
             String str = String.format(text, value);

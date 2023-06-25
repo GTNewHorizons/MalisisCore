@@ -30,7 +30,7 @@ public abstract class SpaceChangeEvent<T extends UIComponent> extends ComponentE
     }
 
     /**
-     * Fired when a {@link UIComponent} changes it's position.
+     * Fired when a {@link UIComponent} changes its position.
      *
      * @author Ordinastie
      *

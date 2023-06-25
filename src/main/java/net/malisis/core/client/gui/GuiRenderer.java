@@ -63,7 +63,7 @@ public class GuiRenderer extends MalisisRenderer {
     /** Currently used {@link GuiTexture}. */
     private GuiTexture currentTexture;
 
-    private static GuiShape rectangle = new SimpleGuiShape();
+    private static final GuiShape rectangle = new SimpleGuiShape();
 
     /**
      * Instantiates a new {@link GuiRenderer}.
@@ -369,8 +369,6 @@ public class GuiRenderer extends MalisisRenderer {
         super.drawText(font, text, x, y, z, fro);
     }
 
-    // #end drawText()
-
     /**
      * Draws an itemStack to the GUI.
      *
@@ -462,7 +460,6 @@ public class GuiRenderer extends MalisisRenderer {
 
         RenderHelper.disableStandardItemLighting();
         GL11.glColor4f(1, 1, 1, 1);
-        // GL11.glDisable(GL11.GL_ALPHA_TEST);
 
         currentTexture = null;
         bindDefaultTexture();
@@ -505,7 +502,7 @@ public class GuiRenderer extends MalisisRenderer {
         int x = area.x * f;
         int y = Minecraft.getMinecraft().displayHeight - (area.y + area.height()) * f;
         int w = area.width() * f;
-        int h = area.height() * f;;
+        int h = area.height() * f;
         GL11.glScissor(x, y, w, h);
     }
 

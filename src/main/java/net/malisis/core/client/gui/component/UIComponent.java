@@ -77,7 +77,7 @@ public abstract class UIComponent<T extends UIComponent>
     /** Size of this {@link UIComponent}. */
     protected int width = INHERITED, height = INHERITED;
     /** Event bus on which event listeners are registered. */
-    private EventBus bus;
+    private final EventBus bus;
     /** The parent {@link UIComponent} of this <code>UIComponent</code>. */
     protected UIComponent parent;
     /** The name of this {@link UIComponent}. Can be used to retrieve this back from a container. */
@@ -121,7 +121,7 @@ public abstract class UIComponent<T extends UIComponent>
         shape = new SimpleGuiShape();
     }
 
-    // #region getters/setters
+    // region getters/setters
     /**
      * Gets the {@link MalisisGui} this {@link UIComponent} was added to.
      *
@@ -385,7 +385,7 @@ public abstract class UIComponent<T extends UIComponent>
     /**
      * Gets the <code>focused</code> state of this {@link UIComponent}.
      *
-     * @return true, if this component if focused
+     * @return true if this component is focused
      */
     public boolean isFocused() {
         return this.focused;
@@ -546,7 +546,7 @@ public abstract class UIComponent<T extends UIComponent>
         return this.data;
     }
 
-    // #end getters/setters
+    // endregion getters/setters
 
     /**
      * Registers an <code>object</code> to handle events received by this {@link UIComponent}.
@@ -581,7 +581,7 @@ public abstract class UIComponent<T extends UIComponent>
         return !event.isCancelled();
     }
 
-    // #region Inputs
+    // region Inputs
 
     /**
      * On mouse move.
@@ -595,7 +595,7 @@ public abstract class UIComponent<T extends UIComponent>
     public boolean onMouseMove(int lastX, int lastY, int x, int y) {
         if (isDisabled()) return false;
 
-        return parent != null ? parent.onMouseMove(lastX, lastY, x, y) : false;
+        return parent != null && parent.onMouseMove(lastX, lastY, x, y);
     }
 
     /**
@@ -609,7 +609,7 @@ public abstract class UIComponent<T extends UIComponent>
     public boolean onButtonPress(int x, int y, MouseButton button) {
         if (isDisabled()) return false;
 
-        return parent != null ? parent.onButtonPress(x, y, button) : false;
+        return parent != null && parent.onButtonPress(x, y, button);
     }
 
     /**
@@ -623,7 +623,7 @@ public abstract class UIComponent<T extends UIComponent>
     public boolean onButtonRelease(int x, int y, MouseButton button) {
         if (isDisabled()) return false;
 
-        return parent != null ? parent.onButtonRelease(x, y, button) : false;
+        return parent != null && parent.onButtonRelease(x, y, button);
     }
 
     /**
@@ -636,7 +636,7 @@ public abstract class UIComponent<T extends UIComponent>
     public boolean onClick(int x, int y) {
         if (isDisabled()) return false;
 
-        return parent != null ? parent.onClick(x, y) : false;
+        return parent != null && parent.onClick(x, y);
     }
 
     /**
@@ -649,11 +649,11 @@ public abstract class UIComponent<T extends UIComponent>
     public boolean onRightClick(int x, int y) {
         if (isDisabled()) return false;
 
-        return parent != null ? parent.onRightClick(x, y) : false;
+        return parent != null && parent.onRightClick(x, y);
     }
 
     /**
-     * On double click.
+     * Gets called on double-click.
      *
      * @param x      the x
      * @param y      the y
@@ -663,7 +663,7 @@ public abstract class UIComponent<T extends UIComponent>
     public boolean onDoubleClick(int x, int y, MouseButton button) {
         if (isDisabled()) return false;
 
-        return parent != null ? parent.onDoubleClick(x, y, button) : false;
+        return parent != null && parent.onDoubleClick(x, y, button);
     }
 
     /**
@@ -679,7 +679,7 @@ public abstract class UIComponent<T extends UIComponent>
     public boolean onDrag(int lastX, int lastY, int x, int y, MouseButton button) {
         if (isDisabled()) return false;
 
-        return parent != null ? parent.onDrag(lastX, lastY, x, y, button) : false;
+        return parent != null && parent.onDrag(lastX, lastY, x, y, button);
     }
 
     /**
@@ -695,7 +695,7 @@ public abstract class UIComponent<T extends UIComponent>
 
         for (IControlComponent c : controlComponents) if (c.onScrollWheel(x, y, delta)) return true;
 
-        return parent != null && !(this instanceof IControlComponent) ? parent.onScrollWheel(x, y, delta) : false;
+        return parent != null && !(this instanceof IControlComponent) && parent.onScrollWheel(x, y, delta);
     }
 
     @Override
@@ -704,10 +704,10 @@ public abstract class UIComponent<T extends UIComponent>
 
         for (IControlComponent c : controlComponents) if (c.onKeyTyped(keyChar, keyCode)) return true;
 
-        return parent != null && !(this instanceof IControlComponent) ? parent.onKeyTyped(keyChar, keyCode) : false;
+        return parent != null && !(this instanceof IControlComponent) && parent.onKeyTyped(keyChar, keyCode);
     }
 
-    // #end Inputs
+    // endregion Inputs
 
     /**
      * Checks if supplied coordinates are inside this {@link UIComponent} bounds.
@@ -810,7 +810,7 @@ public abstract class UIComponent<T extends UIComponent>
     /**
      * Gets the X coordinate of this {@link UIComponent} relative to the screen.
      *
-     * @return the the coordinate
+     * @return the coordinate
      */
     public int screenX() {
         int x = parentX();
@@ -903,8 +903,6 @@ public abstract class UIComponent<T extends UIComponent>
 
         ClipArea area = this instanceof IClipable ? ((IClipable) this).getClipArea() : null;
         if (area != null) renderer.startClipping(area);
-
-        // GL11.glColor4f(1, 1, 1, 0.5F);
 
         drawForeground(renderer, mouseX, mouseY, partialTick);
 

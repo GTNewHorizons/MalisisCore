@@ -87,7 +87,7 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
         copyMatrix(s);
     }
 
-    // #region FACES
+    // region FACES
     /**
      * Adds {@link Face faces} to this {@link Shape}.
      *
@@ -132,7 +132,7 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
      */
     public List<Face> getFaces(String name) {
         List<Face> list = new ArrayList<>();
-        for (Face f : faces) if (f.name().toLowerCase().equals(name.toLowerCase())) list.add(f);
+        for (Face f : faces) if (f.name().equalsIgnoreCase(name)) list.add(f);
         return list;
     }
 
@@ -166,9 +166,9 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
         return this;
     }
 
-    // #end FACES
+    // endregion FACES
 
-    // #region VERTEXES
+    // region VERTEXES
     /**
      * Enables the {@link MergedVertex} for this {@link Shape}. Will transfer the current transformation matrix to the
      * {@link MergedVertex}
@@ -269,7 +269,7 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
         return getMergedVertexes(Face.nameFromDirection(direction));
     }
 
-    // #end VERTEXES
+    // endregion VERTEXES
 
     private void resetMatrix() {
         transformMatrix.setIdentity();
@@ -328,7 +328,7 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
 
     /**
      * Set {@link RenderParameters} for {@link Face faces} matching the specified <b>name</b>. If <b>merge</b> is true,
-     * the parameters will be merge with the <code>face</code> parameters instead of completely overriding them.
+     * the parameters will be merged with the <code>face</code> parameters instead of completely overriding them.
      *
      * @param name   the name
      * @param params the params
@@ -576,7 +576,7 @@ public class Shape implements ITransformable.Translate, ITransformable.Rotate, I
         if (face == null) return this;
         enableMergedVertexes();
 
-        HashMap<String, Vertex> vertexNames = new HashMap<String, Vertex>();
+        HashMap<String, Vertex> vertexNames = new HashMap<>();
         double x = 0, y = 0, z = 0;
         for (Vertex v : face.getVertexes()) {
             vertexNames.put(v.name(), v);

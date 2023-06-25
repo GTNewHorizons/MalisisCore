@@ -90,7 +90,6 @@ public class ChunkCollisionTransformer extends MalisisClassTransformer {
         // DSTORE 9/13 <= depends on NEI installed
         InsnList match = new InsnList();
         match.add(new LdcInsnNode(0.25));
-        // match.add(new VarInsnNode(DSTORE, 13));
 
         ah.jumpTo(match).jump(-1).insert(insert);
 
@@ -200,17 +199,10 @@ public class ChunkCollisionTransformer extends MalisisClassTransformer {
         // insertMop_3 = insertMop
         InsnList insertMop_3 = AsmUtils.cloneList(insertMop);
 
-        // @formatter:off
-        ah.insert(setRayTraceInfos)
-                .jumpTo(returnMop)
-                .insert(insertMop) // L1195
-                .jumpTo(returnMop2OrNull)
-                .insert(insertMop_2) // L1211
-                .jumpTo(returnMop1)
-                .insert(insertMop1) // L1367
-                .jumpTo(returnMop2OrNull)
-                .insert(insertMop_3); // L1377
-        // @formatter:on
+        ah.insert(setRayTraceInfos).jumpTo(returnMop).insert(insertMop) // L1195
+                .jumpTo(returnMop2OrNull).insert(insertMop_2) // L1211
+                .jumpTo(returnMop1).insert(insertMop1) // L1367
+                .jumpTo(returnMop2OrNull).insert(insertMop_3); // L1377
 
         return ah;
     }

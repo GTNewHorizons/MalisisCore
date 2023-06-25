@@ -72,7 +72,7 @@ public class UITooltip extends UIComponent implements IGuiText<UITooltip> {
         setDelay(delay);
     }
 
-    // #region Getters/Setters
+    // region Getters/Setters
     @Override
     public MalisisFont getFont() {
         return font;
@@ -126,7 +126,7 @@ public class UITooltip extends UIComponent implements IGuiText<UITooltip> {
         return -16;
     }
 
-    // #end Getters/Setters
+    // endregion Getters/Setters
 
     protected void calculateSize() {
 

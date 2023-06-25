@@ -64,14 +64,17 @@ public class BBRenderElement {
     }
 
     public String getFormattedText() {
-        String str = "";
-        for (Object ecf : styles) str += ecf;
+        StringBuilder str = new StringBuilder();
+
+        for (Object ecf : styles) {
+            str.append(ecf);
+        }
         return str + text;
     }
 
     public int width() {
         if (itemStack != null) return 16;
-        return 0; // GuiRenderer.getStringWidth(getFormattedText());
+        return 0;
     }
 
     public void render(GuiRenderer renderer, int x, int y, int z) {

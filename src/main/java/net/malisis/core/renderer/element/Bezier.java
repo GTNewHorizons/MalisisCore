@@ -25,7 +25,7 @@ import java.util.List;
 public class Bezier {
 
     /** Generated vertexes. */
-    private List<Vertex> vertexes = new ArrayList<>();
+    private final List<Vertex> vertexes = new ArrayList<>();
     /** Control points. */
     private List<Vertex> controlPoints = new ArrayList<>();
     /** Precision (amount of vertexes for the path). */
@@ -54,14 +54,14 @@ public class Bezier {
         this(Arrays.asList(controlPoints), precision);
     }
 
-    // #region Getters/Setters
+    // region Getters/Setters
     /**
      * Sets the control points for this {@link Bezier}.
      *
      * @param controlPoints vertexes for the control points
      */
     public void setControlPoints(List<Vertex> controlPoints) {
-        this.controlPoints = controlPoints != null ? controlPoints : new ArrayList<Vertex>();
+        this.controlPoints = controlPoints != null ? controlPoints : new ArrayList<>();
         dirty = true;
     }
 
@@ -113,7 +113,7 @@ public class Bezier {
         return precision;
     }
 
-    // #end Getters/Setters
+    // endregion Getters/Setters
 
     /**
      * Notify this {@link Bezier} that the {@link Vertex vertexes} will need to be recalculated.

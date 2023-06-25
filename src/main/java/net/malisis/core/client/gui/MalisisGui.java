@@ -67,7 +67,7 @@ public abstract class MalisisGui extends GuiScreen {
     public static GuiTexture BLOCK_TEXTURE = new GuiTexture(TextureMap.locationBlocksTexture);
     public static GuiTexture ITEM_TEXTURE = new GuiTexture(TextureMap.locationItemsTexture);
 
-    /** Whether or not to cancel the next gui close event. */
+    /** Whether to cancel the next gui close event. */
     public static boolean cancelClose = false;
 
     /** Renderer drawing the components. */
@@ -81,7 +81,7 @@ public abstract class MalisisGui extends GuiScreen {
     /** The resolution for the GUI **/
     protected ScaledResolution resolution;
     /** Top level container which hold the user components. Spans across the whole screen. */
-    private UIContainer screen;
+    private final UIContainer screen;
     /** Determines if the screen should be darkened when the GUI is opened. */
     protected boolean guiscreenBackground = true;
     /** Last known position of the mouse. */
@@ -96,7 +96,7 @@ public abstract class MalisisGui extends GuiScreen {
     protected boolean isOverlay = false;
 
     /** {@link AnimationRenderer} */
-    private AnimationRenderer ar;
+    private final AnimationRenderer ar;
     /** Currently hovered child component. */
     protected UIComponent hoveredComponent;
     /** Currently focused child component. */
@@ -108,7 +108,7 @@ public abstract class MalisisGui extends GuiScreen {
     /** Debug **/
     private boolean debug = false;
 
-    private HashMap<String, Callable<String>> debugMap = new HashMap<>();
+    private final HashMap<String, Callable<String>> debugMap = new HashMap<>();
 
     protected MalisisGui() {
         this.renderer = new GuiRenderer();
@@ -223,21 +223,9 @@ public abstract class MalisisGui extends GuiScreen {
         if (objects.length == 1 && objects[0] instanceof Callable) {
             call = (Callable<String>) objects[0];
         } else if (objects.length > 1 && objects[0] instanceof String) {
-            call = new Callable<String>() {
-
-                @Override
-                public String call() {
-                    return String.format((String) objects[0], Arrays.copyOfRange(objects, 1, objects.length));
-                }
-            };
+            call = () -> String.format((String) objects[0], Arrays.copyOfRange(objects, 1, objects.length));
         } else {
-            call = new Callable<String>() {
-
-                @Override
-                public String call() {
-                    return StringUtils.join(objects, ',');
-                }
-            };
+            call = () -> StringUtils.join(objects, ',');
         }
 
         debugMap.put(name, call);
@@ -477,7 +465,7 @@ public abstract class MalisisGui extends GuiScreen {
             FontRenderOptions fro = new FontRenderOptions();
             fro.color = 0xFFFFFF;
             fro.shadow = true;
-            // fro.fontScale = 1 / renderer.getScaleFactor() * 2;
+
             renderer.drawText(null, "Mouse : " + mouseX + "," + mouseY, 5, dy++ * 10 + oy, 0, fro, false);
             renderer.drawText(null, "Focus : " + focusedComponent, 5, dy++ * 10 + oy, 0, fro, false);
             renderer.drawText(null, "Hover : " + hoveredComponent, 5, dy++ * 10 + oy, 0, fro, false);
@@ -494,12 +482,15 @@ public abstract class MalisisGui extends GuiScreen {
 
         if (inventoryContainer != null) {
             ItemStack itemStack = inventoryContainer.getPickedItemStack();
-            if (itemStack != null) renderer.renderPickedItemStack(itemStack);
-            else if (hoveredComponent != null && hoveredComponent.isHovered()) // do not draw the tooltip if an
-                                                                               // itemStack is picked up
+            if (itemStack != null) {
+                renderer.renderPickedItemStack(itemStack);
+            } else if (hoveredComponent != null && hoveredComponent.isHovered()) {
+                // do not draw the tooltip if an itemStack is picked up
                 renderer.drawTooltip(hoveredComponent.getTooltip());
-        } else if (hoveredComponent != null && hoveredComponent.isHovered())
+            }
+        } else if (hoveredComponent != null && hoveredComponent.isHovered()) {
             renderer.drawTooltip(hoveredComponent.getTooltip());
+        }
 
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
@@ -515,7 +506,7 @@ public abstract class MalisisGui extends GuiScreen {
     public void update(int mouseX, int mouseY, float partialTick) {}
 
     /**
-     * Called from TE when TE is updated. Override this method when you want to change displayed informations when the
+     * Called from TE when TE is updated. Override this method when you want to change displayed information when the
      * TileEntity changes.
      */
     public void updateGui() {}
@@ -562,9 +553,8 @@ public abstract class MalisisGui extends GuiScreen {
         setHoveredComponent(null, true);
         Keyboard.enableRepeatEvents(false);
         if (this.mc.thePlayer != null) this.mc.thePlayer.closeScreen();
-        this.mc.displayGuiScreen((GuiScreen) null);
+        this.mc.displayGuiScreen(null);
         this.mc.setIngameFocus();
-        return;
     }
 
     public void displayOverlay() {
@@ -625,7 +615,7 @@ public abstract class MalisisGui extends GuiScreen {
      */
     public static <T extends MalisisGui> T currentGui(Class<T> type) {
         GuiScreen gui = Minecraft.getMinecraft().currentScreen;
-        if (gui == null || !(gui instanceof MalisisGui)) return null;
+        if (!(gui instanceof MalisisGui)) return null;
         try {
             return type.cast(gui);
         } catch (ClassCastException e) {

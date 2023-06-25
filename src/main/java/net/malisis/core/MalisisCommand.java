@@ -25,7 +25,7 @@ import net.minecraft.command.WrongUsageException;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 
-// TODO: Auto-generated Javadoc
+// TODO: Some javadocs below are auto-generated. Check them for correctness.
 /**
  * Commands handler for {@link MalisisCore} mod.
  *
@@ -74,9 +74,9 @@ public class MalisisCommand extends CommandBase {
      */
     @Override
     public void processCommand(ICommandSender sender, String[] params) {
-        if (params.length == 0) throw new WrongUsageException("malisiscore.commands.usage", new Object[0]);
+        if (params.length == 0) throw new WrongUsageException("malisiscore.commands.usage");
 
-        if (!parameters.contains(params[0])) throw new WrongUsageException("malisiscore.commands.usage", new Object[0]);
+        if (!parameters.contains(params[0])) throw new WrongUsageException("malisiscore.commands.usage");
 
         switch (params[0]) {
             case "config":
@@ -92,9 +92,6 @@ public class MalisisCommand extends CommandBase {
                 }
                 if (mod != null)
                     MalisisCore.message("malisiscore.commands.modversion", mod.getName(), mod.getVersion());
-                break;
-            case "gui":
-                // Minecraft.getMinecraft().displayGuiScreen(new UIWindow(100, 100).createScreenProxy());
                 break;
 
             default:

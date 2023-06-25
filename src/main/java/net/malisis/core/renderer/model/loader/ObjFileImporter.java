@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,7 +38,7 @@ import net.minecraft.client.resources.IResource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.ForgeDirection;
 
-// TODO: Auto-generated Javadoc
+// TODO: Some javadocs below are auto-generated. Check them for correctness.
 /**
  * Model loader for OBJ files (Wavefront).
  *
@@ -172,7 +173,7 @@ public class ObjFileImporter implements IModelLoader {
 
             addShape("");
         } catch (Exception e) {
-            MalisisCore.log.error("[ObjFileImporter] An error happened while reading the file : {}", e);
+            MalisisCore.log.error("[ObjFileImporter] An error happened while reading the file : {0}", e);
         }
     }
 
@@ -182,7 +183,7 @@ public class ObjFileImporter implements IModelLoader {
      * @param data the data
      */
     private void addVertex(String data) {
-        String coords[] = data.split("\\s+");
+        String[] coords = data.split("\\s+");
         float x = 0;
         float y = 0;
         float z = 0;
@@ -207,7 +208,7 @@ public class ObjFileImporter implements IModelLoader {
      * @param data the data
      */
     private void addUV(String data) {
-        String coords[] = data.split("\\s+");
+        String[] coords = data.split("\\s+");
         float u = 0;
         float v = 0;
         if (coords.length != 2) {
@@ -230,7 +231,7 @@ public class ObjFileImporter implements IModelLoader {
      * @param data the data
      */
     private void addNormal(String data) {
-        String coords[] = data.split("\\s+");
+        String[] coords = data.split("\\s+");
         float x = 0;
         float y = 0;
         float z = 0;
@@ -325,13 +326,13 @@ public class ObjFileImporter implements IModelLoader {
             faces.clear();
         }
 
-        if (data != "" && data.indexOf('_') != -1) currentShape = data.substring(0, data.indexOf('_'));
+        if (!Objects.equals(data, "") && data.indexOf('_') != -1) currentShape = data.substring(0, data.indexOf('_'));
     }
 
     /**
      * UV holder class
      */
-    private class UV {
+    private static class UV {
 
         /** U coordinate. */
         float u;

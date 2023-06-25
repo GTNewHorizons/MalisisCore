@@ -68,7 +68,6 @@ public abstract class Token<T> {
     public static SpaceToken Space = (SpaceToken) new SpaceToken().name("Space");
     public static DigitToken Digit = (DigitToken) new DigitToken().name("Digit");
     public static LetterToken Letter = (LetterToken) new LetterToken().name("Letter");
-    // public static KeywordToken Keyword = (KeywordToken) new KeywordToken(null).name("Keyword");
 
     // Macro,
     // SupOrEq(Superior, Equal),

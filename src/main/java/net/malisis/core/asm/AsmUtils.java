@@ -87,7 +87,7 @@ public class AsmUtils {
             if (insnEqual(node, match)) {
                 AbstractInsnNode m = match.getNext();
                 AbstractInsnNode n = node.getNext();
-                while (m != null && n != null && insnEqual(m, n)) {
+                while (n != null && insnEqual(m, n)) {
                     m = m.getNext();
                     n = n.getNext();
                 }
@@ -182,7 +182,7 @@ public class AsmUtils {
     /**
      * Changes the access level for the specified field for a class.
      *
-     * @param clazz     the clazz
+     * @param clazz     the class
      * @param fieldName the field name
      * @return the field
      */
@@ -239,7 +239,7 @@ public class AsmUtils {
      * @param srgName    the srg name
      * @return the field
      */
-    public static Method changeMethodAccess(Class clazz, String methodName, String srgName, Class<?>... params) {
+    public static Method changeMethodAccess(Class<?> clazz, String methodName, String srgName, Class<?>... params) {
         try {
             // modify reference in Blocks class
             Method m = clazz.getDeclaredMethod(MalisisCore.isObfEnv ? srgName : methodName, params);

@@ -33,7 +33,7 @@ public interface ISyncHandler<T, S extends ISyncableData> {
      *
      * @return the name
      */
-    public String getName();
+    String getName();
 
     /**
      * Gets the object to be synced on the receiving side.
@@ -42,7 +42,7 @@ public interface ISyncHandler<T, S extends ISyncableData> {
      * @param data the data
      * @return the receiver
      */
-    public T getReceiver(MessageContext ctx, S data);
+    T getReceiver(MessageContext ctx, S data);
 
     /**
      * Gets the {@link ISyncableData} that holds the extra data to be sent.<br>
@@ -52,22 +52,22 @@ public interface ISyncHandler<T, S extends ISyncableData> {
      * @param caller the caller
      * @return the sync data
      */
-    public S getSyncData(T caller);
+    S getSyncData(T caller);
 
     /**
      * Adds a {@link FieldData} to be handled by this {@link ISyncHandler}.
      *
      * @param fieldData the field data
      */
-    public void addFieldData(FieldData fieldData);
+    void addFieldData(FieldData fieldData);
 
     /**
-     * Gets the {@link FieldData} for the specified index (called from the the SyncerMessage.Packet).
+     * Gets the {@link FieldData} for the specified index (called from the SyncerMessage.Packet).
      *
      * @param index the index
      * @return the field data
      */
-    public FieldData getFieldData(int index);
+    FieldData getFieldData(int index);
 
     /**
      * Gets the {@link FieldData} from its name.
@@ -75,7 +75,7 @@ public interface ISyncHandler<T, S extends ISyncableData> {
      * @param name the name
      * @return the field data
      */
-    public FieldData getFieldData(String name);
+    FieldData getFieldData(String name);
 
     /**
      * Sends the syncing packet.
@@ -83,5 +83,5 @@ public interface ISyncHandler<T, S extends ISyncableData> {
      * @param caller the caller
      * @param packet the packet
      */
-    public void send(T caller, Packet packet);
+    void send(T caller, Packet packet);
 }

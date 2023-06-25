@@ -50,12 +50,12 @@ public class BBCodeEditor extends UIContainer<BBCodeEditor> {
         BGCOLOR(new BBColorNode("bgcolor")),
         ITEM(new BBItemNode(""));
 
-        public BBNode node;
+        public final BBNode node;
 
-        private Tag(BBNode node) {
+        Tag(BBNode node) {
             this.node = node;
         }
-    };
+    }
 
     protected UIContainer menu;
 
@@ -79,9 +79,7 @@ public class BBCodeEditor extends UIContainer<BBCodeEditor> {
 
     protected boolean isWysiwyg = false;
 
-    private int defaultColor = 0xFFFFFF;
-
-    // private int activeColor = 0x006633;
+    private static final int DEFAULT_COLOR = 0xFFFFFF;
 
     public BBCodeEditor(MalisisGui gui) {
         super(gui);
@@ -103,7 +101,7 @@ public class BBCodeEditor extends UIContainer<BBCodeEditor> {
         setSize(width, height);
     }
 
-    // #region Getters/Setters
+    // region Getters/Setters
     public ComponentPosition getMenuPosition() {
         return menuPosition;
     }
@@ -127,9 +125,6 @@ public class BBCodeEditor extends UIContainer<BBCodeEditor> {
     public BBCodeEditor setWysiwyg(boolean w) {
         bbTexfield.setWysiwyg(w);
 
-        // btnWysiwyg.setTextColor(w ? 0x66CC77 : defaultColor);
-        // btnWysiwyg.setBgColor(w ? 0xBBFFCC : defaultColor);
-
         return this;
     }
 
@@ -147,7 +142,7 @@ public class BBCodeEditor extends UIContainer<BBCodeEditor> {
         return this;
     }
 
-    // #end Getters/Setters
+    // endregion Getters/Setters
 
     protected void createMenu(MalisisGui gui) {
         menu = new UIContainer(gui);
@@ -245,7 +240,7 @@ public class BBCodeEditor extends UIContainer<BBCodeEditor> {
         if (Anchor.vertical(a) == Anchor.BOTTOM) y *= -1;
         if (Anchor.horizontal(a) == Anchor.RIGHT) x *= -1;
 
-        btnBold.setPosition(0 * x, 0 * y, a);
+        btnBold.setPosition(0, 0, a);
         btnItalic.setPosition(11 * x, 11 * y, a);
         btnUnderline.setPosition(22 * x, 22 * y, a);
         btnStrikethrough.setPosition(33 * x, 33 * y, a);
@@ -268,7 +263,6 @@ public class BBCodeEditor extends UIContainer<BBCodeEditor> {
     @Subscribe
     public void onClick(UIButton.ClickEvent event) {
         UIButton button = event.getComponent();
-        // boolean active = false;
         if (button == btnBold) bbTexfield.addTag(Tag.BOLD);
         else if (button == btnItalic) bbTexfield.addTag(Tag.ITALIC);
         else if (button == btnUnderline) bbTexfield.addTag(Tag.UNDERLINE);
@@ -281,7 +275,6 @@ public class BBCodeEditor extends UIContainer<BBCodeEditor> {
             return;
         }
 
-        // button.setTextColor(active ? activeColor : defaultColor);
         bbTexfield.setFocused(true);
     }
 
@@ -313,8 +306,7 @@ public class BBCodeEditor extends UIContainer<BBCodeEditor> {
         }
 
         if (button != null) {
-            // button.setTextColor(active ? 0x66CC77 : defaultColor);
-            button.setBgColor(active ? 0xBBFFCC : defaultColor);
+            button.setBgColor(active ? 0xBBFFCC : DEFAULT_COLOR);
         }
 
         return true;

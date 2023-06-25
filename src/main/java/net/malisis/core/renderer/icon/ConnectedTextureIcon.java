@@ -25,19 +25,19 @@ import net.minecraftforge.common.util.ForgeDirection;
  * Implementation that handles automatically connected textures. Two texture files are required, that will be stiched to
  * the texture sheet. The {@link ConnectedTextureIcon} will then clip different parts for different connection
  * cases.<br>
- * The textures need to have a specific pattern (http://puu.sh/bIWaX.png).
+ * The textures need to have a specific pattern (<a href="http://puu.sh/bIWaX.png">link</a>,
+ * <a href="https://files.catbox.moe/l5r9ro.png">mirror</a>).
  *
  * @author Ordinastie
- *
  */
 public class ConnectedTextureIcon extends MalisisIcon {
 
-    private static int NONE = 0;
-    private static int LEFT = 1;
-    private static int TOP = 1 << 1;
-    private static int RIGHT = 1 << 2;
-    private static int BOTTOM = 1 << 3;
-    private static int FULL = LEFT | TOP | RIGHT | BOTTOM;
+    private static final int NONE = 0;
+    private static final int LEFT = 1;
+    private static final int TOP = 1 << 1;
+    private static final int RIGHT = 1 << 2;
+    private static final int BOTTOM = 1 << 3;
+    private static final int FULL = LEFT | TOP | RIGHT | BOTTOM;
 
     // @formatter:off
     public static ForgeDirection[][] sides = {
@@ -50,7 +50,7 @@ public class ConnectedTextureIcon extends MalisisIcon {
     };
     // @formatter:on
 
-    private MalisisIcon[] icons = new MalisisIcon[16];
+    private final MalisisIcon[] icons = new MalisisIcon[16];
 
     public ConnectedTextureIcon(String name, MalisisIcon part1, MalisisIcon part2) {
         super(name);

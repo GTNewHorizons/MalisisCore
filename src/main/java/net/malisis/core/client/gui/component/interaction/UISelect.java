@@ -87,7 +87,7 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
     /** Predicate for option disability */
     protected Predicate<T> disablePredicate = Predicates.alwaysFalse();
     /** Default function to build options **/
-    private Function<T, Option<T>> toOption = new Function<T, Option<T>>() {
+    private final Function<T, Option<T>> toOption = new Function<T, Option<T>>() {
 
         @Override
         public Option<T> apply(T input) {
@@ -168,7 +168,7 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
         this(gui, width, null);
     }
 
-    // #region Getters/Setters
+    // region Getters/Setters
     @Override
     public int getHeight() {
         return expanded ? optionsHeight : super.getHeight();
@@ -300,7 +300,7 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
         return this;
     }
 
-    // #end Getters/Setters
+    // endregion Getters/Setters
 
     @Override
     public void setFocused(boolean focused) {
@@ -435,7 +435,7 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
         T value = option != null ? option.getKey() : null;
         if (option.equals(selectedOption)) return value;
 
-        if (fireEvent(new SelectEvent<T>(this, value))) setSelectedOption(option);
+        if (fireEvent(new SelectEvent<>(this, value))) setSelectedOption(option);
 
         if (expanded && maxDisplayedOptions < options.size()) {
             int i = getSelectedIndex();
@@ -556,7 +556,7 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
         return super.getZIndex() + (expanded ? 300 : 0);
     }
 
-    // #region IClipable
+    // region IClipable
     @Override
     public ClipArea getClipArea() {
         return new ClipArea(
@@ -576,9 +576,9 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
         return expanded;
     }
 
-    // #end IClipable
+    // endregion IClipable
 
-    // #region IScrollable
+    // region IScrollable
     @Override
     public int getContentHeight() {
         if (!expanded || maxDisplayedOptions > options.size()) return getHeight();
@@ -625,7 +625,7 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
         return 1;
     }
 
-    // #end IScrollable
+    // endregion IScrollable
 
     @Override
     public void drawBackground(GuiRenderer renderer, int mouseX, int mouseY, float partialTick) {
@@ -751,7 +751,7 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
     public static class Option<T> {
 
         /** The key. */
-        private T key;
+        private final T key;
         /** The label. */
         private String label;
         /** Whether this option is disabled */
@@ -867,7 +867,7 @@ public class UISelect<T> extends UIComponent<UISelect<T>>
 
         @Override
         public boolean equals(Object obj) {
-            return obj != null && obj instanceof Option && key.equals(((Option) obj).key);
+            return obj instanceof Option && key.equals(((Option) obj).key);
         }
     }
 

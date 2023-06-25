@@ -49,8 +49,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class MalisisInventory implements IInventory {
 
     /** List of {@link MalisisInventory} that is currently containing this {@link MalisisInventory}. */
-    protected Set<MalisisInventoryContainer> containers = Collections
-            .newSetFromMap(new WeakHashMap<MalisisInventoryContainer, Boolean>());
+    protected Set<MalisisInventoryContainer> containers = Collections.newSetFromMap(new WeakHashMap<>());
     /** The inventory id inside the container. */
     protected int inventoryId;
     /** Object containing this {@link MalisisInventory}. */
@@ -66,7 +65,7 @@ public class MalisisInventory implements IInventory {
     /** Maximum stack size for the slots. */
     protected int slotMaxStackSize = 64;
     /** Event bus on which inventory events will be fired. */
-    private EventBus bus = new EventBus();
+    private final EventBus bus = new EventBus();
     /** Current inventory state. */
     public InventoryState state = new InventoryState();
 
@@ -163,7 +162,7 @@ public class MalisisInventory implements IInventory {
         return inventoryId;
     }
 
-    // #region getters/setters
+    // region getters/setters
     /**
      * Sets the name.
      *
@@ -384,7 +383,7 @@ public class MalisisInventory implements IInventory {
         return true;
     }
 
-    // #end getters/setters
+    // endregion getters/setters
 
     /**
      * Called when itemStack change in slot.
@@ -479,13 +478,6 @@ public class MalisisInventory implements IInventory {
             slot = getSlot(current);
             if (slot.isItemValid(itemStack) && !slot.isOutputSlot() && (emptySlot || slot.getItemStack() != null)) {
                 itemStack = slot.insert(itemStack);
-                // ItemUtils.ItemStacksMerger ism = new ItemUtils.ItemStacksMerger(itemStack, slot.getItemStack());
-                // if (ism.merge(ItemUtils.FULL_STACK, slot.getSlotStackLimit()))
-                // {
-                // itemStack = ism.merge;
-                // slot.setItemStack(ism.into);
-                // slot.onSlotChanged();
-                // }
             }
             current += step;
         }
@@ -617,7 +609,7 @@ public class MalisisInventory implements IInventory {
         return c;
     }
 
-    // #region Unused
+    // region Unused
 
     /**
      * Unused.
@@ -689,5 +681,5 @@ public class MalisisInventory implements IInventory {
         setItemStack(slotNumber, itemStack);
     }
 
-    // #end Unused
+    // endregion Unused
 }

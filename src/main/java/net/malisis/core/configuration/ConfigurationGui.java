@@ -39,7 +39,7 @@ import com.google.common.eventbus.Subscribe;
  */
 public class ConfigurationGui extends MalisisGui {
 
-    private Settings settings;
+    private final Settings settings;
     protected ArrayList<UIPanel> pannels = new ArrayList<>();
     protected HashMap<UIComponent, Setting> componentSettings = new HashMap<>();
 
@@ -91,8 +91,7 @@ public class ConfigurationGui extends MalisisGui {
 
     private UIContainer createSettingContainer(String category) {
         List<Setting> categorySettings = settings.getSettings(category);
-        UIContainer container = new UIContainer<UIContainer>(this, windowWidth - 105, windowHeight - 35)
-                .setPosition(5, 12);
+        UIContainer container = new UIContainer<>(this, windowWidth - 105, windowHeight - 35).setPosition(5, 12);
 
         int y = 0;
         for (Setting setting : categorySettings) {
@@ -110,7 +109,7 @@ public class ConfigurationGui extends MalisisGui {
 
     @Subscribe
     public void onMouseOver(HoveredStateChange event) {
-        if (event.getState() == true) {
+        if (event.getState()) {
             Setting setting = componentSettings.get(event.getComponent());
             if (setting != null) {
                 String str = StringUtils.join(setting.getComments(), "\r");

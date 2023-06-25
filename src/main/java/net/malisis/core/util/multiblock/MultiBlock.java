@@ -89,7 +89,9 @@ public abstract class MultiBlock implements Iterable<BlockState>, IBlockAccess {
     public boolean isComplete(World world, BlockPos pos, BlockState newState) {
         for (BlockState state : this) {
             state = state.offset(pos);
-            if (!state.matchesWorld(world) && (newState == null || !state.equals(newState))) return false;
+            if (!state.matchesWorld(world) && (!state.equals(newState))) {
+                return false;
+            }
         }
 
         return true;

@@ -40,11 +40,11 @@ import cpw.mods.fml.common.discovery.ASMDataTable.ASMData;
 public class Syncer {
 
     /** Map of the {@link ISyncHandler} registered. */
-    private DoubleKeyMap<String, ISyncHandler<?, ? extends ISyncableData>> handlers = new DoubleKeyMap<>();
+    private final DoubleKeyMap<String, ISyncHandler<?, ? extends ISyncableData>> handlers = new DoubleKeyMap<>();
     /** Map of {@link ISyncHandler} registered, accessible by the classes annotated by {@link Syncable} */
-    private Map<Class<?>, ISyncHandler<?, ? extends ISyncableData>> classToHandler = new HashMap<>();
+    private final Map<Class<?>, ISyncHandler<?, ? extends ISyncableData>> classToHandler = new HashMap<>();
 
-    private Map<Object, HashMap<String, Object>> syncCache = new HashMap<>();
+    private final Map<Object, HashMap<String, Object>> syncCache = new HashMap<>();
 
     /** Syncer instance **/
     private static Syncer instance;
@@ -73,7 +73,7 @@ public class Syncer {
     }
 
     /**
-     * Gets a {@link ISyncHandler} from it's ID
+     * Gets a {@link ISyncHandler} from its ID
      *
      * @param id the id
      * @return the handler from id
@@ -101,15 +101,15 @@ public class Syncer {
 
     /**
      * Discovers all the classes with {@link Syncable} annotation and fields with {@link Sync} annotation.<br>
-     * Fields are added the the corresponding {@link ISyncHandler}.
+     * Fields are added the corresponding {@link ISyncHandler}.
      *
      * @param asmDataTable the asm data table
      */
     public void discover(ASMDataTable asmDataTable) {
         for (ASMData data : asmDataTable.getAll(Syncable.class.getName())) {
             try {
-                Class clazz = Class.forName(data.getClassName());
-                Syncable anno = (Syncable) clazz.getAnnotation(Syncable.class);
+                Class<?> clazz = Class.forName(data.getClassName());
+                Syncable anno = clazz.getAnnotation(Syncable.class);
                 ISyncHandler<?, ? extends ISyncableData> handler = handlers.get(anno.value());
                 classToHandler.put(clazz, handler);
 
@@ -183,9 +183,7 @@ public class Syncer {
     }
 
     private void registerAutoSync(Object caller) {
-        if (syncCache.get(caller) != null) return;
-
-        // HashMap<String, Object> values = getFieldValues(caller, handler, syncNames)
+        syncCache.get(caller);
     }
 
     /**

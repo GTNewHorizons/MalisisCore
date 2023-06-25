@@ -66,7 +66,7 @@ public abstract class MalisisClassTransformer implements IClassTransformer {
                         hook.getMethodName(),
                         hook.getMethodDescriptor());
 
-                if (hook.isDebug() == true && (boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment")) {
+                if (hook.isDebug() && (boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment")) {
                     System.err.println(AsmUtils.getMethodNodeAsString(methodNode));
                 }
             } else {
@@ -79,7 +79,7 @@ public abstract class MalisisClassTransformer implements IClassTransformer {
             }
         }
 
-        ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS /* | ClassWriter.COMPUTE_FRAMES */);
+        ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
         classNode.accept(writer);
         return writer.toByteArray();
     }

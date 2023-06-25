@@ -32,9 +32,8 @@ import com.google.common.eventbus.Subscribe;
  */
 public class MCEditor extends UIContainer<MCEditor> implements IGuiText<MCEditor> {
 
-    private UITextField tf;
-    private EcfSelect sel;
-    private UICheckBox cb;
+    private final UITextField tf;
+    private final EcfSelect sel;
 
     private MalisisFont font = MalisisFont.minecraftFont;
     private FontRenderOptions fro = new FontRenderOptions();
@@ -46,7 +45,7 @@ public class MCEditor extends UIContainer<MCEditor> implements IGuiText<MCEditor
 
         sel = new EcfSelect(gui, this);
 
-        cb = new UICheckBox(gui, "Use litteral formatting");
+        UICheckBox cb = new UICheckBox(gui, "Use literal formatting");
         cb.setPosition(85, 0).register(this);
 
         add(tf, sel, cb);
@@ -65,7 +64,7 @@ public class MCEditor extends UIContainer<MCEditor> implements IGuiText<MCEditor
         return sel;
     }
 
-    // #region IGuiText
+    // region IGuiText
     @Override
     public MalisisFont getFont() {
         return font;
@@ -88,7 +87,7 @@ public class MCEditor extends UIContainer<MCEditor> implements IGuiText<MCEditor
         return this;
     }
 
-    // #end IGuiText
+    // endregion IGuiText
 
     @Subscribe
     public void onChecked(UICheckBox.CheckEvent event) {

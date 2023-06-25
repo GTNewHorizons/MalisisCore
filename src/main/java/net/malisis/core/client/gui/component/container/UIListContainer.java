@@ -89,13 +89,13 @@ public abstract class UIListContainer<T extends UIListContainer, S> extends UICo
     }
 
     public S select(S element) {
-        if (!fireEvent(new SelectEvent<S>(this, element))) return getSelected();
+        if (!fireEvent(new SelectEvent<>(this, element))) return getSelected();
 
         setSelected(element);
         return element;
     }
 
-    // #region IClipable
+    // region IClipable
     /**
      * Gets the {@link ClipArea}.
      *
@@ -117,16 +117,16 @@ public abstract class UIListContainer<T extends UIListContainer, S> extends UICo
     /**
      * Checks whether this {@link UIContainer} should clip its contents
      *
-     * @return true, if should clip contents
+     * @return true if it should clip contents
      */
     @Override
     public boolean shouldClipContent() {
         return true;
     }
 
-    // #end IClipable
+    // endregion IClipable
 
-    // #region IScrollable
+    // region IScrollable
     @Override
     public int getContentWidth() {
         return getWidth();
@@ -185,7 +185,7 @@ public abstract class UIListContainer<T extends UIListContainer, S> extends UICo
         return 0;
     }
 
-    // #end IScrollable
+    // endregion IScrollable
 
     public S getElementAt(int x, int y) {
         if (!isHovered()) return null;

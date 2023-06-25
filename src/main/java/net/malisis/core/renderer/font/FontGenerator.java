@@ -39,9 +39,9 @@ public class FontGenerator {
         if (!f.exists()) f.mkdir();
     }
 
-    private Font font;
-    private CharData[] charData;
-    private FontGeneratorOptions options;
+    private final Font font;
+    private final CharData[] charData;
+    private final FontGeneratorOptions options;
 
     public FontGenerator(Font font, CharData[] charData, FontGeneratorOptions options) {
         this.font = font;

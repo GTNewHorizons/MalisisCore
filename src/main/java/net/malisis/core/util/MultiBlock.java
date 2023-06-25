@@ -199,7 +199,7 @@ public class MultiBlock {
     /**
      * Gets a list of {@link ChunkPosition} for this {@link MultiBlock}. Does not include original block position.
      *
-     * @return the list of positions
+     * @return the array of positions
      */
     protected ChunkPosition[] getListPositions() {
         AxisAlignedBB aabb = getBounds();
@@ -213,7 +213,7 @@ public class MultiBlock {
         int eZ = z + (int) aabb.maxZ;
 
         int size = (eX - sX) * (eY - sY) * (eZ - sZ) - 1;
-        ChunkPosition[] pos = new ChunkPosition[size >= 0 ? size : 0];
+        ChunkPosition[] pos = new ChunkPosition[Math.max(size, 0)];
 
         int n = 0;
         for (int i = sX; i < eX; i++)
@@ -285,8 +285,6 @@ public class MultiBlock {
             te.setMultiBlock(this);
         }
 
-        // world.setBlockMetadataWithNotify(x, y, z, direction.ordinal(), 2);
-
         return true;
     }
 
@@ -305,7 +303,7 @@ public class MultiBlock {
     }
 
     /**
-     * Write this {@link MultiBlock} informations into the provided NBTTagCompound.
+     * Write this {@link MultiBlock} information into the provided NBTTagCompound.
      *
      * @param tag the tag
      */
@@ -339,8 +337,6 @@ public class MultiBlock {
         aabb = AxisAlignedBB.getBoundingBox(0, 0, 0, 1, 1, 1);
         aabb = AABBUtils.readFromNBT(tag, aabb);
         if (tag.hasKey("direction")) direction = ForgeDirection.getOrientation(tag.getInteger("direction"));
-
-        return;
     }
 
     /**
@@ -414,25 +410,25 @@ public class MultiBlock {
         if (provider.xCoord == mb.x && provider.yCoord == mb.y && provider.zCoord == mb.z) return provider;
 
         TileEntity te = provider.getWorldObj().getTileEntity(mb.x, mb.y, mb.z);
-        if (te == null || !(te instanceof IProvider)) return null;
+        if (!(te instanceof IProvider)) return null;
 
         if (provider.getClass().isAssignableFrom(te.getClass())) return (T) te;
 
         return null;
     }
 
-    public static interface IProvider {
+    public interface IProvider {
 
         /**
          * Sets the {@link MultiBlock} instance for this {@link IProvider}.
          *
          * @param multiBlock the MultiBlock
          */
-        public void setMultiBlock(MultiBlock multiBlock);
+        void setMultiBlock(MultiBlock multiBlock);
 
         /**
          * @return the {@link MultiBlock} instance of the provider.
          */
-        public MultiBlock getMultiBlock();
+        MultiBlock getMultiBlock();
     }
 }

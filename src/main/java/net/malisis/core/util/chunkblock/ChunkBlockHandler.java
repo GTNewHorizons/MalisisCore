@@ -48,11 +48,11 @@ import io.netty.buffer.Unpooled;
  */
 public class ChunkBlockHandler implements IChunkBlockHandler {
 
-    private static ChunkBlockHandler instance = new ChunkBlockHandler();
+    private static final ChunkBlockHandler instance = new ChunkBlockHandler();
 
-    private Map<Chunk, TLongHashSet> serverChunks = new WeakHashMap();
-    private Map<Chunk, TLongHashSet> clientChunks = new WeakHashMap();
-    private List<IChunkBlockHandler> handlers = new ArrayList();
+    private final Map<Chunk, TLongHashSet> serverChunks = new WeakHashMap<>();
+    private final Map<Chunk, TLongHashSet> clientChunks = new WeakHashMap<>();
+    private final List<IChunkBlockHandler> handlers = new ArrayList<>();
 
     public ChunkBlockHandler() {
         handlers.add(new ChunkListener());
@@ -84,7 +84,7 @@ public class ChunkBlockHandler implements IChunkBlockHandler {
         handlers.add(handler);
     }
 
-    // #region updateCoordinates
+    // region updateCoordinates
     /**
      * Update chunk coordinates.<br>
      * Called via ASM from {@link Chunk#setBlockIDWithMetadata(int, int, int, Block, int)} Notifies all
@@ -136,7 +136,6 @@ public class ChunkBlockHandler implements IChunkBlockHandler {
      * @param pos   the pos
      */
     private void addCoord(Chunk chunk, BlockPos pos) {
-        // MalisisCore.message("Added " + pos + " to " + chunk.xPosition + ", " + chunk.zPosition);
         getCoords(chunk).add(pos.toLong());
     }
 
@@ -161,13 +160,11 @@ public class ChunkBlockHandler implements IChunkBlockHandler {
     private void removeCoord(Chunk chunk, BlockPos pos) {
         if (!getCoords(chunk).remove(pos.toLong()))
             MalisisCore.log.error("Failed to remove : {} ({})", pos, pos.toLong());
-        // else
-        // MalisisCore.message("Removed " + pos + " from " + chunk.xPosition + ", " + chunk.zPosition);
     }
 
-    // #end updateCoordinates
+    // endregion updateCoordinates
 
-    // #region Events
+    // region Events
     /**
      * On data load.
      *
@@ -250,7 +247,7 @@ public class ChunkBlockHandler implements IChunkBlockHandler {
         chunks.put(chunk, new TLongHashSet(coords));
     }
 
-    // #end Events
+    // endregion Events
 
     /**
      * Gets the chunks inside distance from coordinates.

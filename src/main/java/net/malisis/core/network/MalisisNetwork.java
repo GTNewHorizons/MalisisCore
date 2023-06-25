@@ -40,7 +40,6 @@ import cpw.mods.fml.relauncher.Side;
  * <br>
  * Example : {@link OpenInventoryMessage}.
  *
- *
  * @author Ordinastie
  */
 public class MalisisNetwork extends SimpleNetworkWrapper {
@@ -139,18 +138,13 @@ public class MalisisNetwork extends SimpleNetworkWrapper {
      * @param asmDataTable the asm data table
      */
     public static void createMessages(ASMDataTable asmDataTable) {
-        List<ASMData> classes = Ordering.natural().onResultOf(new Function<ASMData, String>() {
-
-            @Override
-            public String apply(ASMData data) {
-                return data.getClassName();
-            }
-        }).sortedCopy(asmDataTable.getAll(MalisisMessage.class.getName()));
+        List<ASMData> classes = Ordering.natural().onResultOf((Function<ASMData, String>) ASMData::getClassName)
+                .sortedCopy(asmDataTable.getAll(MalisisMessage.class.getName()));
 
         for (ASMData data : classes) {
             try {
-                Class clazz = Class.forName(data.getClassName());
-                if (IMessageHandler.class.isAssignableFrom(clazz)) clazz.newInstance();
+                Class<?> clazz = Class.forName(data.getClassName());
+                if (IMessageHandler.class.isAssignableFrom(clazz)) clazz.getDeclaredConstructor().newInstance();
                 else MalisisCore.log.error(
                         "@MalisisMessage found on {} that does not implement IMessageHandler",
                         data.getClassName());

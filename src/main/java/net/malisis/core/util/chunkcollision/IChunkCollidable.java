@@ -26,6 +26,6 @@ import net.minecraft.world.IBlockAccess;
  */
 public interface IChunkCollidable extends IChunkBlock, IBoundingBox {
 
-    public AxisAlignedBB[] getPlacedBoundingBox(IBlockAccess world, int x, int y, int z, int side, EntityPlayer entity,
+    AxisAlignedBB[] getPlacedBoundingBox(IBlockAccess world, int x, int y, int z, int side, EntityPlayer entity,
             ItemStack itemStack);
 }

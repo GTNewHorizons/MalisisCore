@@ -50,11 +50,21 @@ public class MethodDescriptor {
 
     @Override
     public String toString() {
-        String str = "(";
-        if (params != null) for (Class<?> c : params) str += c.getName();
-        str += ")";
-        if (returnType != null) str += returnType.getName();
-        return str;
+        StringBuilder str = new StringBuilder("(");
+
+        if (params != null) {
+            for (Class<?> c : params) {
+                str.append(c.getName());
+            }
+        }
+
+        str.append(")");
+
+        if (returnType != null) {
+            str.append(returnType.getName());
+        }
+
+        return str.toString();
     }
 
     private static class MethodSignatureParser extends Parser<MethodDescriptor> {
@@ -88,7 +98,7 @@ public class MethodDescriptor {
 
     private static class TypeToken extends Token<Class<?>> {
 
-        private static TypeToken token = (TypeToken) new TypeToken().name("TypeToken");
+        private static final TypeToken token = (TypeToken) new TypeToken().name("TypeToken");
 
         private int size;
 

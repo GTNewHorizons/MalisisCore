@@ -115,7 +115,6 @@ public abstract class Transformation<T extends Transformation, S extends ITransf
             comp = (float) (1 - Math.cos(comp * Math.PI)) / 2;
         }
 
-        // MalisisCore.message(comp);
         return comp;
     }
 

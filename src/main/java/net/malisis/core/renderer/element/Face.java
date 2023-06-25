@@ -64,7 +64,7 @@ public class Face implements ITransformable.Translate, ITransformable.Rotate {
     public void setName(String name) {
         if (name == null) {
             name = "";
-            HashMap<String, Integer> map = new HashMap<String, Integer>();
+            HashMap<String, Integer> map = new HashMap<>();
             String[] dirs = new String[] { "North", "South", "East", "West", "Top", "Bottom" };
             for (String dir : dirs) {
                 map.put(dir, 0);
@@ -151,15 +151,14 @@ public class Face implements ITransformable.Translate, ITransformable.Rotate {
 
         double factorU, factorV;
 
-        float uvs[][] = new float[vertexes.length][2];
+        float[][] uvs = new float[vertexes.length][2];
         for (int i = 0; i < vertexes.length; i++) {
             Vertex vertex = vertexes[i];
 
             factorU = getFactorU(vertex);
             factorV = getFactorV(vertex);
 
-            int k = i;
-            uvs[k] = new float[] { interpolate(u, U, factorU, false), interpolate(v, V, factorV, false) };
+            uvs[i] = new float[] { interpolate(u, U, factorU, false), interpolate(v, V, factorV, false) };
         }
 
         for (int i = 0; i < vertexes.length; i++) vertexes[i].setUV(uvs[i][0], uvs[i][1]);
@@ -177,7 +176,7 @@ public class Face implements ITransformable.Translate, ITransformable.Rotate {
 
         double factorU, factorV;
 
-        float uvs[][] = new float[vertexes.length][2];
+        float[][] uvs = new float[vertexes.length][2];
         for (int i = 0; i < vertexes.length; i++) {
             Vertex vertex = vertexes[i];
 
@@ -201,11 +200,9 @@ public class Face implements ITransformable.Translate, ITransformable.Rotate {
 
         switch (params.direction.get()) {
             case EAST:
-                return vertex.getZ();
             case WEST:
                 return vertex.getZ();
             case NORTH:
-                return vertex.getX();
             case SOUTH:
             case UP:
             case DOWN:
@@ -386,17 +383,11 @@ public class Face implements ITransformable.Translate, ITransformable.Rotate {
             else if (normal.x == -1) dir = ForgeDirection.WEST;
         }
 
-        // if (dir != ForgeDirection.UNKNOWN)
         {
             params.direction.set(dir);
             params.textureSide.set(dir);
             params.aoMatrix.set(calculateAoMatrix(dir));
         }
-
-        // double fx = Math.asin(Math.abs(normal.x)) / Math.PI * 2 * 0.6F;
-        // double fy = Math.asin(Math.abs(normal.y)) / Math.PI * 2 * (normal.y >= 0 ? 1 : 0.5F);
-        // double fz = Math.asin(Math.abs(normal.z)) / Math.PI * 2 * 0.8F;
-        // float f = (float) (fx + fy + fz);
 
         // fry's patent
         float f = (float) ((normal.x * normal.x * 0.6 + normal.y * (normal.y * 3 + 1) / 4 + normal.z * normal.z * 0.8));
@@ -405,9 +396,16 @@ public class Face implements ITransformable.Translate, ITransformable.Rotate {
 
     @Override
     public String toString() {
-        String s = name() + " {";
-        for (Vertex v : vertexes) s += v.name() + ", ";
-        return s + "}";
+        StringBuilder s = new StringBuilder(name());
+        s.append(" {");
+
+        for (Vertex v : vertexes) {
+            s.append(v.name()).append(", ");
+        }
+
+        s.append("}");
+
+        return s.toString();
     }
 
     /**

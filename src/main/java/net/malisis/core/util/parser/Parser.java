@@ -37,11 +37,6 @@ public abstract class Parser<T> {
     protected Set<Token> listTokens = new LinkedHashSet<>();
     protected Set<Token> ignoreTokens = new HashSet<>();
 
-    // protected Token currentToken;
-    // protected int currentSize;
-    // protected Token lastToken;
-    // protected int lastSize;
-
     public Parser(String s) {
         text = s;
     }
@@ -128,8 +123,7 @@ public abstract class Parser<T> {
             e = index;
         }
 
-        String txt = text.substring(s, e);
-        return txt;
+        return text.substring(s, e);
     }
 
     public abstract T parse();

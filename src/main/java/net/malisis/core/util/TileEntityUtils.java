@@ -31,7 +31,7 @@ public class TileEntityUtils {
     @SideOnly(Side.CLIENT)
     private static TileEntity currentTileEntity;
 
-    /** Reference the to currently opened {@link MalisisGui}. */
+    /** Reference to the currently opened {@link MalisisGui}. */
     @SideOnly(Side.CLIENT)
     private static MalisisGui currenGui;
 
@@ -72,9 +72,6 @@ public class TileEntityUtils {
         try {
             return clazz.cast(te);
         } catch (ClassCastException e) {
-            // MalisisCore.log.error("Tried to get {} at {},{},{}, but found {} instead.", clazz.getSimpleName(), x,
-            // y, z, te.getClass()
-            // .getSimpleName());
             return null;
         }
     }
@@ -90,7 +87,6 @@ public class TileEntityUtils {
     public static void linkTileEntityToGui(TileEntity te, MalisisGui gui) {
         currentTileEntity = te;
         currenGui = gui;
-        // currenGui.updateGui();
     }
 
     /**

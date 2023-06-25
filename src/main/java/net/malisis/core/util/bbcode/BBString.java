@@ -34,8 +34,8 @@ import joptsimple.internal.Strings;
 public class BBString {
 
     private String text;
-    private BBNode rootNode = new BBRootNode();
-    private List<BBTextNode> textNodes = new LinkedList<>();
+    private final BBNode rootNode = new BBRootNode();
+    private final List<BBTextNode> textNodes = new LinkedList<>();
     private BBCodeRenderer renderer;
 
     public BBString() {
@@ -109,7 +109,7 @@ public class BBString {
 
     public void addText(String txt, int position) {
         if (textNodes.size() == 0) {
-            getRoot().insert(new BBTextNode(txt));;
+            getRoot().insert(new BBTextNode(txt));
             buildTextNodeList(getRoot());
             return;
         }
@@ -146,10 +146,13 @@ public class BBString {
     }
 
     public String debug(BBNode node, int level) {
-        String str = Strings.repeat(' ', level * 3) + node.toString() + "\n";
-        for (BBNode n : node) str += debug(n, level + 1);
+        StringBuilder str = new StringBuilder(Strings.repeat(' ', level * 3) + node.toString() + "\n");
 
-        return str;
+        for (BBNode n : node) {
+            str.append(debug(n, level + 1));
+        }
+
+        return str.toString();
     }
 
     public String printTextNodes() {
@@ -158,7 +161,6 @@ public class BBString {
 
     @Override
     public String toString() {
-        String str = text + "\n" + debug(getRoot(), 0);
-        return str;
+        return text + "\n" + debug(getRoot(), 0);
     }
 }

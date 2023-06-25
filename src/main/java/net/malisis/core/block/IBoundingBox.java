@@ -36,5 +36,5 @@ public interface IBoundingBox {
      * @param type  the type
      * @return the bounding box
      */
-    public AxisAlignedBB[] getBoundingBox(IBlockAccess world, int x, int y, int z, BoundingBoxType type);
+    AxisAlignedBB[] getBoundingBox(IBlockAccess world, int x, int y, int z, BoundingBoxType type);
 }

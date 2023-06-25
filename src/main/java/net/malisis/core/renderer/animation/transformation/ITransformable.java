@@ -19,43 +19,43 @@ package net.malisis.core.renderer.animation.transformation;
  */
 public interface ITransformable {
 
-    public static interface Translate extends ITransformable {
+    interface Translate extends ITransformable {
 
-        public void translate(float x, float y, float z);
+        void translate(float x, float y, float z);
     }
 
-    public static interface Rotate extends ITransformable {
+    interface Rotate extends ITransformable {
 
-        public void rotate(float angle, float x, float y, float z, float offsetX, float offsetY, float offsetZ);
+        void rotate(float angle, float x, float y, float z, float offsetX, float offsetY, float offsetZ);
     }
 
-    public static interface Scale extends ITransformable {
+    interface Scale extends ITransformable {
 
-        public void scale(float x, float y, float z, float offsetX, float offsetY, float offsetZ);
+        void scale(float x, float y, float z, float offsetX, float offsetY, float offsetZ);
     }
 
-    public static interface Color extends ITransformable {
+    interface Color extends ITransformable {
 
-        public void setColor(int color);
+        void setColor(int color);
     }
 
-    public static interface Alpha extends ITransformable {
+    interface Alpha extends ITransformable {
 
-        public void setAlpha(int alpha);
+        void setAlpha(int alpha);
     }
 
-    public static interface Brightness extends ITransformable {
+    interface Brightness extends ITransformable {
 
-        public void setBrightness(int brightness);
+        void setBrightness(int brightness);
     }
 
-    public interface Position<T> extends ITransformable {
+    interface Position<T> extends ITransformable {
 
-        public T setPosition(int x, int y);
+        T setPosition(int x, int y);
     }
 
-    public interface Size<T> extends ITransformable {
+    interface Size<T> extends ITransformable {
 
-        public T setSize(int width, int height);
+        T setSize(int width, int height);
     }
 }

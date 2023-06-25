@@ -14,7 +14,6 @@
 package net.malisis.core.renderer;
 
 import java.lang.reflect.Field;
-import java.util.Iterator;
 import java.util.Map;
 
 import net.malisis.core.MalisisCore;
@@ -76,7 +75,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     private static Field isDrawingField;
     /** Whether this {@link MalisisRenderer} initialized. (initialize() already called) */
     private boolean initialized = false;
-    /** Id of this {@link MalisisRenderer}. */
+    /** ID of this {@link MalisisRenderer}. */
     protected int renderId = -1;
     /** Tessellator reference. */
     protected Tessellator t = Tessellator.instance;
@@ -144,7 +143,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         return partialTick;
     }
 
-    // #region set()
+    // region set()
     /**
      * Resets data so this {@link MalisisRenderer} can be reused.
      */
@@ -162,7 +161,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Sets informations for this {@link MalisisRenderer}.
+     * Sets information for this {@link MalisisRenderer}.
      *
      * @param world    the world
      * @param block    the block
@@ -181,7 +180,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Sets informations for this {@link MalisisRenderer}.
+     * Sets information for this {@link MalisisRenderer}.
      *
      * @param world the world
      */
@@ -190,7 +189,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Sets informations for this {@link MalisisRenderer}.
+     * Sets information for this {@link MalisisRenderer}.
      *
      * @param block the block
      */
@@ -199,7 +198,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Sets informations for this {@link MalisisRenderer}.
+     * Sets information for this {@link MalisisRenderer}.
      *
      * @param blockMetadata the block metadata
      */
@@ -208,7 +207,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Sets informations for this {@link MalisisRenderer}.
+     * Sets information for this {@link MalisisRenderer}.
      *
      * @param block         the block
      * @param blockMetadata the block metadata
@@ -218,7 +217,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Sets informations for this {@link MalisisRenderer}.
+     * Sets information for this {@link MalisisRenderer}.
      *
      * @param x the x
      * @param y the y
@@ -229,7 +228,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Sets informations for this {@link MalisisRenderer}.
+     * Sets information for this {@link MalisisRenderer}.
      *
      * @param te          the te
      * @param partialTick the partial tick
@@ -241,7 +240,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Sets informations for this {@link MalisisRenderer}.
+     * Sets information for this {@link MalisisRenderer}.
      *
      * @param type      the type
      * @param itemStack the item stack
@@ -252,9 +251,9 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         this.itemRenderType = type;
     }
 
-    // #end
+    // endregion
 
-    // #region ISBRH
+    // region ISBRH
     /**
      * Renders inventory block.
      *
@@ -310,9 +309,9 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         return true;
     }
 
-    // #end ISBRH
+    // endregion ISBRH
 
-    // #region IItemRenderer
+    // region IItemRenderer
     /**
      * Checks whether to use this {@link MalisisRenderer} for the specified
      * {@link net.minecraftforge.client.IItemRenderer.ItemRenderType}.
@@ -354,9 +353,9 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         clean();
     }
 
-    // #end IItemRenderer
+    // endregion IItemRenderer
 
-    // #region TESR
+    // region TESR
     /**
      * Renders a {@link TileEntitySpecialRenderer}.
      *
@@ -390,9 +389,9 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         clean();
     }
 
-    // #end TESR
+    // endregion TESR
 
-    // #region IRenderWorldLast
+    // region IRenderWorldLast
     @Override
     public boolean shouldSetViewportPosition() {
         return true;
@@ -423,9 +422,9 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         clean();
     }
 
-    // #end IRenderWorldLast
+    // endregion IRenderWorldLast
 
-    // #region prepare()
+    // region prepare()
     /**
      * Prepares the {@link Tessellator} and the GL states for the <b>renderType</b>. <b>data</b> is only used for TESR
      * and IRWL.<br>
@@ -494,7 +493,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     /**
      * Checks if the {@link Tessellator} is currently drawing.
      *
-     * @return true, if is drawing
+     * @return true if it is drawing
      */
     public boolean isDrawing() {
         if (isDrawingField == null)
@@ -608,7 +607,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         Minecraft.getMinecraft().getTextureManager().bindTexture(resourceLocaltion);
     }
 
-    // #end prepare()
+    // endregion prepare()
 
     /**
      * _initialize.
@@ -657,12 +656,11 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Renders the destroy progress manually for TESR. Called if {@link MalisisRenderer#destroyBlockProgress} is not
+     * Renders the destroyed progress manually for TESR. Called if {@link MalisisRenderer#destroyBlockProgress} is not
      * <code>null</code>.
      */
     public void renderDestroyProgress() {
         if (destroyBlockProgress != null) overrideTexture = damagedIcons[destroyBlockProgress.getPartialBlockDamage()];
-        // enableBlending();
         render();
     }
 
@@ -825,7 +823,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Gets the IIcon corresponding to the specified {@link RenderParameters}. Version with less allocations than
+     * Gets the IIcon corresponding to the specified {@link RenderParameters}. Version with fewer allocations than
      * getIcon for faster rendering.
      *
      * @param faceParams      Face parameters
@@ -863,17 +861,16 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     protected boolean shouldRenderFace(Face face) {
         if (renderType != RenderType.ISBRH_WORLD || world == null || block == null) return true;
         if (rp != null && rp.renderAllFaces.get()) return true;
-        if (renderBlocks != null && renderBlocks.renderAllFaces == true) return true;
+        if (renderBlocks != null && renderBlocks.renderAllFaces) return true;
         RenderParameters p = face.getParameters();
         if (p.direction.get() == null || p.renderAllFaces.get()) return true;
 
-        boolean b = block.shouldSideBeRendered(
+        return block.shouldSideBeRendered(
                 world,
                 x + p.direction.get().offsetX,
                 y + p.direction.get().offsetY,
                 z + p.direction.get().offsetZ,
                 p.direction.get().ordinal());
-        return b;
     }
 
     /**
@@ -949,8 +946,8 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
                     y + params.direction.get().offsetY,
                     z + params.direction.get().offsetZ);
 
-            for (int i = 0; i < aoMatrix.length; i++)
-                factor += getBlockAmbientOcclusion(world, x + aoMatrix[i][0], y + aoMatrix[i][1], z + aoMatrix[i][2]);
+            for (int[] matrix : aoMatrix)
+                factor += getBlockAmbientOcclusion(world, x + matrix[0], y + matrix[1], z + matrix[2]);
 
             factor /= (aoMatrix.length + 1);
         }
@@ -1035,9 +1032,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         for (int i = 0; i < b.length; i++)
             b[i] += getMixedBrightnessForBlock(world, x + aoMatrix[i][0], y + aoMatrix[i][1], z + aoMatrix[i][2]);
 
-        int brightness = getAoBrightness(b[0], b[1], b[2], baseBrightness);
-
-        return brightness;
+        return getAoBrightness(b[0], b[1], b[2], baseBrightness);
     }
 
     /**
@@ -1085,7 +1080,6 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
      * @return the mixed brightness for block
      */
     protected int getMixedBrightnessForBlock(IBlockAccess world, int x, int y, int z) {
-        // return world.getLightBrightnessForSkyBlocks(x, y, z, 0);
         return world.getBlock(x, y, z).getMixedBrightnessForBlock(world, x, y, z);
     }
 
@@ -1145,7 +1139,7 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
     }
 
     /**
-     * Gets the destroy block progress for this rendering. Only used for TESR.
+     * Gets the destroyed block progress for this rendering. Only used for TESR.
      *
      * @return the block destroy progress
      */
@@ -1154,9 +1148,8 @@ public class MalisisRenderer extends TileEntitySpecialRenderer
         Map damagedBlocks = getDamagedBlocks();
         if (damagedBlocks == null || damagedBlocks.isEmpty()) return null;
 
-        Iterator iterator = damagedBlocks.values().iterator();
-        while (iterator.hasNext()) {
-            DestroyBlockProgress dbp = (DestroyBlockProgress) iterator.next();
+        for (Object o : damagedBlocks.values()) {
+            DestroyBlockProgress dbp = (DestroyBlockProgress) o;
             if (isCurrentBlockDestroyProgress(dbp)) return dbp;
         }
         return null;

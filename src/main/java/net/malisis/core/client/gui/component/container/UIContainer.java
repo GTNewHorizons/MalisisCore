@@ -115,7 +115,7 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
         setSize(width, height);
     }
 
-    // #region getters/setters
+    // region getters/setters
     /**
      * Sets the visible.
      *
@@ -193,7 +193,7 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
      * @return the UI container
      */
     public UIContainer setTitle(String title) {
-        if (title == null || title == "") {
+        if (title == null || title.equals("")) {
             remove(titleLabel);
             return this;
         }
@@ -212,7 +212,7 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
         return titleLabel != null ? titleLabel.getText() : null;
     }
 
-    // #end getters/setters
+    // endregion getters/setters
 
     /**
      * Gets the relative position of the specified {@link UIComponent} inside this {@link UIContainer}.
@@ -261,7 +261,7 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
 
     /**
      * Gets the {@link UIComponent} matching the specified name. If recursive is true, looks for the {@code UIComponent}
-     * inside it child {@link UIContainer} too.
+     * inside its child {@link UIContainer} too.
      *
      * @param name      the name
      * @param recursive if true, look inside child {@code UIContainer}
@@ -348,7 +348,7 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
         this.contentWidth = contentWidth + 2 * getHorizontalPadding();
     }
 
-    // #region IClipable
+    // region IClipable
     /**
      * Gets the {@link ClipArea}.
      *
@@ -372,16 +372,16 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
     /**
      * Checks whether this {@link UIContainer} should clip its contents
      *
-     * @return true, if should clip contents
+     * @return true if it should clip contents
      */
     @Override
     public boolean shouldClipContent() {
         return clipContent;
     }
 
-    // #end IClipable
+    // endregion IClipable
 
-    // #region IScrollable
+    // region IScrollable
     @Override
     public int getContentWidth() {
         return contentWidth;
@@ -417,7 +417,7 @@ public class UIContainer<T extends UIContainer> extends UIComponent<T> implement
         return (GuiScreen.isCtrlKeyDown() ? 0.125F : 0.025F);
     }
 
-    // #end IScrollable
+    // endregion IScrollable
 
     /**
      * Adds components to this {@link UIContainer}.

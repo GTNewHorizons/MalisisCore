@@ -29,9 +29,9 @@ public class AnimationRenderer {
 
     private long startTime = -1;
     private boolean clearFinished = false;
-    private LinkedList<Animation> animations = new LinkedList<>();
-    private List<ITransformable> tranformables = new ArrayList<>();
-    private List<Animation> toClear = new ArrayList<>();
+    private final LinkedList<Animation> animations = new LinkedList<>();
+    private final List<ITransformable> tranformables = new ArrayList<>();
+    private final List<Animation> toClear = new ArrayList<>();
 
     public AnimationRenderer() {
         setStartTime();
@@ -47,9 +47,6 @@ public class AnimationRenderer {
 
     public void setStartTick(long start) {
         setStartTime(System.currentTimeMillis() - (getWorldTime() - start) * 1000 / 20);
-        // MalisisCore.message("%s - %s = %s > %s / %s", getWorldTime(), start, getWorldTime() - start,
-        // getElapsedTime() / 1000000000,
-        // getElapsedTicks());
     }
 
     public long getWorldTime() {

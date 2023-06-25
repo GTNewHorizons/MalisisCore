@@ -19,7 +19,7 @@ import net.minecraft.item.ItemStack;
 
 public class PlayerInventorySlot extends MalisisSlot {
 
-    private EntityPlayer player;
+    private final EntityPlayer player;
 
     public PlayerInventorySlot(PlayerInventory inventory, EntityPlayer p, int index) {
         super(inventory, p.inventory.getStackInSlot(index), index);

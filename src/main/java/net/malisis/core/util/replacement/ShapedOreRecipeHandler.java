@@ -25,8 +25,8 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
  */
 public class ShapedOreRecipeHandler extends ReplacementHandler<ShapedOreRecipe> {
 
-    private Field inputField;
-    private Field outputField;
+    private final Field inputField;
+    private final Field outputField;
 
     public ShapedOreRecipeHandler() {
         super(ShapedOreRecipe.class);

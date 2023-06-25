@@ -285,7 +285,6 @@ public class UISlot extends UIComponent<UISlot> {
         updateTooltip();
 
         if (event.getState() && MalisisGui.currentGui().getInventoryContainer().isDraggingItemStack()) {
-            // if (MalisisGui.currentGui().getInventoryContainer().getDraggedItemstack(slot) == null)
             MalisisGui.sendAction(ActionType.DRAG_ADD_SLOT, slot, 0);
         }
     }

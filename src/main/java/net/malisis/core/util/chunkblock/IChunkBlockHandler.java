@@ -23,5 +23,5 @@ import net.minecraft.world.chunk.Chunk;
  */
 public interface IChunkBlockHandler {
 
-    public boolean updateCoordinates(Chunk chunk, BlockPos pos, Block old, Block block);
+    boolean updateCoordinates(Chunk chunk, BlockPos pos, Block old, Block block);
 }

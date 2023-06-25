@@ -19,5 +19,5 @@ package net.malisis.core.client.gui.component.control;
  */
 public interface ICloseable {
 
-    public void onClose();
+    void onClose();
 }

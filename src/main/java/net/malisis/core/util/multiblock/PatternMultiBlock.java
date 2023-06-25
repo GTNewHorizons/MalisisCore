@@ -29,8 +29,8 @@ import net.minecraft.block.Block;
  */
 public class PatternMultiBlock extends MultiBlock {
 
-    private List<List<String>> pattern = new ArrayList<>();
-    private Map<Character, BlockState> blocks = new HashMap<>();
+    private final List<List<String>> pattern = new ArrayList<>();
+    private final Map<Character, BlockState> blocks = new HashMap<>();
 
     public PatternMultiBlock() {}
 

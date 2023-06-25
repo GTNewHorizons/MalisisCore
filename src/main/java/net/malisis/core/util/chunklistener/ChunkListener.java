@@ -34,8 +34,7 @@ public class ChunkListener implements IChunkBlockHandler {
 
         ChunkBlockHandler.get().callProcedure(chunk, procedure);
 
-        if (procedure.isCanceled()) return true;
-        return false;
+        return procedure.isCanceled();
     }
 
     private static class BlockNotifierProcedure extends ChunkProcedure {

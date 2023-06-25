@@ -26,9 +26,10 @@ import java.util.HashMap;
  */
 public class ShaderSystem {
 
-    private HashMap<String, Integer> varLocations;
+    private final HashMap<String, Integer> varLocations;
 
-    private int program, lastProgram = 0;
+    private final int program;
+    private int lastProgram = 0;
     private boolean initialized, active;
 
     public ShaderSystem() {
@@ -81,7 +82,7 @@ public class ShaderSystem {
         return varLocations.get(var);
     }
 
-    private static int createShader(String source, int shaderType) throws Exception {
+    private static int createShader(String source, int shaderType) {
         int shader = 0;
         try {
             shader = glCreateShader(shaderType);

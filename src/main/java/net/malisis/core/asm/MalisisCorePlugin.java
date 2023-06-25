@@ -30,9 +30,7 @@ public class MalisisCorePlugin implements IFMLLoadingPlugin {
     public String[] getASMTransformerClass() {
         JavaCompatibility.checkVersion();
 
-        return new String[] {
-                /* MalisisCoreTransformer.class.getName(), */
-                "net.malisis.core.util.chunkcollision.ChunkCollisionTransformer",
+        return new String[] { "net.malisis.core.util.chunkcollision.ChunkCollisionTransformer",
                 "net.malisis.core.util.chunkblock.ChunkBlockTransformer" };
     }
 

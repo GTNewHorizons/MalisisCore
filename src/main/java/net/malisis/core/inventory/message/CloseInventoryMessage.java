@@ -38,7 +38,7 @@ public class CloseInventoryMessage implements IMessageHandler<CloseInventoryMess
 
     public enum ContainerType {
         TYPE_TILEENTITY,
-        TYPE_ITEM;
+        TYPE_ITEM
     }
 
     public CloseInventoryMessage() {
@@ -50,7 +50,7 @@ public class CloseInventoryMessage implements IMessageHandler<CloseInventoryMess
      *
      * @param message the message
      * @param ctx     the ctx
-     * @return the i message
+     * @return the message
      */
     @Override
     public IMessage onMessage(Packet message, MessageContext ctx) {
@@ -59,7 +59,7 @@ public class CloseInventoryMessage implements IMessageHandler<CloseInventoryMess
     }
 
     /**
-     * Closes a the GUI for the {@link MalisisInventoryContainer}.
+     * Closes the GUI for the {@link MalisisInventoryContainer}.
      */
     @SideOnly(Side.CLIENT)
     private void closeGui() {
